@@ -277,15 +277,16 @@ miRNAmRNA \cite{vanItersonWeb}.
 Advantages of Bayesian methods:
 \begin{itemize}
 \tightlist
-\item quantification of uncertainty as probabilities, knowledge about anything
+  \item
+  quantification of uncertainty as probabilities, knowledge about anything
   unknown is described as a probability distribution, easy to comprehend
-\item
+  \item
   common-sense interpretation of credible intervals compared to frequentist
   confidence intervals
-\item
+  \item
   flexibility allows constructing complex models with relative ease (e.g.
   hierarchical models)
-\item
+  \item
   Adding more data sequentially is possible by using the previous posterior
   distribution as the new prior distribution. This can be especially useful in
   a clinical research context, where data are often collected within a long
@@ -294,3 +295,31 @@ Advantages of Bayesian methods:
 The challenge in Bayesian analysis is setting up proper probability models for
 the parameters and observations.
 
+
+\paragraph{Simulation}\label{simulation}
+
+Bayesian anaylis often involves simulation if the form of sampling from the
+obtained posterior distribution. This is convenient -- and necessary -- when
+the exact probability density function cannot be explicitly obtained through
+integration. Additionally, simulation often has the advantage of pointing out
+problems in the model specification when simulated values are extremely small
+of large.
+
+Simulation methods:
+\begin{itemize}
+\tightlist
+  \item
+  sampling from probability distributions (easy with modern pseudorandom
+  number generators)
+  \item
+  \textbf{mikäseyksinkertasinonkaan}
+  \item
+  Gibbs
+  \item
+  Hamiltonian Monte Carlo (this is used by Stan)
+\end{itemize}
+
+
+\paragraph{Bayesian regression}\label{bayesian-regression}
+
+\TEXTBF{SELITÄ MITEN BAYES-REGRESSIO EROAA TAVALLISESTA.}
