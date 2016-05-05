@@ -24,6 +24,7 @@
 %% specify the character encoding scheme used by your editor: utf8, latin1
 
 \usepackage{graphicx}
+\usepackage[numbers,square]{natbib}
 
 %% Use this if you write hard core mathematics, these are usually needed
 \usepackage{amsfonts,amssymb,amsbsy}
@@ -39,8 +40,8 @@
 \usepackage{hyperref}
 \hypersetup{pdfpagemode=UseNone, pdfstartview=FitH,
   colorlinks=true,urlcolor=red,linkcolor=blue,citecolor=black,
-  pdftitle={Default Title, Modify},pdfauthor={Your Name},
-  pdfkeywords={Modify keywords}}
+  pdftitle={MicroRNA regulation in breast cancer},pdfauthor={Viljami Aittom\"aki},
+  pdfkeywords={Bayesian analysis, breast cancer, microRNA}}
 
 
 %% All that is printed on paper starts here
@@ -77,7 +78,7 @@
 %% linebreak with the \\ control character. 
 %% Do not hyphenate titles.
 %% 
-\thesistitle{Thesis template}
+\thesistitle{MicroRNA regulation in breast cancer -- a Bayesian analysis of expression data}
 
 \place{Espoo}
 
@@ -134,17 +135,16 @@
 \keywords{breast cancer, microRNA, Bayes, microarray}
 %% Abstract text
 \begin{abstractpage}[english]
-  Your abstract in English. Try to keep the abstract short; approximately 
-  100 words should be enough. The abstract explains your research topic, 
-  the methods you have used, and the results you obtained.  
+  'tis with magic that jolly interesting microRNA were conjured.
+  The results were dazzling to say the least.
 \end{abstractpage}
 
 %% Force a new page so that the Finnish abstract starts on a new page
 \newpage
 
 %% Abstract in Finnish.  Delete if you don't need it. 
-\thesistitle{Opinnäyteohje}
-\advisor{TkT Olli Ohjaaja}
+\thesistitle{MikroRNA-säätely rintasyövässä -- Bayeslainen analyysi ekspressiodatasta}
+\advisor{Dosentti Rainer Lehtonen}
 \degreeprogram{Electronics and electrical engineering}
 \department{Radiotieteen ja -tekniikan laitos}
 \professorship{Piiriteoria}
@@ -152,10 +152,27 @@
 \keywords{rintasy\"op\"a, mikroRNA, Bayes, mikrosiru}
 %% Tiivistelman tekstiosa
 \begin{abstractpage}[finnish]
-  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
+  Juhannustaikoja ja muuta huttua.
 \end{abstractpage}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 %% Force new page so that the preface starts from a new page
 \newpage
@@ -163,7 +180,7 @@
 %% Preface
 %%
 \mysection{Preface}
-Plaadi plaa plaa.\\
+Ja heillä kaikilla oli niin mukavaa.\\
 
 \vspace{5cm}
 Helsinki, 1.6.2016
@@ -177,6 +194,12 @@ Helsinki, 1.6.2016
 
 %% Table of contents. 
 \thesistableofcontents
+
+
+
+
+
+
 
 
 
@@ -287,11 +310,10 @@ And beware the harpies!
 
 
 
-%% In a thesis, every section starts a new page, hence \clearpage
-\clearpage
-\section{Background}
+%\clearpage
+%\section{Background}\label{background}
 
-
+\include{background}
 
 
 
@@ -396,6 +418,8 @@ And beware the harpies!
 \addcontentsline{toc}{section}{\refname}
 %\addcontentsline{toc}{section}{References}
 
+\bibliographystyle{plain}
+\bibliography{dippa}
 %\begin{thebibliography}{99}
 %% Alla pilkun j\"alkeen on pakotettu oikea v\"ali \<v\"alily\"onti>-merkeill\"a.
 %\bibitem{Kauranen} Kauranen,\ I., Mustakallio,\ M. ja Palmgren,\ V.
