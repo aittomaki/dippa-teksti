@@ -1,0 +1,432 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                %%
+%% An example for writting your thesis using LaTeX                %%
+%% Original version by Luis Costa,  changes by Perttu Puska       %%
+%% Support for Swedish added 15092014                             %%
+%%                                                                %%
+%% Explanatory comments in this example begin with                %%
+%% the characters %%, and changes that the user can make          %%
+%% with the character %                                           %%
+%%                                                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Uncomment one of these:
+%% the 1st when using pdflatex, which directly typesets your document in
+%% pdf (use jpg or pdf figures), or
+%% the 2nd when producing a ps file (use eps figures, don't use ps figures!).
+\documentclass[english,12pt,a4paper,pdftex,elec,utf8]{aaltothesis}
+%\documentclass[english,12pt,a4paper,dvips]{aaltothesis}
+
+%% To the \documentclass above
+%% specify your school: arts, biz, chem, elec, eng, sci
+%% specify the character encoding scheme used by your editor: utf8, latin1
+
+\usepackage{graphicx}
+
+%% Use this if you write hard core mathematics, these are usually needed
+\usepackage{amsfonts,amssymb,amsbsy}
+
+%% Use the macros in this package to change how the hyperref package below 
+%% typesets its hypertext -- hyperlink colour, font, etc. See the package
+%% documentation. It also defines the \url macro, so use the package when 
+%% not using the hyperref package.
+%%
+%\usepackage{url}
+
+%% Use this if you want to get links and nice output. Works well with pdflatex.
+\usepackage{hyperref}
+\hypersetup{pdfpagemode=UseNone, pdfstartview=FitH,
+  colorlinks=true,urlcolor=red,linkcolor=blue,citecolor=black,
+  pdftitle={Default Title, Modify},pdfauthor={Your Name},
+  pdfkeywords={Modify keywords}}
+
+
+%% All that is printed on paper starts here
+\begin{document}
+\renewcommand{\thesissupervisorname}{Thesis supervisors}
+
+%% Change the school field to specify your school if the automatically 
+%% set name is wrong
+% \university{aalto-yliopisto}
+% \university{aalto University}
+% \school{Sähkötekniikan korkeakoulu}
+% \school{School of Electrical Engineering}
+
+%% ONLY FOR M.Sc. AND LICENTIATE THESIS: Specify your department,
+%% professorship and professorship code. 
+%%
+\department{Department of WHATTHEHELL}
+\professorship{Computational WHATEVER}
+%%
+
+%% Valitse yksi näistä kolmesta
+%%
+%% Choose one of these:
+%\univdegree{BSc}
+\univdegree{MSc}
+%\univdegree{Lic}
+
+%% Your own name (should be self explanatory...)
+\author{Viljami Aittom\"aki}
+
+%% Your thesis title comes here and again before a possible abstract in
+%% Finnish or Swedish . If the title is very long and latex does an
+%% unsatisfactory job of breaking the lines, you will have to force a
+%% linebreak with the \\ control character. 
+%% Do not hyphenate titles.
+%% 
+\thesistitle{Thesis template}
+
+\place{Espoo}
+
+%% For B.Sc. thesis use the date when you present your thesis.
+%% BUT WHAT IS IT FOR MSc THESIS?
+\date{1.6.2016}
+
+%% B.Sc. or M.Sc. thesis supervisor 
+%% Note the "\" after the comma. This forces the following space to be 
+%% a normal interword space, not the space that starts a new sentence. 
+%% This is done because the fullstop isn't the end of the sentence that
+%% should be followed by a slightly longer space but is to be followed
+%% by a regular space.
+%%
+\supervisor{Prof.\ Aki Vehtari}
+
+%% B.Sc. or M.Sc. thesis advisors(s).
+%%
+%\advisor{Prof.\ Pirjo Professori}
+%\advisor{D.Sc.\ (Tech.) Olli Ohjaaja}
+%\advisor{M.Sc.\ Polli Pohjaaja}
+\advisor{Docent Rainer Lehtonen}
+
+%% Aalto logo: syntax:
+%% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
+%% Logo language is set to be the same as the document language.
+%%
+\uselogo{aaltoRed}{''}
+
+
+%% Create the coverpage
+%%
+\makecoverpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% English abstract.
+%% All the information required in the abstract (your name, thesis title, etc.)
+%% is used as specified above.
+%% Specify keywords
+%%
+\keywords{breast cancer, microRNA, Bayes, microarray}
+%% Abstract text
+\begin{abstractpage}[english]
+  Your abstract in English. Try to keep the abstract short; approximately 
+  100 words should be enough. The abstract explains your research topic, 
+  the methods you have used, and the results you obtained.  
+\end{abstractpage}
+
+%% Force a new page so that the Finnish abstract starts on a new page
+\newpage
+
+%% Abstract in Finnish.  Delete if you don't need it. 
+\thesistitle{Opinnäyteohje}
+\advisor{TkT Olli Ohjaaja}
+\degreeprogram{Electronics and electrical engineering}
+\department{Radiotieteen ja -tekniikan laitos}
+\professorship{Piiriteoria}
+%% Avainsanat
+\keywords{rintasy\"op\"a, mikroRNA, Bayes, mikrosiru}
+%% Tiivistelman tekstiosa
+\begin{abstractpage}[finnish]
+  Tiivistelmässä on lyhyt selvitys (noin 100 sanaa)
+  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
+  sekä mitä tuloksia on saatu. 
+\end{abstractpage}
+
+%% Force new page so that the preface starts from a new page
+\newpage
+
+%% Preface
+%%
+\mysection{Preface}
+Plaadi plaa plaa.\\
+
+\vspace{5cm}
+Helsinki, 1.6.2016
+
+\vspace{5mm}
+{\hfill Viljami Aittom\"aki \hspace{1cm}}
+
+%% Force new page after preface
+\newpage
+
+
+%% Table of contents. 
+\thesistableofcontents
+
+
+
+
+
+
+
+
+
+
+
+%% Symbols and abbreviations
+\mysection{Symbols and abbreviations}
+
+\subsection*{Symbols}
+
+\begin{tabular}{ll}
+$w$ & vector of weights for the covariates \\
+$x$ & vector of covariates \\
+$y$ & PREDICTED variable
+% $\mathbf{B}$  & magnetic flux density  \\
+% $c$              & speed of light in vacuum $\approx 3\times10^8$ [m/s]\\
+% $\omega_{\mathrm{D}}$    & Debye frequency \\
+% $\omega_{\mathrm{latt}}$ & average phonon frequency of lattice \\
+% $\uparrow$       & electron spin direction up\\
+% $\downarrow$     & electron spin direction down
+\end{tabular}
+
+% \subsection*{Operators}
+
+% \begin{tabular}{ll}
+% $\nabla \times \mathbf{A}$              & curl of vectorin $\mathbf{A}$\\
+% $\displaystyle\frac{\mbox{d}}{\mbox{d} t}$ & derivative with respect to 
+% variable $t$\\[3mm]
+% $\displaystyle\frac{\partial}{\partial t}$  & partial derivative with respect 
+% to variable $t$ \\[3mm]
+% $\sum_i $                       & sum over index $i$\\
+% $\mathbf{A} \cdot \mathbf{B}$    & dot product of vectors $\mathbf{A}$ and 
+% $\mathbf{B}$
+% \end{tabular}
+
+\subsection*{Abbreviations}
+
+\begin{tabular}{ll}
+miRNA       & microRNA \\
+mRNA        & messenger RNA \\
+RNA         & ribonucleic acid
+\end{tabular}
+
+
+%% Tweaks the page numbering to meet the requirement of the thesis format:
+%% Begin the pagenumbering in Arabian numerals (and leave the first page
+%% of the text body empty, see \thispagestyle{empty} below).
+%% Additionally, force the actual text to begin on a new page with the 
+%% \clearpage command.
+%% \clearpage is similar to \newpage, but it also flushes the floats (figures
+%% and tables).
+%% There is no need to change these
+%%
+\cleardoublepage
+\storeinipagenumber
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%=========================================================
+
+
+
+
+
+
+
+%% Text body begins. Note that since the text body
+%% is mostly in Finnish the majority of comments are
+%% also in Finnish after this point. There is no point in explaining
+%% Finnish-language specific thesis conventions in English. Someday 
+%% this text will possibly be translated to English.
+%%
+\section{Introduction}
+
+%% Leave first page empty
+\thispagestyle{empty}
+
+Here be dragons!
+
+And beware the harpies!
+
+
+
+
+
+
+
+
+
+
+
+%% In a thesis, every section starts a new page, hence \clearpage
+\clearpage
+\section{Background}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+\section{Research material and methods}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+\section{Results}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+\section{Summary} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+%% References
+%% The \phantomsection command is nessesary for hyperref to jump to the 
+%% correct page, in other words it puts a hyper marker on the page.
+%% MITES TAA TEHAAN BIBTEXILLA???
+
+\phantomsection
+\addcontentsline{toc}{section}{\refname}
+%\addcontentsline{toc}{section}{References}
+
+%\begin{thebibliography}{99}
+%% Alla pilkun j\"alkeen on pakotettu oikea v\"ali \<v\"alily\"onti>-merkeill\"a.
+%\bibitem{Kauranen} Kauranen,\ I., Mustakallio,\ M. ja Palmgren,\ V.
+%  \textit{Tutkimusraportin kirjoittamisen opas opinn\"aytety\"on
+%    tekij\"oille.}  Espoo, Teknillinen korkeakoulu, 2006.
+%\end{thebibliography}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% Appendices
+%\clearpage
+%\thesisappendix
+
+%\section{Esimerkki liitteest\"a\label{LiiteA}}
+
+\end{document}
