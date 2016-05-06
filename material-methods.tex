@@ -11,11 +11,26 @@ The data analysed in this thesis was collected from breast cancer patients treat
 in two different Norwegian hospitals. All included cases of breast cancer were
 of sporadic type and all patients were women. Alltogether 283 samples were analysed.
 
+Messenger RNA expression was measured with Agilent Technologies something.
+
+MicroRNA expression was measured with Agilent Technologies somethingsomething.
+Eleven miRNAs (hsa-miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308, hsa-
+miR-1826, hsa-miR-1974, hsa-miR-1975, hsa-miR-1977, hsa-miR-1979, hsa-miR-720,
+hsa-miR-886-3p) were removed from the data as they were reported as missing by
+miRBase Tracker. These miRNAs were checked from miRBase, where they are
+reported as being fragments of other RNA species (e.g. tRNA or rRNA) and,
+thus, removed from the database.
+
+Protein expression was measured with a reverse phosphatase protein array (RPPA).
+
 The mRNA and microRNA expression data are publicly available in preprocessed
 format in the Gene Expression Omnibus (GEO) database \citep{GEO} under
-accession IDs xx and xx respectively. The protein expression data is available
-in Additional file 4 of \citet{norjis} also in preprocessed format. For the purpose of this
-thesis, the raw Agilent expression data were kindly provided and used for the analyses instead of the preprocessed data.
+accession IDs xx and xx respectively. For the
+purpose of this thesis, the raw Agilent expression data were kindly provided
+and used for the analyses instead of the preprocessed data. The protein expression data is available
+in Additional file 4 of \citet{norjis} also in preprocessed format. 
+
+
 
 Clinical data concerning each patient and cancer were also provided. A summary
 of the clinical parameters is presented in table \ref{clinical-data}. The
@@ -23,3 +38,11 @@ predominant tumor type in the data was ductal carcinoma, which is in general
 the most common histological type of breast cancer.
 
 % Use danish data for validation?
+
+
+\subsection{Methods}
+
+\subsubsection{Preprocessing data}
+
+\subsubsection{Variable selection with projection prediction}
+
