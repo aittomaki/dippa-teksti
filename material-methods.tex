@@ -17,29 +17,31 @@ patients with primarily operable disease -- that is stage cT1--cT2 -- treated
 in several Norwegian hospitals. Collection of the cohort started in 2006 and
 is still ongoing. Therefore, no survival data were available for analysis.
 Clinical data for included patients are summarised in Table \ref{clinical-
-data}. All included patients had primarily operable disease, that is stage
-cT1-cT2. No control samples of healthy breast tissue were available.
+data}. No control samples of healthy breast tissue were available.
 
 \input{clinical_table}
 
 The mRNA and microRNA expression were measured using Agilent Technologies
-SurePrint G3 Human GE 8x60K and Human miRNA Microarray Kit (V2), respectively,
-which contain 27958 genes and 887 miRNAs according to manufacturer annotation.
+SurePrint G3 Human GE 8x60K and Human miRNA Microarray Kit (V2) microarrays,
+respectively. These contain 27958 genes and 887 miRNAs according to
+manufacturer annotation.
+
+MicroRNAs detected in less than 10\% of samples had been removed from the
+publicly available data, leaving 421 miRNAs. Out of these, eleven miRNAs (hsa-
+miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308, hsa- miR-1826, hsa-
+miR-1974, hsa-miR-1975, hsa-miR-1977, hsa-miR-1979, hsa-miR-720, hsa-
+miR-886-3p) were reported as missing by miRBase Tracker. Reviewed on miRBase,
+these miRNAs are reported as being fragments of other RNA species (e.g. tRNA
+or rRNA) and, thus, removed from the database. Therefore, these eleven miRNAs
+were removed from subsequent analyses.
+
 Protein expression was measured using a reverse phospatase protein array
-(RPPA) containing a set of 105 proteins, most of which are found on the
-PI3K--pathway \textbf{(ref to G.Mills?)}. Only the gene expression values
+(RPPA) containing a set of 105 proteins, most of which are found on the PI3K--
+pathway \textbf{(ref to G.Mills?)}. Only the gene expression values
 corresponding to each measured protein were used in the analysis. Analyses
 performed in this thesis used the publicly available preprocessed data
 \textbf{(paitsi jos ehtii tehä vielä preprocin ite)}.
 
-MicroRNAs detected in less than 10\% of samples had been removed from the
-publicly available OSLO2 data, leaving 421 miRNAs. Out of these, eleven miRNAs
-(hsa-miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308, hsa- miR-1826, hsa-
-miR-1974, hsa-miR-1975, hsa-miR-1977, hsa-miR-1979, hsa-miR-720, hsa-
-miR-886-3p) were reported as missing by miRBase Tracker. Reviewed on miRBase,
-these miRNAs are reported as being fragments of other RNA species (e.g. tRNA
-or rRNA) and, thus, not actual miRNAs and removed from the database.
-Therefore, these eleven miRNAs were removed from subsequent analyses.
 
 
 
@@ -60,6 +62,16 @@ Therefore, these eleven miRNAs were removed from subsequent analyses.
 
 
 \subsection{Methods}
+
+All computational analyses were performed in R \citep{R} and workflow
+management was handled with Anduril \citep{OvaskaXXXX}. Monte-Carlo
+simulations for the Bayesian regression models were done using RStan
+\citep{stan} and all simulations were were performed using computer
+resources within the Aalto University School of Science "Science-IT"
+project.
+
+
+
 
 \subsubsection{Preprocessing data}
 
