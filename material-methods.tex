@@ -77,3 +77,11 @@ project.
 
 \subsubsection{Variable selection with projection prediction}
 
+The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
+Ensembl gene ID's were downloaded for all protein coding genes in the human
+genome using biomaRt \citep{biomaRt}. A sample of 1000 genes was then taken
+from these. Known validated microRNA interaction partners for each sampled
+gene were downloaded from miRWalk. Genes for which there were no validated
+miRNA interactors were assumed to have none. The mean number of miRNA
+interactors per gene was the computed, which resulted in the estimate
+$\hat{p_n} \approx 14$.
