@@ -54,8 +54,17 @@ coding genes, which encompass only around 1.5\% of the whole genetic sequence
 \subsubsection{MicroRNAs}\label{micrornas}
 
 MicroRNAs (miRNAs) are a class of noncoding, small RNA molecules that function
-as post-transcriptional regulators of gene expression. This section serves as
-an introduction to microRNAs, their biogenes, function, and role in disease.
+as post-transcriptional regulators of gene expression. In their functional, mature form
+miRNAs are single stranded and approximately 20 to 23 nucleotides long.
+MicroRNAs are not translated into protein -- hence noncoding However, they
+have an important role in post-transcriptional regulation of gene expression
+by degradation of mRNAs and inhibition of mRNA translation. They assert
+extensive control over the transcriptome; it has been estimated that more than
+60\% of human mRNA transcripts are regulated by miRNAs \citep{CITE}.
+%This section serves as an introduction to microRNAs, their biogenes, function, and role in disease.
+
+
+\paragraph{History}
 
 The first microRNA, lin-4, was discovered in 1993 by two research groups
 studying the larval development of the nematode \emph{Caenorhabditis elegans}.
@@ -78,14 +87,6 @@ processes, by regulation of protein expression \citep{Bushati2007}. Many miRNAs 
 also highly conserved in evolution \citep{Bartel2004}, highlighting the
 importance of their regulatory function during evolution. Accordingly, 55\% of
 C.elegans miRNAs have homologues in humans \cite{Ibanez-Ventoso2008}.
-
-In their mature form miRNAs are single stranded and approximately 20 to 23
-nucleotides long. MicroRNAs are not translated into protein -- hence noncoding
-However, they have an important role in post-transcriptional regulation of
-gene expression by degradation of mRNAs and inhibition of mRNA translation.
-They assert extensive control over the transcriptome; it has been estimated
-that more than 60\% of human mRNA transcripts are regulated by miRNAs
-\citep{CITE}.
 
 MiRBase is the de facto reference database of known microRNAs. It was
 originally released in 2002, as the miRNA Registry, to serve as a
@@ -178,8 +179,7 @@ in figure \ref{fig:mirna-action}.
 
 
 
-\paragraph{MicroRNA regulation and dysregulation}\label{microrna-
-regulation-and-dysregulation}
+\paragraph{MicroRNAs in disease}\label{micrornas-in-disease}
 
 MicroRNAs themselves are regulated by several different mechanisms, similarly
 to mRNA and gene expression. Possible control points include transcription of
@@ -489,6 +489,19 @@ the parameters and observations. \citep{Gelman2013}
 The posterior distribution represents a compromise between the prior (and
 hence, prior information) and the observed data with the data having a larger
 effect as the sample size increases. \citep{Gelman2013}.
+
+\textbf{OMIN SANOIN: Confidence intervals work their best when you don't know much about a
+parameter beyond the information contained in a data set. And further,
+credibility intervals won't be able to improve much on confidence intervals
+unless there is prior information which the confidence interval can't take
+into account, or finding the sufficient and ancillary statistics is hard.}
+
+- The posterior distribution also provides a more comprehensive view of
+one's knowledge on the parameter of interest than, say, a single confidence
+interval (or even a series of confidence intervals).
+- In many instances, using a non-informative prior results in similar or
+equal results than frequentist analysis, but the strength of Bayesian
+analysis comes from including prior knowledge in the prior distribution. \citep{Jaynes?}
 
 
 \paragraph{Simulation}\label{simulation}
