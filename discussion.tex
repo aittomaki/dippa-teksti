@@ -1,12 +1,27 @@
 
 
 \section{Discussion}
-\thispagestyle{empty}
+
+This thesis presented a review of literature concerning microRNAs and
+prediction of microRNA target genes. A Bayesian regression model was applied
+to predict protein expression from mRNA and miRNA expression in breast
+cancer tumor samples.
+
+\textbf{Tulosten yhteenveto.}
 
 An obvious way to improve the model would be to include sequence based target
 information. Bayesian modeling provides a formal and relatively easy
-way to achieve this in the form of hierarchical models. MicroRNAs that
+way to achieve this with hierarchical models. MicroRNAs that
 that are putative regulators of a gene based on sequence could have
 different (more slack) priors or superpriors than miRNAs without
 seed sequence matches. Furthermore, experimentally validated regulators
 could have different priors as well.
+
+The proposed model also does not account for the fact that microRNAs have
+several, even hundreds, of target transcripts. Therefore, the regulative
+effect of a single miRNA is most likely spread across several genes. In combination
+with transcripts having several regulating miRNAs, this many-to-many nature of
+microRNA regulation ultimately calls for expression methods that model the
+whole regulatory network at once. This, however, becomes a much more difficult
+problem than simple multiple linear regression. \textbf{Akilla oli tähän joku
+metodiehdotus, johon voisi viitata.}
