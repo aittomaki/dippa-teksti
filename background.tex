@@ -64,47 +64,68 @@ extensive control over the transcriptome; it has been estimated that more than
 %This section serves as an introduction to microRNAs, their biogenes, function, and role in disease.
 
 
-\paragraph{History}
+
+\paragraph{History of microRNA discovery}
 
 The first microRNA, lin-4, was discovered in 1993 by two research groups
 studying the larval development of the nematode \emph{Caenorhabditis elegans}.
 The groups noted that lin-4 does not encode a protein, but instead produces a
-pair of small RNAs \citep{Lee1993,Wightman1993}. The RNAs encoded by lin-4 have several
-conserved antisense complementarity sites in an untranslated region of the
-lin-14 mRNA, and these sites are necessary and sufficient for the normal
-downregulation of lin-14 expression by lin-4 \citep{Lee1993,Wightman1993}. It
-should be noted, that one of these groups also showed that lin-4 reduces the
-amount of the LIN-14 protein -- the end-product of the lin-14 gene -- without
-significantly affecting the cellular concentration of the lin-14 mRNA
-\citep{??}. %oks tää Wightman1993:ssa?
+pair of small RNAs, the longer of which was proposed to be a precursor to the
+shorter one \citep{Lee1993}. The RNAs encoded by lin-4 were noted to have conserved
+antisense complementarity in several sites of an untranslated region of the
+lin-14 mRNA, and these sites are necessary for the normal repression of lin-14
+expression by lin-4 \citep{Lee1993,Wightman1993}.
+%It
+%should be noted, that one of these groups also showed that lin-4 reduces the
+%amount of the LIN-14 protein -- the end-product of the lin-14 gene -- without
+%significantly affecting the cellular concentration of the lin-14 mRNA
+%\citep{??}. %oks tää Wightman1993:ssa?
 %We will return to the issue of microRNA action in chapter \ref{microrna-function}.
 
-Since then, the number of known small RNAs has expanded remarkably and
-microRNAs have been found in more than 200 organisms, including plants
-\citep{Jones-Rhoades2006,TOINENERILAJEISTA}. miRNAs have been found to
-participate in regulation and control of key cellular
-processes, by regulation of protein expression \citep{Bushati2007}. Many miRNAs are
-also highly conserved in evolution \citep{Bartel2004}, highlighting the
-importance of their regulatory function during evolution. Accordingly, 55\% of
-C.elegans miRNAs have homologues in humans \cite{Ibanez-Ventoso2008}.
+The second microRNA to be discovered, let-7, was not found until seven years
+later. Although let-7 was also first found in \emph{C. elegans}, homologues of
+let-7 were then found in several other species, including human
+\citep{Pasquinelli2000}. Soon after, numerous microRNA genes were found across
+a variety of species, and a registry was set up to serve as a comprehensive
+knowledgebase of published microRNAs and as an independent authority on
+microRNA nomenclature \citep{Griffiths2004}. This registry later became
+miRBase, the de facto reference database of known microRNAs, and now provides
+sequence data, annotations as well as predicted and validated target genes for
+miRNAs \citep{Kozomara2014}.
 
-MiRBase is the de facto reference database of known microRNAs. It was
-originally released in 2002, as the miRNA Registry, to serve as a
-comprehensive knowledgebase of published microRNAs and also as an independent
-authority on microRNA nomenclature \citep{Griffiths2004}. Its latest version,
-miRBase 21, was released in June 2014 \citep{MiRBaseWeb} and provides sequence
-data, annotations as well as predicted and validated target genes for miRNAs
-\citep{Kozomara2014}. The number of records in the database has risen
-exponentially from 218 precursor and 218 mature miRNAs in the first release in
-2002 to 28645 precursor and 35828 mature miRNAs in 223 species in the current
-version \citep{VanPeer2014,MiRBaseWeb}, illustrating the vast amount of novel
-microRNA molecules discovered recently, mainly due to increasing efforts in
-and availability of sequencing. miRBaseTracker is a web service that allows
-updating miRNA nomenclature and annotations across different versions of
-miRBase to allow correct comparison of miRNA study results and reannotation of
-miRNA analysis platforms \citep{VanPeer2014}.
+Since these early discoveries, the number of known small RNAs has expanded
+remarkably and microRNAs have been found in more than 200 organisms, including
+plants \citep{Jones-Rhoades2006,TOINENERILAJEISTA}. 
+The number of records in miRBase has risen exponentially
+from %218 precursor and
+218 mature miRNAs in the first release in 2002 to %28645 precursor and
+35828 mature miRNAs in 223 species in the current version (v21,
+released June 2014 \citep{VanPeer2014,MiRBaseWeb}), illustrating the vast
+amount of novel microRNA molecules discovered recently, mainly due to
+increasing efforts in and availability of sequencing. A web service called
+miRBaseTracker has been developed by \citet{VanPeer2014} to facilitate updating
+miRNA nomenclature and annotations across different versions of miRBase to
+allow correct comparison of miRNA study results and reannotation of miRNA
+analysis platforms.
 
 
+
+\paragraph{MicroRNA genomics}\label{microrna-genomics}
+
+
+\begin{itemize}
+\item
+  how are miRNAs arranged in the genome
+\item
+  differences between animal and plant miRNAs (short mention)
+\item
+  evolutionary conservation (important!)
+\item
+  something more?
+\end{itemize}
+
+
+ 
 
 
 
@@ -157,7 +178,7 @@ can also be bound to an miRISC and used as a miRNA \citep{CITE}.
 
 
 
-\paragraph{MicroRNA function}\label{microrna-function}
+\paragraph{MicroRNA mechanism}\label{microrna-mechanism}
 
 A microRNA bound to an argonaut form the core part of the miRISC (microRNA-
 induced silencing complex) protein complex. The miRISC seeks messenger RNA
@@ -179,7 +200,14 @@ in figure \ref{fig:mirna-action}.
 
 
 
-\paragraph{MicroRNAs in disease}\label{micrornas-in-disease}
+\paragraph{MicroRNA function and role in disease}\label{microrna-function-and-role-in-disease}
+
+miRNAs have been found to
+participate in regulation and control of key cellular processes, by regulation
+of protein expression \citep{Bushati2007}. Many miRNAs are also highly
+conserved in evolution \citep{Bartel2004}, highlighting the importance of
+their regulatory function during evolution. Accordingly, 55\% of
+\emph{C. elegans} miRNAs have homologues in humans \cite{Ibanez-Ventoso2008}.
 
 MicroRNAs themselves are regulated by several different mechanisms, similarly
 to mRNA and gene expression. Possible control points include transcription of
@@ -379,6 +407,8 @@ high numbers of false positives \textbf{SYY JA VIITE
 \citep{Sethupathy2006?}}. Second, the predictions are static and do not
 account for different tissues or disease states.
 
+- A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
+
 
 \paragraph{MicroRNA target databases}
 
@@ -484,7 +514,8 @@ Advantages of Bayesian methods:
   timespan.
 \end{itemize}
 The challenge in Bayesian analysis is setting up proper probability models for
-the parameters and observations. \citep{Gelman2013}
+the parameters and observations. \citep{Gelman2013} This includes the prior
+distributions of the parameters as well as the likelihood of the observed data.
 
 The posterior distribution represents a compromise between the prior (and
 hence, prior information) and the observed data with the data having a larger
