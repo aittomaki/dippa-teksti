@@ -87,12 +87,12 @@ of \citet{Aure2015}.
 
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
 Ensembl gene ID's were downloaded for all protein coding genes in the human
-genome using biomaRt \citep{biomaRt}. A sample of 1000 genes was then taken
-from these. Known validated microRNA interaction partners for each sampled
-gene were downloaded from miRWalk \citep{miRWalk}. Genes for which there were no validated
-miRNA interactors were assumed to have zero. The mean number of miRNA
-interactors per gene was the computed, which resulted in the estimate
-$\hat{p_n} \eq 13.75$.
+genome using biomaRt \citep{biomaRt}. From these, a sample of 1000 genes was
+taken, and known validated microRNA interaction partners for each sampled gene
+were downloaded from miRWalk \citep{miRWalk}. Genes for which there were no
+validated miRNA interactors were assumed to have zero. The mean number of
+miRNA interactors per gene was the computed, which resulted in the estimate
+$\hat{p_n} = 13.75$.
 
 The coefficient of determination, $R^2$, was used as a measure of final model
 fit. $R^2$ is a favorable measure of goodness of fit, because
