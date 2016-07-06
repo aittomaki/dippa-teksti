@@ -221,6 +221,12 @@ in figure \ref{fig:mirna-action}.
 miRNAs have been found to participate in regulation and control of key
 cellular processes, by regulation of protein expression \citep{Bushati2007}.
 
+Several studies have shown that miRNAs indeed affect the mRNA concentrations
+of their targets within cells, and a recent review concluded that mRNA
+degradation is the predominant form of miRNA action in metazoans
+\citep{Guo2010}. Notably, many studies have shown that miRNAs also have an
+effect on protein concentrations of the corresponding target mRNAs. \citep{??}
+
 LISÄÄ.
 
 It should be noted, however, that the functional role of many miRNA-mRNA
@@ -407,7 +413,7 @@ three major genes \citep{T16} ...
 
 
 
-\subsection{MiRNA target prediction}\label{mirna-target-prediction}
+\subsection{MicroRNA target prediction}\label{mirna-target-prediction}
 
 This section presents computational methods that have been used to predict
 putative target genes for microRNAs and regulatory networks between genes and
@@ -421,6 +427,16 @@ microRNAs.
 prediction}
 
 \textbf{SELITÄ TÄÄ HOMMA JA ERI ALGORITMIT.}
+
+Evolutionally conserved targets can be simply identified by searching for
+matches to the seed sequence of a miRNA in mRNA 3' UTR's and then checking if
+these matching sites are conserved in orthologous 3' UTR's of other species.
+Conserved matches are considered predicted regulatory sites and, hence, miRNA
+targets \citep{Bartel2009}. All sequence-based target prediction algorithms are basically
+refinements of this basic protocol. This also leads to the notion of miRNA
+families, which are mature miRNAs that share the same nucleotides at positions
+2-8. All miRNAs within a family have the same predicted targets based on sequence.
+\textbf{(Osa tästä kpl:sta miRNA genomicsiin?)}
 
 Sequence-based prediction suffers from two major drawbacks. First, there are
 high numbers of false positives \textbf{SYY JA VIITE
