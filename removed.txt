@@ -1,0 +1,28 @@
+
+Text removed from dippa:
+
+
+\paragraph{MicroRNA regulation and dysregulation}
+
+MicroRNAs themselves are regulated by several different mechanisms, similarly
+to mRNA and gene expression. Possible control points include transcription of
+genomic miRNAs, post-transcriptional modification of pri- and pre-miRNAs,
+JATKA LISTAA. MiRNAs also form transcriptional feedback loops with proteins
+that act as transcription factors (TFs) for miRNAs. For example, JOKU TÄHÄN JA
+KUVA SIITÄ. Some of these regulation mechanisms have a known important
+biological function, such as miR-XXX and miR-XXX which function as a cell fate
+switch, determining the differentiation of ASF.
+
+Dysregulation of microRNAs can happen at any of these putative regulation
+steps, and many, if not all, of them have been implicated in tumorgenesis.
+Examples of this include LISTAA. There are also additional mechanisms that can
+lead to miRNA dysregulation, such as mutations in the miRNA sequence or the
+target mRNA sequence, genomic rearrangements,
+\textbf{LISÄÄ?}. The role of miRNAs in cancer has recently been
+thoroughly reviewed by FOO-ET-AL \citep{CITE}.
+
+It has also been shown in knock-out experiments that inhibiting the microRNA
+biogenesis pathway is lethal in many species \citep{CITE} and, further, that
+perturbing miRNA biogenesis often leads to tumor formation \citep{CITE}. This
+highlights the importance of microRNAs and their regulatory function.
+
