@@ -2,7 +2,15 @@
 Text removed from dippa:
 
 
-\paragraph{MicroRNA regulation and dysregulation}
+\paragraph{MicroRNA function and role in disease}
+
+
+Additionally, it has been
+found that specific miRNA precursors, but not the mature miRNAs, are
+consistently aberrantly expressed in some cancers, suggesting that the
+precursors have some unidentified regulatory functions \citep{Calin2004}.
+%% En löytänyt tälle väitteelle selkeitä perusteita Calin2006 viittauksista (tuossa siis väitetään näin) 
+
 
 MicroRNAs themselves are regulated by several different mechanisms, similarly
 to mRNA and gene expression. Possible control points include transcription of
