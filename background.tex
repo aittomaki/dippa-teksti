@@ -55,26 +55,27 @@ coding genes, which encompass only around 1.5\% of the whole genetic sequence
 
 MicroRNAs (miRNAs) are a class of noncoding, small RNA molecules that function
 as post-transcriptional regulators of gene expression. In their functional,
-mature form miRNAs are single stranded and approximately 22 nucleotides
-long. MicroRNAs are not translated into protein -- hence noncoding. However,
-they have an important role in post-transcriptional regulation of gene
-expression by degradation of mRNAs and inhibition of mRNA translation. MicroRNAs
-assert extensive control over the transcriptome; it has been estimated that
-more than 60\% of human mRNA transcripts are regulated by miRNAs \citep{CITE}.
+mature form miRNAs are single stranded and approximately 22 nucleotides long.
+MicroRNAs are not translated into protein -- hence noncoding. However, they
+have an important role in regulation of gene expression in a wide range of
+physiological, developmental and pathological processes. MicroRNAs assert
+their regulatory function by destabilization and degradation of target
+messenger RNA (mRNA) molecules and inhibition of mRNA translation.
 %This section serves as an introduction to microRNAs, their biogenes, function, and role in disease.
 
 
 
 \subsubsection{History of microRNA discovery}
 
-The first microRNA, lin-4, was discovered in 1993 by two research groups
+The first known microRNA, lin-4, was discovered in 1993 by two research groups
 studying the larval development of the nematode \emph{Caenorhabditis elegans}.
-The researchers noted that lin-4 does not encode a protein, but instead produces a
-pair of small RNAs, the longer of which was proposed to be a precursor to the
-shorter one \citep{Lee1993}. The RNAs encoded by lin-4 were noted to have conserved
-antisense complementarity in several sites of an untranslated region of the
-lin-14 mRNA, and these sites are necessary for the normal repression of lin-14
-expression by lin-4 \citep{Lee1993,Wightman1993}.
+The researchers noted that lin-4 does not encode a protein, but instead
+produces a pair of small RNAs, the longer of which was proposed to be a
+precursor to the shorter one \citep{Lee1993}. The RNAs encoded by lin-4 were
+noted to have conserved antisense complementarity in several sites of an
+untranslated region of the lin-14 mRNA, and these sites were found to be
+necessary for the normal repression of lin-14 expression by lin-4
+\citep{Lee1993,Wightman1993}.
 %It
 %should be noted, that one of these groups also showed that lin-4 reduces the
 %amount of the LIN-14 protein -- the end-product of the lin-14 gene -- without
@@ -102,7 +103,8 @@ from %218 precursor and
 35828 mature miRNAs in 223 species in the current version (v21,
 released June 2014 \citep{VanPeer2014,MiRBaseWeb}), illustrating the vast
 amount of novel microRNA molecules discovered recently, mainly due to
-increasing efforts in and availability of sequencing. A web service called
+increasing efforts in and availability of sequencing.
+Currently, 2588 human miRNAs are listed in miRBase. A web service called
 miRBaseTracker has been developed by \citet{VanPeer2014} for updating
 miRNA nomenclature and annotations across different versions of miRBase to
 allow correct comparison of miRNA study results and reannotation of miRNA
@@ -123,15 +125,23 @@ molecules in the cytoplasm \citep{Bartel2004} highlight the importance of
 microRNAs.
 
 MicroRNAs are expressed in all tissues, however, different tissues
-have different miRNA expression profiles. Additionally, many microRNAs
+have different miRNA expression profiles. Many microRNAs
 have differing experssion in different stages of the life
 of some organisms, e.g. let-7 functions to control the transition
 from the second larval stage to in \emph{C. elegans} \citep{Pasquelli2000}.
 
+miRNAs are arranged in the genome as
+single miRNA genes, with their own promotor regions, or in polycistronic miRNA
+clusters that share a common promotor and are transcribed simultaneously, or
+in some cases within introns or even exons of other genes, which can be
+protein coding or noncoding. Accordingly, miRNAS can be classified into four
+groups by genomic location: intronic miRNAs in noncoding transcripts, exonic
+miRNAs in noncoding transcripts, intronic miRNAs in protein-coding
+transcripts and exonic miRNAs in protein-coding transcripts. Examples of these
+are given in figure \ref{fig:mirna-locations}.
+
 
 \begin{itemize}
-\item
-  how are miRNAs arranged in the genome
 \item
   differences between animal and plant miRNAs (short mention)
 \item
@@ -149,46 +159,50 @@ from the second larval stage to in \emph{C. elegans} \citep{Pasquelli2000}.
 
 The canonical pathway of microRNA biogenesis is illustrated in figure
 \ref{fig:mirna-biogenesis} and is presented here as reviewed by  
-\citet{Bartel2004} and \citet{Denzler2015}. miRNAs are arranged in the genome as
-single miRNA genes, with their own promotor regions, or in polycistronic miRNA
-clusters that share a common promotor and are transcribed simultaneously, or
-in some cases within introns or even exons of other genes, which can be
-protein coding or noncoding. Accordingly, miRNAS can be classified into four
-groups by genomic location: intronic miRNAs in noncoding transcripts, exonic
-miRNAs in noncoding transcripts, intronic miRNAs in protein-coding
-transcripts and exonic miRNAs in protein-coding transcripts. Examples of these
-are given in figure \ref{fig:mirna-locations}.
+\citet{Bartel2004}, \citet{Melo2015}, and several others. 
 
-Most microRNAs are transcribed by RNA polymerase II, although some miRNAs
-associated with Alu repeats can be transcribed by RNA polymerase III
-\citep{Borchert2006}. The transcribed primary miRNA molecule, pri-miRNA, contains a
-hairpin with a 33 bp double helix stem and terminal loop with flanking single
-strand sequences, which are several hundreds or thousands of base pairs long
-\citep{Kim2005}. The pri-miRNA is cut by the endonuclease Drosha (also known as
-Rnasen) to form one or several pre-miRNAs. In the case of miRNAs located
-within introns of other genes (mirtrons), the pre-miRNA is formed during RNA
-splicing by the spliceosome. The pre-miRNA still contains the two inverted
-repeats, which together form the now shortened hairpin RNA molecule. A typical
-pre-miRNA structure is shown in figure \ref{fig:premirna-structure}. The
-hairpin is then exported from the nucleus to the cytoplasm by Exportin 5,
-which is a member of the nuclear transport receptor family \citep{T8??} \textbf{VÄÄRÄ REFE!}
+Most microRNAs are transcribed from genomic DNA by RNA polymerase II to form a
+long primary microRNA (pri-miRNA) molecule \citep{Lee2004}. Some pri-miRNAs
+have an alternative synthesis pathway, especially those associated with
+genomic repeats. For example, miRNAs within Alu repeat elements are
+transcribed by RNA polymerase III \citep{Borchert2006}. The pri-miRNA molecule
+contains a hairpin structure, with a 33-bp double-helix stem and a terminal
+loop, and flanking single-strand sequences, which are several hundreds or
+thousands of nucleotides long \citep{Kim2005}.
 
-In the cytoplasm, the endonuclease Dicer cleaves the loop of the hairpin to
-form a 22-bp-long double-stranded miRNA/miRNA* duplex. Dicer associates with
-two other molecules, TRBP (Tar RNA-binding protein) and PACT \citep{Tref}. The
-latter two probably are not necessary for miRNA processing, but contribute to
-the next phase, to form the RNA-induced silencing complex (RISC). The miRNA
-duplex is then bound by a protein complex containing an argonaut protein, in
-humans one of Ago1-4. The argonaut separates the strands of the duplex and
-retains one of them. The retained strand is known as the guide strand (or
-miRNA). The other strand, called the passenger (miRNA*), is released and
-degraded. In some instances either one of the strands can become the guide strand.
+The pri-miRNA is cut by the ribonuclease Drosha to form
+%one or, in the case of polycistronic miRNAs, several
+a pre-microRNA (pre-miRNA), which consists of the hairpin structure and is
+approximately 70 nt long \citep{Lee2003}. A typical pre-miRNA structure is
+shown in figure \ref{fig:premirna-structure}. Drosha is necessarily aided by DGRC8 (Di
+George syndrome critical region gene 8) and they form a complex known as the
+microprocessor \citep{Gregory2004}. In the case of miRNAs located within introns of other genes
+(mirtrons), the pre-miRNA is formed during mRNA precursor splicing by the
+spliceosome \citep{Ruby2007}. The hairpin is then exported from the nucleus to the cytoplasm by
+Exportin-5 (XPO5), which is a member of the nuclear transport receptor family
+\citep{Lund2004}.
+%The pre-miRNA still contains the two inverted repeats, which together form the now shortened hairpin RNA molecule.
 
-There exist exceptions to this general scheme of microRNA biogenesis. Some
-miRNAs are not dependent on Drosha, such as mirtrons, which are cut into
-pre-miRNA by the spliceosome, as mentioned above. Other miRNAs are independent
-of Dicer, including miR-451 WHICH JOTAIN. Additionally, in some cases the miRNA*
-can also be bound to an miRISC and used as a miRNA \citep{CITE}.
+In the cytoplasm, the ribonuclease Dicer cleaves out the loop of the hairpin
+to form a 22-nt-long double-stranded duplex. The two strands of the duplex,
+termed miRNA and miRNA*, correspond to the stem of the hairpin.
+%Dicer associates with two other molecules, TRBP (Tar RNA-binding protein) and PACT
+%\citep{Tref}. The latter two probably are not necessary for miRNA processing,
+%but contribute to the next phase, to form the RNA-induced silencing complex (RISC).
+The miRNA duplex is then bound by a protein complex containing an
+argonaut protein, in humans one of Ago1-4. The argonaut separates the strands
+of the duplex and retains one of them. The retained strand is known as the
+guide strand (or miRNA). The other strand, called the passenger (or miRNA*), is
+released and degraded. In some instances either one of the strands can become
+the guide strand \citep{MISTAREFE}.
+
+Not all miRNAs are generated through this canonical pathway of microRNA
+biogenesis. Some miRNAs are not dependent on Drosha, such as mirtrons, which
+are cut into pre-miRNA by the spliceosome, as mentioned above. The biogenesis of
+miR-451 is independent of Dicer; miR-451 is cleaved by Ago2 and is
+important for erythropoesis \citep{Cheloufi2010}. Furthermore, in some cases
+the miRNA* is not merely degraded, but can also be used as a miRNA
+\citep{Czech2009}.
 
 
 
@@ -200,6 +214,9 @@ A microRNA bound to an argonaut form the core part of the miRISC (microRNA-
 induced silencing complex) protein complex. The miRISC seeks messenger RNA
 molecules that match the bound template miRNA and binds to them. This is illustrated
 in figure \ref{fig:mirna-action}.
+
+Nucleotides 2-7 of the mature miRNA sequence form the so-called seed sequence, which primarily
+determines which mRNAs the miRNA will bind.
 
 \begin{itemize}
 \item
@@ -217,6 +234,10 @@ in figure \ref{fig:mirna-action}.
 
 
 \subsubsection{MicroRNA function and role in disease}\label{microrna-function-and-role-in-disease}
+
+MicroRNAs
+assert extensive control over the transcriptome; it has been estimated that
+more than 60\% of human mRNA transcripts are regulated by miRNAs \citep{CITE}.
 
 miRNAs have been found to participate in regulation and control of key
 cellular processes, by regulation of protein expression \citep{Bushati2007}.
@@ -253,7 +274,7 @@ cancer can also be analogous, such as mutations, deletions, amplifications,
 chromosomal rearrangements of the miRNA-encoding DNA regions or epigenetic
 changes, leading to aberrant miRNA expression \citep{Calin2006}. miRNA
 function can also be altered by abnormalities in the miRNA-processing
-machinery and by mutations in target mRNA sequences.
+machinery (e.g. DICEROIREYHTYMÄ) and by mutations in target mRNA sequences.
 
 
 
