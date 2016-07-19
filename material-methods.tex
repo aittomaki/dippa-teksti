@@ -95,6 +95,12 @@ miRNA interactors per gene was the computed, which resulted in the estimate
 $\hat{p_n} = 13.75$.
 
 The coefficient of determination, $R^2$, was used as a measure of final model
-fit. $R^2$ is a favorable measure of goodness of fit, because
-it is invariant to variable scaling. As expression data do not have a
-well defined scale, $R^2$ is well-suited in this sense.
+fit. $R^2$ is a favorable measure of goodness of fit, because it is invariant
+to variable scaling. As expression data do not have a well defined scale,
+$R^2$ is well-suited in this sense. One problem with $R^2$ is that it
+increases with the addition of more explanatory variables. The adjusted $R^2$,
+defined as $\bar{R}^2 = 1-(1-R^2)*(n-1)/(n-p)$ (where $n$ is the number of
+observations and $p$ the number of explanatory variables) adjusts for the
+number of regressors relative to the number of observations, thus penalizing
+for including additional variables. $\bar{R}^2$ was used for comparing the
+final model with a model including only the gene expression variable.
