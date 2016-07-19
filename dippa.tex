@@ -46,6 +46,7 @@
 %% User-added packages
 \usepackage[numbers,square]{natbib}
 \usepackage[parfill]{parskip}
+\usepackage{longtable}
 
 
 
@@ -63,8 +64,8 @@
 %% ONLY FOR M.Sc. AND LICENTIATE THESIS: Specify your department,
 %% professorship and professorship code. 
 %%
-\department{Department of WHATTHEHELL}
-\professorship{Computational WHATEVER}
+\department{Department of JOTAIN}
+\professorship{Computational ROFESSUURI}
 %%
 
 %% Valitse yksi näistä kolmesta
@@ -252,6 +253,8 @@ $y$ & PREDICTED variable
 \subsection*{Abbreviations}
 
 \begin{tabular}{ll}
+bp          & base pairs (as a measure of sequence length)
+nt          & nucleotide (as a measure of sequence length)
 miRNA       & microRNA \\
 mRNA        & messenger RNA \\
 RNA         & ribonucleic acid \\
@@ -319,8 +322,9 @@ RPPA        & reverse phosphatase protein array
 
 
 
-\clearpage
-\section{Results}
+%\clearpage
+%\section{Results}
+\include{results}
 
 
 
