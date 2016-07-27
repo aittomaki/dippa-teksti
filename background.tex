@@ -53,7 +53,7 @@ coding genes, which encompass only around 1.5\% of the whole genetic sequence
 
 \subsection{MicroRNAs}\label{micrornas}
 
-MicroRNAs (miRNAs) are a class of noncoding, small RNA molecules that function
+MicroRNAs (miRNAs) are a family of noncoding, small RNA molecules that function
 as post-transcriptional regulators of gene expression \citep{Ambros2004}. In
 their functional, mature form miRNAs are single stranded and approximately 22
 nucleotides long. MicroRNAs are not translated into protein -- hence
@@ -96,7 +96,7 @@ miRNAs \citep{Kozomara2014}.
 
 Since these early discoveries, the number of known small RNAs has expanded
 remarkably and microRNAs have been found in more than 200 organisms, including
-plants and viruses \citep{JonesRhoades2006,TOINENERILAJEISTA,Grundhoff2011}. 
+plants and viruses \citep{JonesRhoades2006,Grundhoff2011}. 
 The number of records in miRBase has risen exponentially
 from %218 precursor and
 218 mature miRNAs in the first release in 2002 to %28645 precursor and
@@ -115,14 +115,15 @@ analysis platforms.
 \subsubsection{MicroRNA genomics}\label{microrna-genomics}
 
 Most miRNAs are located in the genome as dedicated miRNA genes, with their own
-promotor regions, or in polycistronic miRNA clusters that share a common
-promotor and are transcribed simultaneously. However, approximately 30\%
-of microRNAs are situated in introns of protein coding genes \citep{Lin2015};
-these microRNA are sometimes referred to as mirtrons \citep{Ruby2007}.
+promotor regions, or in polycistronic miRNA clusters that are transcribed
+simultaneously and share common expression patterns. However, some
+microRNAs are situated in introns of protein coding genes \citep{Lin2015},
+and others are found in exons or introns of nonconding genes \citep{Du2005}.
+MicroRNAs located in introns are sometimes referred to as mirtrons \citep{Ruby2007}.
 Examples of these are given in figure \ref{fig:mirna-locations}.
 
 MicroRNAs are expressed in all tissues, however, different tissues
-have different miRNA expression profiles \cite{Krol2010}. Many microRNAs also
+have different miRNA expression profiles \citep{Krol2010}. Many microRNAs also
 have differing expression in different developmental stages
 of some organisms, e.g. let-7 functions to control the transition
 from the second larval stage to in \emph{C. elegans} \citep{Pasquelli2000}.
@@ -130,7 +131,7 @@ from the second larval stage to in \emph{C. elegans} \citep{Pasquelli2000}.
 MicroRNAs are highly conserved in evolution \citep{Bartel2004}.
 %, highlighting the importance of their regulatory function during evolution.
 Accordingly, 55\% of \emph{C. elegans} miRNAs have homologues in humans
-\cite{Ibanez-Ventoso2008}. Tight evolutionary control, extensive transcriptome
+\citep{Ibanez-Ventoso2008}. Tight evolutionary control, extensive transcriptome
 targeting, and the fact that miRNAs and their associated proteins are one of
 the most abundant molecules in the cytoplasm \citep{Bartel2004} highlight the
 importance of microRNAs.
@@ -151,8 +152,8 @@ importance of microRNAs.
 \subsubsection{MicroRNA biogenesis}\label{microrna-biogenesis}
 
 The canonical pathway of microRNA biogenesis is illustrated in figure
-\ref{fig:mirna-biogenesis} and is presented here as reviewed by  
-\citet{Bartel2004}, \citet{Melo2015}, and several others. 
+\ref{fig:mirna-biogenesis}
+%and is presented here as reviewed by \citet{Bartel2004}, \citet{Melo2015}, and several others. 
 
 Most microRNAs are transcribed from genomic DNA by RNA polymerase II to form a
 long primary microRNA (pri-miRNA) molecule \citep{Lee2004}. Some pri-miRNAs
@@ -179,15 +180,22 @@ a member of the nuclear transport receptor family
 In the cytoplasm, the ribonuclease Dicer cleaves out the loop of the hairpin
 to form a 22-nt-long double-stranded miRNA/miRNA* duplex, which corresponds to
 the stem of the hairpin \citep{Bernstein2001,Park2011}.
-%Dicer associates with two other molecules, TRBP (Tar RNA-binding protein) and PACT
-%\citep{Tref}. The latter two probably are not necessary for miRNA processing,
-%but contribute to the next phase, to form the RNA-induced silencing complex (RISC).
-The duplex is then bound by a protein complex containing an
-argonaut protein, in mammals one of Ago1 through Ago4. The argonaut separates the strands
-of the duplex and retains one of them. The retained strand is known as the
-guide strand (or miRNA). The other strand, called the passenger (or miRNA*), is
-released and typically degraded. In some instances either one of the strands can become
-the guide strand \citep{Ruby2006}.
+Dicer associates with a cofactor, in humans TRBP (Tar RNA-binding protein),
+which is not required for effective dicing of the pre-miRNA \citep{Zhang2004},
+but acts to recruit the Dicer complex to an argonaut protein
+for further miRNA processing \citep{Chendrimada2005}.
+
+The duplex is then bound by an argonaut protein, in mammals one of Ago1
+through Ago4, in what is called the RNA-induced silencing complex (RISC), a
+protein complex containing Dicer, TRBP and the Ago \citep{Gregory2005}. Ago,
+aided by Dicer and TRBP, unwinds the strands of the duplex and retains one of
+them. The retained strand is known as the guide strand (or miRNA). The other
+strand, called the passenger (or miRNA*), is released and typically degraded .
+In some instances, either one of the strands can become the guide strand
+\citep{Ruby2006}.
+%Notably, the Dicer cleaving, duplex unwinding and eventual
+%mRNA regulation activity are, in fact, all coupled and performed by RISC
+%\citep{Gregory2005}.
 
 Not all miRNAs are generated through this canonical pathway of microRNA
 biogenesis. Some miRNAs are not dependent on Drosha, such as mirtrons, which
@@ -426,7 +434,8 @@ three major genes \citep{T16} ...
 The same methods that have been employed for measuring mRNA (i.e. gene)
 expression are generally applicable for measuring microRNA expression as well,
 ranging from the initial discovery of lin-4 with northern blotting
-\citep{Lee1993} to microarrays \citep{Liu2008} and recent studies using modern sequencing
+\citep{Lee1993} to microarrays \citep{Liu2008} and recent studies using 
+next generation sequencing (NGS)
 \textbf{viite?} \citep{esimerkki}. However, as Hunt and colleagues in
 a recent and thorough review point out, there are several
 challenges in detecting miRNAs in particular \citep{Hunt2015}.
@@ -443,12 +452,12 @@ or an incorrect reference sequence (e.g. that of a lowly-expressed isomiR)
 used for detection can cause inaccurate measurements. IsomiRs may also
 have different functions resulting from altered target specifity \citep{Chugh2012}.
 The existence of the pri-miRNA, pre-miRNA and mature miRNA molecules provides an additional
-challenge for measurement methods, although differentiation between
-these maturation stages is not necessarily required.
+challenge for measurement methods.
+%, although differentiation between these maturation stages is not necessarily required.
 
 Many of the challenges mentioned are solved by NGS, as sequencing can detect
 variations of even one nucleotide and does not necessarily depend on
-previously identified sequences available in miRBase. However, not all
+previously identified sequences. However, not all
 identified short RNAs are functional miRNAs, and NGS conveys its own set of
 problems relating to high cost, significant computational complexity and
 validation efforts to distinguish relevant data from noise
