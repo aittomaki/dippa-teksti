@@ -193,7 +193,7 @@ then exported from the nucleus to the cytoplasm by exportin 5 (XPO5), which is
 a member of the nuclear transport receptor family \citep{Lund2004}.
 
 In the cytoplasm, the ribonuclease Dicer cleaves out the loop of the hairpin
-to form a 22-nt-long double-stranded miRNA/miRNA* duplex corresponding to
+to form a 22-nt-long double-stranded miRNA:miRNA* duplex corresponding to
 the stem of the hairpin \citep{Bernstein2001}.
 Dicer associates with a cofactor, in humans TRBP (Tar RNA-binding protein),
 which is not required for effective dicing of the pre-miRNA,
@@ -232,6 +232,7 @@ messenger RNAs \citep{Filipowicz2008}. The microRNA mechanism of action is
 illustrated in figure \ref{fig:mirna-action}.
 
 Target recognition is based on sequence complimentarity of the miRNA and mRNA.
+In animal miRNAs this complimentarity is often limited \citep{Ambros2004}.
 Nucleotides at positions 2-7 of the 5' end of the microRNA are considered
 crucial to target mRNA matching; this is termed the miRNA "seed sequence". The
 miRNA target sequences are mostly located in the 3' UTR (untranslated region)
@@ -538,43 +539,67 @@ validation efforts to distinguish relevant data from noise
 % putative target genes for microRNAs and regulatory networks between genes and
 % microRNAs.
 
-Considering the recent large body of research on microRNAs, and their potential
-utility as biomarkers and treatment targets, it is not surprising that a
-plethora of computational tools have been released to aid in microRNA
-research. Knowing microRNA targets is essential to understand their
-biological function and a large number of methods have also been developed
-for microRNA target prediction, which we will focus
-on here.
+Considering the recent large body of research on microRNAs, and their
+potential utility as biomarkers and treatment targets, it is not surprising
+that a plethora of computational tools have been released to aid in microRNA
+research. A recent review covering many published methods has been written by
+Akhtar and colleagues \citep{Akhtar2016}. Recognizing microRNA targets is
+essential to understand their biological function and a large number of
+methods have also been developed for microRNA target prediction, which is the
+focus of this work.
 
 
 
-\subsubsection{Sequence-based target prediction}\label{sequence-based-target-
+\subsubsection{Prediction of target sites}\label{sequence-based-target-
 prediction}
 
-\textbf{SELITÄ TÄÄ HOMMA JA ERI ALGORITMIT.}
+The obvious way of identifying putative microRNA targets is to look for base-pair
+complimentarity between miRNA and mRNA sequences to identify target
+binding sites. However, by itself this results in a very large number of false
+positives \citep{Bartel2009}. As discussed above, the microRNA seed sequence
+(nucleotides 2-7) appears to be the primary determinant in target mRNA
+recognition by the RISC. Therefore, prediction specifity can be greatly improved by
+searching for the seed sequence within mRNA sequences (primarily in the 3'
+UTR), found matches are called miRNA seed matches. However,
+even not all seed matches are functional target sites \citep{Grimson2007}.
 
-As discussed above, the microRNA seed sequence (nucleotides 2-7) is the primary
-determinant in target mRNA recognition by the RISC. Therefore, putative miRNA
-targets can be identified by searching for the appropriate
-seed sequence within mRNA sequences (primarily in the 3' UTR) \citep{Bartel2009},
-found matches are called miRNA target sites or seed matches.
+Different strategies have been applied to further increase specificity.
+Additional features used include sequence matching outside the seed region
+(especially miRNA nucleotides 13-16), evolutionary conservation of target
+sites between species, physical accessibility of target sites, presence of
+multiple seed matches, and stability of the miRNA:mRNA complex
+\citep{Akhtar2016}. A few examples of popular target site prediction tools
+are given below.
 
-Evolutionally conserved targets can be simply identified by searching for
-matches to the seed sequence of a miRNA in mRNA 3' UTR's and then checking if
-these matching sites are conserved in orthologous 3' UTR's of other species.
-Conserved matches are considered predicted regulatory sites and, hence, miRNA
-targets \citep{Bartel2009}. All sequence-based target prediction algorithms are basically
-refinements of this basic protocol. This also leads to the notion of miRNA
-families, which are mature miRNAs that share the same nucleotides at positions
-2-8. All miRNAs within a family have the same predicted targets based on sequence.
-\textbf{(Osa tästä kpl:sta miRNA genomicsiin?)}
+ESIMERKKEJÄ ALGORITMEISTÄ
 
-Sequence-based prediction suffers from two major drawbacks. First, there are
-high numbers of false positives \textbf{SYY JA VIITE
-\citep{Sethupathy2006?}}. Second, the predictions are static and do not
-account for different tissues or disease states.
+There are some drawbacks in using target site prediction to identify microRNA
+targets. Firstly, yhe obvious drawback of using conservation is that nonconserved and
+novel sites will be discarded. Nonetheless, it is perhaps the most used
+additional criterion. Additionally, methods requiring some degree of seed region pairing
+cannot identify miRNA:target pairs without seed matches; while these appear
+rare, they should not be discounted altogether \citep{Bartel2009}.
+Finally, sequence-based methods as such are static do not account for
+differing expression profiles in various tissues and disease states (although a
+few methods can include this type of data).
 
-- A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
+
+% Evolutionally conserved targets can be simply identified by searching for
+% matches to the seed sequence of a miRNA in mRNA 3' UTR's and then checking if
+% these matching sites are conserved in orthologous 3' UTR's of other species.
+% Conserved matches are considered predicted regulatory sites and, hence, miRNA
+% targets \citep{Bartel2009}. All sequence-based target prediction algorithms are basically
+% refinements of this basic protocol. This also leads to the notion of miRNA
+% families, which are mature miRNAs that share the same nucleotides at positions
+% 2-8. All miRNAs within a family have the same predicted targets based on sequence.
+% \textbf{(Osa tästä kpl:sta miRNA genomicsiin?)}
+
+% Sequence-based prediction suffers from two major drawbacks. First, there are
+% high numbers of false positives \textbf{SYY JA VIITE
+% \citep{Sethupathy2006?}}. Second, the predictions are static and do not
+% account for different tissues or disease states.
+
+% - A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
 
 
 \paragraph{MicroRNA target databases}
