@@ -63,7 +63,7 @@ strucutres and siRNAs are processed from exogenous long double-stranded RNAs (ds
 \cite{Du2005} MicroRNAs are the focus of this study and are discussed in more
 detail in the next section, as is also the origin of RNAi.
 
-The argonaute (Ago) family of proteins is closely associated with small RNAs and
+The Argonaute (Ago) family of proteins is closely associated with small RNAs and
 Ago act as effectors in RNAi \cite{Ha2014}.
 
 
@@ -197,11 +197,11 @@ to form a 22-nt-long double-stranded miRNA:miRNA* duplex corresponding to
 the stem of the hairpin \citep{Bernstein2001}.
 Dicer associates with a cofactor, in humans TRBP (Tar RNA-binding protein),
 which is not required for effective dicing of the pre-miRNA,
-but acts to physically bridge the Dicer to an argonaute protein
+but acts to physically bridge the Dicer to an Argonaute protein
 % for further miRNA processing
 \citep{Chendrimada2005}.
 
-The duplex is then bound by the argonaute protein, in mammals one of Ago1
+The duplex is then bound by the Argonaute protein, in mammals one of Ago1
 through Ago4, forming what is called the RNA-induced silencing complex (RISC).
 The RISC is a protein complex containing Dicer, TRBP and Ago \citep{Gregory2005}.
 Ago, aided by Dicer and TRBP, unwinds the strands of the duplex and retains one of
@@ -233,7 +233,7 @@ illustrated in figure \ref{fig:mirna-action}.
 
 Target recognition is based on sequence complimentarity of the miRNA and mRNA.
 In animal miRNAs this complimentarity is often limited \citep{Ambros2004}.
-Nucleotides at positions 2-7 of the 5' end of the microRNA are considered
+Nucleotides at positions 2-8 of the 5' end of the microRNA are considered
 crucial to target mRNA matching; this is termed the miRNA "seed sequence". The
 miRNA target sequences are mostly located in the 3' UTR (untranslated region)
 of the mRNA transcript, but in some instances the target sites reside in the
@@ -241,7 +241,7 @@ coding region or 5' UTR. \citep{Bartel2009}
 
 The exact mechanisms by which Ago induces the translational repression or
 destabilization of mRNA are unclear \citep{Filipowicz2008}. Ago2 is the only mammalian
-argonaute capable of cleaving the target mRNA, and this is assumed to require
+Argonaute capable of cleaving the target mRNA, and this is assumed to require
 extensive base-pair matching between the miRNA and mRNA \citep{Du2005}. However,
 mRNA cleavage appears to be rare in animals and mRNA destabilization
 has been found to dominate in mammals \citep{Guo2010}.
@@ -265,7 +265,7 @@ microRNA biology and gene regulation in general.
 
 
 
-\subsubsection{MicroRNA function and role in disease}\label{microrna-function-and-role-in-disease}
+\subsubsection{MicroRNA function}\label{microrna-function}
 
 MicroRNAs have been found to participate in regulation of almost all studied
 cellular processes, including embryo development, cell proliferation,
@@ -274,7 +274,7 @@ apoptosis and metabolism, by regulating protein expression \cite{}.
 miRNAs assert extensive control over the transcriptome. More than 60\% of
 human mRNA transcripts are predicted to be regulated by miRNAs and a single
 transcript has target sites for several different miRNA families
-\citep{Friedman2009}. Furthermore, a single microRNA can have as many as hundreds or
+\citep{Friedman2008}. Furthermore, a single microRNA can have as many as hundreds or
 thousands of target mRNAs. A proteomic study showed that the effect of a
 single miRNA on its target tends to be subtle, usually causing less than a
 2-fold change in protein expression \citep{Baek2008}. However, multiple miRNAs
@@ -557,26 +557,29 @@ The obvious way of identifying putative microRNA targets is to look for base-pai
 complimentarity between miRNA and mRNA sequences to identify target
 binding sites. However, by itself this results in a very large number of false
 positives \citep{Bartel2009}. As discussed above, the microRNA seed sequence
-(nucleotides 2-7) appears to be the primary determinant in target mRNA
+(nucleotides 2-8) appears to be the primary determinant in target mRNA
 recognition by the RISC. Therefore, prediction specifity can be greatly improved by
 searching for the seed sequence within mRNA sequences (primarily in the 3'
 UTR), found matches are called miRNA seed matches. However,
-even not all seed matches are functional target sites \citep{Grimson2007}.
+not all seed matches are functional target sites \citep{Grimson2007}.
 
 Different strategies have been applied to further increase specificity.
 Additional features used include sequence matching outside the seed region
 (especially miRNA nucleotides 13-16), evolutionary conservation of target
 sites between species, physical accessibility of target sites, presence of
 multiple seed matches, and stability of the miRNA:mRNA complex
-\citep{Akhtar2016}. A few examples of popular target site prediction tools
-are given below.
+\citep{Akhtar2016}.
 
-ESIMERKKEJÄ ALGORITMEISTÄ
+Examples of different methods include TargetScan,
+miRDB, PITA, DIANA-microTar-CDS. Some tools combine several different algorithms,
+miRWalk, ToppMiR and MiRDIP are examples of these. Most tools provide
+a webservice for listing target predictions for known miRNAs and mRNAs,
+some also provide a downloadable software for making predictions.
 
 There are some drawbacks in using target site prediction to identify microRNA
 targets. Firstly, yhe obvious drawback of using conservation is that nonconserved and
-novel sites will be discarded. Nonetheless, it is perhaps the most used
-additional criterion. Additionally, methods requiring some degree of seed region pairing
+novel sites will be disregarded. Nonetheless, it is perhaps the most used
+additional criterion. Additionally, methods requiring some degree of seed region matching
 cannot identify miRNA:target pairs without seed matches; while these appear
 rare, they should not be discounted altogether \citep{Bartel2009}.
 Finally, sequence-based methods as such are static do not account for
