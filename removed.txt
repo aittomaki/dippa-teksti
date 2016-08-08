@@ -34,3 +34,33 @@ biogenesis pathway is lethal in many species \citep{CITE} and, further, that
 perturbing miRNA biogenesis often leads to tumor formation \citep{CITE}. This
 highlights the importance of microRNAs and their regulatory function.
 
+
+
+
+
+
+\paragraph{MicroRNAs and cancer}
+
+and it has been shown that the deregulation of even a
+single miRNA can lead to cancer \citep{Costinean2006}.
+
+% YHDISTELTYJA MUDESTA
+
+As in on other cancers, miRNAs are suggested to participate in many ways in
+breast cancer development, progression and both treatment sensitivity and
+resistance. 
+
+Dysregulation of miRNA in breast and other cancers can occur through several
+mechanisms. These include variation in miRNA sequence, in target mRNA
+sequence, and epigenetic regulation by DNA methylation or histone modification
+\citep{Melo2011}. The much studied miRNA
+variation in breast cancer is miRNA-196a2. This rs11614913 variation has been
+suggested to associate with breast cancer risk and a meta-analysis concluded
+that such an association exists between breast cancer risk and this variation
+\citep{Gao2011}. Another miRNA that has been
+associated (although this halso also been disputed), with breast cancer risk
+is miR-453. The variation, however, is not located in the miRNA sequence, but
+in the target sequence of estrogen receptor alpha and has been suggested to
+associated with a lower breast cancer risk \citep{Tchatchou2009}. miRNA
+dysregulation may also take place through changes in the biogenesis of miRNA.
+
