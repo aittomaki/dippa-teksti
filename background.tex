@@ -565,25 +565,52 @@ validation efforts to distinguish relevant data from noise
 
 
 
-\subsection{MicroRNA target prediction}\label{mirna-target-prediction}
+\subsection{Identification of microRNA targets}
 
 % This section presents computational methods that have been used to predict
 % putative target genes for microRNAs and regulatory networks between genes and
 % microRNAs.
 
+Recognizing the target transcripts (and possibly other molecules) of microRNAs
+is essential to understand their biological function. MicroRNAs have been the
+subject of a large number of laboratory experiments in recent years. Many of these have
+uncovered new putative miRNA:mRNA interaction pairs and confirmed
+previously suspected ones. However, experimental identification of miRNA targets
+is labor intensive and costly.
+
 Considering the recent large body of research on microRNAs, and their
 potential utility as biomarkers and treatment targets, it is not surprising
 that a plethora of computational tools have been released to aid in microRNA
-research. A recent review covering many published methods has been written by
-Akhtar et al \citep{Akhtar2016}. Recognizing microRNA targets is
-essential to understand their biological function and a large number of
-methods have also been developed for microRNA target prediction, which is the
-focus of this work.
+research. A recent review covering many published methods for different tasks
+has been written by Akhtar et al \citep{Akhtar2016}. Some of these
+bioinformatics tools have been developed for predicting microRNA targets
+and regulatory networks between genes and miRNAs.
+This aspect of microRNAs is the focus of this work.
 
 
 
-\subsubsection{Prediction of target sites}\label{sequence-based-target-
-prediction}
+\subsubsection{Validated microRNA targets}
+
+Validated microRNA targets refer to miRNA-target interaction pairs (MTIs) that have
+been validated in biological experiments. Common methods for validation
+studies include using cultures of cell lines and introducing exogenous miRNAs
+or suppressing endogenous ones. The effect of microRNAs is often elucidated
+through measurements of mRNA, miRNA and protein expression and varying
+technologies have been used for this \citep{Akhtar2016}.
+
+There exist several public databases that list currently known experimentally
+validated microRNA targets. The databases are collected and curated from
+relevant published miRNA experiments and most provide freely available data
+downloads. DIANA-TarBase is the largest of such databases and contains over
+half a million MTIs \citep{Vlachos2015}. It was last updated in 2014.
+miRTarBase is another comprehensive database and includes 4966 articles
+containing 7439 strongly validated MTIs and and 348 007 MTIs from crosslinking
+and immunoprecipitation sequencing (CLIPseq) studies \citep{Chou2016}. The
+latest update of miRTarBase was in 2015.
+
+
+
+\subsubsection{Prediction of target sites}
 
 The obvious way to identify putative microRNA targets is to look for base-pair
 complimentarity between miRNA and mRNA sequences to find target
@@ -602,11 +629,18 @@ sites between species, physical accessibility of target sites, presence of
 multiple seed matches, and stability of the miRNA:mRNA complex
 \citep{Akhtar2016}.
 
-Examples of different target-site prediction methods include TargetScan,
-miRDB and DIANA-microTar-CDS. Some tools combine several different algorithms,
-such as miRWalk, ToppMiR and MiRDIP. Most tools provide
-a webservice for listing target predictions for known miRNAs and mRNAs,
-and some also provide a downloadable software for making new predictions.
+Examples of different target-site prediction methods include TargetScan
+\citep{Agarwal2015}, miRDB \citep{Wong2015}, and DIANA-microTar-CDS
+\citep{Paraskevopoulou2013}. Some tools combine several different algorithms,
+such as miRWalk \citep{Dweep2015}, ToppMiR \citep{Wu2014} and MiRDIP
+\citep{Shirdel2011}. Most tools provide a webservice for listing target
+predictions for known miRNAs and mRNAs, and some also provide a downloadable
+software for making new predictions. Several tools, e.g. rna22, also provide
+visualizations of the locations on miRNA target sites in transcripts. miRWalk
+also includes validated targets collected from several sources (including the
+latest miRTarBase) using automated text mining
+\citep{Dweep2015}. The only tools that currently use the most recent version of
+miRBase (v21) are TargetScan and rna22.
 
 There are some drawbacks in using target site prediction to identify microRNA
 targets. Firstly, using conservation results in nonconserved and novel sites
@@ -616,7 +650,9 @@ cannot identify miRNA:target pairs without seed matches; while these appear
 rare, they should not be discounted altogether \citep{Bartel2009}. Finally,
 sequence-based methods as such are static do not account for differing miRNA
 and mRNA expression profiles in various tissues and disease states (although
-some methods include this type of data).
+some methods, such as ToppMir, do include this type of data). Sequence-based
+predictions should also be regularly updated to reflect the latest knowledge
+of miRNA and mRNA sequences.
 
 
 % Evolutionally conserved targets can be simply identified by searching for
@@ -637,7 +673,7 @@ some methods include this type of data).
 % - A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
 
 
-\paragraph{MicroRNA target databases}
+
 
 
 
@@ -651,9 +687,9 @@ sequence-based target prediction with expression data. This helps combat the
 high false-positive rate of sequence-only methods and enables tissue and
 disease specific support for the predictions in real-world data. Recent
 evidence indicates that miRNAs act predominantly through degradation
-\citep{CITE}. Thus, it is feasible to use miRNA and mRNA expression data to
+\citep{Guo2010}. Thus, it is feasible to use miRNA and mRNA expression data to
 infer target relationships, since the regulatory effect of miRNAs should be
-directly reflected in mRNA levels. All proposed methods use sequence-based
+reflected in mRNA levels. All proposed methods use sequence-based
 predictions as a starting point by considering only miRNA-mRNA pairs predicted
 by at least one sequence-based prediction algorithm. This section provides a
 review of algorithms for integrating miRNA and mRNA expression and
@@ -714,6 +750,9 @@ the global test \citep{vanIterson2013}. \textbf{SELITÄ GLOBAL TEST}.
 The method by van Iterson et al uses TargetScan, microCosm and PITA for
 putative sequence-based targets and is available as an R package called
 miRNAmRNA \citep{vanItersonWeb}.
+
+
+
 
 
 
