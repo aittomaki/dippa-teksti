@@ -1,7 +1,22 @@
 #!/bin/bash
+
+# Name of output file
+if [[ $# -gt 0 ]]
+then
+    fname=$1
+else
+    DATE=`date +%y%m%d`
+    fname=dippa-$DATE.pdf
+fi
+# Dir to output
+outdir=compiled
+
+# Compile LaTeX doc
 pdflatex dippa
 bibtex dippa
 pdflatex dippa
 pdflatex dippa
-DATE=`date +%y%m%d`
-cp dippa.pdf compiled/dippa-$DATE.pdf
+
+# Copy compiled pdf to outdir
+cp dippa.pdf $outdir/$fname
+
