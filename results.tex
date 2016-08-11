@@ -1,6 +1,44 @@
 
 \section{Results}
 
+\begin{itemize}
+  \item QC plots
+  \begin{itemize}
+    \item distributions of arrays
+    \item PCA and hierarch. clust of samples with hospital colors
+  \end{itemize}
+  \item correlation plots
+  \begin{itemize}
+    \item mRNA-protein
+    \item miRNA-mRNA (target vs non-target)
+    \item miRNA-protein (target vs non-target)
+    \item all three combined (additionally with grouping by intrinsic subtype?)
+  \end{itemize}
+  \item cross-validation results
+  \begin{itemize}
+    \item example plots of search path ("good" and "bad")
+  \end{itemize}
+  \item miRNA coefficients from final models
+  \begin{itemize}
+  	\item plot of different threshold values
+    \item number of miRNAs included
+    \item percentage of significant coefs
+    \item percentage predicted by seq algos (#miRNA vs #algos, included vs significant)
+    \item percentage validated in experiments (included vs significant, mirTarBase)
+  \end{itemize}
+  \item simple network analysis?
+  \begin{itemize}
+    \item connections between included miRNAs and genes
+    \item some pathway analysis or geneset enrichment? (moot since proteins from PIK3-path?)
+  \end{itemize}
+  \item DE analysis of included/significant miRNAs?
+  \begin{itemize}
+    \item triple negative cancers vs others
+    \item alternatively correlations between significant miRNAs-proteins grouped by intrinsic subtypes?
+  \end{itemize}
+
+\end{itemize}
+
 \begin{center}
   \input{final-model-table}
 \end{center}
