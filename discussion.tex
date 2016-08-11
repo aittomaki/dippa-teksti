@@ -9,6 +9,15 @@ tumor samples.
 
 \textbf{Tulosten yhteenveto.}
 
+Correlation between mRNA and protein expression was poor on average, a finding
+supported by many previous studies \citep{Payne2015}. Interestingly,
+there was no difference between correlations of predicted or validated
+miRNA-target pairs or randomly chosen ones and all of these correlation
+distributions were zero centered. This illustrates the
+complexity of expression regulation and supports the view that modeling
+single interaction pairs individually is unlikely to be sufficient in
+general.
+
 An obvious way to improve the model would be to include sequence-based target
 information. Bayesian modeling provides a formal and relatively easy way to
 achieve this with hierarchical models. MicroRNAs that that are putative
@@ -38,8 +47,8 @@ this would be appropriate either.
 The proposed model also does not account for the fact that microRNAs have
 several, even hundreds, of target transcripts \citep{}. Therefore, the regulatory
 effect of a single miRNA is most likely spread across several genes. In
-combination with transcripts having several regulating miRNAs, this many-to-
-many nature of microRNA regulation ultimately calls for computational methods
+combination with transcripts having several regulating miRNAs, this many-to-many
+nature of microRNA regulation ultimately calls for computational methods
 that model the whole regulatory network at once. This, however, becomes a much
 more difficult problem than simple multiple linear regression. \textbf{Akilla
 oli tähän joku metodiehdotus, johon voisi viitata.}
