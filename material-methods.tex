@@ -19,8 +19,8 @@ patients with primarily operable disease -- that is stage cT1--cT2 -- treated
 in several Norwegian hospitals. Collection of the cohort started in 2006 and
 is still ongoing. Therefore, no survival data were available for analysis.
 Clinical data for included patients were kindly provided by Aure and
-associates and are summarized in Table \ref{clinical-data}. No control samples
-of healthy breast tissue were available.
+associates and a compiled summary is found in Table \ref{clinical-data}. No
+control samples of healthy breast tissue were available.
 
 \input{clinical_table}
 
@@ -55,23 +55,24 @@ corresponding to each measured protein were used in the analysis.
 
 \subsection{Methods}
 
-
 All computational analyses were performed in R \citep{R} and workflow
 management was handled with Anduril \citep{OvaskaXXXX}. Monte-Carlo
 simulations for the Bayesian regression models were done using RStan
 \citep{stan} and all simulations were were performed using computer
 resources within the Aalto University School of Science "Science-IT"
-project.
+project. Publicly available data were downloaded from the
+Gene Expression Omnibus (GEO) using the R package GEOquery.
 
 
 
 
 \subsubsection{Preprocessing and quality control}
 
-The publicly available expression data, which are already preprocessed, were
-used for all analyses. Therefore, no further preprocessing was done. For
-details on the preprocessing, the reader is referred to the supplementary data
-of Aure et al \citep{Aure2015}.
+Publicly available expression data, which are in preprocessed form, were used
+for all analyses. No further preprocessing was done to ensure that any
+differences in results were due to actual analyses and not caused by the
+preprocessing step. For details on the preprocessing, the reader is referred
+to the supplementary data of Aure et al \citep{Aure2015}.
 
 MicroRNAs detected in less than 10\% of samples had been removed from the
 public data, leaving 421 miRNAs. Out of these, eleven miRNAs (hsa-
@@ -82,9 +83,23 @@ these miRNAs are reported as being fragments of other RNA species (e.g. tRNA
 or rRNA) and, thus, removed from the database. Therefore, these eleven miRNAs
 were removed from subsequent analyses, leaving 410 miRNAs.
 
+Explain QC plots:
+\begin{itemize}
+	\item hierarchical clustering of samples
+	\item distributions of chips
+\end{itemize}
+
+Correlation analyses.
 
 
 \subsubsection{Variable selection with projection prediction}
+
+Explain:
+\begin{itemize}
+  \item hierarchical shrinkage priors
+  \item projection prediction variable selection
+  \item justification for variance of tau prior ($p_n$ van Der Pass)
+\end{itemize}
 
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
 Ensembl gene ID's were downloaded for all protein coding genes in the human
@@ -105,3 +120,9 @@ observations and $p$ the number of explanatory variables) adjusts for the
 number of regressors relative to the number of observations, thus penalizing
 for including additional variables. $\bar{R}^2$ was used for comparing the
 final model with a model including only the gene expression variable.
+
+Possible extras:
+\begin{itemize}
+	\item DE miRNA analysis between triple negatives and others
+	\item bipartite network from found MTIs
+\end{itemize}
