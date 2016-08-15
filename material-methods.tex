@@ -11,15 +11,14 @@ The data analysed in this thesis consists of 283 tumor samples collected from
 280 breast cancer patients treated in two Norwegian hospitals. Protein, mRNA
 and microRNA expression were measured from each sample. The data were
 published by Aure et al. \citep{Aure2015} and are publicly available. Analyses
-performed in this thesis used the publicly available preprocessed data
-\textbf{(paitsi jos ehtii tehä vielä preprocin ite)}.
+performed in this thesis used the publicly available preprocessed data.
 
 The data are part of the Oslo2 cohort, which consists of breast cancer
 patients with primarily operable disease -- that is stage cT1--cT2 -- treated
 in several Norwegian hospitals. Collection of the cohort started in 2006 and
 is still ongoing. Therefore, no survival data were available for analysis.
 Clinical data for included patients were kindly provided by Aure and
-associates and a compiled summary is found in Table \ref{clinical-data}. No
+associates and a compiled summary is presented in Table \ref{clinical-data}. No
 control samples of healthy breast tissue were available.
 
 \input{clinical_table}
@@ -102,15 +101,15 @@ Explain:
 \end{itemize}
 
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
-Ensembl gene ID's were downloaded for all protein coding genes in the human
+Ensembl gene ID's were downloaded for all protein-coding genes in the human
 genome using biomaRt \citep{biomaRt}. From these, a sample of 1000 genes was
 taken, and known validated microRNA interaction partners for each sampled gene
-were downloaded from miRWalk \citep{miRWalk}. Genes for which there were no
+were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
 validated miRNA interactors were assumed to have zero. The mean number of
 miRNA interactors per gene was the computed, which resulted in the estimate
 $\hat{p_n} = 13.75$.
 
-The coefficient of determination, $R^2$, was used as a measure of final model
+The coefficient of determination, $R^2$ \textbf{(kaava!)}, was used as a measure of final model
 fit. $R^2$ is a favorable measure of goodness of fit, because it is invariant
 to variable scaling. As expression data do not have a well defined scale,
 $R^2$ is well-suited in this sense. One problem with $R^2$ is that it
@@ -124,5 +123,5 @@ final model with a model including only the gene expression variable.
 Possible extras:
 \begin{itemize}
 	\item DE miRNA analysis between triple negatives and others
-	\item bipartite network from found MTIs
+	\item bipartite network from found MTIs and some network analysis
 \end{itemize}
