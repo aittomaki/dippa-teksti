@@ -42,10 +42,18 @@ summarized in table \ref{table:rnas}.
 
 \subsubsection{Regulation of gene expression}\label{regulation-of-gene-expression}
 
+\begin{itemize}
+  \item transcription factors
+  \item post-transcriptional regulation
+  \item translational factors
+  \item protein degradation
+\end{itemize}
 
 
 
 \subsubsection{Ribonucleic acids}\label{ribonucleic-acids}
+
+\textbf{SIIRRÄ TÄÄ TOHON EKAAN YLÄKAPPALEESEEN?}
 
 Messenger RNA.
 
@@ -505,24 +513,19 @@ microRNA treatments are ready for the clinical setting.
 
 \subsection{Measurement of gene expression}\label{measurement-of-gene-expression}
 
+Techniques shortly:
 \begin{itemize}
   \item blotting, qPCR
   \item microarrays
-  \begin{itemize}
-    \item two-color arrays
-    \item oligonucleotide arrays
-  \end{itemize}
   \item sequencing-based methods
-  \item microarray analysis
-  \begin{itemize}
-    \item preprocessing and normalization
-    \item probe annotation problems
-  \end{itemize}
   \item protein arrays (RPPA)
 \end{itemize}
 
+mRNA and protein expression poorly correlated \cite{tahanOliNiitaRefeja}.
+mRNA only acts as a proxy. Some evidence that differential expression analysis
+still makes sense, better correlation in DEGs \cite{seYksPaperi}.
 
-Payne recently concluded that "proteome and transcriptome abundances are not
+Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
 sufficiently correlated to act as proxies for each other" and that
 most of this difference is likely caused by biological regulation and not
 by measurement technology \cite{Payne2015}. This regulation can be
@@ -536,6 +539,17 @@ into biological processes.
 
 
 \subsubsection{Microarrays}
+
+\begin{itemize}
+  \item two-color arrays
+  \item oligonucleotide arrays
+  \item microarray analysis
+  \begin{itemize}
+    \item preprocessing and normalization
+    \item probe annotation problems
+  \end{itemize}
+\end{itemize}
+
 
 
 \subsubsection{MicroRNA detection}
@@ -738,9 +752,10 @@ possibly aberrant expression in diseases.
 
 \subsubsection{Integration of mRNA and miRNA expression}
 
-Since it seems feasible that miRNA regulation affects mRNA expression levels,
-as mentioned above, it is logical to directly correlate miRNA
-and mRNA expression
+Since it is plausible that miRNA regulation affects mRNA expression levels, as
+mentioned above, it seems feasible to predicted MTIs by correlating miRNA and
+mRNA expression. Many tools have been developed that do this using
+correlation, mutual information or various forms of regression.
 
 \textbf{KOLME KATEGORIAA: KORRELAATIO, REGRESSIO, BAYESIAN?}
 
@@ -767,7 +782,7 @@ KORRELAATIOSSA?}
 
 \paragraph{Regression methods}\label{regression-methods}
 
-\textbf{SELITÄ REGRESSIO.}
+\textbf{SELITÄ REGRESSIO LYHYESTI.}
 
 Engelmann et al used least angle regression to show that gene expression can
 be predicted from miRNA expression \citep{Engelmann}.
@@ -805,24 +820,30 @@ miRNAmRNA \citep{vanItersonWeb}.
 
 \subsubsection{Bayesian methods}\label{bayesian-methods}
 
-First published Bayesian analysis by Thomas Bayes in 1763 \citep{Gelman2013}.
+\textbf{TÄSTÄ PITÄNEE VÄHÄN KARSIA.}
 
-Advantages of Bayesian methods:
 \begin{itemize}
-  \item
-  quantification of uncertainty as probabilities, knowledge about anything
-  unknown is described as a probability distribution, easy to comprehend
-  \item
-  common-sense interpretation of credible intervals compared to frequentist
-  confidence intervals
-  \item
-  flexibility allows constructing complex models with relative ease (e.g.
-  hierarchical models)
-  \item
-  Adding more data sequentially is possible by using the previous posterior
-  distribution as the new prior distribution. This can be especially useful in
-  a clinical research context, where data are often collected within a long
-  timespan.
+  \item First published Bayesian analysis by Thomas Bayes in 1763 \citep{Gelman2013}.
+  \item Bayes' rule
+  \item posteriors and priors
+  \item hierarchical models and hyperpriors
+  \item Advantages of Bayesian methods:
+  \begin{itemize}
+    \item
+    quantification of uncertainty as probabilities, knowledge about anything
+    unknown is described as a probability distribution, easy to comprehend
+    \item
+    common-sense interpretation of credible intervals compared to frequentist
+    confidence intervals
+    \item
+    flexibility allows constructing complex models with relative ease (e.g.
+    hierarchical models)
+    \item
+    Adding more data sequentially is possible by using the previous posterior
+    distribution as the new prior distribution. This can be especially useful in
+    a clinical research context, where data are often collected within a long
+    timespan.
+  \end{itemize}
 \end{itemize}
 The challenge in Bayesian analysis is setting up proper probability models for
 the parameters and observations. \citep{Gelman2013} This includes the prior
@@ -830,27 +851,30 @@ distributions of the parameters as well as the likelihood of the observed data.
 The choice of prior is also a source of much controversy, as it is based
 on experience and reasoning of the statistician.
 
-The posterior distribution represents a compromise between the prior (and
-hence, prior information) and the observed data, with the data having an
-increasing effect as the sample size increases. \citep{Gelman2013}.
-
-\textbf{OMIN SANOIN: Confidence intervals work their best when you don't know much about a
-parameter beyond the information contained in a data set. And further,
-credibility intervals won't be able to improve much on confidence intervals
-unless there is prior information which the confidence interval can't take
-into account, or finding the sufficient and ancillary statistics is hard.}
-
-- The posterior distribution also provides a more comprehensive view of
+In many instances, using a non-informative prior results in similar or equal
+results as frequentist analysis, but the strength of Bayesian analysis comes
+from including prior knowledge in the prior distribution. \citep{Jaynes?} The
+posterior distribution represents a compromise between the prior (and, hence,
+prior information) and the observed data, with the data having an increasing
+effect as the sample size increases. \citep{Gelman2013}. The posterior
+distribution also provides a more comprehensive view of
 one's knowledge on the parameter of interest than, say, a single confidence
-interval (or even a series of confidence intervals).
-- In many instances, using a non-informative prior results in similar or
-equal results than frequentist analysis, but the strength of Bayesian
-analysis comes from including prior knowledge in the prior distribution. \citep{Jaynes?}
+interval.
 
 The frequentist approach only considers the data to have a probability
 distribution, the likelihood. The process giving rise to the data, and the
 parameters that define it, are considered fixed. The observed data are
-assessed with respect to other data generated by the same model.
+assessed with respect to other data that might be generated by the same model.
+
+% OMIN SANOIN: Confidence intervals work their best when you don't know much about a
+% parameter beyond the information contained in a data set. And further,
+% credibility intervals won't be able to improve much on confidence intervals
+% unless there is prior information which the confidence interval can't take
+% into account, or finding the sufficient and ancillary statistics is hard.
+
+
+
+
 
 Previous Bayesian miRNA methods:
 \begin{itemize}
@@ -888,4 +912,6 @@ Simulation methods:
 
 \paragraph{Bayesian regression}\label{bayesian-regression}
 
-\textbf{SELITÄ MITEN BAYES-REGRESSIO EROAA TAVALLISESTA.}
+Bayesian regression analysis aims to infer the posterior distributions
+for the regression coefficients of covariates and other model parameters,
+such as the variance (i.e. noise) of the observation model.
