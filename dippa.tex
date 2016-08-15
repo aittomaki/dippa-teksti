@@ -99,11 +99,11 @@
 %% should be followed by a slightly longer space but is to be followed
 %% by a regular space.
 %%
-\supervisor{Prof.\ Aki Vehtari}
+\supervisor{Aki Vehtari, professor}
 
 %% B.Sc. or M.Sc. thesis advisors(s).
 %%
-\advisor{Ph.D.\ Rainer Lehtonen}
+\advisor{Rainer Lehtonen, Ph.D.}
 
 %% Aalto logo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
@@ -135,27 +135,55 @@
 %% is used as specified above.
 %% Specify keywords
 %%
-\keywords{breast cancer, microRNA, Bayes, microarray}
+\keywords{Bayesian analysis, breast cancer, gene expression, microRNA, microarray}
 %% Abstract text
 \begin{abstractpage}[english]
-  'tis with magic that jolly interesting microRNA were conjured.
-  The results were dazzling to say the least.
+
+Breast cancer is the most common cancer in women and a significant cause of
+morbidity and mortality globally. Analyses of gene expression data have
+provided insight into the pathogenesis of breast cancer and  intrinsic subtypes
+correlating with prognosis have been identified.
+
+MicroRNAs are a class of small RNAs that regulate gene expression post-
+transcriptionally by targeting messenger RNA transcripts. Recent research has
+revealed microRNAs to participate in almost all cellular functions and many
+pathological processes, including cancer. Several microRNAs have been
+indicated to contribute to breast cancer pathogenesis.
+
+Identification of target genes of microRNAs is crucial to understand their
+function in normal cell biology and disease. A wide array of methods have been
+proposed for computational prediction of microRNA targets. Early methods used
+sequence information and recent tools have integrated mRNA and microRNA
+expression measurements. Very few published analyses have included protein
+expression as well.
+
+This thesis provides a review of microRNA biology and target prediction as
+well as breast cancer. A recent Bayesian regression method is applied for
+uncovering putative microRNA-gene target pairs in breast cancer using
+microarray expression data. Results are compared with a recent analysis of the
+same data and previous literature. Analyses show that the choice of modeling
+parameters is not trivial and has impact on results. The importance of an
+integrative approach is highlighted.
+
 \end{abstractpage}
 
 %% Force a new page so that the Finnish abstract starts on a new page
 \newpage
 
 %% Abstract in Finnish.  Delete if you don't need it. 
-\thesistitle{MikroRNA-säätely rintasyövässä -- Bayeslainen analyysi ekspressiodatasta}
-\advisor{Dosentti Rainer Lehtonen}
+\thesistitle{MikroRNA-säätely rintasyövässä -- ekspressiodatan Bayeslainen analyysi}
+\supervisor{Aki Vehtari, professori}
+\advisor{Rainer Lehtonen, dosentti}
 \degreeprogram{Electronics and electrical engineering}
 \department{TÄÄ PITÄÄ KEKSIÄ JOSTAIN}
 \professorship{JA TÄÄ}
 %% Avainsanat
-\keywords{rintasy\"op\"a, mikroRNA, Bayes, mikrosiru}
+\keywords{Bayeslainen analyysi, geeniekspressio, mikroRNA, mikrosiru, rintasy\"op\"a}
 %% Tiivistelman tekstiosa
 \begin{abstractpage}[finnish]
-  Juhannustaikoja ja muuta huttua.
+
+\textbf{Käännä suomeksi enkkuabstrakti.}
+
 \end{abstractpage}
 
 
@@ -186,7 +214,7 @@
 Ja heillä kaikilla oli niin mukavaa.\\
 
 \vspace{5cm}
-Helsinki, 1.6.2016
+Helsinki, X.X.2016
 
 \vspace{5mm}
 {\hfill Viljami Aittom\"aki \hspace{1cm}}
@@ -257,6 +285,7 @@ bp          & base pairs (as a measure of sequence length) \\
 nt          & nucleotide (as a measure of sequence length) \\
 miRNA       & microRNA \\
 mRNA        & messenger RNA \\
+MTI         & microRNA-target interaction \\
 NGS         & next generation sequencing \\
 RISC        & RNA-induced silencing complex \\
 RNA         & ribonucleic acid \\
