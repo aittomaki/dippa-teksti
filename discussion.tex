@@ -7,7 +7,7 @@ prediction of microRNA target genes. A Bayesian regression model was applied
 to predict protein expression from mRNA and miRNA expression in breast cancer
 tumor samples.
 
-\textbf{Tulosten yhteenveto.}
+\paragraph{Overview of results}
 
 Correlation between mRNA and protein expression was poor on average, a finding
 supported by many previous studies \citep{Payne2015}. Interestingly,
@@ -17,6 +17,8 @@ distributions were zero centered. This illustrates the
 complexity of expression regulation and supports the view that modeling
 single interaction pairs individually is unlikely to be sufficient in
 general.
+
+\paragraph{Disadvantages and improvement}
 
 An obvious way to improve the model would be to include sequence-based target
 information. Bayesian modeling provides a formal and relatively easy way to
@@ -52,3 +54,15 @@ nature of microRNA regulation ultimately calls for computational methods
 that model the whole regulatory network at once. This, however, becomes a much
 more difficult problem than simple multiple linear regression. \textbf{Akilla
 oli tähän joku metodiehdotus, johon voisi viitata.}
+
+\paragraph{Future prospects}
+
+\begin{itemize}
+	\item miRNAs as potential treatments
+	\item data integration on several levels important
+	\item NGS solves some problems
+	\begin{itemize}
+		\item CLIP already does high-throuput experimental identification of MTIs?
+	\end{itemize}
+\end{itemize}
+
