@@ -483,7 +483,7 @@
    \renewcommand*{\tocabslang}{}%
  }{%
  \IfEng{\MainLang}{%
-    \IfFin{\AbstractLang}{\renewcommand*{\tocabslang}{(in Finnish)}}{%
+     \IfFin{\AbstractLang}{\renewcommand*{\abstractname}{Tiivistelm{\"a}}}{%\renewcommand*{\tocabslang}{(in Finnish)}}{%
       \IfSwe{\AbstractLang}{\renewcommand*{\tocabslang}{(in Swedish)}}{}}%
   }{}%
   \IfFin{\MainLang}{%
