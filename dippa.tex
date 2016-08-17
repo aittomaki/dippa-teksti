@@ -47,12 +47,16 @@
 \usepackage[numbers,square]{natbib}
 \usepackage[parfill]{parskip}
 \usepackage{longtable}
-
+\usepackage{pdflscape}
+\setlength\LTcapwidth{\textwidth}
+\setlength{\LTleft}{-20cm plus -1fill}
+%\setlength{\LTleft}{-30cm}
+\setlength{\LTright}{\LTleft}
 
 
 %% All that is printed on paper starts here
 \begin{document}
-\renewcommand{\thesissupervisorname}{Thesis supervisors}
+\renewcommand{\thesissupervisorname}{Thesis supervisor}
 
 %% Change the school field to specify your school if the automatically 
 %% set name is wrong
@@ -398,7 +402,7 @@ RPPA        & reverse phosphatase protein array
 \addcontentsline{toc}{section}{\refname}
 %\addcontentsline{toc}{section}{References}
 
-\bibliographystyle{plainnat}
+\bibliographystyle{apalike}
 \bibliography{dippa}
 %\begin{thebibliography}{99}
 %% Alla pilkun j\"alkeen on pakotettu oikea v\"ali \<v\"alily\"onti>-merkeill\"a.
