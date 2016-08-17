@@ -39,6 +39,42 @@
 
 \end{itemize}
 
-\begin{center}
-  \input{final-model-table}
-\end{center}
+%\begin{landscape}
+    \input{final-model-table}
+%\end{landscape}
+
+Figure \ref{n-miRNAs-vs-R2} shows the number of miRNA variables included in
+each full model plotted against the number of significant miRNA variables, the
+$R^2$ of the full model, and the difference in $\bar{R}^2$ between the full
+model and the model with only the gene variable. Each point in each plot
+corresponds to one full model, and smoothed curves were fitted using locally
+weighted scatter plot smoothing (LOESS). A trend emerges, where including more
+miRNA variables tends to achieve better performance up to a turning point --
+around 28 miRNA variables -- after which larger models seem to perform
+increasingly poorly. Similar plots were created with more strict cross-
+validation thresholds ($\gamma$ and $\alpha$); the models were larger on
+average, but an equal trend and turning point were seen (data not shown).
+
+\begin{figure}[htb]
+\centering \includegraphics[height=11cm]{n_miRNAs_vs_R2.pdf}
+\caption{Number of miRNA variables included in full model (N miRNAs) versus number of significant miRNA variables, R$^2$ of full model, and difference of $\bar{R}^2$ between full and gene only model ($\Delta\bar{R}^2$). Each point represents one model fitted for one gene. Note that some points are overlaid on top of each other. Curves were fitted with locally
+weighted scatter plot smoothing (LOESS) and shaded areas represent 95\% confidence interval. \label{n-miRNAs-vs-R2}}
+\end{figure}
+
+There could be several explanations for this trend. Firstly, the largest
+models could simply be a result of the predictors not fitting the observed
+variable well. This often results in a large model, because including more
+predictors always makes the model fit asymptotically better -- both in the
+sense of $R^2$ and generally also the predictive density, which was used as
+the measure of fit for the variable-selection process. From a biological
+perspective, this means that the mRNA and miRNA expression are not sufficient
+to explain the protein expression; other factors, that the model does not
+account for (e.g. protein degradation), possibly dominate the protein
+abundance. Secondly, the marginal posterior of a single predictor can indicate
+non-significance, while the joint posterior of several predictors combined
+might still achieve significance. This would indicate that the effect of
+miRNAs is only significant when acting simultaneosly, a hypothesis that is
+supported by experimental evidence, as discussed in section
+\ref{microrna-function}.
+
+To examine the latter point, \textbf{SOMETHING COULD BE DONE? AKI?}.
