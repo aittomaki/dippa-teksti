@@ -373,7 +373,7 @@ in 2012 there were 522 000 breast cancer-related deaths
 
 Most breast cancers are sporadic; only 5-7\% of breast cancer cases are of
 familial type \citep{Melchor2013}. However, 15-30\% of breast cancer patients
-have a family member or relative with breast cancer \textbf{VIITE?}. This is
+have a family member or relative with breast cancer. This is
 mostly due to the high frequency of breast cancer in many western populations,
 but also suggests that there are unknown genetic factors and environmental
 factors that have an impact on breast cancer development. Indeed, breast
@@ -381,10 +381,12 @@ cancer is a hormone-related disease and hormonal factors are known to have an
 impact on breast cancer risk. The most important of these are
 estrogen and progesterone, which are discussed in more detail below.
 
-The most well-known heriditary forms of breast cancer are those related to a
+The most important heriditary forms of breast cancer are those related to a
 tumor predisposition syndrome caused by mutations in the breast cancer 1
-(BRCA1) or BRCA2 genes. \textbf{Vähän lisää tästä, myös tuumoreissa usein
-somaattisena mutaationa(?).}
+(BRCA1) and BRCA2 genes, which explain about 25\% familial breast cancer in
+many populations. These, however are rare on the population level and familial
+clusering of beast cancer is also caused by moderate risk and low risk genetic
+variations, which are much more common \citep{Melchor2013}.
 
 
 \subsubsection{Breast cancer classification}\label{breast-cancer-classification}
@@ -529,19 +531,26 @@ microRNA treatments are ready for the clinical setting.
 
 
 
-\subsection{Measurement of gene expression}\label{measurement-of-gene-expression}
+\subsection{Measuring gene expression}\label{measurement-of-gene-expression}
 
-Techniques shortly:
-\begin{itemize}
-  \item blotting, qPCR
-  \item microarrays
-  \item sequencing-based methods
-  \item protein arrays (RPPA)
-\end{itemize}
+The physical measurement of gene expression can be done on either the level of
+messenger RNA molecules or protein molecules present in cells. Although
+proteins are the eventual effectors molecules within cells -- atleast for
+protein-coding genes -- often gene expression is synonymous with mRNA
+expression, since measuring mRNA abundances is significantly easier than
+measuring protein abundances. This is due to the chemistry of base-pairing and
+the relative ease of replicating DNA (or RNA) sequences by exploiting cellular machinery
+evolved for this purpose.
 
-mRNA and protein expression poorly correlated \cite{tahanOliNiitaRefeja}.
-mRNA only acts as a proxy. Some evidence that differential expression analysis
-still makes sense, better correlation in DEGs \cite{seYksPaperi}.
+The general assumption has been that mRNA expression is representative of gene
+expression and that changes in mRNA abundances also reflect changes in protein
+abundances and, therefore, cellular processes. This assumption has recently
+been questioned by experiments indicating that the expression of mRNA and
+correspoding protein correlate poorly in general \citep{tahanOliNiitaRefeja}.
+There are also contrary findings of modest to good correlation (see e.g. \citep{})
+and one study suggested that mRNA-protein correlation is generally higher for
+genes that have differing mRNA expression between studied conditions (for
+example cancerous and healthy tissue) \citep{seYksPaperi}.
 
 Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
 sufficiently correlated to act as proxies for each other" and that
@@ -552,6 +561,19 @@ discussed above. Therefore, it is interesting, even necessary, to integrate
 measurements from different parts of this process -- for example
 mRNA, microRNA and protein abundances -- to gain new insights
 into biological processes.
+
+
+
+Clumping and lysing of cells.
+
+Techniques shortly:
+\begin{itemize}
+  \item blotting, qPCR
+  \item microarrays
+  \item sequencing-based methods
+  \item protein arrays (RPPA)
+\end{itemize}
+
 
 
 
