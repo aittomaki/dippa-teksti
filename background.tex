@@ -257,8 +257,8 @@ messenger RNAs \citep{Filipowicz2008}. The microRNA mechanism of action is
 illustrated in figure \ref{fig:mirna-action}.
 
 Target recognition is based on sequence complimentarity of the miRNA and mRNA.
-In animal miRNAs this complimentarity is often limited \citep{Ambros2004}.
-Nucleotides at positions 2-8 of the 5' end of the microRNA are considered
+In animal miRNAs this complimentarity is almost always limited \citep{Ambros2004}.
+Nucleotides at positions 2-8 of the 5' end of the microRNA have been found
 crucial to target mRNA matching; these nucleotides are termed the miRNA "seed sequence".
 miRNA target sequences are mostly located in the 3' UTR (untranslated region)
 of the mRNA transcript, but in some instances target sites also reside in the
@@ -279,7 +279,7 @@ of RNA silencing and decay, not the cause, and is reversible
 
 Interestingly, several alternative mechanisms of action for microRNA have been
 reported. For example, some miRNAs can increase the translation of target mRNA instead of
-repressing it (depending on cell-cycle context) \citep{Vasudevan2007}, miR-373
+repressing it \citep{Vasudevan2007}, miR-373
 was found to target DNA promoter areas and act to induce gene transcription
 \citep{Place2008}, and miR-328 targets a protein to prevent inhibition of mRNA
 translation \citep{Eiring2010}. This illustrates the complexity and diversity of
@@ -302,7 +302,8 @@ transcript has target sites for several different miRNA families
 \citep{Friedman2009}. Furthermore, a single microRNA can have as many as hundreds or
 thousands of target mRNAs. A proteomic study showed that the effect of a
 single miRNA on its target tends to be subtle, usually causing less than a
-2-fold change in protein expression \citep{Baek2008}. However, multiple miRNAs
+2-fold change in protein expression \citep{Baek2008}. However, a single
+miRNA can have multiple binding sites in one mRNA and multiple miRNAs
 acting on the same target have additive, and in some cases even co-operative
 effects \citep{Bartel2009}.
 
@@ -656,12 +657,13 @@ validation efforts to distinguish relevant data from noise
 % putative target genes for microRNAs and regulatory networks between genes and
 % microRNAs.
 
-Recognizing the target transcripts (and possibly other molecules) of microRNAs
+Recognizing the targets of microRNAs
 is essential to understand their biological function. MicroRNAs have been the
 subject of a large number of laboratory experiments in recent years. Many of these have
-uncovered new putative miRNA:mRNA interaction pairs and confirmed
+uncovered new miRNA-target interaction pairs (MTIs) and confirmed
 previously suspected ones. However, experimental identification of miRNA targets
-is labor intensive and costly.
+is labor intensive and costly, because of the large number of microRNAs
+and their possible targets.
 
 Considering the recent large body of research on microRNAs, and their
 potential utility as biomarkers and treatment targets, it is not surprising
@@ -670,13 +672,13 @@ research. A recent review covering many published methods for different tasks
 has been written by Akhtar et al \citep{Akhtar2016}. Some of these
 bioinformatics tools have been developed for predicting microRNA targets
 and regulatory networks between genes and miRNAs.
-This aspect of microRNAs is the focus of this work.
+In this thesis we focus on target identification.
 
 
 
 \subsubsection{Validated microRNA targets}
 
-Validated microRNA targets refer to miRNA-target interaction pairs (MTIs) that have
+Validated microRNA targets refer to miRNA-target pairs that have
 been validated in biological experiments. Common methods for validation
 studies include using cultures of cell lines and introducing exogenous miRNAs
 or suppressing endogenous ones. The effect of microRNAs is often elucidated
@@ -697,22 +699,24 @@ latest update of miRTarBase was in 2015.
 
 \subsubsection{Prediction of target sites}
 
-The obvious way to identify putative microRNA targets is to look for base-pair
-complimentarity between miRNA and mRNA sequences to find target
-binding sites. However, by itself this results in a very large number of false
+As sequence complimentarity is the basis of miRNA targeting,
+possible targets can be identified by looking for base-pair
+complimentarity between miRNA and mRNA sequences.
+However, by itself this results in a very large number of false
 positives \citep{Bartel2009}. As discussed above, the microRNA seed sequence
 (nucleotides 2-8) appears to be the primary determinant in target mRNA
-recognition by the RISC. Therefore, prediction specifity can be greatly improved by
+recognition. Therefore, prediction specifity can be greatly improved by
 searching for the seed sequence within mRNA sequences (primarily in the 3'
-UTR), found matches are called miRNA seed matches. However,
+UTR), found matches are called miRNA seed matches. However, even
 not all seed matches are functional target sites \citep{Grimson2007}.
 
-Different strategies have been applied to further increase specificity.
+Different strategies have been applied to further increase detection specificity.
 Additional features used include sequence matching outside the seed region
 (especially miRNA nucleotides 13-16), evolutionary conservation of target
 sites between species, physical accessibility of target sites, presence of
 multiple seed matches, and stability of the miRNA:mRNA complex
-\citep{Akhtar2016}.
+\citep{Akhtar2016}. The chosen features then form the basis of a rule-based
+algorithm for choosing targets.
 
 Examples of different target-site prediction methods include TargetScan
 \citep{Agarwal2015}, miRDB \citep{Wong2015}, and DIANA-microTar-CDS
@@ -720,23 +724,24 @@ Examples of different target-site prediction methods include TargetScan
 such as miRWalk \citep{Dweep2015}, ToppMiR \citep{Wu2014} and MiRDIP
 \citep{Shirdel2011}. Most tools provide a webservice for listing target
 predictions for known miRNAs and mRNAs, and some also provide a downloadable
-software for making new predictions. Several tools, e.g. rna22, also provide
-visualizations of the locations on miRNA target sites in transcripts. miRWalk
-also includes validated targets collected from several sources (including the
+software for making new predictions.
+%Several tools, e.g. rna22, also provide
+%visualizations of the locations on miRNA target sites in transcripts.
+miRWalk also includes validated targets collected from several sources (including the
 latest miRTarBase) using automated text mining \citep{Dweep2015}. The only
 tools that currently use the most recent version of miRBase (v21) are
 TargetScan and rna22.
 
-There are some drawbacks in using target site prediction to identify microRNA
+There are some drawbacks in using target-site prediction to identify microRNA
 targets. Firstly, using conservation results in nonconserved and novel sites
 being disregarded. Nonetheless, it is perhaps the most used additional
 criterion. Additionally, methods requiring some degree of seed region matching
-cannot identify miRNA:target pairs without seed matches; while these appear
+cannot identify miRNA-target pairs without seed matches; while these appear
 rare, they should not be discounted altogether \citep{Bartel2009}. Finally,
-sequence-based methods as such are static do not account for differing miRNA
+rule-based methods are static do not account for differing miRNA
 and mRNA expression profiles in various tissues and disease states (although
 some methods, such as ToppMir, do include this type of data). Sequence-based
-predictions should also be regularly updated to reflect the latest knowledge
+predictions also need to be regularly updated to reflect the latest knowledge
 of miRNA and mRNA sequences.
 
 
@@ -775,7 +780,7 @@ infer target relationships, since the regulatory effect of miRNAs should be
 reflected in mRNA levels.
 
 A group of bioinformatics tools uses mRNA expression data to suggest
-potentially interesting miRNA-target interactions (MITs).
+potentially interesting miRNA-target interactions (MTIs).
 \begin{itemize}
   \item
   Input ist of interesting genes (e.g. DE vs normal)
@@ -811,9 +816,9 @@ possibly aberrant expression in diseases.
 
 \subsubsection{Integration of mRNA and miRNA expression}
 
-Since it is plausible that miRNA regulation affects mRNA expression levels, as
-mentioned above, it seems feasible to predicted MTIs by correlating miRNA and
-mRNA expression. Many tools have been developed that do this using
+Since it is evident that miRNA regulation affects mRNA expression levels, as
+mentioned above, it seems feasible to predict MTIs by integrating miRNA and
+mRNA expression data. Many tools have been developed that do this using
 correlation, mutual information or various forms of regression.
 
 \textbf{KOLME KATEGORIAA: KORRELAATIO, REGRESSIO, BAYESIAN?}
@@ -833,9 +838,6 @@ MAGIA \citep{Sales2010} is a webservice that implements both the MI and
 correlation approaches. It also constructs a bipartite network of the top 250
 predicted miRNA-mRNA pairs and provides links to several databases for further
 examination and validation of results.
-
-\textbf{VAI LAITTAISKO MAGIAN JO MI:N YHTEYTEEN JA TOISTAA VAAN
-KORRELAATIOSSA?}
 
 
 
