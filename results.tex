@@ -1,6 +1,9 @@
 
 \section{Results}
 
+\textbf{Jos ehtis, niin analyysit voisi ajaa uudestaan niin, että
+mRNA coef rajoitettu >0 ja miRNA coef rajoitettu <0.}
+
 \begin{itemize}
   \item QC plots
   \begin{itemize}
@@ -23,8 +26,12 @@
   	\item plot of different threshold values
     \item number of miRNAs included
     \item percentage of significant coefs
+    \item number of negative miRNA coefs vs positive
+    \item number of negative mRNA coefs
     \item percentage predicted by seq algos (num miRNAs vs num algos, included vs significant)
     \item percentage validated in experiments (included vs significant, mirTarBase)
+    \item number of validated targets in PPVS vs Lasso vs GenMiR equiv (jos ehtii, tää olis kyllä mielenkiintonen), also num implicated in BRCA
+    \item median of miRNA coef vs variance/prob.weight (sum of dens<0 or >0)
     \item magnitude of chosen miRNA coefs vs gene and constant
     \item posterior mean vs sd scatter (järkevä?)
   \end{itemize}
