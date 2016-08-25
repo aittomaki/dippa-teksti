@@ -1,4 +1,4 @@
-
+%!TEX root = dippa.tex
 %%% This file contains the Background section of my master's thesis.
 %%% Author: Viljami Aittomäki
 
@@ -181,7 +181,7 @@ MicroRNAs are expressed in all tissues, however, different tissues
 have differing miRNA expression profiles \citep{Krol2010}. Many microRNAs also
 have differing expression in different developmental stages
 of some organisms, e.g. let-7 functions to control the transition
-from the second larval stage to in \emph{C. elegans} \citep{Bartel2004}.
+from the second larval stage to \textbf{WHAT} in \emph{C. elegans} \citep{Bartel2004}.
 
 % Tight evolutionary control, extensive transcriptome
 % targeting, and the fact that miRNAs and their associated proteins are one of
@@ -304,7 +304,7 @@ thousands of target mRNAs. A proteomic study showed that the effect of a
 single miRNA on its target tends to be subtle, usually causing less than a
 2-fold change in protein expression \citep{Baek2008}. However, a single
 miRNA can have multiple binding sites in one mRNA and multiple miRNAs
-acting on the same target have additive, and in some cases even co-operative
+acting on the same target have additive, and in some cases even synergistic
 effects \citep{Bartel2009}.
 
 % , and depending also on 
@@ -399,7 +399,7 @@ but also suggests that there are unknown genetic factors and environmental
 factors that have an impact on breast cancer development. Indeed, breast
 cancer is a hormone-related disease and hormonal factors are known to have an
 impact on breast cancer risk. The most important of these are
-estrogen and progesterone, which are discussed in more detail below.
+estrogen and progesterone.
 
 The most important heriditary forms of breast cancer are those related to a
 tumor predisposition syndrome caused by mutations in the breast cancer 1
@@ -567,7 +567,7 @@ expression and that changes in mRNA abundances also reflect changes in protein
 abundances and, therefore, cellular processes. This assumption has recently
 been questioned by experiments indicating that the expression of mRNA and
 correspoding protein correlate poorly in general \citep{tahanOliNiitaRefeja}.
-There are also contrary findings of modest to good correlation (see e.g. \citep{})
+There are also contrary findings of modest to good correlation
 and one study suggested that mRNA-protein correlation is generally higher for
 genes that have differing mRNA expression between studied conditions (for
 example cancerous and healthy tissue) \citep{seYksPaperi}.
@@ -575,18 +575,15 @@ example cancerous and healthy tissue) \citep{seYksPaperi}.
 Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
 sufficiently correlated to act as proxies for each other" and that
 most of this difference is likely caused by biological regulation and not
-by measurement technology \cite{Payne2015}. This regulation can be
-post-transcriptional, translational or protein-degradation related, as
-discussed above. Therefore, it is interesting, even necessary, to integrate
+by measurement technology \cite{Payne2015}.
+% This regulation can be post-transcriptional, translational
+% or protein-degradation related, as discussed above.
+Therefore, it is interesting, even necessary, to integrate
 measurements from different parts of this process -- for example
 mRNA, microRNA and protein abundances -- to gain new insights
 into biological processes.
 
-
-
-Clumping and lysing of cells.
-
-Techniques shortly:
+Techniques shortly in one paragraph:
 \begin{itemize}
   \item blotting, qPCR
   \item microarrays
@@ -657,43 +654,37 @@ validation efforts to distinguish relevant data from noise
 % putative target genes for microRNAs and regulatory networks between genes and
 % microRNAs.
 
-Recognizing the targets of microRNAs
-is essential to understand their biological function. MicroRNAs have been the
-subject of a large number of laboratory experiments in recent years. Many of these have
-uncovered new miRNA-target interaction pairs (MTIs) and confirmed
-previously suspected ones. However, experimental identification of miRNA targets
-is labor intensive and costly, because of the large number of microRNAs
-and their possible targets.
+% Considering the recent large body of research on microRNAs, and their
+% potential utility as biomarkers and treatment targets, it is not surprising
+% that a plethora of computational tools have been released to aid in microRNA
+% research.
 
-Considering the recent large body of research on microRNAs, and their
-potential utility as biomarkers and treatment targets, it is not surprising
-that a plethora of computational tools have been released to aid in microRNA
-research. A recent review covering many published methods for different tasks
-has been written by Akhtar et al \citep{Akhtar2016}. Some of these
-bioinformatics tools have been developed for predicting microRNA targets
-and regulatory networks between genes and miRNAs.
-In this thesis we focus on target identification.
+% A recent review covering many published methods for different tasks
+% has been written by Akhtar et al \citep{Akhtar2016}.
 
+Recognizing the targets of microRNAs is essential to understand their
+biological function and role in disease such as cancer. Many target
+interactions have been found in experimental laboratory studies. Common
+methods for such studies include using cell lines and introducing exogenous
+miRNAs or suppressing endogenous ones and measuring the effects on mRNA or
+protein expression. For a dateiled review of experimental methods, see for
+example Thomson et al \citep{Thomson2011}.
 
+Several databases exist that list currently known experimentally validated
+microRNA targets. Examples include DIANA-TarBase \citep{Vlachos2015} and
+MirTarBase \citep{Chou2016}, which are both manually curated from published
+literature, and MiRWalk \citep{Dweep2015}, which combines data from several
+other databases using text mining.
 
-\subsubsection{Validated microRNA targets}
+Although recent advances in high-throuput methodologies, such as CLIP-seq,
+have significantly increased the scale of experimental studies, experimental
+identification of microRNA targets remains laborous and costly and many
+methods rely on computational processing of results \citep{Vlachos2015}. To
+this end, a wide range of computational tools have been developed to aid in
+miRNA taget discovery. This section presents an overview of previous target
+prediction methods. For more in-depth reviews, see for example
+\citep{Yeu2009,Muniategui2012}.
 
-Validated microRNA targets refer to miRNA-target pairs that have
-been validated in biological experiments. Common methods for validation
-studies include using cultures of cell lines and introducing exogenous miRNAs
-or suppressing endogenous ones. The effect of microRNAs is often elucidated
-through measurements of mRNA, miRNA and protein expression and varying
-technologies have been used for this \citep{Akhtar2016}.
-
-There exist several public databases that list currently known experimentally
-validated microRNA targets. The databases are collected and curated from
-relevant published miRNA experiments and most provide freely available data
-downloads. DIANA-TarBase is the largest of such databases and contains over
-half a million MTIs \citep{Vlachos2015}. It was last updated in 2014.
-miRTarBase is another comprehensive database and includes 4966 articles
-containing 7439 strongly validated MTIs and and 348 007 MTIs from crosslinking
-and immunoprecipitation sequencing (CLIPseq) studies \citep{Chou2016}. The
-latest update of miRTarBase was in 2015.
 
 
 
@@ -728,7 +719,7 @@ software for making new predictions.
 %Several tools, e.g. rna22, also provide
 %visualizations of the locations on miRNA target sites in transcripts.
 miRWalk also includes validated targets collected from several sources (including the
-latest miRTarBase) using automated text mining \citep{Dweep2015}. The only
+latest miRTarBase) using automated text mining . The only
 tools that currently use the most recent version of miRBase (v21) are
 TargetScan and rna22.
 
@@ -763,6 +754,25 @@ of miRNA and mRNA sequences.
 % - A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
 
 
+\paragraph{Supervised methods}
+Several methods use a supervised approach, where a training data set
+consisting of experimentally validated interactions is used to train
+a classifier, which can then be used to classify any miRNA-mRNA pair
+as a target or non-target. Most commonly a support vector machine (SVM) is used
+as the classifier. The features used for classification are
+mainly the same is in rule-based tools, namely sequence features.
+Examples include FOO, BAR, DOPE. For example FOO uses a set of
+40 features consisting of PLAADIPLAADI.
+
+One tool, SEJOKU, uses a semisupervised method, where a very strict
+rule-based filtering is used to form a training set, which then
+is used to train a hidden markov model (HMM). The HMM is used
+to model the sequence of target sites for groups of coexpressed miRNAs
+and the output is a likelihood that a given mRNA is a target of said
+group of miRNAs. The advantage of this approach is that it models
+the effect of several miRNAs togehter.
+
+Another tool using a HMM, is NONONONOO. JOKA TEKEE JOTAIN.
 
 
 
@@ -859,6 +869,16 @@ uninvolved covariate that correlates with actual regulators \citep{Engelmann}.
 Relating to both limitations, van Iterson et al showed for one dataset that
 lasso did not consistently select highly correlated miRNA-mRNA pairs
 \citep{vanIterson2013}.
+
+Aure et al recently used Lasso regression for prediction of protein
+expression from mRNA and miRNA expression to identify miRNAs significantly
+affecting protein expression in breast cancer. They used a multi-step
+process, where miRNAs input into the Lasso regression were first
+filtered with simple linear regression, only miRNAs deemed significant
+in the univariate regression model were included. This approach is
+flawed in the sense, that it does not have the advantage of multivariate
+models to identify singly weak but combinatorially strong effects, since univariate
+modeling is used as a filtering step.
 
 \textbf{SAISKO NÄIHIN VIITTEET REGRESSIOTEORIASTA EIKÄ TOSTA PAPERISTA?}
 
