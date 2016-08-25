@@ -64,3 +64,36 @@ in the target sequence of estrogen receptor alpha and has been suggested to
 associated with a lower breast cancer risk \citep{Tchatchou2009}. miRNA
 dysregulation may also take place through changes in the biogenesis of miRNA.
 
+
+
+
+\subsubsection{Experimental target discovery}
+
+MicroRNAs have been the
+subject of a large number of laboratory experiments in recent years. Many of these have
+uncovered new miRNA-target interaction pairs (MTIs) and confirmed
+previously suspected ones. However, experimental identification of miRNA targets
+is labor intensive and costly, because of the large number of microRNAs
+and their possible targets.
+
+Validated microRNA targets refer to miRNA-target pairs that have
+been validated in biological experiments. Common methods for validation
+studies include using cultures of cell lines and introducing exogenous miRNAs
+or suppressing endogenous ones. The effect of microRNAs is often elucidated
+through measurements of mRNA, miRNA and protein expression and varying
+technologies have been used for this \citep{Akhtar2016}.
+
+There exist several public databases that list currently known experimentally
+validated microRNA targets. The databases are collected and curated from
+relevant published miRNA experiments and most provide freely available data
+downloads. DIANA-TarBase is the largest of such databases and contains over
+half a million MTIs \citep{Vlachos2015}. It was last updated in 2014.
+miRTarBase is another comprehensive database and includes 4966 articles
+containing 7439 strongly validated MTIs and and 348 007 MTIs from crosslinking
+and immunoprecipitation sequencing (CLIPseq) studies . The
+latest update of miRTarBase was in 2015.
+
+Experimental identification of miRNA tagets is laborous, as mentioned above
+
+
+
