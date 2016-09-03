@@ -18,6 +18,17 @@ complexity of expression regulation and supports the view that modeling
 single interaction pairs individually is unlikely to be sufficient in
 general.
 
+Aure et al used Lasso regression for a similar analysis
+%prediction of protein expression from mRNA and miRNA expression 
+to identify miRNAs significantly
+affecting protein expression in breast cancer. They used a multi-step
+process, where miRNAs input into the Lasso regression were first
+filtered with simple linear regression, only miRNAs deemed significant
+in the univariate regression model were included. This approach is
+flawed in the sense, that it does not have the advantage of multivariate
+models to identify singly weak but combinatorially strong effects, since univariate
+modeling is used as a filtering step.
+
 \paragraph{Disadvantages and improvement}
 
 An obvious way to improve the model would be to include sequence-based target
