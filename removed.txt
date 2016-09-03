@@ -39,6 +39,16 @@ highlights the importance of microRNAs and their regulatory function.
 
 
 
+
+
+
+
+
+
+
+
+
+
 \paragraph{MicroRNAs and cancer}
 
 and it has been shown that the deregulation of even a
@@ -63,6 +73,13 @@ is miR-453. The variation, however, is not located in the miRNA sequence, but
 in the target sequence of estrogen receptor alpha and has been suggested to
 associated with a lower breast cancer risk \citep{Tchatchou2009}. miRNA
 dysregulation may also take place through changes in the biogenesis of miRNA.
+
+
+
+
+
+
+
 
 
 
@@ -95,5 +112,60 @@ latest update of miRTarBase was in 2015.
 
 Experimental identification of miRNA tagets is laborous, as mentioned above
 
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Target site prediction}
+
+As sequence complimentarity is the basis of miRNA targeting,
+possible targets can be identified by looking for base-pair
+complimentarity between miRNA and mRNA sequences.
+However, by itself this results in a very large number of false
+positives \citep{Bartel2009}. As discussed above, the microRNA seed sequence
+(nucleotides 2-8) appears to be the primary determinant in target mRNA
+recognition. Therefore, prediction specifity can be greatly improved by
+searching for the seed sequence within mRNA sequences (primarily in the 3'
+UTR), found matches are called miRNA seed matches. However, even
+not all seed matches are functional target sites \citep{Grimson2007}.
+
+Different strategies have been applied to further increase detection specificity.
+Additional features used include sequence matching outside the seed region
+(especially miRNA nucleotides 13-16), evolutionary conservation of target
+sites between species, physical accessibility of target sites, presence of
+multiple seed matches, and stability of the miRNA:mRNA complex
+\citep{Akhtar2016}. The chosen features then form the basis of a rule-based
+algorithm for choosing targets.
+
+Examples of different target-site prediction methods include TargetScan
+\citep{Agarwal2015}, miRDB \citep{Wong2015}, and DIANA-microTar-CDS
+\citep{Paraskevopoulou2013}. Some tools combine several different algorithms,
+such as miRWalk \citep{Dweep2015}, ToppMiR \citep{Wu2014} and MiRDIP
+\citep{Shirdel2011}. Most tools provide a webservice for listing target
+predictions for known miRNAs and mRNAs, and some also provide a downloadable
+software for making new predictions.
+%Several tools, e.g. rna22, also provide
+%visualizations of the locations on miRNA target sites in transcripts.
+miRWalk also includes validated targets collected from several sources (including the
+latest miRTarBase) using automated text mining . The only
+tools that currently use the most recent version of miRBase (v21) are
+TargetScan and rna22.
+
+% Evolutionally conserved targets can be simply identified by searching for
+% matches to the seed sequence of a miRNA in mRNA 3' UTR's and then checking if
+% these matching sites are conserved in orthologous 3' UTR's of other species.
+% Conserved matches are considered predicted regulatory sites and, hence, miRNA
+% targets \citep{Bartel2009}. All sequence-based target prediction algorithms are basically
+% refinements of this basic protocol. This also leads to the notion of miRNA
+% families, which are mature miRNAs that share the same nucleotides at positions
+% 2-8. All miRNAs within a family have the same predicted targets based on sequence.
+% \textbf{(Osa tästä kpl:sta miRNA genomicsiin?)}
 
 
