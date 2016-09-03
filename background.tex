@@ -742,7 +742,7 @@ consisting of experimentally validated targets and non-targets -- obtained
 from literature or expression data sets -- is used to train
 a classifier. Most commonly a support vector machine (SVM) is used
 as the classifier. The features used for classification are
-similar as in rule-based tools, namely sequence features, but
+similar to rule-based tools, namely sequence features, but
 supervised learning allows the inclusion of many more features.
 For example mirTarget uses a set of 113 features including seed matches,
 conservation and a range of different sequence features from different
@@ -769,9 +769,9 @@ see the reviews by Yue et al \citep{Yeu2009} and Bartel \citep{Bartel2009}.
 
 There are some drawbacks in using target-site prediction to identify microRNA
 targets. Firstly, using conservation results in nonconserved and novel sites
-being disregarded. Nonetheless, it is perhaps the most used additional
-criterion. Additionally, methods requiring some degree of seed region matching
-cannot identify miRNA-target pairs without seed matches; while these appear
+being disregarded. Nonetheless, it is perhaps the most used feature.
+Additionally, methods requiring some degree of seed region matching
+cannot identify miRNA targets without seed matches; while these appear
 rare, they should not be discounted altogether \citep{Bartel2009}. Finally,
 rule-based methods are static do not account for differing miRNA
 and mRNA expression profiles in various tissues and disease states (although
@@ -780,11 +780,6 @@ predictions also need to be regularly updated to reflect the latest knowledge
 of miRNA and mRNA sequences.
 
 
-% Sequence-based prediction suffers from two major drawbacks. First, there are
-% high numbers of false positives \textbf{SYY JA VIITE
-% \citep{Sethupathy2006?}}. Second, the predictions are static and do not
-% account for different tissues or disease states.
-
 % - A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
 
 
@@ -792,15 +787,120 @@ of miRNA and mRNA sequences.
 
 
 
-\subsubsection{Integrating mRNA expression data with sequence data}
+\subsubsection{Target prediction based on expression data}
 
 Integrating sequence-based target prediction with expression data helps combat the
 high false-positive rate of sequence-only methods and, importantly, enables tissue and
 disease specific support for target predictions in real-world data. Recent
 evidence indicates that miRNAs act predominantly through mRNA degradation
-\citep{Guo2010}. Thus, it is feasible to use mRNA expression data to
+\citep{Guo2010}. Thus, it is feasible to use mRNA or protein expression data to
 infer target relationships, since the regulatory effect of miRNAs should be
-reflected in mRNA levels.
+reflected in mRNA and protein abundances. Sequence-based
+predictions are most often incorporated as a PRELIMINARY filter step to
+limit the potential interactions examined. Examples of methods
+using expression data are listed in table \ref{table:expression-methods}.
+
+% Expression-based prediction methods use mathematical models that range from correlation
+% to complex Bayesian regression models. The idea is to find (negatively)
+% correlating miRNA-mRNA pairs or to predict mRNA or protein expression
+% from miRNA expression patterns using regression. In the case of multiple regression
+% target prediction becomes essentially a variable selection, where 
+% the goal is to select microRNAs that best predict mRNA expression and then
+% classify the mRNA in question as a target of chosen miRNAs.
+
+Let us henceforth define $\mathbf{X_{NxJ}} = [\mathbf{x_j}] = [x_{nj}]$ as the matrix
+of expression values of mRNAs $j (j = 1, 2, ..., J)$ and
+$\mathbf{Z_{NxK}} = [\mathbf{x_k}] = [x_{nk}]$ as the matrix
+of expression values of miRNAs $k (k = 1, 2, ..., J)$ for N observations.
+In the case of regression analysis (discussed below), for 
+simplicity of notation, $\mathbf{Z}$ denotes
+a matrix $\mathbf{Z_{NxK+1}}$,
+where a constant vector $\mathbf{z_0} = [1, ..., 1]^T$ has been added.
+
+\paragraph{Simple similarity measures}
+The relationship between miRNAs and mRNAs can be easily analyzed using
+measures of similarity, such as correlation or mutual information (MI).
+The goal is to find miRNA-mRNA pairs whose expression pattern is similar
+or correlated across observations. The drawback of MI is that it only indicates similarity of the variables,
+but not the direction, or sign, of the relationship.
+Pearson correlation
+is widely used because of its simplicity and intuitive interpretation.
+Pearson correlation between mRNA $j$ and miRNA $k$ is defined as: 
+\begin{equation}
+	\rho_{jk} = (\mathbf{x_j})_{\mu_k=0|\sigma_k=1}^T \cdot (\mathbf{z_k})_{\mu_k=0|\sigma_k=1}^T,
+	\label{eq:correlation}
+\end{equation}
+where $\mu_i=0|\sigma_i=1$ indicates
+normalization to zero mean and standard deviation of one and $\codt$ a vector
+dot product.
+miRNA-mRNA pairs significantly correlated are classified as targets. Simple
+correlation, however, often results in very high numbers of putative targets and
+many tools use additional information, such as differential expression
+and sequence-based putative targets, to limit results \citep{Muniategui2010}.
+The drawback of such measures is that they can only be applied for
+pairwise miRNA-mRNA comparisons.
+
+\paragraph{Multiple linear regression}
+Multiple linear regression (MLR) can be used to examine the 
+relationship between miRNAs and mRNAs. Most tools use expression of miRNAs
+to predict mRNA (or protein) expression. In the case of MLR, target
+prediction becomes a variable selection problem, where the
+goal is to choose miRNAs that are best able to predict mRNA expression.
+A linear model for mRNA $j$ can be defined as:
+\begin{equation}
+	\mathbf{x_j} = \sum_{k=0}^{K} (w_{jk} \cdot \mathbf{z_k} + \epsilon_{jk}) = \mathbf{w_j} \cdot \mathbf{Z} + \mathbf{\epsilon_j},
+\end{equation}
+where $\mathbf{w_j}$ is the vector of regression coefficients,
+$w_0$ is the intercept term, $\epsilon_j$ is the error term (often
+assumed to be normally distributed), and
+$\mathbf{Z}$ is the matrix of covariates, i.e. the miRNA expression vectors.
+The parameter of interest is then $\mathbf{w_j}$, which \textbf{SIGNIFIES}
+to the contribution of each miRNA to the response variable (mRNA expression).
+Commonly the solution is obtained by least squares, which involves
+minimizes the objective function,
+\begin{equation}
+	min\{ || \mathbf{x_j} - \mathbf{w_j} \cdot \mathbf{Z} ||_2 \} ,
+\end{equation}
+which is equal to the sum of squares of the residuals, or fitting errors.
+The advantage of using regression for target prediction is the possibility
+of modelling the effect of several miRNAs simultaneously. This is desirable
+as the effect of a single miRNA on mRNA expression can be small, as discussed above.
+
+\paragraph{Regularized regression}
+When the number of covariates (here $K$) is larger than the number of
+samples, the simple linear model is undetermined and 
+regular MLR is not applicable. This is quite often the case with high-throughput biological data analysis, for example microarray expresssion data. There are several solutions to this problem,
+one of which is using regularization. In regularized least squares a penalty
+term is applied to the coefficients $\mathbf{w_j}$ to force them small.
+This approach involves minimizing,
+\begin{equation}
+	min\{ || \mathbf{x_j} - \mathbf{w_j} \cdot \mathbf{Z} ||^2_2 + \lambda \cdot R(\mathbf{w_j}) \} ,
+\end{equation},
+where $R(\mathbf{w_j})$ is the penalty function and $\lambda$ is a tuning parameter that
+controls the amount of regularization. Commonly used regularizations include
+the 1-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_1$) in lasso regression,
+the 2-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_2$) in ridge regression
+and a combination of these
+($R(\mathbf{w_j}) = \lambda_1||\mathbf{w_j}||_1 + \lambda_2||\mathbf{w_j}||_2$) 
+in what is called elastic-net regression. Lasso regression in effect
+forces the number of non-zero coefficients to be small, where as ridge
+regression results in a solution where coefficients are small but
+mostly non-zero. While regularization solves the dimensionality problem and aids in interpretability, it has several drawbacks. First, only a limited number of covariates may be included in the model, and
+thus some relevant associations can be missed by number of included covariates
+alone \citep{vanIterson2013}. Second, shrinkage may remove covariates highly
+associated with and functionally regulating the response, instead retaining an
+uninvolved covariate that correlates with actual regulators \citep{Engelmann}.
+Relating to both limitations, van Iterson et al showed for one dataset that
+lasso did not consistently select highly correlated miRNA-mRNA pairs
+\citep{vanIterson2013}.
+
+\paragraph{Other approaches}
+Another solution to the dimensionality problem is least angle regression 
+(LARS, not covered here), and Engelmann et al used a LARS approach to
+show that mRNA expression can, in fact, be predicted from miRNA expression
+\citep{Engelmann}. Other suggested approaches used include the global test
+and several Bayesian methods, which are covered in the next section.
+
 
 A group of bioinformatics tools uses mRNA expression data to suggest
 potentially interesting miRNA-target interactions (MTIs).
@@ -865,11 +965,6 @@ examination and validation of results.
 
 
 \paragraph{Regression methods}\label{regression-methods}
-
-\textbf{SELITÄ REGRESSIO LYHYESTI.}
-
-Engelmann et al used least angle regression to show that gene expression can
-be predicted from miRNA expression \citep{Engelmann}.
 
 \textbf{SELITÄ REGULARISOIDUT/SHRINKAGE-TYYPPISET REGRESSIOMALLIT.}
 
