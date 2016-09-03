@@ -1,4 +1,4 @@
-
+%!TEX root = dippa.tex
 %%% This file contains the materials and methods section of my master's thesis.
 %%% Author: Viljami Aittomäki
 
@@ -93,6 +93,21 @@ Correlation analyses.
 
 
 \subsubsection{Variable selection with projection prediction}
+
+For predicting protein expression from mRNA and miRNA
+expression, a similar regression model to Aure et al
+was used:
+\begin{equation}
+	\mathbf{y_j} = w_0 + w_g \dot \mathbf{x_j} + \mathbf{w_j} \cdot \mathbf{Z} + \mathbf{\epsilon_j},
+\end{equation}
+where $y_j$ denotes the protein expression vector for the protein $j$ which
+is produced from translation of the mRNA $j$ ($j = (1, ..., K)$), $w_g$
+is the regression coefficient for mRNA $j$, and $w_0$ is the intercept term
+(for a derivation of this equation, see Aure et al \citep{Aure2015}).
+The intercept and mRNA coefficients were given Gaussian prior
+distributions with zero mean and standard deviation $\sigma=5$.
+A hierarchical shrinkage prior was applied to the miRNA coefficients
+$\mathbf{w_j}$.
 
 Explain:
 \begin{itemize}
