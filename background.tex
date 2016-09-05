@@ -706,20 +706,21 @@ mRNA. Table \ref{table:sequence-methods} lists examples of sequence-based method
 
 \begin{table}
   \caption{Examples of sequence-based approaches to miRNA target prediction.
-  See text for details on features.}
+  See text for details on features. Ref. $=$ Reference}
   \label{table:sequence-methods}
   \centering
-
-  \begin{tabular}{ | l | l | l | }
+  \begingroup\small
+  \begin{tabular}{ llllp{4cm} }
+    \\[-1ex] \hline\hline
+    Name & Ref. & Type & Features Used & Additional Notes \\
     \hline
-    Name & Type of Classifier & Features Used & Additional Notes \\
-    \hline
-    TargetScan & Rule based & i,ii,iii & The first published prediction method. \\
-    mirTarget & SVM & i,ii,iii,iv,v &  \\
-    rna22 & HMM & ??? &  \\
-    Kallen juttu? & ? &  &  \\
-    \hline
+    TargetScan & \citep{Agarwal2015} & Rule based & i, ii, iii & The first published prediction method. \\
+    mirTarget & & SVM & i, ii, iii, iv, v &  \\
+    rna22 & & HMM & ??? &  \\
+    Kallen juttu? & & ? &  &  \\
+    \hline\hline
     \end{tabular}
+    \endgroup
 \end{table}
 
 Most sequence-based approaches are essentially rule-based filters, where
@@ -810,6 +811,26 @@ using expression data are listed in table \ref{table:expression-methods}.
 % the goal is to select microRNAs that best predict mRNA expression and then
 % classify the mRNA in question as a target of chosen miRNAs.
 
+\begin{table}
+  \caption{Examples of expression-data based approaches to miRNA target prediction.
+  See text for details. Ref. $=$ Reference, Method = Analysis method used.}
+  \label{table:expression-methods}
+  \centering
+  \begingroup\small
+  \begin{tabular}{ lllp{6cm} }
+    \\[-1ex] \hline\hline
+    Name & Ref. & Method & Additional Notes \\
+    \hline
+    MAGIA & \citep{Sales2010} & MI or correlation & Also produces a bipartite network of miRNA-mRNA interactions. \\
+    TaLasso & \citep{Muniategui2015} & lasso regression &  \\
+    Engelmann & \citep{Engelmann} & least-angle regression &  \\
+    miRNAmRNA & \citep{vanIterson2013} & global test &  \\
+    GenMir++ & \citep{} & Bayesian regression &  \\
+    \hline\hline
+    \end{tabular}
+    \endgroup
+\end{table}
+
 Let us henceforth define $\mathbf{X_{NxJ}} = [\mathbf{x_j}] = [x_{nj}]$ as the matrix
 of expression values of mRNAs $j (j = 1, 2, ..., J)$ and
 $\mathbf{Z_{NxK}} = [\mathbf{x_k}] = [x_{nk}]$ as the matrix
@@ -830,7 +851,7 @@ the direction, or sign, of the relationship. Pearson correlation is widely
 used because of its simplicity and intuitive interpretation. Pearson
 correlation between mRNA $j$ and miRNA $k$ is defined as:
 \begin{equation}
-	\rho_{jk} = (\mathbf{x_j})_{\mu_k=0|\sigma_k=1}^T \cdot (\mathbf{z_k})_{\mu_k=0|\sigma_k=1}^T,
+	\rho_{jk} = (\mathbf{x_j})_{\mu_k=0|\sigma_k=1}^T \cdot (\mathbf{z_k})_{\mu_k=0|\sigma_k=1},
 	\label{eq:correlation}
 \end{equation}
 where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and standard
