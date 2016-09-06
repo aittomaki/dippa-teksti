@@ -945,60 +945,60 @@ potentially interesting miRNA-target interactions (MTIs).
 % review of algorithms for integrating miRNA and mRNA expression and
 % implementations in select target prediction methods.
 
-Ainakin nämä vaikka:
-\begin{itemize}
-  \item
-  DIANA-mirExTra (uusin versio NGS-datalle)
-  \item
-  GeneSet2miRNA
-  \item
-  Sylamer(?)
-\end{itemize}
+% Ainakin nämä vaikka:
+% \begin{itemize}
+%   \item
+%   DIANA-mirExTra (uusin versio NGS-datalle)
+%   \item
+%   GeneSet2miRNA
+%   \item
+%   Sylamer(?)
+% \end{itemize}
 
-These methods, however, rely on previous target site predictions based on
-miRNA and mRNA sequences, some of which may be outdated, and 
-cannot suggest novel target interactions. They also do not account for
-the differences in miRNA expression inherent to different tissues and
-possibly aberrant expression in diseases.
-
-
-\subsubsection{Integration of mRNA and miRNA expression}
-
-Since it is evident that miRNA regulation affects mRNA expression levels, as
-mentioned above, it seems feasible to predict MTIs by integrating miRNA and
-mRNA expression data. Many tools have been developed that do this using
-correlation, mutual information or various forms of regression.
-
-\textbf{KOLME KATEGORIAA: KORRELAATIO, REGRESSIO, BAYESIAN?}
-
-\paragraph{Correlation methods (incl MI)}\label{correlation-methods}
-
-Mutual information (MI) is a simple measure of similarity between two
-variables. \textbf{SELITÄ MI TARKEMMIN JA KAAVAN KANSSA JA LÄHDE} Thus, MI can
-be used to measure the interdependence of miRNA-mRNA pairs from expression
-data. However, MI does not distinguish the direction of the interaction, which
-is highly relevant for miRNAs that are believed to mostly downregulate mRNA
-expression. This constitutes a major drawback.
-
-Correlation \textbf{SELITÄ KORRELAATIO JA LÄHDE}.
-
-MAGIA \citep{Sales2010} is a webservice that implements both the MI and
-correlation approaches. It also constructs a bipartite network of the top 250
-predicted miRNA-mRNA pairs and provides links to several databases for further
-examination and validation of results.
+% These methods, however, rely on previous target site predictions based on
+% miRNA and mRNA sequences, some of which may be outdated, and 
+% cannot suggest novel target interactions. They also do not account for
+% the differences in miRNA expression inherent to different tissues and
+% possibly aberrant expression in diseases.
 
 
+% \subsubsection{Integration of mRNA and miRNA expression}
 
-\paragraph{Regression methods}\label{regression-methods}
+% Since it is evident that miRNA regulation affects mRNA expression levels, as
+% mentioned above, it seems feasible to predict MTIs by integrating miRNA and
+% mRNA expression data. Many tools have been developed that do this using
+% correlation, mutual information or various forms of regression.
 
-\subparagraph{Global test (regression)}\label{global-test-regression}
+% \textbf{KOLME KATEGORIAA: KORRELAATIO, REGRESSIO, BAYESIAN?}
 
-van Iterson et al recently proposed a miRNA target prediction method based on
-the global test \citep{vanIterson2013}. \textbf{SELITÄ GLOBAL TEST}.
+% \paragraph{Correlation methods (incl MI)}\label{correlation-methods}
 
-The method by van Iterson et al uses TargetScan, microCosm and PITA for
-putative sequence-based targets and is available as an R package called
-miRNAmRNA \citep{vanItersonWeb}.
+% Mutual information (MI) is a simple measure of similarity between two
+% variables. \textbf{SELITÄ MI TARKEMMIN JA KAAVAN KANSSA JA LÄHDE} Thus, MI can
+% be used to measure the interdependence of miRNA-mRNA pairs from expression
+% data. However, MI does not distinguish the direction of the interaction, which
+% is highly relevant for miRNAs that are believed to mostly downregulate mRNA
+% expression. This constitutes a major drawback.
+
+% Correlation \textbf{SELITÄ KORRELAATIO JA LÄHDE}.
+
+% MAGIA \citep{Sales2010} is a webservice that implements both the MI and
+% correlation approaches. It also constructs a bipartite network of the top 250
+% predicted miRNA-mRNA pairs and provides links to several databases for further
+% examination and validation of results.
+
+
+
+% \paragraph{Regression methods}\label{regression-methods}
+
+% \subparagraph{Global test (regression)}\label{global-test-regression}
+
+% van Iterson et al recently proposed a miRNA target prediction method based on
+% the global test \citep{vanIterson2013}. \textbf{SELITÄ GLOBAL TEST}.
+
+% The method by van Iterson et al uses TargetScan, microCosm and PITA for
+% putative sequence-based targets and is available as an R package called
+% miRNAmRNA \citep{vanItersonWeb}.
 
 
 
