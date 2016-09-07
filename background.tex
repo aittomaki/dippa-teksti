@@ -35,7 +35,7 @@ All genes are used to form RNA, but not all are protein-coding. These
 noncoding genes give rise to noncoding RNA, a class of RNA molecules that
 are mostly involved in aiding and regulating the expression of other genes.
 Different types of noncoding RNA and their functions are summarized in
-table \ref{table:rnas}.
+Table \ref{table:rnas}.
 
 The genome refers to the whole genetic material of an organism or an individual.
 The human genome has been suggested to contain approximately 20 500 protein-coding
@@ -195,7 +195,7 @@ from the second larval stage to \textbf{WHAT} in \emph{C. elegans} \citep{Bartel
 
 \subsubsection{MicroRNA biogenesis}\label{microrna-biogenesis}
 
-The canonical pathway of microRNA biogenesis is illustrated in figure
+The canonical pathway of microRNA biogenesis is illustrated in Figure
 \ref{fig:mirna-biogenesis} and is presented here as reviewed by \citet{Bartel2004},
 \citet{Melo2011}, \citet{Ha2014}, and many others. 
 
@@ -209,7 +209,7 @@ can be transcribed by RNA polymerase III \citep{Borchert2006}.
 The pri-miRNA is cut by the ribonuclease Drosha to form %one or, in the case of polycistronic miRNAs, several
 a pre-microRNA (pre-miRNA), which consists of the hairpin and is
 approximately 70 nt long \citep{Lee2003}. A typical pre-miRNA structure is
-shown in figure \ref{fig:premirna-structure}. Drosha is aided by the essential
+shown in Figure \ref{fig:premirna-structure}. Drosha is aided by the essential
 cofactor DGRC8 (the protein product of a gene deleted in DiGeorge syndrome \citep{Shiohama2003})
 and they form a complex known as the Microprocessor \citep{Gregory2004}.
 The hairpin is
@@ -254,7 +254,7 @@ has an important role in erythropoiesis, is cleaved by Ago2 \citep{Cheloufi2010}
 The RISC is the effector of RNA interference. Ago functions as the catalytic
 engine of the RISC and the miRNA bound to it guides the RISC to target
 messenger RNAs \citep{Filipowicz2008}. The microRNA mechanism of action is
-illustrated in figure \ref{fig:mirna-action}.
+illustrated in Figure \ref{fig:mirna-action}.
 
 Target recognition is based on sequence complimentarity of the miRNA and mRNA.
 In animal miRNAs this complimentarity is almost always limited \citep{Ambros2004}.
@@ -676,7 +676,7 @@ miRNAs or suppressing endogenous ones and measuring the effects on mRNA or
 protein expression. For a dateiled review of experimental methods, see for
 example Thomson et al \citep{Thomson2011}.
 
-Several databases exist that list currently known experimentally validated
+Several public databases list currently known experimentally validated
 microRNA targets. Examples include DIANA-TarBase \citep{Vlachos2015} and
 MirTarBase \citep{Chou2016}, which are both manually curated from published
 literature, and MiRWalk \citep{Dweep2015}, which combines data from several
@@ -687,26 +687,31 @@ have significantly increased the scale of experimental studies, experimental
 identification of microRNA targets remains laborous and costly and many
 methods rely on computational processing of results \citep{Vlachos2015}. To
 this end, a wide range of computational tools have been developed to aid in
-miRNA taget discovery. This section presents an overview of published target
-prediction methods. For more in-depth reviews, see for example
-\citep{Yue2009,Muniategui2012}.
+miRNA taget discovery. Computational approaches to target prediction
+can generally be classified into solely sequence-based tools and
+expression-data-based tools (which often include sequence-features).
+This Section presents an overview of published methods from both classes.
+
+% For more in-depth reviews, see for example \citep{Yue2009,Muniategui2012}.
 
 
 
 
 \subsubsection{Sequence-based target prediction}
 
-From a machine learning perspective, pair-wise prediction of miRNA-mRNA
-targets is essentially a classification problem. The goal is to identify a set
-features (both of the miRNA and mRNA) that allows classifying mRNAs as either
-a target or a non-target of any given miRNA. Early (and many recent) target
-prediction methods use sequence information to derive these features, as
-target recognition of RISC is guided by sequence complimentarity of miRNA and
-mRNA. Table \ref{table:sequence-methods} lists examples of sequence-based methods.
+Sequence-based prediction methods focus on finding miRNA and mRNA pairs that
+have complimentary sequences, basing on the fact that sequence complimentarity
+is the primary determinant of miRNA targeting. Hence, they can
+only determine pair-wise relationships. From a machine learning perspective,
+pair-wise prediction of miRNA-mRNA targets is essentially a classification
+problem, where the goal is to identify a set features (both of the miRNA and
+mRNA) that allows classifying mRNAs as either a target or a non-target of any
+given miRNA. Table \ref{table:sequence-methods} lists examples of sequence-
+based methods.
 
 \begin{table}
-  \caption{Examples of sequence-based approaches to miRNA target prediction.
-  See text for details on features. Ref. $=$ Reference}
+  \caption{Examples of sequence-based tools for miRNA target prediction.
+  See text for details on features. Ref. $=$ reference}
   \label{table:sequence-methods}
   \centering
   \begingroup\small
@@ -731,23 +736,22 @@ complimentarity between the seed region of the miRNA and 3' UTR of the mRNA
 (see section \ref{mirna-mechanism}), (ii) seed matches in the coding region or
 5' UTR of the mRNA, (iii) evolutionary conservation of seed matches between
 species, (iv) target site accessibility and (v) free energy of the bound
-miRNA-mRNA duplex.
-
-An example of a rule-based predictor is illustrated in figure \ref{fig:rule-flow}.
-These rule-based prediction methods are unsupervised, i.e. no training data
+miRNA-mRNA duplex. These rule-based prediction methods are unsupervised, i.e. no training data
 is used to form the classifier. Instead, the relevance of the used features
 is decided by the method's authors. 
 
-Several methods use a supervised approach, where a training data set
+% An example of a rule-based predictor is illustrated in Figure \ref{fig:rule-flow}.
+
+Some methods have used a supervised approach, where a training data set
 consisting of experimentally validated targets and non-targets -- obtained
-from literature or expression data sets -- is used to train
-a classifier. Most commonly a support vector machine (SVM) is used
-as the classifier. The features used for classification are
-similar to rule-based tools, namely sequence features, but
-supervised learning allows the inclusion of many more features.
-For example mirTarget uses a set of 113 features including seed matches,
-conservation and a range of different sequence features from different
-parts of the miRNA sequence \citep{mirTarget}.
+from previous literature or expression data sets -- is used to train a
+classifier for classifying any miRNA-mRNA pair. Most commonly a support vector
+machine (SVM) is used as the classifier. The features used for classification
+are similar to rule-based tools, namely sequence features, but supervised
+learning allows the inclusion of many more features. For example mirTarget
+uses a set of 113 features including seed matches, conservation and a range of
+different sequence features from different parts of the miRNA sequence
+\citep{mirTarget}.
 
 
 More complex tools have used hidden markov models (HMMs) to 
@@ -764,31 +768,31 @@ the effect of several miRNAs together.
 Another tool using a HMM, is NONONONOO. JOKA TEKEE JOTAIN.
 
 
-For a more thorough
-review of several different sequence features and algorithms using them,
-see the reviews by Yue et al \citep{Yeu2009} and Bartel \citep{Bartel2009}.
+% For a more thorough
+% review of several different sequence features and algorithms using them,
+% see the reviews by Yue et al \citep{Yeu2009} and Bartel \citep{Bartel2009}.
 
-There are some drawbacks in using target-site prediction to identify microRNA
-targets. Firstly, using conservation results in nonconserved and novel sites
-being disregarded. Nonetheless, it is perhaps the most used feature.
-Additionally, methods requiring some degree of seed region matching
-cannot identify miRNA targets without seed matches; while these appear
-rare, they should not be discounted altogether \citep{Bartel2009}. Finally,
-rule-based methods are static do not account for differing miRNA
-and mRNA expression profiles in various tissues and disease states (although
-some methods, such as ToppMir, do include this type of data). Sequence-based
-predictions also need to be regularly updated to reflect the latest knowledge
-of miRNA and mRNA sequences.
-
-
-% - A seed match does not always confer repression by the matching miRNA.\citep{Grimson2007} %MicroRNA targeting specifity in mammals
-
-
+The advantage of sequence-based methods is that they are based on
+experimentally derived knowledge on molecular mechanisms and represent causal
+relationships. As such, the predictions are easy to interpret. Disadvantages
+of sequence-based methods include: considering only direct regulation in pair-
+wise interactions cannot capture indirect regulation and combinatorial
+effects; using sequence conservation misses poorly conserved species-specific
+targets; requiring seed region matches cannot identify miRNA targets without
+seed matches (while these appear rare, they should not be discounted
+altogether \citep{Bartel2009}); a sequence match does not always confer %\citep{Grimson2007}
+repression and could be functionally inactive; and, finally, rule-based
+methods are static do not account for differing miRNA and mRNA expression
+profiles in various tissues and disease states. There is also a general lack
+of overlap between predictions from different sequence-based approaches,
+suggesting that many results are spurious false positives \citep{Muniategui2012}.
 
 
 
 
-\subsubsection{Target prediction based on expression data}
+
+
+\subsubsection{Expression-data-based target prediction}
 
 Integrating expression data with sequence-based target prediction helps combat the
 high false-positive rate of sequence-only methods and, importantly, enables tissue and
@@ -796,12 +800,12 @@ disease specific support for target predictions in real-world data. Recent
 evidence indicates that miRNAs act predominantly through mRNA degradation
 \citep{Guo2010}. Thus, it is feasible to use mRNA or protein expression data to
 infer target relationships, since the regulatory effect of miRNAs should be
-reflected in mRNA and protein abundances. Mathematical models used such expression
+reflected in mRNA and protein abundances. Mathematical models used in such expression
 analyses range from simple similarity measures to regression and complex
 Bayesian models, and examples are covered in this and the next section. 
 Sequence-based predictions are often incorporated as a preliminary filter step to
 limit the potential interactions examined. Examples of published methods
-using expression data are listed in table \ref{table:expression-methods}.
+using expression data are listed in Table \ref{table:expression-methods}.
 
 % Expression-based prediction methods use mathematical models that range from correlation
 % to complex Bayesian regression models. The idea is to find (negatively)
@@ -813,19 +817,20 @@ using expression data are listed in table \ref{table:expression-methods}.
 
 \begin{table}
   \caption{Examples of expression-data based approaches to miRNA target prediction.
-  See text for details. Ref. $=$ Reference, Method = Analysis method used.}
+  See text for details on several methods. Ref. $=$ Reference,
+  Method = statistical method used, Use of seq. data $=$ how the method utilizes sequence-based predictions.}
   \label{table:expression-methods}
   \centering
   \begingroup\small
   \begin{tabular}{ lllp{6cm} }
     \\[-1ex] \hline\hline
-    Name & Ref. & Method & Additional Notes \\
+    Name & Ref. & Method & Use of seq. data & Additional Notes \\
     \hline
-    MAGIA & \citep{Sales2010} & MI or correlation & Also produces a bipartite network of miRNA-mRNA interactions. \\
-    TaLasso & \citep{Muniategui2015} & lasso regression &  \\
-    Engelmann & \citep{Engelmann} & least-angle regression &  \\
-    miRNAmRNA & \citep{vanIterson2013} & global test &  \\
-    GenMir++ & \citep{} & Bayesian regression &  \\
+    MAGIA & \citep{Sales2010} & Correlation, MI & Filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
+    TaLasso & \citep{Muniategui2015} & Lasso regression & Filter &  \\
+    Engelmann & \citep{Engelmann} & Least-angle regression & None or filter & \\
+    miRNAmRNA & \citep{vanIterson2013} & Global test & Filter & \\
+    GenMir++ & \citep{} & Bayesian regression & None or filter & \\
     \hline\hline
     \end{tabular}
     \endgroup
@@ -865,10 +870,12 @@ that they can only be applied for pairwise miRNA-mRNA comparisons.
 
 \paragraph{Multiple linear regression}
 Multiple linear regression (MLR) can be used to examine the relationship
-between miRNA and mRNA. Most tools use expression of miRNAs to predict mRNA
-(or protein) expression. In the case of MLR, target prediction essentially
-becomes a variable selection problem, where the goal is to choose a set miRNAs
-predicts mRNA expression as closely as possible, but without overfitting. A
+between miRNAs and mRNAs. Most approaches use expression profiles of miRNAs to predict mRNA
+(or protein) expression. Recently Engelmann and showed that miRNA
+expression can indeed be used to predict mRNA expression.
+ n the case of regression, target prediction essentially
+becomes a variable selection problem, where the goal is to choose a set of miRNAs
+that are the best predictors of mRNA expression without overfitting. A
 linear model for mRNA $j$ can be defined as:
 \begin{equation}
 	\mathbf{x_j} = \sum_{k=0}^{K} (\mathbf{z_k} \cdot w_{jk} + \epsilon_{jk}) =  \mathbf{Z} \cdot \mathbf{w_j} + \mathbf{\epsilon_j},
@@ -881,7 +888,7 @@ $\mathbf{w_j}$, which determines to the contribution of each miRNA to the
 response variable, namely mRNA expression. Commonly the solution is obtained by
 least squares, which involves minimizes the objective function,
 \begin{equation}
-	min\{ || \mathbf{x_j} - \mathbf{w_j} \cdot \mathbf{Z} ||_2 \} ,
+	min\{ || \mathbf{x_j} - \mathbf{Z} \cdot \mathbf{w_j} ||_2 \} ,
 \end{equation}
 which is equal to the sum of squares of the residuals. The advantage of using
 regression for target prediction is the possibility of modeling the effect of
@@ -893,12 +900,12 @@ single solution cannot be obtained. This is quite common with high-throughput
 biological data, for example in analysis of microarray expresssion data.
 
 \paragraph{Regularized regression}
-There are several solutions to the data dimensionality problem, one of which
+There exist many solutions to the data dimensionality problem, one of which
 is using regularized regression. In regularized least squares a penalty term is
 applied to the coefficients $\mathbf{w_j}$ to force them small. This approach
 involves minimizing,
 \begin{equation}
-	min\{ || \mathbf{x_j} - \mathbf{w_j} \cdot \mathbf{Z} ||^2_2 + \lambda \cdot R(\mathbf{w_j}) \} ,
+	min\{ || \mathbf{x_j} - \mathbf{Z} \cdot \mathbf{w_j} ||_2 + \lambda \cdot R(\mathbf{w_j}) \} ,
 \end{equation}
 where $R(\mathbf{w_j})$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. Commonly used
@@ -927,16 +934,16 @@ show that mRNA expression can, in fact, be predicted from miRNA expression
 and several Bayesian methods, which are covered in the next section.
 
 
-A group of bioinformatics tools uses mRNA expression data to suggest
-potentially interesting miRNA-target interactions (MTIs).
-\begin{itemize}
-  \item
-  Input ist of interesting genes (e.g. DE vs normal)
-  \item
-  Look for miRNA regulation patterns in list (analogous to gene set enrichment REF REVIEW)
-  \item
-  Enriched miRNAs deemed interesting for this data
-\end{itemize}
+% A group of bioinformatics tools uses mRNA expression data to suggest
+% potentially interesting miRNA-target interactions (MTIs).
+% \begin{itemize}
+%   \item
+%   Input ist of interesting genes (e.g. DE vs normal)
+%   \item
+%   Look for miRNA regulation patterns in list (analogous to gene set enrichment REF REVIEW)
+%   \item
+%   Enriched miRNAs deemed interesting for this data
+% \end{itemize}
 
 
 % All proposed methods use sequence-based
