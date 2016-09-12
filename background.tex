@@ -718,7 +718,7 @@ based methods.
   \begingroup\small
   \begin{tabular}{ llllp{4cm} }
     \\[-1ex] \hline\hline
-    Name & Ref. & Type & Features Used & Additional Notes \\
+    \textbf{Name} & \textbf{Ref.} & \textbf{Type} & \textbf{Features used} & \textbf{Additional notes} \\
     \hline
     TargetScan & \citep{Agarwal2015} & Rule based & i, ii, iii & The first published prediction method. \\
     mirTarget & & SVM & i, ii, iii, iv, v &  \\
@@ -818,18 +818,18 @@ have been proposed for expression-based prediction.
 \begin{table}
   \caption{Examples of expression-data based approaches to miRNA target prediction.
   See text for details on several methods. Ref. $=$ Reference,
-  Method = statistical method used, Use of seq. data $=$ how the method utilizes sequence-based predictions.}
+  Method = statistical method used, Seq. data $=$ how the method utilizes sequence-based predictions.}
   \label{table:expression-methods}
   \centering
   \begingroup\small
-  \begin{tabular}{ lllp{6cm} }
+  \begin{tabular}{ llllp{4cm} }
     \\[-1ex] \hline\hline
-    Name & Ref. & Method & Use of seq. data & Additional Notes \\
+    \textbf{Name} & \textbf{Ref.} & \textbf{Method} & \textbf{Seq. data} & \textbf{Additional notes} \\
     \hline
     MAGIA & \citep{Sales2010} & Correlation, MI & Filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
     TaLasso & \citep{Muniategui2013} & Lasso regression & Filter &  \\
-    Engelmann & \citep{Engelmann2012} & Least-angle regression & None or filter & \\
-    miRNAmRNA & \citep{vanIterson2013} & Global test & Filter & \\
+    Engelmann & \citep{Engelmann2012} & Least-angle regression & None or filter & Least-angle regression is a specific implementation of lasso. \\
+    miRNAmRNA & \citep{vanIterson2013} & Global test & Filter & Uses mRNA expression profiles to predict miRNA expression. \\
     GenMir++ & \citep{} & Bayesian regression & None or filter & \\
     \hline\hline
     \end{tabular}
