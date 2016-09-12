@@ -1086,6 +1086,42 @@
    Abstract={MicroRNAs (miRNAs) are 19 to 25 nucleotides non-coding RNAs known to possess important post-transcriptional regulatory functions. Identifying targeting genes that miRNAs regulate are important for understanding their specific biological functions. Usually, miRNAs down-regulate target genes through binding to the complementary sites in the 3' untranslated region (UTR) of the targets. In part, due to the large number of miRNAs and potential targets, an experimental based prediction design would be extremely laborious and economically unfavorable. However, since the bindings of the animal miRNAs are not a perfect one-to-one match with the complementary sites of their targets, it is difficult to predict targets of animal miRNAs by accessing their alignment to the 3' UTRs of potential targets. Consequently, sophisticated computational approaches for miRNA target prediction are being considered as essential methods in miRNA research.We surveyed most of the current computational miRNA target prediction algorithms in this paper. Particularly, we provided a mathematical definition and formulated the problem of target prediction under the framework of statistical classification. Moreover, we summarized the features of miRNA-target pairs in target prediction approaches and discussed these approaches according to two categories, which are the rule-based and the data-driven approaches. The rule-based approach derives the classifier mainly on biological prior knowledge and important observations from biological experiments, whereas the data driven approach builds statistic models using the training data and makes predictions based on the models. Finally, we tested a few different algorithms on a set of experimentally validated true miRNA-target pairs [1] and a set of false miRNA-target pairs, derived from miRNA overexpression experiment [2]. Receiver Operating Characteristic (ROC) curves were drawn to show the performances of these algorithms.}
 }
 
+@Article{vanIterson2013,
+   Author="van Iterson, M.  and Bervoets, S.  and de Meijer, E. J.  and Buermans, H. P.  and 't Hoen, P. A.  and Menezes, R. X.  and Boer, J. M. ",
+   Title="{{I}ntegrated analysis of micro{R}{N}{A} and m{R}{N}{A} expression: adding biological significance to micro{R}{N}{A} target predictions}",
+   Journal="Nucleic Acids Res.",
+   Year="2013",
+   Volume="41",
+   Number="15",
+   Pages="e146",
+   Month="Aug",
+   Abstract={Current microRNA target predictions are based on sequence information and empirically derived rules but do not make use of the expression of microRNAs and their targets. This study aimed to improve microRNA target predictions in a given biological context, using in silico predictions, microRNA and mRNA expression. We used target prediction tools to produce lists of predicted targets and used a gene set test designed to detect consistent effects of microRNAs on the joint expression of multiple targets. In a single test, association between microRNA expression and target gene set expression as well as the contribution of the individual target genes on the association are determined. The strongest negatively associated mRNAs as measured by the test were prioritized. We applied our integration method to a well-defined muscle differentiation model. Validation of our predictions in C2C12 cells confirmed predicted targets of known as well as novel muscle-related microRNAs. We further studied associations between microRNA-mRNA pairs in human prostate cancer, finding some pairs that have been recently experimentally validated by others. Using the same study, we showed the advantages of the global test over Pearson correlation and lasso. We conclude that our integrated approach successfully identifies regulated microRNAs and their targets.}
+}
+
+@Article{Engelmann2012,
+   Author="Engelmann, J. C.  and Spang, R. ",
+   Title="{{A} least angle regression model for the prediction of canonical and non-canonical mi{R}{N}{A}-m{R}{N}{A} interactions}",
+   Journal="PLoS ONE",
+   Year="2012",
+   Volume="7",
+   Number="7",
+   Pages="e40634",
+   Abstract={microRNAs (miRNAs) are short non-coding RNAs with regulatory functions in various biological processes including cell differentiation, development and oncogenic transformation. They can bind to mRNA transcripts of protein-coding genes and repress their translation or lead to mRNA degradation. Conversely, the transcription of miRNAs is regulated by proteins including transcription factors, co-factors, and messenger molecules in signaling pathways, yielding a bidirectional regulatory network of gene and miRNA expression. We describe here a least angle regression approach for uncovering the functional interplay of gene and miRNA regulation based on paired gene and miRNA expression profiles. First, we show that gene expression profiles can indeed be reconstructed from the expression profiles of miRNAs predicted to be regulating the specific gene. Second, we propose a two-step model where in the first step, sequence information is used to constrain the possible set of regulating miRNAs and in the second step, this constraint is relaxed to find regulating miRNAs that do not rely on perfect seed binding. Finally, a bidirectional network comprised of miRNAs regulating genes and genes regulating miRNAs is built from our previous regulatory predictions. After applying the method to a human cancer cell line data set, an analysis of the underlying network reveals miRNAs known to be associated with cancer when dysregulated are predictors of genes with functions in apoptosis. Among the predicted and newly identified targets that lack a classical miRNA seed binding site of a specific oncomir, miR-19b-1, we found an over-representation of genes with functions in apoptosis, which is in accordance with the previous finding that this miRNA is the key oncogenic factor in the mir-17-92 cluster. In addition, we found genes involved in DNA recombination and repair that underline its importance in maintaining the integrity of the cell.}
+}
+
+@Article{Muniategui2013,
+   Author="Muniategui, A.  and Pey, J.  and Planes, F. J.  and Rubio, A. ",
+   Title="{{J}oint analysis of mi{R}{N}{A} and m{R}{N}{A} expression data}",
+   Journal="Brief. Bioinformatics",
+   Year="2013",
+   Volume="14",
+   Number="3",
+   Pages="263--278",
+   Month="May",
+   Abstract={miRNAs are small RNA molecules ('22 nt) that interact with their target mRNAs inhibiting translation or/and cleavaging the target mRNA. This interaction is guided by sequence complentarity and results in the reduction of mRNA and/or protein levels. miRNAs are involved in key biological processes and different diseases. Therefore, deciphering miRNA targets is crucial for diagnostics and therapeutics. However, miRNA regulatory mechanisms are complex and there is still no high-throughput and low-cost miRNA target screening technique. In recent years, several computational methods based on sequence complementarity of the miRNA and the mRNAs have been developed. However, the predicted interactions using these computational methods are inconsistent and the expected false positive rates are still large. Recently, it has been proposed to use the expression values of miRNAs and mRNAs (and/or proteins) to refine the results of sequence-based putative targets for a particular experiment. These methods have shown to be effective identifying the most prominent interactions from the databases of putative targets. Here, we review these methods that combine both expression and sequence-based putative targets to predict miRNA targets.}
+}
+
+
 
 
 
