@@ -712,7 +712,9 @@ based methods.
 
 \begin{table}
   \caption{Examples of sequence-based tools for miRNA target prediction.
-  See text for details on features. Ref. $=$ reference}
+  Ref. $=$ reference. Features used $=$ experimentally derived sequence
+  features used by the method (see text for details). SVM $=$ support
+  vector machine. HMM $=$ hidden Markov model}
   \label{table:sequence-methods}
   \centering
   \begingroup\small
@@ -720,10 +722,12 @@ based methods.
     \\[-1ex] \hline\hline
     \textbf{Name} & \textbf{Ref.} & \textbf{Type} & \textbf{Features used} & \textbf{Additional notes} \\
     \hline
-    TargetScan & \citep{Agarwal2015} & Rule based & i, ii, iii & The first published prediction method. \\
-    mirTarget & & SVM & i, ii, iii, iv, v &  \\
-    rna22 & & HMM & ??? &  \\
-    Kallen juttu? & & ? &  &  \\
+    TargetScan  & \citep{Agarwal2015} & Rule based & i, ii, iii & The first published target prediction tool. \\
+    JOKUTOINENRULE & \cite & Rule based &  &  \\
+    mirTarget   & \citep & SVM & i, ii, iii, iv, v &  \\
+    rna22       & \citep & HMM and rule & ??? &  \\
+    PicTar      & \citep & HMM &  &  \\
+    TargetBoost & \citep & Genetic programming & none & The algorithm learns the used features from training data. \\
     \hline\hline
     \end{tabular}
     \endgroup
@@ -737,9 +741,9 @@ complimentarity between the seed region of the miRNA and 3' UTR of the mRNA
 (see section \ref{mirna-mechanism}), (ii) seed matches in the coding region or
 5' UTR of the mRNA, (iii) evolutionary conservation of seed matches between
 species, (iv) target site accessibility and (v) free energy of the bound
-miRNA-mRNA duplex. These rule-based prediction methods are unsupervised, i.e. no training data
-is used to form the classifier. Instead, the relevance of the used features
-is decided by the method's authors. 
+miRNA-mRNA duplex. These rule-based prediction methods are unsupervised, i.e.
+no training data is used to form the classifier. Instead, the relevance of the
+used features is decided by the method's authors.
 
 % An example of a rule-based predictor is illustrated in Figure \ref{fig:rule-flow}.
 
@@ -752,17 +756,9 @@ rule-based tools, namely sequence features, but supervised learning allows the
 inclusion of many more features. For example mirTarget uses a set of 113
 features including seed region matches, conservation and a range of different
 sequence features from different parts of the miRNA sequence
-\citep{mirTarget}.
-
-More complex tools have used hidden markov models (HMMs) to 
-train... One tool, uses a semisupervised method, where a very strict
-rule-based filtering is used to form a training set, which then
-is used to train a hidden markov model (HMM). The HMM is used
-to model the sequence of target sites for groups of coexpressed miRNAs
-and the output is a likelihood that a given mRNA is a target of said
-group of miRNAs. The advantage of this approach is that it models
-the effect of several miRNAs together.
-
+\citep{mirTarget}. More complex approahces have also been applied,
+such as genetic programming and using hidden Markov models (HMM) as a 
+sequence generative model to estimate targeting probability.
 
 % For a more thorough
 % review of several different sequence features and algorithms using them,
@@ -817,8 +813,8 @@ have been proposed for expression-based prediction.
 
 \begin{table}
   \caption{Examples of expression-data based approaches to miRNA target prediction.
-  See text for details on several methods. Ref. $=$ Reference,
-  Method = statistical method used, Seq. data $=$ how the method utilizes sequence-based predictions.}
+  %See text for details on several methods.
+  Ref. $=$ reference, Method $=$ statistical method used, Seq. data $=$ how the method utilizes sequence-based predictions.}
   \label{table:expression-methods}
   \centering
   \begingroup\small
@@ -826,11 +822,12 @@ have been proposed for expression-based prediction.
     \\[-1ex] \hline\hline
     \textbf{Name} & \textbf{Ref.} & \textbf{Method} & \textbf{Seq. data} & \textbf{Additional notes} \\
     \hline
-    MAGIA & \citep{Sales2010} & Correlation, MI & Filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
-    TaLasso & \citep{Muniategui2013} & Lasso regression & Filter &  \\
-    Engelmann & \citep{Engelmann2012} & Least-angle regression & None or filter & Least-angle regression is a specific implementation of lasso. \\
-    miRNAmRNA & \citep{vanIterson2013} & Global test & Filter & Uses mRNA expression profiles to predict miRNA expression. \\
-    GenMir++ & \citep{} & Bayesian regression & None or filter & \\
+    MAGIA     & \citep{Sales2010}      & Correlation, MI        & Filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
+    TaLasso   & \citep{Muniategui2013} & Lasso regression       & Filter &  \\
+    Engelmann & \citep{Engelmann2012}  & Least-angle regression & None or filter & Least-angle regression is a specific implementation of lasso. \\
+    miRNAmRNA & \citep{vanIterson2013} & Global test & Filter   & Uses mRNA expression profiles to predict miRNA expression. \\
+    Joku GSE  &                        & Gene-set enrichment    & \\
+    GenMir++  & \citep{Huang2007}      & Bayesian regression    & None or filter & \\
     \hline\hline
     \end{tabular}
     \endgroup
@@ -905,19 +902,19 @@ undetermined and a single solution cannot be obtained. This is quite common
 in analysis of high-throughput biological data, for example microarray
 expresssion data. The fit of a simple MLR model can also be asymptotically
 improved by adding more covariates, leading to overfitting.
-Both problems can be solved using regularized regression.
 
 \paragraph{Regularized regression}
-Most commonly In regularized least squares a penalty term is
-applied to the coefficients $\mathbf{w_j}$ to force them small. This approach
-involves minimizing,
+Both issues concernign MLR, mentioned above, can be solved using regularized
+regression. The most common approach is to apply regularized least squares,
+where a penalty term is applied to the coefficients $\mathbf{w_j}$ to force
+them small. This entails minimizing the expression
 \begin{equation}
 	min\{ || \mathbf{x_j} - \mathbf{Z} \cdot \mathbf{w_j} ||_2 + \lambda \cdot R(\mathbf{w_j}) \} ,
 \end{equation}
 where the first term corresponds to fitting error,
 $R(\mathbf{w_j})$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-Several methods use the 1-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_1$)
+Many methods use the 1-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_1$)
 for regularization, which is referred to as lasso regression.
 % , where 
 % regularizations include the 1-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_1$) in
@@ -935,14 +932,14 @@ may remove covariates highly associated with and functionally regulating the
 response, instead retaining an uninmportant covariate that correlates with
 actual regulators \citep{Engelmann2012}. Second, only a limited number of
 covariates may be included in the model, and thus some relevant associations
-can be missed by number of included covariates alone \citep{vanIterson2013}.
+can be missed by number of included covariates alone.% \citep{vanIterson2013}.
 Relating to both limitations, van Iterson et al showed for one dataset that
 lasso did not consistently select highly correlated miRNA-mRNA pairs
 \citep{vanIterson2013}.
 
 \paragraph{Other approaches}
 Other suggested approaches used include the global test, which does jotain
-\citep{vanIterson2013}, and approeaches similar to gene-set enrichment
+\citep{vanIterson2013}, and approaches similar to gene-set enrichment
 analysis, where the over-representation of sequence-predicted targets in
 differential expression sets is considered indicative of a target
 relationship. Several Bayesian methods have also been proposed;
