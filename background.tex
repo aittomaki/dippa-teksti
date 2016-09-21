@@ -3,19 +3,13 @@
 %%% Author: Viljami Aittomäki
 
 
-\section{Background}\label{background}
 
 
 
 
 
 
-
-
-
-
-
-\subsection{Gene expression}\label{gene-expression}
+\section{Gene expression}\label{gene-expression}
 
 Genetic information is encoded in molecules of deoxyribonucleic acid (DNA). A
 gene is a section of DNA that serves as a template for a functional
@@ -31,24 +25,23 @@ which ultimately form proteins \citep{Crick1970}. The flow is not strictly
 one-directional though, as there exist reverse transcriptases, enzymes that
 synthesize DNA from an RNA template.
 
-All genes are used to form RNA, but not all are protein-coding. These
-noncoding genes give rise to noncoding RNA, a class of RNA molecules that
-are mostly involved in aiding and regulating the expression of other genes.
-Different types of noncoding RNA and their functions are summarized in
-Table \ref{table:rnas}.
-
-The genome refers to the whole genetic material of an organism or an individual.
-The human genome has been suggested to contain approximately 20 500 protein-coding
-genes, which encompass only around 1.5\% of the whole genetic sequence
-\citep{Clamp2007}. Therefore, the vast majority of the human genome was previously thought
-to be without function and referred to as "junk DNA". More recently, however,
-it has become increasingly evident, that noncoding portions of the genome
-are often functional and possibly have important cellular functions \citep{ENCODE}.
-
+All genes are read to form RNA, but not all encode a protein product. The
+human genome\footnote{The genome refers to the whole genetic material of an
+organism or an individual.} has been suggested to contain approximately 20 500
+protein-coding genes, which encompass only around 1.5\% of the whole genetic
+sequence \citep{Clamp2007}. Therefore, the vast majority of the human genome
+was previously thought to be without function and referred to as "junk DNA".
+More recently, however, it has become increasingly evident, that noncoding
+portions of the genome are often functional and possibly have important
+cellular functions \citep{ENCODE}. Noncoding genes give rise to noncoding RNA,
+a class of RNA molecules that are mostly involved in aiding and regulating the
+expression of other genes. Different types of noncoding RNA and their
+functions are summarized in Table \ref{table:rnas}.
 
 
 
-\subsubsection{Regulation of gene expression}\label{regulation-of-gene-expression}
+
+\subsection{Regulation of gene expression}\label{regulation-of-gene-expression}
 
 Regulation of gene expression refers to controlling the abundance of
 the gene end-product a cell produces. This control is paramount so that cells
@@ -61,6 +54,18 @@ Transcriptional regulation with e.g. TFs, methylation, adenylation, splicing.
 
 Post-ranscriptional
 
+MicroRNAs (miRNAs) and small interfering RNAs (siRNAs) are components of the
+so called RNA interference (RNAi) pathway, which is a mechanism for regulating
+gene expression post-transcriptionally. miRNAs and siRNAs are practically
+interchangeable as substrates for RNAi, both act as target mRNA recognizing
+templates, but have different biogenesis, where miRNAs are cut from endogenous hairpin
+strucutres and siRNAs are processed from exogenous long double-stranded RNAs (dsRNAs).
+\cite{Du2005} MicroRNAs are the focus of this study and are discussed in more
+detail in the next Section.
+
+The Argonaute (Ago) family of proteins is closely associated with small RNAs and
+Ago act as effectors in RNAi \cite{Ha2014}.
+
 \begin{itemize}
   \item transcription factors
   \item post-transcriptional regulation
@@ -69,36 +74,79 @@ Post-ranscriptional
 \end{itemize}
 
 
+\subsection{Measuring gene expression}\label{measurement-of-gene-expression}
 
-\subsubsection{Ribonucleic acids}\label{ribonucleic-acids}
+The physical measurement of gene expression can be done on either the level of
+messenger RNA molecules or protein molecules present in cells. Although
+proteins are the eventual effectors molecules within cells -- atleast for
+protein-coding genes -- often gene expression is synonymous with mRNA
+expression. This is because measuring mRNA abundances is significantly easier than
+measuring protein abundances due to the chemistry of base-pair formation
+and the relative ease of replicating DNA (or RNA) sequences by
+exploiting cellular machinery evolved for this purpose.
 
-\textbf{SIIRRÄ TÄÄ TOHON EKAAN YLÄKAPPALEESEEN?}
-
-Messenger RNA.
-
-Long non-coding RNA
-
-Short non-coding RNA.
-
-MicroRNAs (miRNAs) and small interfering RNAs (siRNAs) are components of the
-so called RNA interference (RNAi) pathway, which is a mechanism for regulating
-gene expression post-transcriptionally. miRNAs and siRNAs are practically
-interchangeable as substrates for RNAi, both act as target mRNA recognizing
-templates, but have different biogenesis, where miRNAs are cut from endogenous hairpin
-strucutres and siRNAs are processed from exogenous long double-stranded RNAs (dsRNAs).
-\cite{Du2005} MicroRNAs are the focus of this study and are discussed in more
-detail in the next section, as is also the origin of RNAi.
-
-The Argonaute (Ago) family of proteins is closely associated with small RNAs and
-Ago act as effectors in RNAi \cite{Ha2014}.
+Techniques shortly in one paragraph:
+\begin{itemize}
+  \item blotting, qPCR
+  \item microarrays
+  \item sequencing-based methods
+  \item protein arrays (RPPA)
+\end{itemize}
 
 
+\subsubsection{Microarrays}
+
+\begin{itemize}
+  \item basics of operation
+  \item shortly on microarray analysis
+  \begin{itemize}
+    \item preprocessing and normalization
+    \item probe annotation problems
+  \end{itemize}
+\end{itemize}
+
+
+The general assumption has been that mRNA expression is representative of gene
+expression and that changes in mRNA abundances also reflect changes in protein
+abundances and, therefore, cellular processes. This assumption has recently
+been challenged by experiments indicating that the expression of mRNA and
+correspoding protein correlate poorly in general \citep{tahanOliNiitaRefeja}.
+There are also contrary findings of modest to good correlation
+and one study suggested that mRNA-protein correlation is generally higher for
+genes that have differing mRNA expression between studied conditions
+(e.g. cancerous versus healthy tissue) \citep{seYksPaperi}.
+
+Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
+sufficiently correlated to act as proxies for each other" and that
+most of this difference is likely caused by biological regulation and not
+by measurement technology \cite{Payne2015}.
+% This regulation can be post-transcriptional, translational
+% or protein-degradation related, as discussed above.
+Therefore, it is interesting, even necessary, to integrate
+measurements from different stages of gene expression -- for example
+mRNA, microRNA and protein abundances -- to gain new insights
+into biological processes.
 
 
 
 
 
-\subsection{MicroRNAs}\label{micrornas}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{MicroRNAs}\label{micrornas}
 
 MicroRNAs (miRNAs) are a family of endogenous (i.e. coming from within the
 cell itself) noncoding small RNA molecules that function as post-transcriptional
@@ -113,7 +161,8 @@ of target messenger RNA (mRNA) molecules and inhibition of mRNA translation
 
 
 
-\subsubsection{Discovery of microRNAs}
+
+\subsection{Discovery of microRNAs}
 
 The first known microRNA, lin-4, was discovered in 1993 by two research groups
 studying the larval development of the nematode \emph{Caenorhabditis elegans}.
@@ -158,7 +207,8 @@ of miRNA study results and reannotation of miRNA analysis platforms.
 
 
 
-\subsubsection{MicroRNA genomics}\label{microrna-genomics}
+
+\subsection{MicroRNA genomics}\label{microrna-genomics}
 
 MicroRNAs are highly conserved in evolution \citep{Bartel2004}, for example,
 55\% of \emph{C. elegans} miRNAs have homologues in humans
@@ -191,9 +241,7 @@ from the second larval stage to \textbf{WHAT} in \emph{C. elegans} \citep{Bartel
 
 
 
-
-
-\subsubsection{MicroRNA biogenesis}\label{microrna-biogenesis}
+\subsection{MicroRNA biogenesis}\label{microrna-biogenesis}
 
 The canonical pathway of microRNA biogenesis is illustrated in Figure
 \ref{fig:mirna-biogenesis} and is presented here as reviewed by \citet{Bartel2004},
@@ -249,7 +297,7 @@ has an important role in erythropoiesis, is cleaved by Ago2 \citep{Cheloufi2010}
 
 
 
-\subsubsection{MicroRNA mechanism}\label{microrna-mechanism}
+\subsection{MicroRNA mechanism of action}\label{microrna-mechanism}
 
 The RISC is the effector of RNA interference. Ago functions as the catalytic
 engine of the RISC and the miRNA bound to it guides the RISC to target
@@ -295,7 +343,9 @@ microRNA biology and gene regulation in general.
 
 
 
-\subsubsection{MicroRNA function}\label{microrna-function}
+\subsection{MicroRNA function}\label{microrna-function}
+
+SIIRRÄ TÄMÄ AIEMMAKSI?
 
 MicroRNAs have been found to participate in regulation of almost all studied
 cellular processes, including embryo development, cell proliferation,
@@ -337,13 +387,56 @@ breast cancer \citep{Melo2011}.
 
 
 
+\subsection{Measuring MicroRNA expression}
+
+The same methods that have been employed for measuring mRNA (i.e. gene)
+expression are generally applicable for measuring microRNA expression as well,
+ranging from northern blotting to microarrays and more recent studies using next
+generation sequencing (NGS) \citep{Huang2011}. However, as Hunt and colleagues
+in a recent and thorough review point out, there are several challenges in
+detecting miRNAs in particular \citep{Hunt2015}.
+
+MicroRNAs are very short and only comprise approximately 0.01\% of RNA
+typically extracted from a sample \citep{Dong2013}. This implies that miRNA
+detection must be highly sensitive. MicroRNAs from the same family can differ
+by only one base, which in turn requires high specifity to be able to
+distinguish between family members. On the other hand, variation in miRNA
+processing can result in slight sequence variations, or isoforms, of a single
+miRNA, also known as isomiRs \citep{StaregaRoslan2011,Lee2010}. This means
+high specifity or an incorrect reference sequence (e.g. that of a 
+weakly-expressed isomiR) used for detection can cause inaccurate measurements.
+IsomiRs may also have different functions resulting from altered target
+specifity \citep{Chugh2012}. The existence of the pri-miRNA, pre-miRNA and
+mature miRNA molecules provides an additional challenge for measurement
+methods.
+%, although differentiation between these maturation stages is not necessarily required.
+
+Many of the challenges mentioned are solved by NGS, which is sensitive and
+reliable in quantifying known microRNAs and identifying novel ones
+\citep{Huang2011}. Sequencing can detect variations of even one nucleotide and
+does not necessarily depend on previously identified sequences. However, not
+all identified short RNAs are functional miRNAs, and NGS conveys its own set
+of problems relating to high cost, significant computational complexity and
+validation efforts to distinguish relevant data from noise
+\citep{Chugh2012,Hunt2015}.
+
+\textbf{TÄHÄN VIELÄ ERI PLATFORMIEN VERTAILUA JA PREPROSESSOINNISTA?}
 
 
 
 
 
 
-\subsection{Cancer}\label{cancer}
+
+
+
+
+
+
+
+
+
+\section{Cancer}\label{cancer}
 
 Cancer is a disease of uncontrolled overgrowth of a population of cells. It is
 generally viewed as a genetic disease, albeit it is mostly not inherited, as it is
@@ -388,7 +481,7 @@ dysregulated genes that promote tumor progression.
 
 
 
-\subsubsection{Breast cancer}\label{breast-cancer}
+\subsection{Breast cancer}\label{breast-cancer}
 
 Breast cancer constitutes a significant health issue globally. It is the most
 common cancer in women and the second most common cancer overall;
@@ -416,6 +509,8 @@ low risk genetic variations, which are much more common \citep{Melchor2013}.
 
 
 \subsubsection{Breast cancer classification}\label{breast-cancer-classification}
+
+TÄTÄ PITÄÄ TIIVISTÄÄ!
 
 The basic classification of cancer is based on the site -- that is, the organ
 or tissue, such as breast or colon, where the primary tumor develops. Cancers
@@ -475,15 +570,14 @@ Oncotype DX (a 21-gene recurrence score), MammaPrint (a 70-gene test) and PAM50
 valid and promising, but their utility in clinical decision making remains
 unclear \citep{Azim2013}. The PAM50 molecular classification ... 
 
-\textbf{TÄSTÄ LISÄÄ? AINAKIN SUBTYPE KORRELAATIO PROGNOOSIIN JA HOITOON PITÄISI
-KERTOA?}
+\textbf{SUBTYPE KORRELAATIO PROGNOOSIIN JA HOITOON PITÄISI KERTOA PAREMMIN?}
 
 
 
 
 
 
-\subsubsection{MicroRNAs and cancer}
+\subsection{MicroRNAs and cancer}
 
 Research has shown microRNAs to have important roles in tumor initiation,
 progression and metastasis \citep{Lin2015}. MicroRNA expression signatures
@@ -538,8 +632,6 @@ of self-renewal) \citep{Yu2007} and later research suggesting let-7 to act as
 a tumor suppressor. Several miRNAs have also been associated with breast cancer
 metastasis \citep{Chen2016}.
 
-\textbf{JOTAIN CELL-FREE BIOMARKEREISTA?}
-
 MicroRNAs also show promise as a novel therapeutic tool, several studies have
 proposed miRNA-based cancer treatments in animal models, including for breast
 cancer \citep{VanRooij2014}. However, more research this area is needed before
@@ -557,104 +649,19 @@ microRNA treatments are ready for the clinical setting.
 
 
 
-\subsection{Measuring gene expression}\label{measurement-of-gene-expression}
-
-The physical measurement of gene expression can be done on either the level of
-messenger RNA molecules or protein molecules present in cells. Although
-proteins are the eventual effectors molecules within cells -- atleast for
-protein-coding genes -- often gene expression is synonymous with mRNA
-expression, since measuring mRNA abundances is significantly easier than
-measuring protein abundances. This is due to the chemistry of base-pair
-hybridization and the relative ease of replicating DNA (or RNA) sequences by
-exploiting cellular machinery evolved for this purpose.
-
-The general assumption has been that mRNA expression is representative of gene
-expression and that changes in mRNA abundances also reflect changes in protein
-abundances and, therefore, cellular processes. This assumption has recently
-been challenged by experiments indicating that the expression of mRNA and
-correspoding protein correlate poorly in general \citep{tahanOliNiitaRefeja}.
-There are also contrary findings of modest to good correlation
-and one study suggested that mRNA-protein correlation is generally higher for
-genes that have differing mRNA expression between studied conditions
-(e.g. cancerous versus healthy tissue) \citep{seYksPaperi}.
-
-Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
-sufficiently correlated to act as proxies for each other" and that
-most of this difference is likely caused by biological regulation and not
-by measurement technology \cite{Payne2015}.
-% This regulation can be post-transcriptional, translational
-% or protein-degradation related, as discussed above.
-Therefore, it is interesting, even necessary, to integrate
-measurements from different parts of this process -- for example
-mRNA, microRNA and protein abundances -- to gain new insights
-into biological processes.
-
-Techniques shortly in one paragraph:
-\begin{itemize}
-  \item blotting, qPCR
-  \item microarrays
-  \item sequencing-based methods
-  \item protein arrays (RPPA)
-\end{itemize}
 
 
 
 
 
-\subsubsection{Microarrays}
-
-\begin{itemize}
-  \item two-color arrays
-  \item oligonucleotide arrays
-  \item microarray analysis
-  \begin{itemize}
-    \item preprocessing and normalization
-    \item probe annotation problems
-  \end{itemize}
-\end{itemize}
-
-
-
-\subsubsection{MicroRNA detection}
-
-The same methods that have been employed for measuring mRNA (i.e. gene)
-expression are generally applicable for measuring microRNA expression as well,
-ranging from northern blotting to microarrays and more recent studies using next
-generation sequencing (NGS) \citep{Huang2011}. However, as Hunt and colleagues
-in a recent and thorough review point out, there are several challenges in
-detecting miRNAs in particular \citep{Hunt2015}.
-
-MicroRNAs are very short and only comprise approximately 0.01\% of RNA
-typically extracted from a sample \citep{Dong2013}. This implies that miRNA
-detection must be highly sensitive. MicroRNAs from the same family can differ
-by only one base, which in turn requires high specifity to be able to
-distinguish between family members. On the other hand, variation in miRNA
-processing can result in slight sequence variations, or isoforms, of a single
-miRNA, also known as isomiRs \citep{StaregaRoslan2011,Lee2010}. This means
-high specifity or an incorrect reference sequence (e.g. that of a 
-weakly-expressed isomiR) used for detection can cause inaccurate measurements.
-IsomiRs may also have different functions resulting from altered target
-specifity \citep{Chugh2012}. The existence of the pri-miRNA, pre-miRNA and
-mature miRNA molecules provides an additional challenge for measurement
-methods.
-%, although differentiation between these maturation stages is not necessarily required.
-
-Many of the challenges mentioned are solved by NGS, which is sensitive and
-reliable in quantifying known microRNAs and identifying novel ones
-\citep{Huang2011}. Sequencing can detect variations of even one nucleotide and
-does not necessarily depend on previously identified sequences. However, not
-all identified short RNAs are functional miRNAs, and NGS conveys its own set
-of problems relating to high cost, significant computational complexity and
-validation efforts to distinguish relevant data from noise
-\citep{Chugh2012,Hunt2015}.
-
-\textbf{TÄHÄN VIELÄ ERI PLATFORMIEN VERTAILUA JA PREPROSESSOINNISTA?}
 
 
 
 
 
-\subsection{Identification of microRNA targets}
+
+
+\section{Identification of microRNA targets}
 
 % This section presents computational methods that have been used to predict
 % putative target genes for microRNAs and regulatory networks between genes and
@@ -698,7 +705,7 @@ task of target prediction.
 
 
 
-\subsubsection{Sequence-based target prediction}
+\subsection{Sequence-based target prediction}
 
 Sequence-based prediction methods focus on finding miRNA-mRNA pairs that
 have complimentary sequences, basing on the fact that sequence complimentarity
@@ -784,7 +791,7 @@ suggesting that many results are spurious false positives \citep{Muniategui2013}
 
 
 
-\subsubsection{Expression-data-based target prediction}\label{expr-methods}
+\subsection{Expression-data-based target prediction}\label{expr-methods}
 
 Integrating expression data with sequence-based target prediction helps combat
 the high false-positive rate of sequence-only methods and, importantly,
@@ -1026,7 +1033,7 @@ these are covered in the next Section.
 
 
 
-\subsubsection{Bayesian approaches}\label{bayesian-approaches}
+\subsection{Bayesian approaches}\label{bayesian-approaches}
 
 \textbf{TÄSTÄ PITÄNEE VÄHÄN KARSIA.}
 
@@ -1039,9 +1046,9 @@ achieved through probability statements.
 
 Bayesian analysis begins by defining a joint probability distribution
 $p(y,\vartheta)$, which can be written as a product of two densities
-\begin{equation*}
+\begin{equation}
   p(y,\vartheta) = p(\vartheta)*p(y|\vartheta),
-\end{equation*}
+\end{equation}
 which are referred to as the \emph{prior distribution} $p(\vartheta)$ and the
 data distribution $p(y|\vartheta)$ (or \emph{likelihood}, when taken as a
 function of $\vartheta$). By applying the Bayes' rule we obtain the
@@ -1053,7 +1060,7 @@ data $y$:
 \end{equation}
 where $p(y) = \int_{\vartheta} p(\vartheta)*p(y|\vartheta) d\vartheta$ (over
 all possible values of $\vartheta$) and the proportionality follows from
-noting that $p(y)$ does not depend on $\vartheta$. p(\vartheta)*p(y|\vartheta)
+noting that $p(y)$ does not depend on $\vartheta$. $p(\vartheta)*p(y|\vartheta)$
 is referred to as the unnormalized posterior distribution and emphasizes that
 the posterior represents a compromise between prior knowledge and information contained in
 the observed data. As the number of observations increases, the data have
@@ -1112,11 +1119,45 @@ degree, irrespective of chosen methodology, and evaluating the model is always n
 % into account, or finding the sufficient and ancillary statistics is hard.
 
 
+\subsubsection{Previous Bayesian target prediction methods}
+
+% Bayesian analysis has previously been applied to miRNA target prediction.
+
+One of the earliest tools to use expression data for target prediction was
+GenMir++. It is based on A BAYESIAN SYSTEEMI, KIRJOITA AUKI.
+The latest version of GenMir (GenMir3) now integrates sequence-based features
+into the algorithm, although the authors note that this does not affect the
+results to a significant extent.
+
+Stingo et al have proposed a Bayesian method based on spike-and-slab variable
+selection.
+
+Previous Bayesian miRNA methods:
+\begin{itemize}
+  \item Stingo et al
+  \item GenMir3/GenMir++
+  \item Se joku graafinen (korkeintaan lauseen maininta)
+\end{itemize}
 
 
-\paragraph{Simulation}\label{simulation}
+\subsubsection{Bayesian regression and variable selection}
 
-JÄTÄ VAIN TOINEN KAHDESTA EKASTA. LYHENNÄ TÄTÄ MUUTEN?
+TÄÄ SAA OLLA MELKO LYHYT!
+
+Bayesian regression analysis aims to infer the posterior distributions
+for the regression coefficients of covariates and other model parameters,
+such as the variance (i.e. noise) of the observation model.
+
+As mentioned in Section \ref{expr-methods}, microRNA target prediction
+using regression analysis of expression data is  a variable
+selection problem. Various Bayesian approaches have been proposed
+for 
+
+
+
+\subsubsection{Simulation}\label{simulation}
+
+JÄTÄ VAIN TOINEN KAHDESTA EKASTA. LYHENNÄ TÄTÄ!!! SIIRRÄ OSA METODEIHIN.
 
 Bayesian analysis often involves simulation if the form of sampling from the
 obtained posterior distribution. This is convenient -- and necessary -- when
@@ -1156,34 +1197,3 @@ half of each chain) to ensure that samples arise from a converged state.
 
 
 
-\paragraph{Bayesian regression and variable selection}
-
-Bayesian regression analysis aims to infer the posterior distributions
-for the regression coefficients of covariates and other model parameters,
-such as the variance (i.e. noise) of the observation model.
-
-As mentioned in Section \ref{expr-methods}, microRNA target prediction
-using regression analysis of expression data is  a variable
-selection problem. Various Bayesian approaches have been proposed
-for 
-
-
-\subsubsection{Bayesian approaches to target prediction}
-
-% Bayesian analysis has previously been applied to miRNA target prediction.
-
-One of the earliest tools to use expression data for target prediction was
-GenMir++. It is based on A BAYESIAN SYSTEEMI, KIRJOITA AUKI.
-The latest version of GenMir (GenMir3) now integrates sequence-based features
-into the algorithm, although the authors note that this does not affect the
-results to a significant extent.
-
-Stingo et al have proposed a Bayesian method based on spike-and-slab variable
-selection.
-
-Previous Bayesian miRNA methods:
-\begin{itemize}
-  \item Stingo et al
-  \item GenMir3/GenMir++
-  \item Se joku graafinen (korkeintaan lauseen maininta)
-\end{itemize}
