@@ -723,11 +723,11 @@ based methods.
     \textbf{Name} & \textbf{Ref.} & \textbf{Type} & \textbf{Features used} & \textbf{Additional notes} \\
     \hline
     TargetScan  & \citep{Agarwal2015} & Rule based & i, ii, iii & The first published target prediction tool. \\
-    JOKUTOINENRULE & \cite & Rule based &  &  \\
-    mirTarget   & \citep & SVM & i, ii, iii, iv, v &  \\
-    rna22       & \citep & HMM and rule & ??? &  \\
-    PicTar      & \citep & HMM &  &  \\
-    TargetBoost & \citep & Genetic programming & none & The algorithm learns the used features from training data. \\
+    TOINENRULE  & \citep{} & Rule based &  &  \\
+    mirTarget   & \citep{} & SVM & i, ii, iii, iv, v &  \\
+    rna22       & \citep{} & HMM and rule & ??? &  \\
+    PicTar      & \citep{} & HMM &  &  \\
+    TargetBoost & \citep{} & Genetic programming & none & The algorithm learns the used features from training data. \\
     \hline\hline
     \end{tabular}
     \endgroup
@@ -1026,85 +1026,84 @@ these are covered in the next Section.
 
 
 
-\subsubsection{Bayesian methods}\label{bayesian-methods}
+\subsubsection{Bayesian approaches}\label{bayesian-approaches}
 
 \textbf{TÄSTÄ PITÄNEE VÄHÄN KARSIA.}
 
 The principal idea in Bayesian analysis is that uncertainty is quantified as
 probability, and knowledge about unknown parameters and variables is described
-as probability distributions \citep{Gelman2013}. This is advantageous as
-probabilities are often easy to comprehend and common-sense interpretations
-can be made.
-\footnote{This is especially true compared to classical frequentist analysis,
-which is conceptualized through infinite repetitions. For example, frequentist
-confidence intervals do not indicate that the true value of a parameter is
-contained within with a certain probability -- a common misconception -- where
-as Bayesian posterior intervals do (subject to model assumptions, of course).}
+as probability distributions \citep{Gelman2013}. The goal of Bayesian
+inference -- as in any statistical analysis -- is often to make conclusions
+about uknown parameters $\vartheta$ given some observed data $y$. This is
+achieved through probability statements.
 
-Bayesian analysis starts with the definition of the joint probability model,
-$p(x,\mu)$, where $x$ are the observed data and $\mu$ the unknown
-model parameters. By application of the Bayes' rule, we ob
+Bayesian analysis begins by defining a joint probability distribution
+$p(y,\vartheta)$, which can be written as a product of two densities
+\begin{equation*}
+  p(y,\vartheta) = p(\vartheta)*p(y|\vartheta),
+\end{equation*}
+which are referred to as the \emph{prior distribution} $p(\vartheta)$ and the
+data distribution $p(y|\vartheta)$ (or \emph{likelihood}, when taken as a
+function of $\vartheta$). By applying the Bayes' rule we obtain the
+\emph{posterior distribution} for $\vartheta$ given the known values for the
+data $y$:
 \begin{equation}
-	\label{bayes-rule}
+  \label{eq:bayes}
+  p(\vartheta|y) = \frac{p(y,\vartheta)}{p(y)} = \frac{p(\vartheta)*p(y|\vartheta)}{p(y)} \propto p(\vartheta)*p(y|\vartheta),
 \end{equation}
-Equation \ref{bayes-rule} demonstrates how the posterior distribution
-is a combination of prior knowledge and information contained in the
-observed data (with the latter dominating as the number of observations
-increases).
+where $p(y) = \int_{\vartheta} p(\vartheta)*p(y|\vartheta) d\vartheta$ (over
+all possible values of $\vartheta$) and the proportionality follows from
+noting that $p(y)$ does not depend on $\vartheta$. p(\vartheta)*p(y|\vartheta)
+is referred to as the unnormalized posterior distribution and emphasizes that
+the posterior represents a compromise between prior knowledge and information contained in
+the observed data. As the number of observations increases, the data have
+increasing influence on the posterior \citep{Gelman2013}.
 
-Several features make Bayesian modeling very flexible. First, each parameter
-may have a different prior distribution. Second, parameters of these prior
-distributions can also have priors, which are called hyperpriors. Models
-including hyperpriors are referred to as hierarchical models (referring to
-several layers of parameterization) and, in principle, any number of parameter
-layers can be easily included. Third, additional data can be included sequentially
-using the previously obtained posterior as the new prior distribution.
+The virtue of modeling uncertainty as probabilities is that they are
+conceptually easy to grasp and often allow common-sense interpretations of conclusions
+to be made.
+\footnote{This is especially true compared to classical frequentist analysis,
+which is defined through a series of repeated similar inferences. For
+example, frequentist confidence intervals strictly do not indicate that the
+true value of the parameter is contained within with high probability -- a
+common misconception -- where as Bayesian posterior intervals do (subject to
+modeling assumptions, of course).}
+Bayesian modeling is also flexible and can cope with complex problems with
+relative ease. Prior knowledge about the parameters of interest can be
+embedded in the prior distribution and different priors may be assigned to
+each parameter. Hieararchical models -- where parameters of prior
+distributions have their own priors called \emph{hyperpriors} -- allow
+constructing complex models where similar data are available on several
+different levels of observations, such as expression measurements from
+several separate experiments.
+% additional data can be included sequentially using a
+% previously obtained posterior as a new prior distribution.
 
-In cases where no certain prior information is available, weakly informative
-or uninformative priors can be used. These convey little or no
-information on the presumed values a parameter may take, respectively.
-
-\begin{itemize}
-  \item The first published Bayesian analysis by Thomas Bayes in 1763 .
-  \item Bayes' rule
-  \item posteriors and priors
-  \item hierarchical models and hyperpriors
-  \item Advantages of Bayesian methods:
-  \begin{itemize}
-    \item
-    flexibility allows constructing complex models with relative ease (e.g.
-    hierarchical models)
-    \item
-    Adding more data sequentially is possible by using the previous posterior
-    distribution as the new prior distribution. This can be especially useful in
-    a clinical research context, where data are often collected within a long
-    timespan.
-  \end{itemize}
-\end{itemize}
-The challenge in Bayesian analysis is setting up proper probability models for
-the parameters and observations \citep{Gelman2013}. This includes the prior
-distributions of the parameters as well as the likelihood of the observed data.
+The challenge in Bayesian analysis is choosing proper probability models for
+the parameters and observations, including the prior
+distributions as well as the likelihood \citep{Gelman2013}.
 The choice of prior is also a source of much controversy, as it is based
 on the experience and reasoning of the statistician.
+One could, however, argue that the choice of model is always subjective to some
+degree, irrespective of chosen methodology, and evaluating the model is always necessary.
 
-One could also argue that the choice of model is always subjective to some
-degree, irrespective of chosen methodology, and \textbf{MALLIN TARKISTELU
-LOPUKSI} is always necessary.
+% In cases where no prior information is available, weakly informative
+% or noninformative priors can be used. These convey little or no
+% information on the presumed values a parameter may take, respectively.
+% In many instances, using a non-informative prior results in similar or equal
+% results as frequentist analysis, but the strength of Bayesian analysis comes
+% from including prior knowledge in the prior distribution. \citep{Jaynes?} The
+% posterior distribution represents a compromise between the prior (and, hence,
+% prior information) and the observed data, with the data having an increasing
+% effect as the sample size increases \citep{Gelman2013}. The posterior
+% distribution also provides a more comprehensive view of
+% one's knowledge on the parameter of interest than, say, a single confidence
+% interval.
 
-In many instances, using a non-informative prior results in similar or equal
-results as frequentist analysis, but the strength of Bayesian analysis comes
-from including prior knowledge in the prior distribution. \citep{Jaynes?} The
-posterior distribution represents a compromise between the prior (and, hence,
-prior information) and the observed data, with the data having an increasing
-effect as the sample size increases \citep{Gelman2013}. The posterior
-distribution also provides a more comprehensive view of
-one's knowledge on the parameter of interest than, say, a single confidence
-interval.
-
-The frequentist approach only considers the data to have a probability
-distribution, the likelihood. The process giving rise to the data, and the
-parameters that define it, are considered fixed. The observed data are
-assessed with respect to other data that might be generated by the same model.
+% The frequentist approach only considers the data to have a probability
+% distribution, the likelihood. The process giving rise to the data, and the
+% parameters that define it, are considered fixed. The observed data are
+% assessed with respect to other data that might be generated by the same model.
 
 % OMIN SANOIN: Confidence intervals work their best when you don't know much about a
 % parameter beyond the information contained in a data set. And further,
