@@ -1041,26 +1041,26 @@ The principal idea in Bayesian analysis is that uncertainty is quantified as
 probability, and knowledge about unknown parameters and variables is described
 as probability distributions \citep{Gelman2013}. The goal of Bayesian
 inference -- as in any statistical analysis -- is often to make conclusions
-about uknown parameters $\vartheta$ given some observed data $y$. This is
+about uknown parameters $\theta$ given some observed data $y$. This is
 achieved through probability statements.
 
 Bayesian analysis begins by defining a joint probability distribution
-$p(y,\vartheta)$, which can be written as a product of two densities
+$p(y,\theta)$, which can be written as a product of two densities
 \begin{equation}
-  p(y,\vartheta) = p(\vartheta)*p(y|\vartheta),
+  p(y,\theta) = p(\theta)*p(y|\theta),
 \end{equation}
-which are referred to as the \emph{prior distribution} $p(\vartheta)$ and the
-data distribution $p(y|\vartheta)$ (or \emph{likelihood}, when taken as a
-function of $\vartheta$). By applying the Bayes' rule we obtain the
-\emph{posterior distribution} for $\vartheta$ given the known values for the
+which are referred to as the \emph{prior distribution} $p(\theta)$ and the
+data distribution $p(y|\theta)$ (or \emph{likelihood}, when taken as a
+function of $\theta$). By applying the Bayes' rule we obtain the
+\emph{posterior distribution} for $\theta$ given the known values for the
 data $y$:
 \begin{equation}
   \label{eq:bayes}
-  p(\vartheta|y) = \frac{p(y,\vartheta)}{p(y)} = \frac{p(\vartheta)*p(y|\vartheta)}{p(y)} \propto p(\vartheta)*p(y|\vartheta),
+  p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta)*p(y|\theta)}{p(y)} \propto p(\theta)*p(y|\theta),
 \end{equation}
-where $p(y) = \int_{\vartheta} p(\vartheta)*p(y|\vartheta) d\vartheta$ (over
-all possible values of $\vartheta$) and the proportionality follows from
-noting that $p(y)$ does not depend on $\vartheta$. $p(\vartheta)*p(y|\vartheta)$
+where $p(y) = \int_{\theta} p(\theta)*p(y|\theta) d\theta$ (over
+all possible values of $\theta$) and the proportionality follows from
+noting that $p(y)$ does not depend on $\theta$. $p(\theta)*p(y|\theta)$
 is referred to as the unnormalized posterior distribution and emphasizes that
 the posterior represents a compromise between prior knowledge and information contained in
 the observed data. As the number of observations increases, the data have
@@ -1174,15 +1174,15 @@ use these to compute estimates for parameters and other quantities of
 interest.
 
 Simplest approaches to simulation include sampling directly from the posterior
-distribution $p(\vartheta|y)$, where possible, or a distribution proportional
-to $p(\vartheta|y)$. More commonly Markov chain methods are used. These entail
-drawing iterative samples of $\vartheta$ from a distribution that approaches
-the true posterior during iteration rounds, where each draw $\vartheta^t$ is
-conditional (only) on the previous one $\vartheta^{t-1}$.
+distribution $p(\theta|y)$, where possible, or a distribution proportional
+to $p(\theta|y)$. More commonly Markov chain methods are used. These entail
+drawing iterative samples of $\theta$ from a distribution that approaches
+the true posterior during iteration rounds, where each draw $\theta^t$ is
+conditional (only) on the previous one $\theta^{t-1}$.
 \footnote{This is essentially the definition of a Markov chain; a sequence of random
 variables, where the probability density of each one is dependent on only the
 previous one.} It is advisable to run several separate simulations with
-different starting values $\vartheta^0$ to assure proper coverage of the whole
+different starting values $\theta^0$ to assure proper coverage of the whole
 posterior. These are referred to as chains.
 
 Markov chain simulations should always be assessed for proper converge, both
