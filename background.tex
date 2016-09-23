@@ -840,13 +840,13 @@ have been proposed for expression-based prediction.
     \endgroup
 \end{table}
 
-Let us henceforth define $\mathbf{X_{NxJ}} = [\mathbf{x_j}] = [x_{nj}]$ as the
+Let us henceforth define $Z_{n \times J} = [z_j] = [z_{ij}]$ as the
 matrix of expression values of mRNAs $j (j = 1, 2, ..., J)$ and
-$\mathbf{Z_{NxK}} = [\mathbf{x_k}] = [x_{nk}]$ as the matrix of expression
-values of miRNAs $k (k = 1, 2, ..., J)$ for observations $n (n = 1, 2, ...,
-N)$. In the case of regression analysis (discussed below), for simplicity of
-notation, $\mathbf{Z}$ denotes a matrix $\mathbf{Z_{NxK+1}}$, where a constant
-vector $\mathbf{z_0} = [1, ..., 1]^T$ has been added.
+$X_{n \times K} = [x_k] = [x_{ik}]$ as the matrix of expression
+values of miRNAs $k (k = 1, 2, ..., K)$ for observations $i (i = 1, 2, ...,
+n)$. In the case of regression analysis (discussed below), for simplicity of
+notation, $X$ denotes a matrix $X_{N \times K+1}$, where a constant
+vector $x_0 = [1, ..., 1]^T$ has been added to account for the intercept term.
 
 \paragraph{Correlation}
 Several methods and publications use a straightforward approach to identifying
@@ -856,7 +856,7 @@ interdependence. Pearson correlation is widely used because of its simplicity
 and intuitive interpretation. Pearson correlation between mRNA $j$ and miRNA
 $k$ is defined as:
 \begin{equation}
-	\rho_{jk} = (\mathbf{x_j})_{\mu_k=0|\sigma_k=1}^T \cdot (\mathbf{z_k})_{\mu_k=0|\sigma_k=1},
+	\rho_{jk} = (z_j)_{\mu_j=0|\sigma_j=1}^T \cdot (x_k)_{\mu_k=0|\sigma_k=1},
 	\label{eq:pearson}
 \end{equation}
 where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and standard
@@ -874,60 +874,66 @@ to alleviate this to some extent \citep{Muniategui2013}.
 % The drawback of MI is that it only indicates similarity of the variables, but not
 % the direction, or sign, of the relationship.
 
-\paragraph{Multiple linear regression}
-Many proposed expression-based methods use some form of multiple linear
+\paragraph{Multivariate linear regression}
+Many proposed expression-based methods use some form of multivariate linear
 regression (MLR) to examine the relationship between miRNAs and mRNAs.
-Expression profiles of miRNAs are commonly used to predict single mRNA (or protein)
-expression (although the opposite has also been proposed). Recently Engelmann
-and showed that miRNA expression can indeed be used to predict mRNA expression
-\citep{Engelmann2012}. Using regression, target prediction essentially becomes a
-variable selection problem, where the goal is to choose a set of miRNAs that
-best predict mRNA expression (without overfitting). A linear model for mRNA
-$j$ can be defined as:
+Expression profiles of miRNAs are commonly used to predict the expression of a
+single mRNA (or protein) (although the opposite has also been proposed).
+Recently Engelmann and showed that miRNA expression can indeed be used to
+predict mRNA expression \citep{Engelmann2012}. In the context of regression,
+target prediction essentially becomes a variable selection problem, where the
+goal is to choose a set of miRNAs that best predict mRNA expression (without
+overfitting).
+
+A linear model for mRNA $j$ can be defined as:
 \begin{equation}
-	\mathbf{x_j} = \sum_{k=0}^{K} (\mathbf{z_k} \cdot w_{jk} + \epsilon_{jk}) =  \mathbf{Z} \cdot \mathbf{w_j} + \mathbf{\epsilon_j},
+  \label{eq:linear-regression}
+	z_j = \sum_{k=0}^{K} (w_{jk} \cdot x_k + \epsilon_{jk}) =  X \cdot w_j + \epsilon_j,
 \end{equation}
-where $\mathbf{w_j} = [w_j0, ..., w_jK]$ is the vector of regression
-coefficients, $w_j0$ is the intercept term, $\epsilon_j$ is the error term
-(usually assumed to be normally distributed), and $\mathbf{Z}$ is the matrix of
-covariates, i.e. the miRNA expression vectors. The parameter of interest is
-$\mathbf{w_j}$, which determines to the contribution of each miRNA to the
-response variable, namely mRNA expression.
+where $w_j = [w_j0, ..., w_jK]$ is the vector of regression coefficients,
+$w_j0$ is the intercept term, $\epsilon_j$ is the error term and $X$ is the
+matrix of covariates, i.e. the miRNA expression vectors. The parameter of
+interest is $w_j$, which determines to the contribution of each miRNA to the
+response variable, i.e. mRNA expression. The regression error $\epsilon_j$
+represents noise and fitting error and is commonly assumed to be normally
+distributed, giving the \emph{normal linear model}.
 % Commonly the solution is obtained by
 % least squares, which involves minimizing the objective function,
 % \begin{equation}
-% 	min\{ || \mathbf{x_j} - \mathbf{Z} \cdot \mathbf{w_j} ||_2 \},
+% 	min\{ || z_j - X \cdot w_j ||_2 \},
 % \end{equation}
 % which is equal to the sum of squares of the residuals.
+
 The advantage of using regression for target prediction is the ability to
 model the effect of several miRNAs on one gene simultaneously.
 % This is desirable as the effect of a single
 % miRNA on mRNA expression can be small, as discussed above.
 Simple MLR is not applicable in cases, where the number covariates is larger
-than the number of samples (here $K > N$), because the linear model is
+than the number of observations (here $K > n$), because the linear model is
 undetermined and a single solution cannot be obtained. This is quite common
 in analysis of high-throughput biological data, for example microarray
-expresssion data. The fit of a simple MLR model can also be asymptotically
+expresssion data. Furthermore, simple MLR cannot solve the problem of
+variable selection as the model is asymptotically
 improved by adding more covariates, leading to overfitting.
 
 \paragraph{Regularized regression}
-Both issues concernign MLR, mentioned above, can be solved using regularized
+Both the dimentionality problem and overfitting can be solved using regularized
 regression. The most common approach is to apply regularized least squares,
-where a penalty term is applied to the coefficients $\mathbf{w_j}$ to force
-them small. This entails minimizing the expression
+where a penalty depending on the magnitude of the coefficients $w_j$
+is applied to force them small. This entails minimizing the expression
 \begin{equation}
-	min\{ || \mathbf{x_j} - \mathbf{Z} \cdot \mathbf{w_j} ||_2 + \lambda \cdot R(\mathbf{w_j}) \} ,
+	min\{ || x_j - X \cdot w_j ||_2 + \lambda \cdot R(w_j) \} ,
 \end{equation}
-where the first term corresponds to fitting error,
-$R(\mathbf{w_j})$ is the penalty function and $\lambda$ is a tuning
+where the first term corresponds to fitting error (the sum of squared residuals),
+$R(w_j)$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-Many methods use the 1-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_1$)
+Many methods use the 1-norm ($R(w_j) = ||w_j||_1 = \sum_{k=0}^{K} |w_{jk}|$)
 for regularization, which is referred to as lasso regression.
 % , where 
-% regularizations include the 1-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_1$) in
-% lasso regression, the 2-norm ($R(\mathbf{w_j}) = ||\mathbf{w_j}||_2$) in ridge
-% regression and a combination of these ($R(\mathbf{w_j}) =
-% \lambda_1||\mathbf{w_j}||_1 + \lambda_2||\mathbf{w_j}||_2$) in what is called
+% regularizations include the 1-norm ($R(w_j) = ||w_j||_1$) in
+% lasso regression, the 2-norm ($R(w_j) = ||w_j||_2$) in ridge
+% regression and a combination of these ($R(w_j) =
+% \lambda_1||w_j||_1 + \lambda_2||w_j||_2$) in what is called
 % elastic-net regression.
 Lasso regression in effect forces the number of non-zero coefficients to be small,
 leading to a sparse solution that chooses seemingly important covariates.
@@ -1035,36 +1041,40 @@ these are covered in the next Section.
 
 \subsection{Bayesian approaches}\label{bayesian-approaches}
 
-\textbf{TÄSTÄ PITÄNEE VÄHÄN KARSIA.}
+The foundation of Bayesian data analysis is quantifying uncertainty as
+probability. Current knowledge about unknown parameters and variables is
+described as probability distributions \citep{Gelman2013}.
+Inherently suited to dealing with noisy real-world data.
 
-The principal idea in Bayesian analysis is that uncertainty is quantified as
-probability, and knowledge about unknown parameters and variables is described
-as probability distributions \citep{Gelman2013}. The goal of Bayesian
-inference -- as in any statistical analysis -- is often to make conclusions
-about uknown parameters $\theta$ given some observed data $y$. This is
-achieved through probability statements.
-
-Bayesian analysis begins by defining a joint probability distribution
-$p(y,\theta)$, which can be written as a product of two densities
+Bayesian analysis begins by defining a joint probability model $p(y,\theta)$
+for observed data $y$ and unknown model parameters $\theta$.
+The joint distribution can be written as a product of two probability distributions
 \begin{equation}
-  p(y,\theta) = p(\theta)*p(y|\theta),
+  p(y,\theta) = p(\theta) \cdot p(y|\theta),
 \end{equation}
 which are referred to as the \emph{prior distribution} $p(\theta)$ and the
-data distribution $p(y|\theta)$ (or \emph{likelihood}, when taken as a
-function of $\theta$). By applying the Bayes' rule we obtain the
-\emph{posterior distribution} for $\theta$ given the known values for the
-data $y$:
+data distribution or \emph{likelihood} $p(y|\theta)$. The prior conveys
+information on the presumed values a parameter may take and the likelihood
+represents the likeliness of observed data for given parameter values (in the
+context of the chosen data model). Applying the Bayes' theorem we obtain the
+\emph{posterior distribution} for $\theta$ given the known values of the
+observations $y$:
 \begin{equation}
   \label{eq:bayes}
-  p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta)*p(y|\theta)}{p(y)} \propto p(\theta)*p(y|\theta),
+  p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta) \cdot p(y|\theta)}{p(y)},
 \end{equation}
-where $p(y) = \int_{\theta} p(\theta)*p(y|\theta) d\theta$ (over
-all possible values of $\theta$) and the proportionality follows from
-noting that $p(y)$ does not depend on $\theta$. $p(\theta)*p(y|\theta)$
-is referred to as the unnormalized posterior distribution and emphasizes that
-the posterior represents a compromise between prior knowledge and information contained in
-the observed data. As the number of observations increases, the data have
-increasing influence on the posterior \citep{Gelman2013}.
+where $p(y) = \int_{\theta} p(\theta) \cdot p(y|\theta) d\theta$.
+Noting that $p(y)$ does not depend on $\theta$, we can write
+\ref{eq:bayes} as
+\begin{equation}
+  p(\theta|y) \propto p(\theta)*p(y|\theta).
+\end{equation}
+The latter is referred to as the unnormalized posterior distribution. The
+Bayes' theorem forms the heart of Bayesian inference and illustrates the core
+concept of updating prior beliefs to account for observed evidence. The
+posterior represents a compromise between prior knowledge and information
+contained in observed data, and as the number of observations increases, the
+data have increasing influence on the posterior \citep{Gelman2013}.
 
 The virtue of modeling uncertainty as probabilities is that they are
 conceptually easy to grasp and often allow common-sense interpretations of conclusions
@@ -1078,7 +1088,7 @@ modeling assumptions, of course).}
 Bayesian modeling is also flexible and can cope with complex problems with
 relative ease. Prior knowledge about the parameters of interest can be
 embedded in the prior distribution and different priors may be assigned to
-each parameter. Hieararchical models -- where parameters of prior
+each parameter. Hierarchical models -- where parameters of prior
 distributions have their own priors called \emph{hyperpriors} -- allow
 constructing complex models where similar data are available on several
 different levels of observations, such as expression measurements from
@@ -1087,12 +1097,16 @@ several separate experiments.
 % previously obtained posterior as a new prior distribution.
 
 The challenge in Bayesian analysis is choosing proper probability models for
-the parameters and observations, including the prior
-distributions as well as the likelihood \citep{Gelman2013}.
-The choice of prior is also a source of much controversy, as it is based
-on the experience and reasoning of the statistician.
-One could, however, argue that the choice of model is always subjective to some
-degree, irrespective of chosen methodology, and evaluating the model is always necessary.
+the parameters and observations, including prior distributions as well as the
+likelihood \citep{Gelman2013}. In fact, Bayesian methodology has been
+criticized for the subjectivity related to choosing suitable priors, as it is
+based on the experience and reasoning of the statistician. One could, however,
+argue that the choice of any model is always subjective to a certain degree,
+irrespective of chosen methodology. Additionally, weakly informative or non-informative
+priors can be used to decrease the effect of subjective information (or
+in cases where no prior knowledge is available) and results from
+inferences using non-informative priors often coincide with classical
+analyses.
 
 % In cases where no prior information is available, weakly informative
 % or noninformative priors can be used. These convey little or no
@@ -1155,23 +1169,30 @@ for
 
 
 
-\subsubsection{Simulation}\label{simulation}
+\subsubsection{Bayesian inference}\label{simulation}
 
-JÄTÄ VAIN TOINEN KAHDESTA EKASTA. LYHENNÄ TÄTÄ!!! SIIRRÄ OSA METODEIHIN.
+The goal of Bayesian inference is often to make conclusions about uknown
+parameters $\theta$ of uknown observations $\tilde{y}$ given observed data
+$y$. These are formulated as probability statements.
 
-Bayesian analysis often involves simulation if the form of sampling from the
-obtained posterior distribution. This is convenient -- and necessary -- when
-the exact probability density function cannot be explicitly obtained through
-integration. Additionally, simulation often has the advantage of pointing out
-problems in the model specification when simulated values are extremely small
-of large.
+Often it is not possible to obtain analytical solutions to integrals
+. This is especially true for hierarchical models. It is therefore
+oftentimes necessary to use numerical estimation or simulation to
+derive estimates of the posterior.
 
-Often obtaining analytical solutions to integrals or explicit formulations of
-the posterior distribution is not possible. This is especially true for
-complex and hierarchical models. In these cases it is possible to use
-simulation to obtain samples from the posterior distribution of parameters and
-use these to compute estimates for parameters and other quantities of
-interest.
+% Bayesian analysis often involves simulation if the form of sampling from the
+% obtained posterior distribution. This is convenient -- and necessary -- when
+% the exact probability density function cannot be explicitly obtained through
+% integration. Additionally, simulation often has the advantage of pointing out
+% problems in the model specification when simulated values are extremely small
+% of large.
+
+% Often obtaining analytical solutions to integrals or explicit formulations of
+% the posterior distribution is not possible. This is especially true for
+% complex and hierarchical models. In these cases it is possible to use
+% simulation to obtain samples from the posterior distribution of parameters and
+% use these to compute estimates for parameters and other quantities of
+% interest.
 
 Simplest approaches to simulation include sampling directly from the posterior
 distribution $p(\theta|y)$, where possible, or a distribution proportional
