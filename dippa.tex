@@ -108,7 +108,7 @@
 
 %% B.Sc. or M.Sc. thesis advisors(s).
 %%
-\advisor{Rainer Lehtonen, Ph.D.}
+\advisor{Rainer Lehtonen, associate professor}
 
 %% Aalto logo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
@@ -177,8 +177,8 @@ of an integrating different data types is highlighted.
 
 %% Abstract in Finnish.  Delete if you don't need it. 
 \thesistitle{MikroRNA-säätely rintasyövässä -- ekspressiodatan Bayeslainen analyysi}
-\supervisor{Aki Vehtari, professori}
-\advisor{Rainer Lehtonen, dosentti}
+\supervisor{Professori Aki Vehtari}
+\advisor{Dosentti Rainer Lehtonen}
 \degreeprogram{Electronics and electrical engineering}
 \department{TÄÄ PITÄÄ KEKSIÄ JOSTAIN}
 \professorship{JA TÄÄ}
@@ -259,42 +259,41 @@ Helsinki, X.X.2016
 \subsection*{Symbols}
 
 \begin{tabular}{ll}
-$w$ & vector of weights for the covariates \\
-$x$ & vector of covariates \\
-$y$ & PREDICTED variable
-% $\mathbf{B}$  & magnetic flux density  \\
-% $c$              & speed of light in vacuum $\approx 3\times10^8$ [m/s]\\
-% $\omega_{\mathrm{D}}$    & Debye frequency \\
-% $\omega_{\mathrm{latt}}$ & average phonon frequency of lattice \\
-% $\uparrow$       & electron spin direction up\\
-% $\downarrow$     & electron spin direction down
+$N(\mu,\sigma^2)$ & Normal distribution with mean $\mu$ and variance $\sigma^2$ \\
+$p(y)$            & Probability density of $x$ \\
+$p(y,\theta)$     & Joint probability of $y$ and $\theta$ \\
+$p(y|\theta)$     & Conditional probability of $y$ given $\theta$ \\
+$\theta$          & Parameter vector for a probability model \\
+$w$               & Regression coefficients for explanatory variables \\
+$x$               & Explanatory variables or vector of microRNA expression values \\
+$X$               & Matrix of microRNA expression values \\
+$y$               & Outcome variable or vector of protein expression values \\
+$y \tilde N(.)$   & Random variable $y$ has probability distribution $N(.)$ \\
+$z$               & Vector of mRNA expression values
 \end{tabular}
 
-% \subsection*{Operators}
-
+% \subsection*{Expressions}
 % \begin{tabular}{ll}
-% $\nabla \times \mathbf{A}$              & curl of vectorin $\mathbf{A}$\\
-% $\displaystyle\frac{\mbox{d}}{\mbox{d} t}$ & derivative with respect to 
-% variable $t$\\[3mm]
-% $\displaystyle\frac{\partial}{\partial t}$  & partial derivative with respect 
-% to variable $t$ \\[3mm]
-% $\sum_i $                       & sum over index $i$\\
-% $\mathbf{A} \cdot \mathbf{B}$    & dot product of vectors $\mathbf{A}$ and 
-% $\mathbf{B}$
+% $\nabla \times \mathbf{A}$                 & curl of vectorin $\mathbf{A}$\\
+% $\displaystyle\frac{\mbox{d}}{\mbox{d} t}$ & derivative with respect to variable $t$\\[3mm]
+% $\displaystyle\frac{\partial}{\partial t}$ & partial derivative with respect to variable $t$ \\[3mm]
+% $\sum_i $                      & sum over index $i$\\
+% $\mathbf{A} \cdot \mathbf{B}$  & dot product of vectors $\mathbf{A}$ and $\mathbf{B}$
 % \end{tabular}
 
 \subsection*{Abbreviations}
 
 \begin{tabular}{ll}
-bp          & base pairs (as a measure of sequence length) \\
-nt          & nucleotide (as a measure of sequence length) \\
-miRNA       & microRNA \\
-mRNA        & messenger RNA \\
-MTI         & microRNA-target interaction \\
-NGS         & next generation sequencing \\
+bp          & Base pairs (as a measure of sequence length) \\
+nt          & Nucleotides (as a measure of sequence length) \\
+miRNA       & MicroRNA \\
+MLR         & Multivariate linear regression \\
+mRNA        & Messenger RNA \\
+NGS         & Next generation sequencing \\
+PPVS        & Projection predictive variable selection \\
 RISC        & RNA-induced silencing complex \\
-RNA         & ribonucleic acid \\
-RPPA        & reverse phosphatase protein array
+RNA         & Ribonucleic acid \\
+RPPA        & Reverse phosphatase protein array
 \end{tabular}
 
 
