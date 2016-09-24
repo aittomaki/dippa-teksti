@@ -61,7 +61,7 @@ interchangeable as substrates for RNAi, both act as target mRNA recognizing
 templates, but have different biogenesis, where miRNAs are cut from endogenous hairpin
 strucutres and siRNAs are processed from exogenous long double-stranded RNAs (dsRNAs).
 \cite{Du2005} MicroRNAs are the focus of this study and are discussed in more
-detail in the next Section.
+detail in the next section.
 
 The Argonaute (Ago) family of proteins is closely associated with small RNAs and
 Ago act as effectors in RNAi \cite{Ha2014}.
@@ -697,7 +697,7 @@ this end, a wide range of computational tools have been developed to aid in
 miRNA taget discovery. Computational approaches to target prediction
 can generally be classified into solely sequence-based tools and
 expression-data-based tools (which often include sequence-features).
-This Section presents an overview of published methods developed for the
+This section presents an overview of published methods developed for the
 task of target prediction.
 
 % For more in-depth reviews, see for example \citep{Yue2009,Muniategui2013}.
@@ -745,7 +745,7 @@ features of both the miRNA and mRNA sequence are used to narrow down candidate
 target lists \citep{Yeu2009}. These features are derived from earlier
 experimental knowledge, and commonly used features include: (i) sequence
 complimentarity between the seed region of the miRNA and 3' UTR of the mRNA
-(see section \ref{mirna-mechanism}), (ii) seed matches in the coding region or
+(see Section \ref{mirna-mechanism}), (ii) seed matches in the coding region or
 5' UTR of the mRNA, (iii) evolutionary conservation of seed matches between
 species, (iv) target site accessibility and (v) free energy of the bound
 miRNA-mRNA duplex. These rule-based prediction methods are unsupervised, i.e.
@@ -859,18 +859,18 @@ $k$ is defined as:
 	\rho_{jk} = (y_j)_{\mu_j=0|\sigma_j=1}^T \cdot (x_k)_{\mu_k=0|\sigma_k=1},
 	\label{eq:pearson}
 \end{equation}
-where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and standard
-deviation of one and $\cdot$ a vector dot product. miRNA-mRNA pairs
-significantly correlated are classified as putative target interactions. Other
-measures used include Spearman correlation and mutual information (MI). A
-crucial limitation of correlation analysis is being restricticted to studying
-pair-wise associations. Single miRNAs often have a small effect on mRNA
-expression, which leads to weak associations and, therefore, low power to
-identify miRNA targets. This issue is worsened by a large multiple-
-hypothesis testing problem when cosidering all possible miRNA-mRNA pairs.
-Some approahces have used additional information, such as differential expression
-analysis and sequence-based predictions, for limiting examined miRNA-mRNA pairs
-to alleviate this to some extent \citep{Muniategui2013}.
+where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and unit
+variance. miRNA-mRNA pairs significantly correlated are classified as putative
+target interactions. Other measures used include Spearman correlation and
+mutual information (MI). A crucial limitation of correlation analysis is being
+restricticted to studying pair-wise associations. Single miRNAs often have a
+small effect on mRNA expression, which leads to weak associations and,
+therefore, low power to identify miRNA targets. This issue is worsened by a
+large multiple- hypothesis testing problem when cosidering all possible miRNA-
+mRNA pairs. Some approahces have used additional information, such as
+differential expression analysis and sequence-based predictions, for limiting
+examined miRNA-mRNA pairs to alleviate this to some extent
+\citep{Muniategui2013}.
 % The drawback of MI is that it only indicates similarity of the variables, but not
 % the direction, or sign, of the relationship.
 
@@ -956,7 +956,7 @@ Other suggested approaches used include the global test, which does jotain
 analysis, where the over-representation of sequence-predicted targets in
 differential expression sets is considered indicative of a target
 relationship. Several Bayesian methods have also been proposed;
-these are covered in the next Section.
+these are covered in the next section.
 
 
 % A group of bioinformatics tools uses mRNA expression data to suggest
@@ -1229,7 +1229,7 @@ Markov chain simulations should always be assessed for proper converge, both
 for each chain and between the chains. For this purpose, Gelman et al have
 proposed the $\hat{R}$ measure\footnote{Not to be confused with $\bar{R}^2$,
 the adjusted coefficient of determination of a regression model, defined in
-the next Section!}, which estimates the ratio of between-chain variation and
+the next section.}, which estimates the ratio of between-chain variation and
 within-chain variation for each parameter \citep{Gelman2013}. Gelman et al
 suggest $\hat{R}^2 < 1.1$ is a reasonable indicator of good convergence. It is
 also good practice to discard the first simulation samples (commonly the first
