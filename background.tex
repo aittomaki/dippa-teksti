@@ -840,13 +840,13 @@ have been proposed for expression-based prediction.
     \endgroup
 \end{table}
 
-Let us henceforth define $Z_{n \times J} = [z_j] = [z_{ij}]$ as the
-matrix of expression values of mRNAs $j (j = 1, 2, ..., J)$ and
+Let us henceforth define $Y_{n \times J} = [y_j] = [y_{ij}]$ as the
+matrix of expression values of mRNAs $j (j = 1, 2, \ldots, J)$ and
 $X_{n \times K} = [x_k] = [x_{ik}]$ as the matrix of expression
-values of miRNAs $k (k = 1, 2, ..., K)$ for observations $i (i = 1, 2, ...,
+values of miRNAs $k (k = 1, 2, \ldots, K)$ for observations $i (i = 1, 2, \ldots,
 n)$. In the case of regression analysis (discussed below), for simplicity of
-notation, $X$ denotes a matrix $X_{N \times K+1}$, where a constant
-vector $x_0 = [1, ..., 1]^T$ has been added to account for the intercept term.
+notation, $X$ denotes a matrix $X_{n \times K+1}$, where a constant
+vector $x_0 = [1, \ldots, 1]^T$ has been added to account for the intercept term.
 
 \paragraph{Correlation}
 Several methods and publications use a straightforward approach to identifying
@@ -856,7 +856,7 @@ interdependence. Pearson correlation is widely used because of its simplicity
 and intuitive interpretation. Pearson correlation between mRNA $j$ and miRNA
 $k$ is defined as:
 \begin{equation}
-	\rho_{jk} = (z_j)_{\mu_j=0|\sigma_j=1}^T \cdot (x_k)_{\mu_k=0|\sigma_k=1},
+	\rho_{jk} = (y_j)_{\mu_j=0|\sigma_j=1}^T \cdot (x_k)_{\mu_k=0|\sigma_k=1},
 	\label{eq:pearson}
 \end{equation}
 where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and standard
@@ -885,22 +885,22 @@ target prediction essentially becomes a variable selection problem, where the
 goal is to choose a set of miRNAs that best predict mRNA expression (without
 overfitting).
 
-A linear model for mRNA $j$ can be defined as:
+A linear regression model for mRNA expression $y$ (suppressing the index $j$ for clarity) is defined as
 \begin{equation}
   \label{eq:linear-regression}
-	z_j = \sum_{k=0}^{K} (w_{jk} \cdot x_k + \epsilon_{jk}) =  X \cdot w_j + \epsilon_j,
+	y = \sum_{k=0}^{K} (w_{k} \cdot x_k + \epsilon_{k}) =  X \cdot w + \epsilon,
 \end{equation}
-where $w_j = [w_j0, ..., w_jK]$ is the vector of regression coefficients,
-$w_j0$ is the intercept term, $\epsilon_j$ is the error term and $X$ is the
+where $w = [w_0, \ldots, w_K]$ is the vector of regression coefficients,
+$w_0$ is the intercept term, $\epsilon$ is the error term and $X$ is the
 matrix of covariates, i.e. the miRNA expression vectors. The parameter of
-interest is $w_j$, which determines to the contribution of each miRNA to the
-response variable, i.e. mRNA expression. The regression error $\epsilon_j$
+interest is $w$, which determines to the contribution of each miRNA to the
+response variable, i.e. mRNA expression. The regression error $\epsilon$
 represents noise and fitting error and is commonly assumed to be normally
 distributed, giving the \emph{normal linear model}.
 % Commonly the solution is obtained by
 % least squares, which involves minimizing the objective function,
 % \begin{equation}
-% 	min\{ || z_j - X \cdot w_j ||_2 \},
+% 	min\{ || y - X \cdot w ||_2 \},
 % \end{equation}
 % which is equal to the sum of squares of the residuals.
 
@@ -919,21 +919,21 @@ improved by adding more covariates, leading to overfitting.
 \paragraph{Regularized regression}
 Both the dimentionality problem and overfitting can be solved using regularized
 regression. The most common approach is to apply regularized least squares,
-where a penalty depending on the magnitude of the coefficients $w_j$
+where a penalty depending on the magnitude of the coefficients $w$
 is applied to force them small. This entails minimizing the expression
 \begin{equation}
-	min\{ || x_j - X \cdot w_j ||_2 + \lambda \cdot R(w_j) \} ,
+	min\{ || y - X \cdot w ||_2 + \lambda \cdot R(w) \} ,
 \end{equation}
 where the first term corresponds to fitting error (the sum of squared residuals),
 $R(w_j)$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-Many methods use the 1-norm ($R(w_j) = ||w_j||_1 = \sum_{k=0}^{K} |w_{jk}|$)
+Many methods use the 1-norm ($R(w) = ||w||_1 = \sum_{k=0}^{K} |w_k|$)
 for regularization, which is referred to as lasso regression.
 % , where 
-% regularizations include the 1-norm ($R(w_j) = ||w_j||_1$) in
-% lasso regression, the 2-norm ($R(w_j) = ||w_j||_2$) in ridge
-% regression and a combination of these ($R(w_j) =
-% \lambda_1||w_j||_1 + \lambda_2||w_j||_2$) in what is called
+% regularizations include the 1-norm ($R(w) = ||w||_1$) in
+% lasso regression, the 2-norm ($R(w) = ||w||_2$) in ridge
+% regression and a combination of these ($R(w) =
+% \lambda_1||w||_1 + \lambda_2||w||_2$) in what is called
 % elastic-net regression.
 Lasso regression in effect forces the number of non-zero coefficients to be small,
 leading to a sparse solution that chooses seemingly important covariates.
@@ -1050,7 +1050,7 @@ Bayesian analysis begins by defining a joint probability model $p(y,\theta)$
 for observed data $y$ and unknown model parameters $\theta$.
 The joint distribution can be written as a product of two probability distributions
 \begin{equation}
-  p(y,\theta) = p(\theta) \cdot p(y|\theta),
+  p(y,\theta) = p(\theta) p(y|\theta),
 \end{equation}
 which are referred to as the \emph{prior distribution} $p(\theta)$ and the
 data distribution or \emph{likelihood} $p(y|\theta)$. The prior conveys
@@ -1061,13 +1061,13 @@ context of the chosen data model). Applying the Bayes' theorem we obtain the
 observations $y$:
 \begin{equation}
   \label{eq:bayes}
-  p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta) \cdot p(y|\theta)}{p(y)},
+  p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta) p(y|\theta)}{p(y)},
 \end{equation}
 where $p(y) = \int_{\theta} p(\theta) \cdot p(y|\theta) d\theta$.
 Noting that $p(y)$ does not depend on $\theta$, we can write
 \ref{eq:bayes} as
 \begin{equation}
-  p(\theta|y) \propto p(\theta)*p(y|\theta).
+  p(\theta|y) \propto p(\theta) p(y|\theta).
 \end{equation}
 The latter is referred to as the unnormalized posterior distribution. The
 Bayes' theorem forms the heart of Bayesian inference and illustrates the core
@@ -1160,12 +1160,31 @@ TÄÄ SAA OLLA MELKO LYHYT!
 
 Bayesian regression analysis aims to infer the posterior distributions
 for the regression coefficients of covariates and other model parameters,
-such as the variance (i.e. noise) of the observation model.
+such as the variance (i.e. the error term) of the observation model.
+Within the Bayesian framework, the normal linear regression defined in
+Equation \ref{eq:linear-regression} can be expressed as
+\begin{equation}
+  y | w, \sigma, X \tilde N(Xw, \sigma^2I),
+\end{equation}
+where $I$ is the $n \times n$ identity matrix. The mean of $y$ is then the
+familiar linear sum of $x_k$
+\begin{equation}
+  \textrm{E}(y|w,X) = Xw = w_0 + w_1 x_1 + \dotsb + w_K x_K.
+\end{equation}
+This simple model can be easily extended by e.g. allowing unequal variances
+or correlation between observations, choosing a different distribution
+than the normal distribution to represent the error terms or
+including hyperparameters to construct a hierarchical model.
 
-As mentioned in Section \ref{expr-methods}, microRNA target prediction
-using regression analysis of expression data is  a variable
-selection problem. Various Bayesian approaches have been proposed
-for 
+As mentioned in Section \ref{expr-methods}, microRNA target prediction using
+regression analysis of expression data is effectively a variable selection
+problem. Many Bayesian variable selection methods have been published. A
+review of these falls outside the scope of this thesis, however, a
+comprehensive review has been recently written by FOO et al \citep{}.
+\textbf{JOTAIN LYHYESTI NÄISTÄ KUITENKIN.}
+In this work a Bayesian variable selection method called projection prediction
+variable selection is used. The details of this method are presented in
+Section \ref{sec:PPVS}.
 
 
 
