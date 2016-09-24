@@ -94,20 +94,29 @@ Correlation analyses.
 
 \subsubsection{Variable selection with projection prediction}\label{sec:PPVS}
 
-For predicting protein expression from mRNA and miRNA
-expression, a similar regression model to Aure et al
-was used:
+For predicting protein expression from mRNA and miRNA expression, a similar
+regression model to Aure et al was used (here referred to as the \emph{full
+model}):
 \begin{equation}
-	\mathbf{y_j} = w_0 + w_g \dot \mathbf{x_j} + \mathbf{w_j} \cdot \mathbf{Z} + \mathbf{\epsilon_j},
+	y_j = w_0 + z_j w_g + X w_j + \epsilon_j,
 \end{equation}
 where $y_j$ denotes the protein expression vector for the protein $j$ which
 is produced from translation of the mRNA $j$ ($j = (1, ..., K)$), $w_g$
 is the regression coefficient for mRNA $j$, and $w_0$ is the intercept term
-(for a derivation of this equation, see Aure et al \citep{Aure2015}).
+(for a justification of this equation, see Aure et al \citep{Aure2015}).
+A model with only the mRNA expression covariate (called the \emph{gene only} model),
+defined as $y = w_0 + z w_g + \epsilon$, was used as a baseline for the full model.
+A normally ditributed error term with equal errors and no correlation
+between observations was assumed for all models.
+
+For Bayesian regression, the likelihood was therefore defined as
+\begin{equation}
+	y | w_g, w, \sigma, z, X \sim N(Xw, \sigma^2I),
+\end{equation}
 The intercept and mRNA coefficients were given Gaussian prior
 distributions with zero mean and standard deviation $\sigma=5$.
 A hierarchical shrinkage prior was applied to the miRNA coefficients
-$\mathbf{w_j}$.
+$w_j$.
 
 Explain:
 \begin{itemize}
@@ -122,7 +131,7 @@ genome using biomaRt \citep{biomaRt}. From these, a sample of 1000 genes was
 taken, and known validated microRNA interaction partners for each sampled gene
 were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
 validated miRNA interactors were assumed to have zero. The mean number of
-miRNA interactors per gene was the computed, which resulted in the estimate
+miRNA interactors per gene was used an estimate, giving
 $\hat{p_n} = 13.75$.
 
 The coefficient of determination, $R^2$ \textbf{(kaava!)}, was used as a measure of final model
@@ -134,7 +143,7 @@ defined as $\bar{R}^2 = 1-(1-R^2)*(n-1)/(n-p)$ (where $n$ is the number of
 observations and $p$ the number of explanatory variables) adjusts for the
 number of regressors relative to the number of observations, thus penalizing
 for including additional variables. $\bar{R}^2$ was used for comparing the
-final model with a model including only the gene expression variable.
+full model with the gene only model.
 
 Possible extras:
 \begin{itemize}
