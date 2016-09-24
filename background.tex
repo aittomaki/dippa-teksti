@@ -922,12 +922,12 @@ regression. The most common approach is to apply regularized least squares,
 where a penalty depending on the magnitude of the coefficients $w$
 is applied to force them small. This entails minimizing the expression
 \begin{equation}
-	min\{ || y - X \cdot w ||_2 + \lambda \cdot R(w) \} ,
+	min\{ \left \| y - X \cdot w \right \|_2 + \lambda \cdot R(w) \} ,
 \end{equation}
 where the first term corresponds to fitting error (the sum of squared residuals),
 $R(w_j)$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-Many methods use the 1-norm ($R(w) = ||w||_1 = \sum_{k=0}^{K} |w_k|$)
+Many methods use the 1-norm ($R(w) = \left \| w \right \|_1 = \sum_{k=0}^{K} |w_k|$)
 for regularization, which is referred to as lasso regression.
 % , where 
 % regularizations include the 1-norm ($R(w) = ||w||_1$) in
@@ -1064,7 +1064,7 @@ observations $y$:
   p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta) p(y|\theta)}{p(y)},
 \end{equation}
 where $p(y) = \int_{\theta} p(\theta) \cdot p(y|\theta) d\theta$.
-Noting that $p(y)$ does not depend on $\theta$, we can write
+Noting that $p(y)$ does not depend on $\theta$, we can write Equation
 \ref{eq:bayes} as
 \begin{equation}
   p(\theta|y) \propto p(\theta) p(y|\theta).
@@ -1164,7 +1164,7 @@ such as the variance (i.e. the error term) of the observation model.
 Within the Bayesian framework, the normal linear regression defined in
 Equation \ref{eq:linear-regression} can be expressed as
 \begin{equation}
-  y | w, \sigma, X \tilde N(Xw, \sigma^2I),
+  y | w, \sigma, X \sim N(Xw, \sigma^2I),
 \end{equation}
 where $I$ is the $n \times n$ identity matrix. The mean of $y$ is then the
 familiar linear sum of $x_k$
