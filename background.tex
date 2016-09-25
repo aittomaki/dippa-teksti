@@ -1164,17 +1164,24 @@ such as the variance (i.e. the error term) of the observation model.
 Within the Bayesian framework, the normal linear regression defined in
 Equation \ref{eq:linear-regression} can be expressed as
 \begin{equation}
-  y | w, \sigma, X \sim N(Xw, \sigma^2I),
+  y | \beta, \sigma, X \sim N(X \beta, \sigma^2I),
 \end{equation}
-where $I$ is the $n \times n$ identity matrix. The mean of $y$ is then the
-familiar linear sum of $x_k$
+where $N$ is the multivariate normal distribution, and $I$ is the $n \times n$
+identity matrix. The mean of $y$ is then the familiar linear sum of $x_k$
 \begin{equation}
-  \textrm{E}(y|w,X) = Xw = w_0 + w_1 x_1 + \dotsb + w_K x_K.
+  \textrm{E}(y|\beta,X) = X \beta = \beta_0 + \beta_1 x_1 + \dotsb + \beta_K x_K.
 \end{equation}
-This simple model can be easily extended by e.g. allowing unequal variances
-or correlation between observations, choosing a different distribution
-than the normal distribution to represent the error terms or
-including hyperparameters to construct a hierarchical model.
+The posterior distribution for the regression coefficients (up to a
+normalizing constant) is obtained from the marginal posterior
+\begin{equation}
+  p(\beta | \sigma, y, X) \propto \int p(y | \beta, \sigma, X) p(\beta | \sigma) p(\sigma) d\sigma.
+\end{equation}
+It is relatively straightforward to extend this simple, for instance by
+allowing unequal variances or correlation between observations, choosing a
+different data distribution
+% than the normal distribution
+to represent the error term or including hyperparameters to construct a
+hierarchical model.
 
 As mentioned in Section \ref{expr-methods}, microRNA target prediction using
 regression analysis of expression data is effectively a variable selection
