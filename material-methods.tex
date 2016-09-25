@@ -23,6 +23,8 @@ associates and a compiled summary is presented in Table
 were ductal carcinomas, which is in general the most common histological type
 of breast cancer. Patient ages ranged from X to Y with a median of 45 years.
 No matched control samples of healthy breast tissue were available.
+It is worth noting that the data represent a very heterogeneous sampling
+of different kinds of breast tumors.
 
 \input{clinical_table}
 
@@ -54,15 +56,6 @@ for cell-cycle regulation and, thus, cancer. \textbf{(ref to G.Mills?)}.
 
 \subsection{Methods}
 
-All computational analyses were performed in R and workflow management was
-handled with Anduril \citep{Ovaska2010}. Monte-Carlo simulations for the
-Bayesian regression models were performed with RStan
-\citep{RStan} using the No-U-Turn variant of a Hamiltonian Monte Carlo
-algorithm for sampling posterior distributions. All simulations were were run using
-computer resources within the Aalto University School of Science "Science-IT"
-project.
-
-
 
 \subsubsection{Preprocessing and quality control}
 
@@ -70,13 +63,19 @@ MicroRNA and mRNA expression data were downloaded from the Gene Expression
 Omnibus (accessions GSEXXX and GSEXXX, respectively \citep{Edgar2002}) using
 the GEOquery R package \citep{GEOquery}. Protein expression data were
 downloaded as a Microsoft Excel sheet from the supplementary data of Aure et
-al \citep{Aure2015}. Data were cleaned using R. Notably, the protein
-data have only a single set of measurements for two sets of related genes,
-namely AKT1, AKT2, AKT3 and (labeled respectively as "AKT1/2/3" and "" in the data).
-The same values from the single measurement set were used for each
-of the related genes. Presumably the protein array used cannot differentiate
-the proteins of these genes, no mention of this is made by Aure et al.
-Separate measurements for all genes are included in the mRNA expression data.
+al \citep{Aure2015}. All of the data are in log scale, as is usual for
+expression data analyses. For regression analyses, all variables (miRNA, mRNA
+and protein) were further scaled to have zero mean and unit variance,
+a commonly used transformation in regression.
+
+Notably, the protein data have only a single set of measurements for two sets
+of related genes, namely AKT1, AKT2, AKT3 and GSK3A, GSK3B (labeled
+respectively as "AKT1/2/3" and "GSK3A/GSK3B" in the original data). Presumably
+the protein array used cannot differentiate the proteins of these genes, but
+no mention of this is made by Aure et al. For the analyses presented here,
+each of these genes was considered separately, and the same expression values
+from the single measurement set were used for all of the related genes
+respectively.
 
 Out of the 421 microRNAs present in the public dataset, eleven miRNAs (hsa-
 miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308, hsa- miR-1826, hsa-
@@ -89,28 +88,19 @@ were therefore removed from subsequent analyses, leaving 410 miRNAs.
 The publicly available expression data are in preprocessed form, and as such,
 no further preprocessing of the actual measurements was done. For details on
 the preprocessing, the reader is referred to the supplementary data of Aure et
-al \citep{Aure2015}. For regression analyses, all variables (miRNA, mRNA and
-protein) were scaled to have zero mean and unit variance, a commonly
-used transformation in regression.
+al \citep{Aure2015}. The mRNA expression data are available as probe-level
+measurements, these were summarized to gene-level using manufacturer probe
+annotations by taking the median of all probes targeting the same gene.
+Only the genes present in the protein data were used in analyses.
 
-For assessing the quality of the data, distributions of each microarray and each
-variable (miRNA, mRNA and protein) were plotted. These plots are presented in
-Appendix \ref{app:qc-plots}. Two observations from these plots are worth noting here.
-Several genes have significant outliers in the protein data. The miRNA
-microarrays have distributions that are highly skewed towards very small
-values. This is indicative of the generally low abundances of miRNA molecules
-and, although partly due to different preprocessing compared to the mRNA and
-protein arrays, it raises suspicion of significant noise in the miRNA data.
-The raw chip data produced from microarray readers could not be assessed, as
-these were not available.
+For assessing the quality of the expression data, distributions of each
+microarray and each variable (miRNA, mRNA and protein) were plotted. The data
+have been collected from two different hospitals and to assess possible bias
+introduced by the separate sites, a principal component analysis (PCA) and
+hierarchical clustering of samples were performed separately for each data
+type.
 
-The data have been collected from two different hospitals and to assess
-possible bias introduced by the separate sites, a principal component
-analysis (PCA) and hierarchical clustering of samples were performed
-separately for each data type. The first two principal components
-for each data type were plotted and are shown in Figure \ref{fig:pca}.
-No significant batch effect is visible. The hierarchical clustering (not shown)
-gave a similar result.
+
 
 Correlation analyses.
 

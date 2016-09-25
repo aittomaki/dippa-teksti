@@ -4,6 +4,14 @@
 
 \section{Results}
 
+All computational analyses were performed in R \citep{R} and workflow
+management was handled with Anduril \citep{Ovaska2010}. Monte-Carlo
+simulations for the Bayesian regression models were performed with RStan
+\citep{RStan} using the No-U-Turn variant of a Hamiltonian Monte Carlo
+algorithm for sampling posterior distributions. Simulations were run
+% on a computing cluster
+using computer resources within the Aalto University School of Science
+"Science-IT" project.
 
 \begin{itemize}
   \item QC plots
@@ -47,6 +55,22 @@
     \item alternatively correlations between significant miRNAs-proteins grouped by intrinsic subtypes?
   \end{itemize}
 \end{itemize}
+
+\subsection{Quality control}
+
+Quality-control plots are presented in Appendix \ref{app:qc-plots}. Two
+observations are worth noting. First, several genes have significant outliers
+in the protein data. Second, the miRNA microarrays have distributions that are
+highly skewed towards very small values. This is indicative of the generally
+low abundances of miRNA molecules and, although partly due to different
+preprocessing compared to the mRNA and protein arrays, it raises suspicion of
+significant noise in the miRNA data. The raw chip data produced from
+microarray readers could not be assessed, as these were not available.
+
+The first two principal components for each data type were plotted and are
+shown in Figure \ref{fig:pca}. No significant batch effect is visible. The
+hierarchical clustering of samples (not shown) had a similar result.
+
 
 All parameters for all simulations had $\hat{R}^2 < 1.1$, indicating
 good convergence of simulation chains \citep{Gelman2013}.
