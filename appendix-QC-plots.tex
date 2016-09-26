@@ -7,24 +7,100 @@
 \section{Quality control plots\label{app:qc-plots}}
 
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
-	\begin{subfigure}{.9\textwidth}
+	\begin{subfigure}{.7\textwidth}
 		\centering
-	 	\includegraphics[width=1\linewidth]{figures/proteinQCPlots/proteinQCPlots-sample_boxplot.pdf}
-	 	\subcaption{\label{fig:protein-sample-boxplot}}
+		\includegraphics[width=1\linewidth]{figures/proteinQCPlots/proteinQCPlots-pcaplot.pdf}
+		\subcaption{protein\label{fig:protein-sample-pca}}
 	\end{subfigure}
-	\begin{subfigure}{.9\textwidth}
+	\begin{subfigure}{.48\textwidth}
 		\centering
-	 	\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-sample_boxplot.pdf}
-	 	\subcaption{\label{fig:gene-sample-boxplot}}
+		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-pcaplot.pdf}
+		\subcaption{mRNA\label{fig:gene-sample-pca}}
 	\end{subfigure}
-	\begin{subfigure}{.9\textwidth}
+	\begin{subfigure}{.48\textwidth}
 		\centering
-		\includegraphics[width=1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-sample_boxplot.pdf}
-		\subcaption{\label{fig:mirna-sample-boxplot}}
+		\includegraphics[width=1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-pcaplot.pdf}
+		\subcaption{miRNA\label{fig:mirna-sample-pca}}
 	\end{subfigure}%
-	\caption{A figure with two subfigures}
+	\caption{Scatter plots of first two principal components for each tumor sample (or microarray)
+	computed from (a) protein expression, (b) mRNA expression, and (c) miRNA expression data.
+	The point color corresponds to the hospital where the sample was handled.}
 	\label{fig:test}
 \end{figure}
 
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/proteinQCPlots/proteinQCPlots-sample_boxplot.png}
+		\subcaption{protein\label{fig:protein-sample-boxplot}}
+	\end{subfigure}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-sample_boxplot.png}
+		\subcaption{mRNA\label{fig:gene-sample-boxplot}}
+	\end{subfigure}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-sample_boxplot.png}
+		\subcaption{miRNA\label{fig:mirna-sample-boxplot}}
+	\end{subfigure}%
+	\caption{Boxplots of expression data for each tumor sample (or microarray) of
+	(a) protein expression, (b) mRNA expression, and (c) miRNA expression data. 
+	The fill color corresponds to the hospital where the sample was handled.}
+	\label{fig:test}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_boxplot.png}
+		\subcaption{protein\label{fig:protein-variable-boxplot}}
+	\end{subfigure}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-variable_boxplot.png}
+		\subcaption{mRNA\label{fig:gene-variable-boxplot}}
+	\end{subfigure}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_boxplot-sorted.png}
+		\subcaption{miRNA\label{fig:mirna-variable-boxplot}}
+	\end{subfigure}%
+	\caption{Boxplots of expression data for each variable in
+	(a) protein expression, (b) mRNA expression, and (c) miRNA expression data.
+	The miRNA variables have been sorted by median expression to highlight that
+	some miRNAs have very low expression. These measurements are likely to
+	be heavily influenced by background noise, possibly even consisting of
+	mainly noise.}
+	\label{fig:test}
+\end{figure}
+
+
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_density.pdf}
+		\subcaption{\label{fig:protein-sample-pca}}
+	\end{subfigure}
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/geneQCPlots/geneQCPlots-variable_density.pdf}
+		\subcaption{\label{fig:gene-sample-pca}}
+	\end{subfigure}
+	\begin{subfigure}{.32\textwidth}
+		\centering
+		\includegraphics[width=.9\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_density.pdf}
+		\subcaption{\label{fig:mirna-sample-pca}}
+	\end{subfigure}%
+	\caption{Density estimates for all variables of (a) protein, (b) mRNA, and (c) miRNA expression data.
+	Each curve represents one variable. The color of the curves is just for convenience, it bears
+	no meaning.}
+	\label{fig:test}
+\end{figure}
