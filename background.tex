@@ -795,8 +795,8 @@ suggesting that many results are spurious false positives \citep{Muniategui2013}
 
 Integrating expression data with sequence-based target prediction helps combat
 the high false-positive rate of sequence-only methods and, importantly,
-enables tissue and disease specific support for target predictions in real-
-world data. Recent evidence indicates that miRNAs act predominantly through
+enables tissue and disease specific support for target predictions in real-world
+data. Recent evidence indicates that miRNAs act predominantly through
 mRNA degradation \citep{Guo2010}. Thus, it is feasible to use mRNA or protein
 expression data to infer target relationships, since the regulatory effect of
 miRNAs should be reflected in mRNA and protein abundances. Sequence-based
@@ -804,7 +804,12 @@ predictions are often incorporated as a preliminary filter step to limit the
 potential interactions examined. Examples of published methods using
 expression data are listed in Table \ref{table:expression-methods}. Various
 mathematical approaches, ranging from correlation to complex Bayesian models,
-have been proposed for expression-based prediction.
+have been proposed for expression-based prediction. Notably, most methods
+limit the studied relationship to repression by the miRNA. This has
+been suggested to improve performance \citep{Muniategui2013}, but
+has the limitation of not being able to detect positive regulation,
+both direct and indirect (mediated through regulation of other mRNAs)
+\citep{Engelmann2012}.
 
 % Mathematical models used in such expression
 % analyses range from simple similarity measures to regression and complex
@@ -840,34 +845,35 @@ have been proposed for expression-based prediction.
     \endgroup
 \end{table}
 
-Let us henceforth define $Y_{n \times J} = [y_j] = [y_{ij}]$ as the
-matrix of expression values of mRNAs $j (j = 1, 2, \ldots, J)$ and
-$X_{n \times K} = [x_k] = [x_{ik}]$ as the matrix of expression
-values of miRNAs $k (k = 1, 2, \ldots, K)$ for observations $i (i = 1, 2, \ldots,
-n)$. In the case of regression analysis (discussed below), for simplicity of
-notation, $X$ denotes a matrix $X_{n \times K+1}$, where a constant
-vector $x_0 = [1, \ldots, 1]^T$ has been added to account for the intercept term.
+Let us henceforth define $y_k = [y_1k, \dotsc y_nK]$ as a vector of expression
+values of mRNA $k (k = 1, 2, \dotsc, K)$ and $X_{n \times p} = [x_j] =
+[x_{ij}]$ as the matrix of expression values of miRNAs $j (j = 1, 2, \ldots,
+p)$ for observations $i (i = 1, \ldots, n)$. In the case of regression
+analysis (discussed below), for simplicity of notation, the subscript of $y_k$
+is suppressed, and $X$ denotes a matrix $X_{n \times p+1}$, where a constant
+vector $x_0 = [1, \ldots, 1]^T$ has been added to account for the intercept
+term.
 
 \paragraph{Correlation}
 Several methods and publications use a straightforward approach to identifying
 miRNA targets by finding miRNA-mRNA pairs whose expression patterns are
 similar across observations. This is achieved with simple measures of variable
-interdependence. Pearson correlation is widely used because of its simplicity
-and intuitive interpretation. Pearson correlation between mRNA $j$ and miRNA
-$k$ is defined as:
+association. Pearson correlation is widely used because of its simplicity
+and intuitive interpretation. Pearson correlation between mRNA $k$ and miRNA
+$j$ is defined as:
 \begin{equation}
-	\rho_{jk} = (y_j)_{\mu_j=0|\sigma_j=1}^T \cdot (x_k)_{\mu_k=0|\sigma_k=1},
+	\rho_{kj} = (y_k)_{\mu_k=0|\sigma_k=1}^T \cdot (x_j)_{\mu_j=0|\sigma_j=1},
 	\label{eq:pearson}
 \end{equation}
 where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and unit
-variance. miRNA-mRNA pairs significantly correlated are classified as putative
+variance. Significantly correlated miRNA-mRNA pairs are classified as putative
 target interactions. Other measures used include Spearman correlation and
 mutual information (MI). A crucial limitation of correlation analysis is being
 restricticted to studying pair-wise associations. Single miRNAs often have a
 small effect on mRNA expression, which leads to weak associations and,
 therefore, low power to identify miRNA targets. This issue is worsened by a
-large multiple- hypothesis testing problem when cosidering all possible miRNA-
-mRNA pairs. Some approahces have used additional information, such as
+large multiple-hypothesis testing problem when cosidering all possible miRNA-mRNA
+pairs. Some approaches have used additional information, such as
 differential expression analysis and sequence-based predictions, for limiting
 examined miRNA-mRNA pairs to alleviate this to some extent
 \citep{Muniategui2013}.
@@ -885,18 +891,20 @@ target prediction essentially becomes a variable selection problem, where the
 goal is to choose a set of miRNAs that best predict mRNA expression (without
 overfitting).
 
-A linear regression model for mRNA expression $y$ (suppressing the index $j$ for clarity) is defined as
+A linear regression model for mRNA expression $y$ is defined as
 \begin{equation}
   \label{eq:linear-regression}
-	y = \sum_{k=0}^{K} (w_{k} \cdot x_k + \epsilon_{k}) =  X \cdot w + \epsilon,
+	y = \sum_{j=0}^{p} (\beta_j \cdot x_j + \epsilon_{j}) =  X \beta + \epsilon,
 \end{equation}
-where $w = [w_0, \ldots, w_K]$ is the vector of regression coefficients,
-$w_0$ is the intercept term, $\epsilon$ is the error term and $X$ is the
+where $\beta = [\beta_0, \ldots, \beta_p]$ is the vector of regression coefficients,
+$\beta_0$ is the intercept term, $\epsilon$ is the error term, and $X$ is the
 matrix of covariates, i.e. the miRNA expression vectors. The parameter of
-interest is $w$, which determines to the contribution of each miRNA to the
+interest is $\beta$, which determines to the contribution of each miRNA to the
 response variable, i.e. mRNA expression. The regression error $\epsilon$
-represents noise and fitting error and is commonly assumed to be normally
-distributed, giving the \emph{normal linear model}.
+represents noise and fitting error caused by variation not captured by the
+included covariates. $\epsilon$ is commonly assumed to be normally
+distributed with equal variance and no correlation between observations,
+giving the \emph{normal linear model}.
 % Commonly the solution is obtained by
 % least squares, which involves minimizing the objective function,
 % \begin{equation}
@@ -927,8 +935,8 @@ is applied to force them small. This entails minimizing the expression
 where the first term corresponds to fitting error (the sum of squared residuals),
 $R(w_j)$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-Many methods use the 1-norm ($R(w) = \left \| w \right \|_1 = \sum_{k=0}^{K} |w_k|$)
-for regularization, which is referred to as lasso regression.
+The 1-norm ($R(w) = \left \| w \right \|_1 = \sum_{j=0}^{j} |w_j|$)
+is frequently used for regularization; this is referred to as lasso regression.
 % , where 
 % regularizations include the 1-norm ($R(w) = ||w||_1$) in
 % lasso regression, the 2-norm ($R(w) = ||w||_2$) in ridge
@@ -955,7 +963,11 @@ Other suggested approaches used include the global test, which does jotain
 \citep{vanIterson2013}, and approaches similar to gene-set enrichment
 analysis, where the over-representation of sequence-predicted targets in
 differential expression sets is considered indicative of a target
-relationship. Several Bayesian methods have also been proposed;
+relationship. Le at al proposed an ensemble method, which
+combines predictions from several separate algorithms to
+build on the advantages and compensate for the drawbacks of each
+\citep{Le2015}.
+Several Bayesian approaches have also been proposed;
 these are covered in the next section.
 
 
@@ -1169,7 +1181,7 @@ Equation \ref{eq:linear-regression} can be expressed as
 where $N$ is the multivariate normal distribution, and $I$ is the $n \times n$
 identity matrix. The mean of $y$ is then the familiar linear sum of $x_k$
 \begin{equation}
-  \textrm{E}(y|\beta,X) = X \beta = \beta_0 + \beta_1 x_1 + \dotsb + \beta_K x_K.
+  \textrm{E}(y|\beta,X) = X \beta = \beta_0 + \beta_1 x_1 + \dotsb + \beta_p x_p.
 \end{equation}
 The posterior distribution for the regression coefficients (up to a
 normalizing constant) is obtained from the marginal posterior
