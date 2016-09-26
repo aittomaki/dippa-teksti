@@ -17,7 +17,7 @@
 	\begin{subfigure}{.48\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-pcaplot.pdf}
-		\subcaption{mRNA\label{fig:gene-sample-pca}}
+		\subcaption{mRNA\label{fig:mrna-sample-pca}}
 	\end{subfigure}
 	\begin{subfigure}{.48\textwidth}
 		\centering
@@ -27,7 +27,7 @@
 	\caption{Scatter plots of first two principal components for each tumor sample (or microarray)
 	computed from (a) protein expression, (b) mRNA expression, and (c) miRNA expression data.
 	The point color corresponds to the hospital where the sample was handled.}
-	\label{fig:test}
+	\label{fig:qc-pca}
 \end{figure}
 
 
@@ -41,7 +41,7 @@
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-sample_boxplot.png}
-		\subcaption{mRNA\label{fig:gene-sample-boxplot}}
+		\subcaption{mRNA\label{fig:mrna-sample-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
@@ -51,7 +51,7 @@
 	\caption{Boxplots of expression data for each tumor sample (or microarray) of
 	(a) protein expression, (b) mRNA expression, and (c) miRNA expression data. 
 	The fill color corresponds to the hospital where the sample was handled.}
-	\label{fig:test}
+	\label{fig:qc-sample-boxplot}
 \end{figure}
 
 
@@ -65,7 +65,7 @@
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-variable_boxplot.png}
-		\subcaption{mRNA\label{fig:gene-variable-boxplot}}
+		\subcaption{mRNA\label{fig:mrna-variable-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
@@ -78,7 +78,33 @@
 	some miRNAs have very low expression. These measurements are likely to
 	be heavily influenced by background noise, possibly even consisting of
 	mainly noise.}
-	\label{fig:test}
+	\label{fig:qc-variable-boxplot}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_boxplot_scaled.png}
+		\subcaption{protein\label{fig:protein-scaled-variable-boxplot}}
+	\end{subfigure}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-variable_boxplot_scaled.png}
+		\subcaption{mRNA\label{fig:mrna-scaled-variable-boxplot}}
+	\end{subfigure}
+	\begin{subfigure}{1\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_boxplot_scaled_sorted.png}
+		\subcaption{miRNA\label{fig:mirna-scaled-variable-boxplot}}
+	\end{subfigure}%
+	\caption{Boxplots of expression data for each variable in
+	(a) protein expression, (b) mRNA expression, and (c) miRNA expression data,
+	where each variable has been scaled to zero mean and unit variance.
+	The miRNA variables are in the same order as in Figure \ref{fig:mirna-variable-boxplot}.
+	Note the two significant outliers in the protein data.}
+	\label{fig:qc-scaled-variable-boxplot}
 \end{figure}
 
 
@@ -87,20 +113,20 @@
 	\begin{subfigure}{.32\textwidth}
 		\centering
 		\includegraphics[width=.9\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_density.pdf}
-		\subcaption{\label{fig:protein-sample-pca}}
+		\subcaption{\label{fig:protein-variable-density}}
 	\end{subfigure}
 	\begin{subfigure}{.32\textwidth}
 		\centering
 		\includegraphics[width=.9\linewidth]{figures/geneQCPlots/geneQCPlots-variable_density.pdf}
-		\subcaption{\label{fig:gene-sample-pca}}
+		\subcaption{\label{fig:mrna-variable-density}}
 	\end{subfigure}
 	\begin{subfigure}{.32\textwidth}
 		\centering
 		\includegraphics[width=.9\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_density.pdf}
-		\subcaption{\label{fig:mirna-sample-pca}}
+		\subcaption{\label{fig:mirna-variable-density}}
 	\end{subfigure}%
 	\caption{Density estimates for all variables of (a) protein, (b) mRNA, and (c) miRNA expression data.
 	Each curve represents one variable. The color of the curves is just for convenience, it bears
 	no meaning.}
-	\label{fig:test}
+	\label{fig:qc-density}
 \end{figure}
