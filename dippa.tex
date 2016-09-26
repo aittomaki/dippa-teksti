@@ -48,12 +48,15 @@
 \usepackage[parfill]{parskip}
 \usepackage{longtable}
 \usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
 \usepackage{pdflscape}
 \setlength\LTcapwidth{\textwidth}
 \setlength{\LTleft}{-20cm plus -1fill}
 %\setlength{\LTleft}{-30cm}
 \setlength{\LTright}{\LTleft}
 
+%% Define which sections to include
+\includeonly{appendix-QC-plots}
 
 %% All that is printed on paper starts here
 \begin{document}
@@ -434,7 +437,7 @@ RPPA        & Reverse phosphatase protein array
 
 
 
-\section{Quality control plots\label{app:qc-plots}}
+\include{appendix-QC-plots}
 
 
 
