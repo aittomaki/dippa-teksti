@@ -1089,7 +1089,7 @@ Noting that $p(y)$ does not depend on $\theta$, we can write Equation
 The latter is referred to as the unnormalized posterior distribution. The
 Bayes' theorem forms the heart of Bayesian inference and illustrates the core
 concept of updating prior beliefs to account for observed evidence. The
-posterior provides a probability assessment of the possible values of 
+posterior provides a probability assessment of the possible values of
 a parameter, and represents a compromise between prior knowledge and information
 contained in observed data. As the number of observations increases, the
 data have increasing influence on the posterior \citep{Gelman2013}.
@@ -1159,9 +1159,7 @@ analyses.
 
 
 
-\subsubsection{Bayesian regression and variable selection}
-
-TÄÄ SAA OLLA MELKO LYHYT!
+\subsubsection{Bayesian regression}
 
 Bayesian regression analysis aims to infer the posterior distributions
 for the regression coefficients of covariates and other model parameters,
@@ -1179,21 +1177,32 @@ identity matrix. The mean of $y$ is then the familiar linear sum of $x_k$
 The posterior distribution for the regression coefficients (up to a
 normalizing constant) is obtained from the marginal posterior
 \begin{equation}
-  p(\beta | \sigma, y, X) \propto \int p(y | \beta, \sigma, X) p(\beta | \sigma) p(\sigma) d\sigma.
+  p(\beta | \sigma, y, X) \propto \int p(y | \beta, \sigma, X) p(\beta | \sigma) p(\sigma) d\sigma,
 \end{equation}
-It is relatively straightforward to extend this simple, for instance by
+with the joint prior $p(\beta, \sigma) = p(\beta | \sigma) p(\sigma)$.
+It is relatively straightforward to extend this simple model, for instance by
 allowing unequal variances or correlation between observations, choosing a
 different data distribution
 % than the normal distribution
 to represent the error term or including hyperparameters to construct a
 hierarchical model.
 
+
+\subsubsection{Variable selection in the Bayesian context}
+
 As mentioned in Section \ref{expr-methods}, microRNA target prediction using
 regression analysis of expression data is effectively a variable selection
 problem. Many Bayesian variable selection methods have been published. A
-review of these falls outside the scope of this thesis, however, a
-comprehensive review has been recently written by FOO et al \citep{}.
-\textbf{JOTAIN LYHYESTI NÄISTÄ KUITENKIN.}
+detailed review of these falls outside the scope of this thesis, however, a
+comprehensive one has been recently written by Piironen
+and Vehtari \citep{Piironen}.
+
+For Bayesian regression, several different priors allowing model
+shrinkage have been proposed, including the Laplace prior
+(which is closely related to lasso regression), the horseshoe prior,
+and the hierarchical shrinkage prior. The latter has been shown
+to generally outperform the others.
+
 In this work a recently published Bayesian variable selection method called
 projection prediction variable selection was used to infer miRNA-mRNA
 target relationships. The details of this method
