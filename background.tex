@@ -1168,6 +1168,7 @@ Within the Bayesian framework, the normal linear regression defined in
 Equation \ref{eq:linear-regression} can be expressed as
 \begin{equation}
   y | \beta, \sigma, X \sim N(X \beta, \sigma^2I),
+  \label{eq:bayesian-linear-regression}
 \end{equation}
 where $N$ is the multivariate normal distribution, and $I$ is the $n \times n$
 identity matrix. The mean of $y$ is then the familiar linear sum of $x_k$
@@ -1187,26 +1188,61 @@ different data distribution
 to represent the error term or including hyperparameters to construct a
 hierarchical model.
 
-
-\subsubsection{Variable selection in the Bayesian context}
-
 As mentioned in Section \ref{expr-methods}, microRNA target prediction using
 regression analysis of expression data is effectively a variable selection
-problem. Many Bayesian variable selection methods have been published. A
-detailed review of these falls outside the scope of this thesis, however, a
-comprehensive one has been recently written by Piironen
-and Vehtari \citep{Piironen}.
+problem. For Bayesian regression, several different priors that provide model shrinkage
+have been proposed, including the Laplace prior (which is closely related to
+lasso regression), the horseshoe prior, and the hierarchical shrinkage prior.
+A hierarchical shrinkage prior for regression weights
+$\beta = [\beta_1, \dotsc \beta_p]$ can be defined as
+\begin{subequations}
+  \begin{align}
+    \beta_j | \lambda_j, \tau & \sim N(0, \lambda_j^2 \tau^2) \\
+    \lambda_j                 & \sim t_\nu^+(0,1),
+  \end{align}
+\end{subequations}
+where $t_\nu^+$ denotes the half-Student-$t$ prior with $\nu$ degrees of freedom
+\citep{Piironen2015}. The $\lambda_j$ correspond to a local scale parameter and
+$\tau$ to a global scale. As an example, in a very sparse model with many irrelevant
+covariates, the model would ideally make $\tau$ small (so that $p(\beta)$ is shrunk
+closely to zero), but allow some $\lambda_j$ to be large to escape the shrinkage.
+Additional priors need to be assigned to $\tau$, $\sigma$ and $\beta_0$, of course.
+Bayesian shrinkage priors, however, do not lead to a sparse solution as there remains
+uncertainty in the posterior distribution and no coefficient can be considered
+exactly zero.
 
-For Bayesian regression, several different priors allowing model
-shrinkage have been proposed, including the Laplace prior
-(which is closely related to lasso regression), the horseshoe prior,
-and the hierarchical shrinkage prior. The latter has been shown
-to generally outperform the others.
 
-In this work a recently published Bayesian variable selection method called
-projection prediction variable selection was used to infer miRNA-mRNA
-target relationships. The details of this method
-are presented in Section \ref{sec:PPVS}.
+\subsubsection{Bayesian variable selection}
+
+In order to find a small set of relevant predictive variables, a model
+selection approach needs to be applied. To this end, a range of methods
+applicable in Bayesian analysis have been proposed; examples include using
+Bayesian cross validation, different information criteria, and projection
+methods to determine the submodel giving the best compromise between
+prediction accuracy and model size. A detailed review of these falls outside
+the scope of this thesis, however, a comprehensive one has been recently
+written by Vehtari and Ojanen
+\citep{Vehtari2012}.
+
+In the context of variable selection for regression,
+Piironen and Vehtari recently suggested that, for problems where data
+are scarce and the number of candidate variables high, using projection predictive
+variable selection is effective \citep{Piironen2016}. The idea, proposed by
+Dupuis and Robert \citep{Dupuis2003}, is to fit a full reference model
+encompassing all candidate variables and uncertainties related to their
+effect, and then use projection to find a submodel that gives similar
+predictions compared to the reference model.
+
+An issue with this method is deciding how many variables should be included
+in the model, and what is considered similar-enough predictive performance
+from the submodel. Piironen and Vehtari suggest using cross-validation
+to guide the variable selection process and give a practical guideline
+for stopping the selection, which we will return to in Section \ref{sec:PPVS}.
+
+In this thesis, projection predictive variable selection is used for
+inferring putative microRNA targets from breast cancer expression
+data using Bayesian regression. Further details of the used method are
+presented in section \ref{sec:PPVS}.
 
 
 
