@@ -41,9 +41,9 @@ experimentally validated regulators could have different priors as well.
 One disadvantage of the proposed method relates to scaling of the regression
 covariates, that is, the mRNA and miRNA expression variables. Sequencing studies have shown
 that a relatively small number of miRNAs accounts for over 80\% of tissue microRNA
-\citep{Landgraf2007}. Therefore, small changes in the expression of these highly
+\citep{Landgraf2007}. Therefore, changes in the expression of these highly
 abundant miRNAs may have a relatively large impact on protein levels, where as
-changes in less expressed miRNAs may have little to no efect on target gene
+similar changes in less expressed miRNAs may have little to no efect on target gene
 expression. This difference is lost by scaling all miRNA variables to a similar scale.
 
 However, many of the most abundant miRNAs are ubiquitously expressed across
@@ -56,6 +56,10 @@ comparable. One could easily envision a scaling procedure where the relative
 levels of different miRNAs are preserved and gene expression is scaled
 relative to mean miRNA expression, for example, but it is debatable whether
 this would be appropriate either.
+
+Searching for ositive vs negative regulation. In fact, of all the experimentally validated
+human miRNA targets listed in DIANA-TarBase, less than 0.2\% have
+a confirmed positive regulation. 
 
 The proposed model also does not account for the fact that microRNAs have
 several, even hundreds, of target transcripts \citep{}. Therefore, the regulatory
