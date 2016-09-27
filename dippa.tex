@@ -59,6 +59,13 @@
 %% Define which sections to include
 \includeonly{appendix-QC-plots}
 
+
+
+
+
+
+
+%%=========================================================
 %% All that is printed on paper starts here
 \begin{document}
 \renewcommand{\thesissupervisorname}{Thesis supervisor}
@@ -138,7 +145,7 @@
 
 
 
-
+%%=========================================================
 %% English abstract.
 %% All the information required in the abstract (your name, thesis title, etc.)
 %% is used as specified above.
@@ -208,17 +215,12 @@ of an integrating different data types is highlighted.
 
 
 
-
-
-
-
-
+%%=========================================================
+%% Preface
 
 %% Force new page so that the preface starts from a new page
 \newpage
 
-%% Preface
-%%
 \mysection{Preface}
 Ja heillä kaikilla oli niin mukavaa.\\
 
@@ -227,14 +229,6 @@ Helsinki, X.X.2016
 
 \vspace{5mm}
 {\hfill Viljami Aittom\"aki \hspace{1cm}}
-
-
-
-
-
-
-
-
 
 
 %% Force new page after preface
@@ -256,7 +250,7 @@ Helsinki, X.X.2016
 
 
 
-
+%%=========================================================
 %% Symbols and abbreviations
 \mysection{Symbols and abbreviations}
 
@@ -324,55 +318,20 @@ RPPA        & Reverse phosphatase protein array
 
 
 
-
-
-
-
-
 %%=========================================================
 %% Text body begins
 
-
-
-
-%\section{Introduction}
-%% Leave first page empty
-%\thispagestyle{empty}
 \include{introduction}
 
-
-
-
-
-%\clearpage
-%\section{Background}\label{background}
+%\clearpage (\include implicity does a \clearpage)
 \include{background}
 
+\include{bayesian-analysis}
 
-
-
-
-
-%\clearpage
-%\section{Research material and methods}
 \include{material-methods}
 
-
-
-
-
-
-%\clearpage
-%\section{Results}
 \include{results}
 
-
-
-
-
-
-%\clearpage
-%\section{Discussion} 
 \include{discussion}
 
 
@@ -389,19 +348,12 @@ RPPA        & Reverse phosphatase protein array
 
 
 
-
-
-
-
-
-
-
+%%=========================================================
+%% References
 
 \clearpage
-%% References
 %% The \phantomsection command is nessesary for hyperref to jump to the 
 %% correct page, in other words it puts a hyper marker on the page.
-%% MITES TAA TEHAAN BIBTEXILLA???
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
@@ -425,21 +377,17 @@ RPPA        & Reverse phosphatase protein array
 
 
 
-
+%%=========================================================
 %% Appendices
+
 \clearpage
 \thesisappendix
 
 \section{Table of full model properties\label{app:full-model-table}}
-
 %\begin{landscape}
-    \input{final-model-table}
+\input{final-model-table}
 %\end{landscape}
 
-
-
 \include{appendix-QC-plots}
-
-
 
 \end{document}
