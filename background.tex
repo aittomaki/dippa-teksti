@@ -849,11 +849,7 @@ both direct and indirect (mediated through regulation of other mRNAs)
 Let us henceforth define $y_k = [y_1k, \dotsc y_nK]$ as a vector of expression
 values of mRNA $k (k = 1, 2, \dotsc, K)$ and $X_{n \times p} = [x_j] =
 [x_{ij}]$ as the matrix of expression values of miRNAs $j (j = 1, 2, \ldots,
-p)$ for observations $i (i = 1, \ldots, n)$. In the case of regression
-analysis (discussed below), for simplicity of notation, the subscript of $y_k$
-is suppressed, and $X$ denotes a matrix $X_{n \times p+1}$, where a constant
-vector $x_0 = [1, \ldots, 1]^T$ has been added to account for the intercept
-term.
+p)$ for observations $i (i = 1, \ldots, n)$.
 
 \paragraph{Correlation}
 Several methods and publications use a straightforward approach to identifying
@@ -899,7 +895,8 @@ A linear regression model for mRNA expression $y$ is defined as
 \end{equation}
 where $\beta = [\beta_0, \ldots, \beta_p]$ is the vector of regression coefficients,
 $\beta_0$ is the intercept term, $\epsilon$ is the error term, and $X$ is the
-matrix of covariates, i.e. the miRNA expression vectors. The parameter of
+matrix of covariates, i.e. the miRNA expression vectors (where a constant column
+vector of $x_0=1$ has been added for the intercept). The parameter of
 interest is $\beta$, which determines to the contribution of each miRNA to the
 response variable, i.e. mRNA expression. The regression error $\epsilon$
 represents noise and fitting error caused by variation not captured by the
