@@ -110,11 +110,12 @@ The general assumption has been that mRNA expression is representative of gene
 expression and that changes in mRNA abundances also reflect changes in protein
 abundances and, therefore, cellular processes. This assumption has recently
 been challenged by experiments indicating that the expression of mRNA and
-correspoding protein correlate poorly in general \citep{tahanOliNiitaRefeja}.
+correspoding protein often correlate poorly, with mRNA expression 
+explaining around 40\% of variation in protein abundances \citep{Vogel2012}.
 There are also contrary findings of modest to good correlation
 and one study suggested that mRNA-protein correlation is generally higher for
 genes that have differing mRNA expression between studied conditions
-(e.g. cancerous versus healthy tissue) \citep{seYksPaperi}.
+(e.g. cancerous versus healthy tissue) \citep{Koussounadis2015}.
 
 Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
 sufficiently correlated to act as proxies for each other" and that
@@ -1056,7 +1057,11 @@ these are covered in the next section.
 The foundation of Bayesian data analysis is quantifying uncertainty as
 probability. Current knowledge about unknown parameters and variables is
 described as probability distributions \citep{Gelman2013}.
-Inherently suited to dealing with noisy real-world data.
+This provides a framework which is inherently suited to dealing with noisy
+real-world data, as measurement noise is naturally included in
+probability statements.
+
+\subsubsection{Basics of Bayesian analysis}
 
 Bayesian analysis begins by defining a joint probability model $p(y,\theta)$
 for observed data $y$ and unknown model parameters $\theta$.
@@ -1084,29 +1089,36 @@ Noting that $p(y)$ does not depend on $\theta$, we can write Equation
 The latter is referred to as the unnormalized posterior distribution. The
 Bayes' theorem forms the heart of Bayesian inference and illustrates the core
 concept of updating prior beliefs to account for observed evidence. The
-posterior represents a compromise between prior knowledge and information
-contained in observed data, and as the number of observations increases, the
+posterior provides a probability assessment of the possible values of 
+a parameter, and represents a compromise between prior knowledge and information
+contained in observed data. As the number of observations increases, the
 data have increasing influence on the posterior \citep{Gelman2013}.
 
-The virtue of modeling uncertainty as probabilities is that they are
-conceptually easy to grasp and often allow common-sense interpretations of conclusions
-to be made.
+The virtue of modeling uncertainty as probabilities -- in addition to
+naturally dealing with noise -- is that they are conceptually easy to grasp
+and often allow common-sense interpretations of conclusions to be made.
 \footnote{This is especially true compared to classical frequentist analysis,
-which is defined through a series of repeated similar inferences. For
+which is defined within the context of repeated sampling (and inference) from
+a fixed but unknown process generating the observations. For
 example, frequentist confidence intervals strictly do not indicate that the
 true value of the parameter is contained within with high probability -- a
 common misconception -- where as Bayesian posterior intervals do (subject to
 modeling assumptions, of course).}
 Bayesian modeling is also flexible and can cope with complex problems with
-relative ease. Prior knowledge about the parameters of interest can be
+relative ease. Prior and expert knowledge about the parameters of interest can be
 embedded in the prior distribution and different priors may be assigned to
-each parameter. Hierarchical models -- where parameters of prior
-distributions have their own priors called \emph{hyperpriors} -- allow
-constructing complex models where similar data are available on several
-different levels of observations, such as expression measurements from
-several separate experiments.
+each parameter.
 % additional data can be included sequentially using a
 % previously obtained posterior as a new prior distribution.
+
+Hierarchical models -- where parameters of the prior
+distributions have their own priors called \emph{hyperpriors} -- provide
+additional flexibility. In situations where model parameters are
+related to each other, a common hyperprior may be used for several parameters.
+Hierarchical models are particularly appropriate in settings where
+data are sparse (as available information is be shared between parameters)
+or the data are naturally structured into several levels, such as 
+similar measurements from different hospitals or schools.
 
 The challenge in Bayesian analysis is choosing proper probability models for
 the parameters and observations, including prior distributions as well as the
@@ -1119,6 +1131,7 @@ priors can be used to decrease the effect of subjective information (or
 in cases where no prior knowledge is available) and results from
 inferences using non-informative priors often coincide with classical
 analyses.
+
 
 % In cases where no prior information is available, weakly informative
 % or noninformative priors can be used. These convey little or no
@@ -1144,26 +1157,6 @@ analyses.
 % unless there is prior information which the confidence interval can't take
 % into account, or finding the sufficient and ancillary statistics is hard.
 
-
-\subsubsection{Previous Bayesian target-prediction methods}
-
-% Bayesian analysis has previously been applied to miRNA target prediction.
-
-One of the earliest tools to use expression data for target prediction was
-GenMir++. It is based on A BAYESIAN SYSTEEMI, KIRJOITA AUKI.
-The latest version of GenMir (GenMir3) now integrates sequence-based features
-into the algorithm, although the authors note that this does not affect the
-results to a significant extent.
-
-Stingo et al have proposed a Bayesian method based on spike-and-slab variable
-selection.
-
-Previous Bayesian miRNA methods:
-\begin{itemize}
-  \item Stingo et al
-  \item GenMir3/GenMir++
-  \item Se joku graafinen (korkeintaan lauseen maininta)
-\end{itemize}
 
 
 \subsubsection{Bayesian regression and variable selection}
@@ -1254,6 +1247,27 @@ within-chain variation for each parameter \citep{Gelman2013}. Gelman et al
 suggest $\hat{R}^2 < 1.1$ is a reasonable indicator of good convergence. It is
 also good practice to discard the first simulation samples (commonly the first
 half of each chain) to ensure that samples arise from a converged state.
+
+
+\subsubsection{Previous Bayesian target-prediction methods}
+
+% Bayesian analysis has previously been applied to miRNA target prediction.
+
+One of the earliest tools to use expression data for target prediction was
+GenMir++. It is based on A BAYESIAN SYSTEEMI, KIRJOITA AUKI.
+The latest version of GenMir (GenMir3) now integrates sequence-based features
+into the algorithm, although the authors note that this does not affect the
+results to a significant extent.
+
+Stingo et al have proposed a Bayesian method based on spike-and-slab variable
+selection.
+
+Previous Bayesian miRNA methods:
+\begin{itemize}
+  \item Stingo et al
+  \item GenMir3/GenMir++
+  \item Se joku graafinen (korkeintaan lauseen maininta)
+\end{itemize}
 
 
 
