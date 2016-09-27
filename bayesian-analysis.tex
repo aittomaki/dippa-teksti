@@ -193,6 +193,7 @@ lasso regression), the horseshoe prior, and the hierarchical shrinkage prior.
 A hierarchical shrinkage prior for regression weights
 $\beta = [\beta_1, \dotsc \beta_p]$ can be defined as
 \begin{subequations}
+  \label{eq:hs-prior}
   \begin{align}
     \beta_j | \lambda_j, \tau & \sim N(0, \lambda_j^2 \tau^2) \\
     \lambda_j                 & \sim t_\nu^+(0,1),
@@ -202,8 +203,9 @@ where $t_\nu^+$ denotes the half-Student-$t$ prior with $\nu$ degrees of freedom
 \citep{Piironen2015}. The $\lambda_j$ correspond to a local scale parameter and
 $\tau$ to a global scale. As an example, in a very sparse model with many irrelevant
 covariates, the model would ideally make $\tau$ small (so that $p(\beta)$ is shrunk
-closely to zero), but allow some $\lambda_j$ to be large to escape the shrinkage.
+close to zero), but allow some $\lambda_j$ to be large to escape the shrinkage.
 Additional priors need to be assigned to $\tau$, $\sigma$ and $\beta_0$, of course.
+
 Bayesian shrinkage priors, however, do not lead to a sparse solution as there remains
 uncertainty in the posterior distribution and no coefficient can be considered
 exactly zero.
