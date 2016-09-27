@@ -105,38 +105,50 @@ type.
 Correlation analyses.
 
 
-\subsubsection{Variable selection with projection prediction}\label{sec:PPVS}
+\subsubsection{Target prediction using regression}\label{sec:PPVS}
 
 For predicting protein expression from mRNA and miRNA expression, a similar
 regression model to Aure et al was used (here referred to as the \emph{full
 model}):
 \begin{equation}
-	y_j = w_0 + z_j w_g + X w_j + \epsilon_j,
+	y = \beta_0 + z \beta_g + X \beta + \epsilon,
 \end{equation}
-where $y_j$ denotes the protein expression vector for the protein $j$ which
-is produced from translation of the mRNA $j$ ($j = (1, ..., K)$), $w_g$
-is the regression coefficient for mRNA $j$, and $w_0$ is the intercept term
+where $y$ denotes the protein expression vector for the protein, which
+is produced from translation of the mRNA $z$, $w_g$
+is the regression coefficient for the mRNA, $X$ is the matrix of miRNA
+expression vectors, and $w_0$ is the intercept term
 (for a justification of this equation, see Aure et al \citep{Aure2015}).
 A model with only the mRNA expression covariate (called the \emph{gene-only} model),
-defined as $y = w_0 + z w_g + \epsilon$, was used as a baseline for the full model.
+defined as $y = \beta_0 + z \beta_g + \epsilon$, was used as a baseline for the full model.
 A normally ditributed error term with equal errors and no correlation
 between observations was assumed for all models.
 
-For Bayesian regression, the likelihood was therefore defined as
+In Bayesian regression, the likelihood was therefore defined as
 \begin{equation}
-	y | w_g, w, \sigma, z, X \sim N(Xw, \sigma^2I),
+	y | \beta_g, \beta, \sigma, z, X \sim N(\beta_0 + z \beta_g + X \beta, \sigma^2I),
 \end{equation}
-The intercept and mRNA coefficients were given Gaussian prior
-distributions with zero mean and standard deviation $\sigma=5$.
-A hierarchical shrinkage prior was applied to the miRNA coefficients
-$w_j$.
-
-Explain:
-\begin{itemize}
-  \item hierarchical shrinkage priors
-  \item projection prediction variable selection
-  \item justification for variance of tau prior ($p_n$ van Der Pass)
-\end{itemize}
+The intercept and mRNA coefficient were given diffuse Gaussian priors
+and $\sigma$ a uniform prior:
+\begin{subequations}
+  \begin{align}
+    \beta_0 & \sim N(0, 5^2) \\
+    \beta_g & \sim N(0, 5^2) \\
+    \sigma  & \propto 1.
+  \end{align}
+\end{subequations}
+A hierarchical shrinkage prior was applied to the miRNA coefficients $\beta$,
+as defined in Equation \eqref{eq:hs-prior}. The degrees of freedom for the
+$\lambda_j$ priors was set at $\nu=3$ (similar to Piironen and Vehtari
+\citep{Piironen2015}). Van der Pass et al have suggested a constant value for $\tau =
+p_n/n*\sqrt{\textup{log}(n/p_n)}$, where $p_n$ is the assumed number of
+relevant covariates and $n$ is the number of observations
+\citep{vanDerPassXXXX}. A half-Cauchy is a common choice of prior for $\tau$,
+used e.g. by Peltonen et al \citep{PeltonenXXXX} and Piironen and Vehtari
+\citep{Piironen2015}. A combination of these approaches was used,
+defining the prior for $\tau$ as:
+\begin{equation}
+    \tau ~ \textup{Half-Cauchy}(0, p_n/n*\sqrt{\textup{log}(n/p_n)})
+\end{equation}.
 
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
 Ensembl gene ID's were downloaded for all protein-coding genes in the human
