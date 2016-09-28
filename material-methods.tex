@@ -172,7 +172,7 @@ $\hat{p_n} = 13.75$.
 \subsubsection{Variable selection}
 
 Projection predictive variable selection (as described in Section
-\ref{sec:bayes-variable- selection}) was used to obtain the relevant set
+\ref{sec:bayes-variable-selection}) was used to obtain the relevant set
 of microRNAs for each gene. A full model was fitted by drawing 2000 samples
 from the posterior using RStan (4 chains, 1000 samples each and the first half
 discarded as burn-in). A random sample of $S=1000$ simulation samples from the
@@ -190,41 +190,44 @@ process was performed $K=10$ times, each leaving $n/K$ observations out for
 evaluation. To judge the appropriote model size, estimation of submodel
 predictive performance was used as explained below.
 
-\paragraph{Predictive performance}
+\paragraph{Model predictive performance}
+The predictive performance of each submodel was evaluated using 
+a log predictive density.
 Given submodel $M_\perp$ with the posterior predictive distribution
 $p(\tilde{y}| \tilde{z}, \tilde{X}_\perp, \mathbf{\theta}_\perp, D_\perp)$,
 where $D_\perp$ is the observed data in the current submodel and
-$\mathbf{\theta}_\perp$ the projected parameters, the predictive performance
-of each submodel was evaluated with the logarithm of the predictive density
-(LPD) at each of the left-out observations $(y_*, z_*, X_*)$ The LPD was
+$\mathbf{\theta}_\perp$ the projected parameters, the logarithm of the predictive density
+(LPD) was computed at each of the left-out observations $(y_*, z_*, X_*)$ The LPD was
 estimated by averaging over the simulated posterior samples:
 \[
-	textup{LPD}_*(M_\perp) \approx \textup{log}\frac{1}{S} \sum_s^S p(y_*| z_*, X_*, \mathbf{\beta}_\perp, \sigma_\perp).
+	\textup{LPD}_*(M_\perp) \approx \textup{log}\frac{1}{S} \sum_s^S p(y_*| z_*, X_*, \mathbf{\beta}_\perp, \sigma_\perp).
 \]
 The LPD's from each fold were pooled and a mean over the full set of data
 (MLPD) was used as a summary. To compare the predictive performance of a
-sbumodel to the full model the difference in MLPD ($\Delta \textup{MLPD}$) was
-used. Bayesian bootstrap (with 5000 samples) was used to estimate a
-distribution for $\Delta \textup{MLPD}$ by:
+submodel to the full reference model, the difference in MLPD ($\Delta \textup{MLPD}$) was
+computed. Bayesian bootstrap (with 5000 samples) was used to estimate a
+distribution for $\Delta \textup{MLPD}$ as:
 \[
-	\Delta \textup{MLPD}^{s} = \sum_i^n w_i^{(s)} \left [ LPD_i(M_\perp) - LPD_i(M_{\textup{full}}) \right ],
+	\Delta \textup{MLPD}^{s}(M_\perp,M_{\textup{full}}) = \sum_i^n w_i^{(s)} \left [ \textup{LPD}_i(M_\perp) - \textup{LPD}_i(M_{\textup{full}}) \right ],
 \]
 where $w_i^{(s)}, i = 1, \dotsc,n$, are the bootstrap weights
-for the $s$th bootstrap sample (subject to $\sum_i w_i^{(s)} = 1$).
+for the $s$'th bootstrap sample (subject to $\sum_i w_i^{(s)} = 1$).
 The \emph{bayesboot} R package was used for computing the bootstrap.
+The $\Delta \textup{MLPD}^{s}(M_\perp,M_{\textup{full}})$ was then used
+as an estimate of the predictive performance of submodel $M_\perp$.
 
 \paragraph{Choosing model size}
 The threshold for choosing the model size was defined as the smallest
 model satisfying
 \begin{equation}
 	\label{eq:size-condition}
-	\textup{Pr}(\Delta \textup{LPD} < U) \geq \alpha,
+	\textup{Pr}(\Delta \textup{MLPD}(M_\perp,M_{\textup{full}}) > U) \geq \alpha,
 \end{equation}
-where $U = \gamma \textup{E}(LPD_{\textup{full}}-LPD_{0})$, and
-$LPD_0$ refers to the intercept-only model. This means that model
-size was chosen such that the probability of the difference in utility
-between projected and full model being smaller than a constant times
-the difference between intercept-only and full model was at least $\alpha$.
+where $U = \gamma \Delta \textup{MLPD}(M_0,M_{\textup{full}})$, and
+$M_0$ refers to the intercept-only model. This means that model
+size was chosen such, that the probability of the predictive
+performance of the projected model being larger than a constant times
+the performance of the intercept-only model was at least $\alpha$.
 Several different values for $\alpha$ and $\gamma$ were experimented with.
 
 \paragraph{Final model selection}
