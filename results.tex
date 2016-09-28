@@ -5,23 +5,11 @@
 \section{Results}
 
 \begin{itemize}
-  \item QC plots
-  \begin{itemize}
-    \item distributions of arrays
-    \item PCA and hierarch. clust of samples with hospital colors
-  \end{itemize}
-  \item correlation plots
-  \begin{itemize}
-    \item mRNA-protein
-    \item miRNA-mRNA (target vs non-target)
-    \item miRNA-protein (target vs non-target)
-    \item all three combined (additionally with grouping by intrinsic subtype?)
-  \end{itemize}
   \item cross-validation results
   \begin{itemize}
     \item example plots of search path ("good" and "bad")
   \end{itemize}
-  \item miRNA coefficients from final models
+  \item miRNA coefficients from final models (only a few of these!)
   \begin{itemize}
   	\item plot of different threshold values
     \item number of miRNAs included
@@ -35,48 +23,96 @@
     \item magnitude of chosen miRNA coefs vs gene and constant
     \item posterior mean vs sd scatter (järkevä?)
   \end{itemize}
+  \item Comparison with Lasso
+  \begin{itemize}
+    \item number of validated targets predicted
+    \item number of validated targets missed
+    \item scatter of common coefs
+  \end{itemize}
   \item simple network analysis?
-  \begin{itemize}
-    \item connections between included miRNAs and genes
-    \item some pathway analysis or geneset enrichment? (moot since proteins from PIK3-path?)
-  \end{itemize}
-  \item DE analysis of included/significant miRNAs?
-  \begin{itemize}
-    \item triple negative cancers vs others
-    \item alternatively correlations between significant miRNAs-proteins grouped by intrinsic subtypes?
-  \end{itemize}
 \end{itemize}
 
 \subsection{Quality control}
 
 Quality-control plots are presented in Appendix \ref{app:qc-plots}. Two
 observations are worth noting. First, several genes have significant outliers
-in the protein data. Second, the miRNA microarrays have distributions that are
-highly skewed towards very small values. This is indicative of the generally
-low abundances of miRNA molecules and, although partly due to different
-preprocessing compared to the mRNA and protein arrays, it raises suspicion of
-significant noise in the miRNA data. The raw chip data produced from
-microarray readers could not be assessed, as these were not available.
+in the protein data (most notably the genes CDK1, ERRFI1, PIK3CA). This is
+most apparent in the scaled data. Second, the miRNA microarrays have bimodal
+distributions, and many miRNA variables are highly skewed towards very small
+values. This is indicative of the generally low abundances of some miRNA molecules
+and, although partly due to different preprocessing compared to the mRNA and
+protein arrays, it raises suspicion of significant noise in the miRNA data.
+The raw array data produced from Agilent array readers was not assessed here.
 
 The first two principal components for each data type were plotted and are
 shown in Figure \ref{fig:pca}. No significant batch effect is visible. The
 hierarchical clustering of samples (not shown) had a similar result.
 
 
+\subsection{Correlation analysis}
+
+Pearson correlations between variables from the different datatypes are shown in Figure
+\ref{fig:correlations}. Protein-mRNA correlation is clearly higher for gene-matched pairs
+(that is protein and mRNA expression corresponding to the same gene), and for
+unmathced pairs correlations are concentrated around zero, both expected
+results. Notable, even the gene-matched correlations are quite low, with a
+mean $\bar{\rho} \approx 0.37$ and roughly 67\% of genes having $\rho < 0.5$, and
+some having negative correlation. This is in alignment with earlier results. 
+
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/correlationPlots/protein-gene-correlation.pdf}
+    \subcaption{ \label{fig:protein-gene-cor}}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/correlationPlots/protein-mirna-correlation.pdf}
+    \subcaption{ \label{fig:protein-mirna-cor}}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+    %\centering
+    \includegraphics[width=1\linewidth]{figures/correlationPlots/gene-mirna-correlation.pdf}
+    \subcaption{ \label{fig:gene-mirna-cor}}
+  \end{subfigure}
+
+  \caption{Distributions of Pearson correlations between variables of different expression data types.
+  The distributions are trimmed at the smallest and largest values.
+  (a) Correlation between protein and mRNA pairs, where "matched" refers to correlating
+  protein and mRNA from the same gene. (b) Correlation between protein and miRNA pairs,
+  where "validated" refers to the gene being a validated target of the miRNA, and
+  "random" to a randomly picked group of protein-miRNA pairs.
+  (c) Correlation between mRNA and miRNA pairs,
+  where "validated" refers to the gene being a validated target of the miRNA, and
+  "random" to a randomly picked group of miRNA-mRNA pairs.}
+  \label{fig:correlations}
+\end{figure}
+
+Correlations between miRNAs and their validated target genes are mostly low
+with no preference towards negative (or positive) values. There is virtually
+no difference in correlations between validated targets and randomly picked
+gene-miRNA pairs, contrary to what might be expected. This suggests that
+(Pearson) correlation of expression data is not a suitable method for finding
+miRNA targets.
+
+
+\subsection{Variable selection}
+
 All parameters for all simulations had $\hat{R}^2 < 1.1$, indicating
 good convergence of simulation chains \citep{Gelman2013}.
 
 Figure \ref{n-miRNAs-vs-R2} shows the number of miRNA variables included in
-each full model plotted against the number of significant miRNA variables, the
-$R^2$ of the full model, and the difference in $\bar{R}^2$ between the full
-model and the model with only the gene variable. Each point in each plot
-corresponds to one full model, and smoothed curves were fitted using locally
+each projected model plotted against the number of significant miRNA
+variables, the $R^2$ of the projected model, and the difference in $\bar{R}^2$
+between the projected model and the gene-only model. Each point in each plot
+corresponds to one  model, and smoothed curves were fitted using locally
 weighted scatter plot smoothing (LOESS). A trend emerges, where including more
 miRNA variables tends to achieve better performance up to a turning point --
 around 28 miRNA variables -- after which larger models seem to perform
-increasingly poorly. Similar plots were created with more strict cross-
-validation thresholds ($\gamma$ and $\alpha$); the models were larger on
-average, but an equal trend and turning point were seen (data not shown).
+increasingly poorly. Similar plots were created with more strict model-size
+thresholds ($\gamma$ and $\alpha$); the models were larger on
+average, but an equal trend and turning point were observed (data not shown).
 
 \begin{figure}[htb]
   \centering
@@ -86,21 +122,45 @@ average, but an equal trend and turning point were seen (data not shown).
 
 There could be several explanations for this trend. Firstly, the largest
 models could simply be a result of the predictors not fitting the observed
-variable well. This often results in a large model, because including more
-predictors always makes the model fit asymptotically better -- both in the
+variable well. This can result in a large model, because including more
+predictors often makes the model fit asymptotically better -- both in the
 sense of $R^2$ and generally also the predictive density, which was used as
 the measure of fit for the variable-selection process. From a biological
 perspective, this means that the mRNA and miRNA expression are not sufficient
 to explain the protein expression; other factors, that the model does not
-account for (e.g. protein degradation), possibly dominate the protein
-abundance. Secondly, the marginal posterior of a single predictor can indicate
+account for (e.g. protein degradation), possibly dominate.
+Secondly, the marginal posterior of a single predictor can indicate
 non-significance, while the joint posterior of several predictors combined
 might still achieve significance. This would indicate that the effect of
 miRNAs is only significant when acting simultaneosly, a hypothesis that is
 supported by experimental evidence, as discussed in section
 \ref{microrna-function}.
 
-A table of properties for the full models is presented in Appendix
+A table of properties for the projected models is available in Appendix
 \ref{app:full-model-table}.
 
-To examine the latter point, \textbf{SOMETHING COULD BE DONE? AKI?}.
+
+\subsubsection{Comparison to lasso regression}
+
+Number of validated targets predicted and missed for both. (Also compare
+to seq-based prediction if time).
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.6\linewidth]{figures/compareModels/Venn_PPVS-sig_Lasso.pdf}
+  \caption{Venn diagram showing the overlap of predicted miRNA targets
+  between projection prediction (PPVS) and lasso regression.}
+  \label{fig:venn-ppvs-lasso}
+\end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=.6\linewidth]{figures/compareModels/PPVS_Lasso_coef_scatter.pdf}
+  \caption{Scatter plot of miRNA regression coefficients from projection
+  prediction (PPVS) and lasso for the 145 common targets predicted by both methods.
+  Note that PPVS coefficients generally have greater magnitude. The gray
+  line marks unity ($x=y$).}
+  \label{fig:scatter-ppvs-lasso}
+\end{figure}
+
+Projection was clearly better?
