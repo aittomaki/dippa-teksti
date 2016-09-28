@@ -247,11 +247,11 @@ A lasso regression model was also fitted for each gene using the
 \emph{glmnet} R package. In this case the mRNA variable was treated equal
 to the miRNA variables and subjected to the lasso regularization.
 For choosing the regularization parameter $\lambda$, a 10-fold cross
-validation was done, and the largest $\lambda$ that gave
+validation was done, and the largest $\lambda$ (i.e. sparsest model) that gave
 a mean square prediction error (MSE) at most one standard deviation
 apart from the lowest MSE was used. The covariates included
 in the model using the chosen $\lambda$ were considered putative
-target interactors. For same genes, this criterion was met by
+target interactors. For some genes, this criterion was met by
 the intercept-only model, and again, in these cases
 none of the miRNAs were deemed as targeting the gene.
 
@@ -263,20 +263,22 @@ The coefficient of determination $R^2$ of a predictive model is defined as
 \begin{equation}
 	R^2 = \frac{SS_{\textup{residuals}}}{SS_{\textup{total}}} = \frac{\sum_{i=1}^{n}(\hat{y}_i-y_i)^2}{\sum_{i=1}^{n}(y_i-\bar{y})^2},
 \end{equation}
-where $\hat{y}_i$ are the predictions made by the model and $\bar{y}$ is the mean of the outcome variable.
+where $\hat{y}_i$ are the predictions made by the model and $\bar{y}$
+is the mean of the outcome variable $y$.
 $R^2$ indicates the proportion of variance of the outcome variable that is explained
-by a statistical model. It provides a measure of how well the model
-replicates the observed values and can be used as a measure of model fit.
+by a statistical model, and can be used as a measure of model fit.
 $R^2$ has the property of being invariant to variable scaling, which
 makes it suitable for use with expression data, as expression data
-do not have a well defined scale, $R^2$. A caveat of
+do not have a well defined scale. A caveat of
 $R^2$ is that in linear regression it often increases monotonically by adding more explanatory
-variables. The adjusted $R^2$, defined as $\bar{R}^2 = 1-(1-R^2)*(n-1)/(n-p)$
+variables. The adjusted $R^2$, defined as $\bar{R}^2 = 1-(1-R^2)\frac{n-1}{n-p}$
 (where $n$ is the number of observations and $p$ the number of explanatory
 variables) adjusts for the number of regressors relative to the number of
 observations, thus penalizing inclusion of additional variables. $\bar{R}^2$
 was used for comparing the projected model with the gene only model.
 
+For measuring simulation chain convergence, the $\hat{R}^2$ measure proposed by Gelman et al
+was used.
 
 
 \subsubsection{Verification of predicted targets}
