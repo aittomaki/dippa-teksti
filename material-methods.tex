@@ -56,11 +56,22 @@ for cell-cycle regulation and, thus, cancer. \textbf{(ref to G.Mills?)}.
 
 \subsection{Methods}
 
+A Bayesian regression model of protein, mRNA and miRNA expression data was
+constructed, and projection predictive variable selection was used to predict
+microRNA targets in breast cancer data. Details of the methods used are
+presented in this section. All computational analyses were performed in R
+\citep{R} and workflow management was handled with Anduril \citep{Ovaska2010}.
+Monte-Carlo simulations for the Bayesian regression models were performed with
+\emph{RStan} \citep{RStan} using the No-U-Turn variant of a Hamiltonian Monte Carlo
+algorithm for sampling posterior distributions. Simulations were run using
+computer resources within the Aalto University School of Science "Science-IT"
+project.
+
 
 \subsubsection{Preprocessing and quality control}
 
 MicroRNA and mRNA expression data were downloaded from the Gene Expression
-Omnibus (accessions GSEXXX and GSEXXX, respectively \citep{Edgar2002}) using
+Omnibus (accessions GSE8210 and GSE8212, respectively \citep{Edgar2002}) using
 the GEOquery R package \citep{GEOquery}. Protein expression data were
 downloaded as a Microsoft Excel sheet from the supplementary data of Aure et
 al \citep{Aure2015}. All of the data are in log scale, as is usual for
@@ -102,15 +113,15 @@ type.
 
 
 
-Correlation analyses.
+\subsubsection{Correlation analysis}
 
 
-\subsubsection{Target prediction using regression}\label{sec:PPVS}
+\subsubsection{Regression models}
 
 For predicting protein expression from mRNA and miRNA expression, a similar
-regression model to Aure et al was used (here referred to as the \emph{full
-model}):
+regression model to Aure et al was used:
 \begin{equation}
+	\label{eq:reg-model}
 	y = \beta_0 + z \beta_g + X \beta + \epsilon,
 \end{equation}
 where $y$ denotes the protein expression vector for the protein, which
@@ -118,15 +129,17 @@ is produced from translation of the mRNA $z$, $w_g$
 is the regression coefficient for the mRNA, $X$ is the matrix of miRNA
 expression vectors, and $w_0$ is the intercept term
 (for a justification of this equation, see Aure et al \citep{Aure2015}).
-A model with only the mRNA expression covariate (called the \emph{gene-only} model),
-defined as $y = \beta_0 + z \beta_g + \epsilon$, was used as a baseline for the full model.
-A normally ditributed error term with equal errors and no correlation
+A separate model was fitted for each gene.
+A model with only the mRNA expression covariate (called the \emph{gene-only model}),
+defined as $y = \beta_0 + z \beta_g + \epsilon$, was used as a baseline.
+A normally distributed error term with equal errors and no correlation
 between observations was assumed for all models.
 
-In Bayesian regression, the likelihood was therefore defined as
+The likelihood for Bayesian regression was therefore defined as
 \begin{equation}
-	y | \beta_g, \beta, \sigma, z, X \sim N(\beta_0 + z \beta_g + X \beta, \sigma^2I),
+	y | \mathbf{\beta}, \sigma, z, X \sim N(\beta_0 + z \beta_g + X \beta, \sigma^2I),
 \end{equation}
+where $\mathbf{\beta} = [\beta_0, \beta_g, \beta]$ for convenience.
 The intercept and mRNA coefficient were given diffuse Gaussian priors
 and $\sigma$ a uniform prior:
 \begin{subequations}
@@ -136,42 +149,132 @@ and $\sigma$ a uniform prior:
     \sigma  & \propto 1.
   \end{align}
 \end{subequations}
+These were also used in the gene-only model.
 A hierarchical shrinkage prior was applied to the miRNA coefficients $\beta$,
 as defined in Equation \eqref{eq:hs-prior}. The degrees of freedom for the
 $\lambda_j$ priors was set at $\nu=3$ (similar to Piironen and Vehtari
-\citep{Piironen2015}). Van der Pass et al have suggested a constant value for $\tau =
-p_n/n*\sqrt{\textup{log}(n/p_n)}$, where $p_n$ is the assumed number of
-relevant covariates and $n$ is the number of observations
-\citep{vanDerPassXXXX}. A half-Cauchy is a common choice of prior for $\tau$,
-used e.g. by Peltonen et al \citep{PeltonenXXXX} and Piironen and Vehtari
-\citep{Piironen2015}. A combination of these approaches was used,
-defining the prior for $\tau$ as:
+\citep{Piironen2015}). The prior for $\tau$ was defined as:
 \begin{equation}
-    \tau ~ \textup{Half-Cauchy}(0, p_n/n*\sqrt{\textup{log}(n/p_n)})
-\end{equation}.
-
+    \tau ~ \textup{half-Cauchy}(0, \frac{p_n}/{n}*\sqrt{\textup{log}(n/p_n)}),
+\end{equation}
+combining the previous suggestions of half-Cauchy and fixed $tau$.
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
 Ensembl gene ID's were downloaded for all protein-coding genes in the human
 genome using biomaRt \citep{biomaRt}. From these, a sample of 1000 genes was
 taken, and known validated microRNA interaction partners for each sampled gene
 were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
 validated miRNA interactors were assumed to have zero. The mean number of
-miRNA interactors per gene was used an estimate, giving
+miRNA interactors per gene was used as an estimate, giving
 $\hat{p_n} = 13.75$.
 
-The coefficient of determination, $R^2$ \textbf{(kaava!)}, was used as a measure of final model
-fit. $R^2$ is a favorable measure of goodness of fit, because it is invariant
-to variable scaling. As expression data do not have a well defined scale,
-$R^2$ is well-suited in this sense. One problem with $R^2$ is that it
-increases with the addition of more explanatory variables. The adjusted $R^2$,
-defined as $\bar{R}^2 = 1-(1-R^2)*(n-1)/(n-p)$ (where $n$ is the number of
-observations and $p$ the number of explanatory variables) adjusts for the
-number of regressors relative to the number of observations, thus penalizing
-for including additional variables. $\bar{R}^2$ was used for comparing the
-full model with the gene only model.
 
-Possible extras:
-\begin{itemize}
-	\item DE miRNA analysis between triple negatives and others
-	\item bipartite network from found MTIs and some network analysis
-\end{itemize}
+
+\subsubsection{Variable selection}
+
+Projection predictive variable selection (as described in Section
+\ref{sec:bayes-variable- selection}) was used to obtain the relevant set
+of microRNAs for each gene. A full model was fitted by drawing 2000 samples
+from the posterior using RStan (4 chains, 1000 samples each and the first half
+discarded as burn-in). A random sample of $S=1000$ simulation samples from the
+full posterior was used to increase projection speed. Then a series of
+submodels was obtained by projection from the full model and using a forward
+search strategy. That is, the search started from a model including only the
+intercept, the mRNA expression $z$ was always added as the first covariate,
+and then at each subsequent step, the miRNA covariate $x_j$ giving the largest
+decrease in KL-divergence between the full and projected models was chosen.
+The forward search was continued up to 200 variables.
+
+For choosing the model size, 10-fold cross validation was used, as proposed by
+Piironen and Vehtari \citep{Piironen2016}. That is, the above model selection
+process was performed $K=10$ times, each leaving $n/K$ observations out for
+evaluation. To judge the appropriote model size, estimation of submodel
+predictive performance was used as explained below.
+
+\paragraph{Predictive performance}
+Given submodel $M_\perp$ with the posterior predictive distribution
+$p(\tilde{y}| \tilde{z}, \tilde{X}_\perp, \mathbf{\theta}_\perp, D_\perp)$,
+where $D_\perp$ is the observed data in the current submodel and
+$\mathbf{\theta}_\perp$ the projected parameters, the predictive performance
+of each submodel was evaluated with the logarithm of the predictive density
+(LPD) at each of the left-out observations $(y_*, z_*, X_*)$ The LPD was
+estimated by averaging over the simulated posterior samples:
+\[
+	textup{LPD}_*(M_\perp) \approx \textup{log}\frac{1}{S} \sum_s^S $p(y_*| z_*, X_*, \mathbf{\beta}_\perp, \sigma_\perp)$.
+\]
+The LPD's from each fold were pooled and a mean over the full set of data
+(MLPD) was used as a summary. To compare the predictive performance of a
+sbumodel to the full model the difference in MLPD ($\Delta \textup{MLPD}$) was
+used. Bayesian bootstrap (with 5000 samples) was used to estimate a
+distribution for $\Delta \textup{MLPD}$ by:
+\[
+	\Delta \textup{MLPD}^{s} = \sum_i^n w_i^{(s)} \left [ LPD_i(M_\perp) - LPD_i(M_{\textup{full}}) \right ],
+\]
+where $w_i^{(s)}, i = 1, \dotsc,n$, are the bootstrap weights
+for the $s$th bootstrap sample (subject to $\sum_i w_i^{(s)} = 1$).
+The \emph{bayesboot} R package was used for computing the bootstrap.
+
+\paragraph{Choosing model size}
+The threshold for choosing the model size was defined as the smallest
+model satisfying
+\begin{equation}
+	\label{eq:size-condition}
+	\textup{Pr}(\Delta \textup{LPD} < U) \geq \alpha,
+\end{equation}
+where $U = \gamma \textup{E}(LPD_{\textup{full}}-LPD_{0})$, and
+$LPD_0$ refers to the intercept-only model. This means that model
+size was chosen such that the probability of the difference in utility
+between projected and full model being smaller than a constant times
+the difference between intercept-only and full model was at least $\alpha$.
+Several different values for $\alpha$ and $\gamma$ were experimented with.
+
+\paragraph{Final model selection}
+The final projected model was obtained by redoing the projection search up to
+the chosen number of variables, using all data for each gene. The miRNAs for
+which the 95\% posterior interval did not include the origo (called
+\emph{significant miRNAs}) were considered putative interactors with the gene
+in question. For some genes the condition in \eqref{eq:size-condition} was not
+met after including 200 covariates. In these cases it was concluded that the
+miRNA covariates provided no additional information on the protein expression
+and, thus, none of them were deemed as targeting the gene. In some cases the
+condition was met already by the model with only the mRNA covariate, and the
+same conclusion was made.
+
+\paragraph{Lasso regression}
+A lasso regression model was also fitted for each gene using the
+\emph{glmnet} R package. In this case the mRNA variable was treated equal
+to the miRNA variables and subjected to the lasso regularization.
+For choosing the regularization parameter $\lambda$, a 10-fold cross
+validation was done, and the largest $\lambda$ that gave
+a mean square prediction error (MSE) at most one standard deviation
+apart from the lowest MSE was used. The covariates included
+in the model using the chosen $\lambda$ were considered putative
+target interactors. For same genes, this criterion was met by
+the intercept-only model, and again, in these cases
+none of the miRNAs were deemed as targeting the gene.
+
+
+
+\subsubsection{Measuring model fit}
+
+The coefficient of determination $R^2$ of a predictive model is defined as
+\begin{equation}
+	R^2 = \frac{SS_{\textup{residuals}}}{SS_{\textup{total}}} = \frac{\sum_{i=1}^{n}(\hat{y}_i-y_i)^2}{\sum_{i=1}^{n}(y_i-\bar{y})^2},
+\end{equation}
+where $\hat{y}_i$ are the predictions made by the model and $\bar{y}$ is the mean of the outcome variable.
+$R^2$ indicates the proportion of variance of the outcome variable that is explained
+by a statistical model. It provides a measure of how well the model
+replicates the observed values and can be used as a measure of model fit.
+$R^2$ has the property of being invariant to variable scaling, which
+makes it suitable for use with expression data, as expression data
+do not have a well defined scale, $R^2$. A caveat of
+$R^2$ is that in linear regression it often increases monotonically by adding more explanatory
+variables. The adjusted $R^2$, defined as $\bar{R}^2 = 1-(1-R^2)*(n-1)/(n-p)$
+(where $n$ is the number of observations and $p$ the number of explanatory
+variables) adjusts for the number of regressors relative to the number of
+observations, thus penalizing inclusion of additional variables. $\bar{R}^2$
+was used for comparing the projected model with the gene only model.
+
+
+
+\subsubsection{Verification of predicted targets}
+

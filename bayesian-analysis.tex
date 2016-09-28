@@ -189,9 +189,10 @@ As mentioned in Section \ref{expr-methods}, microRNA target prediction using
 regression analysis of expression data is effectively a variable selection
 problem. For Bayesian regression, several different priors that provide model shrinkage
 have been proposed, including the Laplace prior (which is closely related to
-lasso regression), the horseshoe prior, and the hierarchical shrinkage prior.
-A hierarchical shrinkage prior for regression weights
-$\beta = [\beta_1, \dotsc \beta_p]$ can be defined as
+lasso regression), the horseshoe prior, and the hierarchical shrinkage prior
+(a generalization of the horseshoe).
+A hierarchical shrinkage prior for regression weight
+$\beta_j$ can be defined as
 \begin{subequations}
   \label{eq:hs-prior}
   \begin{align}
@@ -199,12 +200,18 @@ $\beta = [\beta_1, \dotsc \beta_p]$ can be defined as
     \lambda_j                 & \sim t_\nu^+(0,1),
   \end{align}
 \end{subequations}
-where $t_\nu^+$ denotes the half-Student-$t$ prior with $\nu$ degrees of freedom
-\citep{Piironen2015}. The $\lambda_j$ correspond to a local scale parameter and
-$\tau$ to a global scale. As an example, in a very sparse model with many irrelevant
-covariates, the model would ideally make $\tau$ small (so that $p(\beta)$ is shrunk
-close to zero), but allow some $\lambda_j$ to be large to escape the shrinkage.
-Additional priors need to be assigned to $\tau$, $\sigma$ and $\beta_0$, of course.
+where $t_\nu^+$ denotes the half-Student-$t$ prior with $\nu$ degrees of
+freedom \citep{Piironen2015}. The $\lambda_j$ correspond to a local scale
+parameter and $\tau$ controls the amount of global shrinkage. As an example,
+in a very sparse model with many irrelevant covariates, the model would
+ideally have small $\tau$ (so that $p(\beta)$ is shrunk close to zero), but
+allow some $\lambda_j$ to be large to escape the shrinkage. A weakly
+informative half-Cauchy distribution is often the suggested choice of prior
+for $\tau$, but van der Pas et al have also proposed (for the horseshoe prior)
+using a fixed value of $\tau = \frac{p_n}/{n}*\sqrt{\textup{log}(n/p_n)}$,
+where $p_n$ is the assumed number of relevant covariates and $n$ is the number
+of observations \citep{vanderpas2014}. Additional priors need to be
+assigned to $\tau$, $\sigma$ and $\beta_0$, of course.
 
 Bayesian shrinkage priors, however, do not lead to a sparse solution as there remains
 uncertainty in the posterior distribution and no coefficient can be considered
