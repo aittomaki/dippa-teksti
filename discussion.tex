@@ -1,11 +1,14 @@
-
+%!TEX root = dippa.tex
+%%% This file contains the discussion section of my master's thesis.
+%%% Author: Viljami Aittomäki
 
 \section{Discussion}
 
-This thesis presented a review of literature concerning microRNAs and
-prediction of microRNA target genes. A Bayesian regression model was applied
-to predict protein expression from mRNA and miRNA expression in breast cancer
-tumor samples.
+This thesis presented a review of literature concerning microRNAs and the
+prediction of microRNA target genes. A modern Bayesian regression model and
+variable selection method was applied to predict protein expression from mRNA
+and miRNA expression in breast cancer tumor samples with the goal of
+identifying putative miRNA target genes.
 
 \paragraph{Overview of results}
 
@@ -57,9 +60,15 @@ levels of different miRNAs are preserved and gene expression is scaled
 relative to mean miRNA expression, for example, but it is debatable whether
 this would be appropriate either.
 
-Searching for ositive vs negative regulation. In fact, of all the experimentally validated
-human miRNA targets listed in DIANA-TarBase, less than 0.2\% have
-a confirmed positive regulation. 
+Approximately half of the predicted interactions were positive. Some of these
+could indicate indirect regulation. However, this proportion seems much too
+high, as most known microRNA interactions are suppressive. In fact, of all the
+experimentally validated human miRNA targets listed in DIANA-TarBase, only
+around 0.2\% report positive regulation by the miRNA. Therefore, many of the
+predicted positive interactions are possibly false positives. To amend this,
+the model could easily be restricted to only negative interactions (using a
+nonpositive prior for $\beta$), and this has previously been reported to
+increase prediction accuracy \citep{Muniategui2013}.
 
 The proposed model also does not account for the fact that microRNAs have
 several, even hundreds, of target transcripts \citep{}. Therefore, the regulatory
@@ -72,24 +81,18 @@ oli tähän joku metodiehdotus, johon voisi viitata.}
 
 \paragraph{Future prospects}
 
-\begin{itemize}
-	\item miRNAs as potential treatments
-	\item data integration on several levels important
-	\item NGS solves some problems
-	\begin{itemize}
-		\item CLIP already does high-throuput experimental identification of MTIs?
-	\end{itemize}
-\end{itemize}
-
 The recent development of CLIPseq and similar methods has made high-throughput
-experimental microRNA target discovery relatively easy, partially replacing
-the need for computational target prediction \textbf{(HAS IT REALLY? CHECK)}.
-Nonetheless, microRNA regulation is complex and many unconventional regulatory
-relationships have been discovered. Integrative approaches -- combining several
-levels of data -- beyond correlation will thus remain important in the future.
-The elucidation of complex regulatory networks by network-level modeling is
-also essential, as it has the ability to better capture the true biology of
-the regulation of gene expression.
+experimental microRNA target discovery possible, partially replacing the need
+for computational target prediction. Nonetheless, experimental methods
+(particularily high-throughput ones) are not immune to error, and microRNA
+regulation is complex with many unconventional regulatory relationships and
+mechanisms haveing been discovered. Integrative computational approaches --
+combining several levels of data -- beyond correlation will, thus, remain
+important in the future. The elucidation of complex regulatory networks using
+network-level modeling is becoming feasible with modern experimental and
+computational methods. Adapting this approach will be essential, as it has the
+ability to better capture the true biology of the regulation of gene
+expression.
 
 Many aspects of microRNA biology and function are still unknown, and they 
 remain an exciting avenue of research. \textbf{HOITOJA JA SEMMOSTA.}
