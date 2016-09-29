@@ -232,10 +232,10 @@ Several different values for $\alpha$ and $\gamma$ were experimented with.
 
 \paragraph{Final model selection}
 The final projected model was obtained by redoing the projection search up to
-the chosen number of variables, using all data for each gene. The miRNAs for
-which the 95\% posterior interval did not include the origo (called
-\emph{significant miRNAs}) were considered putative interactors with the gene
-in question. For some genes the condition in \eqref{eq:size-condition} was not
+the chosen number of variables, using all data for each gene. miRNAs included
+in each gene's model were considered putative target interactors. miRNAs for
+which the 95\% posterior interval did not include the origo are termed
+\emph{significant miRNAs}. For some genes the condition in \eqref{eq:size-condition} was not
 met after including 200 covariates. In these cases it was concluded that the
 miRNA covariates provided no additional information on the protein expression
 and, thus, none of them were deemed as targeting the gene. In some cases the
@@ -245,41 +245,51 @@ same conclusion was made.
 \paragraph{Lasso regression}
 A lasso regression model was also fitted for each gene using the
 \emph{glmnet} R package. In this case the mRNA variable was treated equal
-to the miRNA variables and subjected to the lasso regularization.
-For choosing the regularization parameter $\lambda$, a 10-fold cross
-validation was done, and the largest $\lambda$ (i.e. sparsest model) that gave
-a mean square prediction error (MSE) at most one standard deviation
-apart from the lowest MSE was used. The covariates included
-in the model using the chosen $\lambda$ were considered putative
-target interactors. For some genes, this criterion was met by
-the intercept-only model, and again, in these cases
-none of the miRNAs were deemed as targeting the gene.
+to the miRNA variables and subjected to the lasso regularization. For choosing
+the regularization parameter $\lambda$, the default algorithm of \emph{glmnet}
+was used. That is, models were fit for a decreasing sequence of $\lambda$
+values, and 10-fold cross validation was used to compute a mean square
+prediction error (MSE) at each $\lambda$. The largest value of $\lambda$ (i.e.
+sparsest model) that had a MSE at most one standard deviation apart from the
+lowest MSE attained in the cross validation was used. The covariates included
+in the model using the chosen $\lambda$ were considered putative target
+interactors. For some genes, this criterion was met by the intercept-only
+model, and again, in these cases none of the miRNAs were deemed as targeting
+the gene.
 
 
 
 \subsubsection{Measuring model fit}
 
+To assess convergence of simulation chains, the $\hat{R}^2$ measure proposed
+by Gelman et al was used.
+
 The coefficient of determination $R^2$ of a predictive model is defined as
 \begin{equation}
 	R^2 = \frac{SS_{\textup{residuals}}}{SS_{\textup{total}}} = \frac{\sum_{i=1}^{n}(\hat{y}_i-y_i)^2}{\sum_{i=1}^{n}(y_i-\bar{y})^2},
 \end{equation}
-where $\hat{y}_i$ are the predictions made by the model and $\bar{y}$
-is the mean of the outcome variable $y$.
-$R^2$ indicates the proportion of variance of the outcome variable that is explained
-by a statistical model, and can be used as a measure of model fit.
-$R^2$ has the property of being invariant to variable scaling, which
-makes it suitable for use with expression data, as expression data
-do not have a well defined scale. A caveat of
-$R^2$ is that in linear regression it often increases monotonically by adding more explanatory
-variables. The adjusted $R^2$, defined as $\bar{R}^2 = 1-(1-R^2)\frac{n-1}{n-p}$
-(where $n$ is the number of observations and $p$ the number of explanatory
-variables) adjusts for the number of regressors relative to the number of
-observations, thus penalizing inclusion of additional variables. $\bar{R}^2$
-was used for comparing the projected model with the gene only model.
+where $\hat{y}_i$ are the predictions made by the model and $\bar{y}$ is the
+mean of the outcome variable $y$. $R^2$ indicates the proportion of variance
+of the outcome variable that is explained by a statistical model, and can be
+used as a measure of model fit. $R^2$ has the property of being invariant to
+variable scaling, which makes it suitable for use with expression data, as
+expression data do not have a well defined scale.
 
-For measuring simulation chain convergence, the $\hat{R}^2$ measure proposed by Gelman et al
-was used.
+An important caveat of $R^2$ is that in linear regression it often increases
+monotonically by adding more explanatory variables. The adjusted $R^2$,
+defined as $\bar{R}^2 = 1-(1-R^2)\frac{n-1}{n-p}$ (where $n$ is the number of
+observations and $p$ the number of explanatory variables) adjusts for the
+number of regressors relative to the number of observations, thus penalizing
+inclusion of additional variables. $\bar{R}^2$ was used for comparing the
+projected model with the gene only model.
 
 
-\subsubsection{Verification of predicted targets}
 
+\subsubsection{Verifying predicted targets}
+
+The predicted miRNA targets from both projection prediction and lasso
+regression were compared to validated targets in DIANA-TarBase 
+\citep{Vlachos2015} (referred to as Tarbase from here on). The Tarbase
+database was downloaded and filtered down to human genes and miRNAs included
+in the analysed data set. The proportion of validated targets in all predicted
+targets was computed.
