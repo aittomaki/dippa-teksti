@@ -1,0 +1,127 @@
+%!TEX root = dippa.tex
+%%% This file contains the Gene expression section of my master's thesis.
+%%% This section covers the basics of gene expression.
+%%% Author: Viljami Aittomäki
+
+\section{Gene expression}\label{gene-expression}
+
+Genetic information is encoded in molecules of deoxyribonucleic acid (DNA). A
+gene is a section of DNA that serves as a template for a functional
+ribonucleic acid (RNA) molecule. Gene expression refers to this process of
+synthesizing a functional end-product from the information contained in gene.
+DNA and gene expression serve as the basis of all currently known life.
+
+Most of gene expression is dedicated to making proteins. The Central Dogma of
+Molecular Biology, postulated by Francis Crick in 1970, describes the general
+schema of how genetic information flows from genes to proteins; DNA is first
+transcribed into messenger RNA (mRNA), which is then translated into a polypeptides,
+which ultimately form proteins \citep{Crick1970}. The flow is not strictly
+one-directional though, as there exist reverse transcriptases, enzymes that
+synthesize DNA from an RNA template.
+
+All genes are read to form RNA, but not all encode a protein product. The
+human genome\footnote{The genome refers to the whole genetic material of an
+organism or an individual.} has been suggested to contain approximately 20 500
+protein-coding genes, which encompass only around 1.5\% of the whole genetic
+sequence \citep{Clamp2007}. Therefore, the vast majority of the human genome
+was previously thought to be without function and referred to as "junk DNA".
+More recently, however, it has become increasingly evident, that noncoding
+portions of the genome are often functional and possibly have important
+cellular functions \citep{ENCODE}. Noncoding genes give rise to noncoding RNA,
+a class of RNA molecules that are mostly involved in aiding and regulating the
+expression of other genes. Different types of noncoding RNA and their
+functions are summarized in Table \ref{table:rnas}.
+
+
+
+
+\subsection{Regulation of gene expression}\label{regulation-of-gene-expression}
+
+Regulation of gene expression refers to controlling the abundance of
+the gene end-product a cell produces. This control is paramount so that cells
+can respond to external signals, changes in their environment, damage and also 
+\textbf{pass through} different developmental stages. Gene expression can be regulated
+at any stage of the process and regulation can be divided into transcriptional
+and post-transcriptional regulation.
+
+Transcriptional regulation with e.g. TFs, methylation, adenylation, splicing.
+
+Post-transcriptional
+
+MicroRNAs (miRNAs) and small interfering RNAs (siRNAs) are components of the
+so called RNA interference (RNAi) pathway, which is a mechanism for regulating
+gene expression post-transcriptionally. miRNAs and siRNAs are practically
+interchangeable as substrates for RNAi, both act as target mRNA recognizing
+templates, but have different biogenesis, where miRNAs are cut from endogenous hairpin
+structures and siRNAs are processed from exogenous long double-stranded RNAs (dsRNAs).
+\cite{Du2005} MicroRNAs are the focus of this study and are discussed in more
+detail in the next section.
+
+The Argonaute (Ago) family of proteins is closely associated with small RNAs and
+Ago act as effectors in RNAi \cite{Ha2014}.
+
+\begin{itemize}
+  \item transcription factors
+  \item post-transcriptional regulation
+  \item translational factors
+  \item protein degradation
+\end{itemize}
+
+
+
+
+\subsection{Measuring gene expression}\label{measurement-of-gene-expression}
+
+The physical measurement of gene expression can be done on either the level of
+messenger RNA molecules or protein molecules present in cells. Although
+proteins are the eventual effectors molecules within cells -- at least for
+protein-coding genes -- often gene expression is synonymous with mRNA
+expression. This is because measuring mRNA abundances is significantly easier than
+measuring protein abundances due to the chemistry of base-pair formation
+and the relative ease of replicating DNA (or RNA) sequences by
+exploiting cellular machinery evolved for this purpose.
+
+Techniques shortly in one paragraph:
+\begin{itemize}
+  \item blotting, qPCR
+  \item microarrays
+  \item sequencing-based methods
+  \item protein arrays (RPPA)
+\end{itemize}
+
+
+
+
+\subsubsection{Microarrays}
+
+\begin{itemize}
+  \item basics of operation
+  \item shortly on microarray analysis
+  \begin{itemize}
+    \item preprocessing and normalization
+    \item probe annotation problems
+  \end{itemize}
+\end{itemize}
+
+
+The general assumption has been that mRNA expression is representative of gene
+expression and that changes in mRNA abundances also reflect changes in protein
+abundances and, therefore, cellular processes. This assumption has recently
+been challenged by experiments indicating that the expression of mRNA and
+corresponding protein often correlate poorly, with mRNA expression
+explaining around 40\% of variation in protein abundances \citep{Vogel2012}.
+There are also contrary findings of modest to good correlation
+and one study suggested that mRNA-protein correlation is generally higher for
+genes that have differing mRNA expression between studied conditions
+(e.g. cancerous versus healthy tissue) \citep{Koussounadis2015}.
+
+Nonetheless, Payne recently concluded that "proteome and transcriptome abundances are not
+sufficiently correlated to act as proxies for each other" and that
+most of this difference is likely caused by biological regulation and not
+by measurement technology \cite{Payne2015}.
+% This regulation can be post-transcriptional, translational
+% or protein-degradation related, as discussed above.
+Therefore, it is interesting, even necessary, to integrate
+measurements from different stages of gene expression -- for example
+mRNA, microRNA and protein abundances -- to gain new insights
+into biological processes.
