@@ -306,10 +306,9 @@ RPPA        & Reverse phosphatase protein array
 %% There is no need to change these
 %%
 \cleardoublepage
-\storeinipagenumber
 \pagenumbering{arabic}
 \setcounter{page}{1}
-
+\storeinipagenumber
 
 
 
@@ -324,7 +323,13 @@ RPPA        & Reverse phosphatase protein array
 \include{introduction}
 
 %\clearpage (\include implicity does a \clearpage)
-\include{background}
+\include{gene-expression}
+
+\include{micrornas}
+
+\include{cancer}
+
+\include{microrna-target-identification}
 
 \include{bayesian-analysis}
 
@@ -383,12 +388,13 @@ RPPA        & Reverse phosphatase protein array
 \clearpage
 \thesisappendix
 
+\clearpage
 \section{Table of model properties\label{app:full-model-table}}
 %\begin{landscape}
 \input{final-model-table}
 %\end{landscape}
 
-
+\clearpage
 \section{Model size distributions\label{app:model-sizes}}
 
 \begin{figure}[htb]
