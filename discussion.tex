@@ -10,16 +10,23 @@ variable selection method was applied to predict protein expression from mRNA
 and miRNA expression in breast cancer tumor samples with the goal of
 identifying putative miRNA target genes.
 
-\paragraph{Overview of results}
+\subsection*{Overview of results}
 
-Correlation between mRNA and protein expression was poor on average, a finding
-supported by many previous studies \citep{Payne2015}. Interestingly,
-there was no difference between correlations of predicted or validated
-miRNA-target pairs or randomly chosen ones and all of these correlation
-distributions were zero centered. This illustrates the
-complexity of expression regulation and supports the view that modeling
-single interaction pairs individually is unlikely to be sufficient in
-general.
+Correlation between mRNA and protein expression was mostly low, a finding
+supported by many previous studies \citep{Payne2015}. Interestingly, there was
+no difference between correlations of predicted or validated miRNA-target
+pairs or randomly chosen ones and all of these correlations were clustered
+close to zero. This illustrates the complexity of expression regulation and
+supports the view that modeling single interaction pairs individually is
+unlikely to be sufficient in general.
+
+Compared to lasso regression PPVS achieved slightly better model fit, but
+otherwise performance were quite similar. There was quite small overlap of
+predictions made by the two methods, a common problem in microRNA target
+prediction. Only a small fraction of predicted targets were validated
+according to Tarbase, but it should be noted, that is probably true in general
+of all miRNA targets. Only a limit number of validation studies have been
+done.
 
 Aure et al used Lasso regression for a similar analysis
 %prediction of protein expression from mRNA and miRNA expression 
@@ -30,23 +37,25 @@ filtered with simple linear regression, only miRNAs deemed significant
 in the univariate regression model were included. This approach is
 flawed in the sense, that it does not have the advantage of multivariate
 models to identify singly weak but combinatorially strong effects, since univariate
-modeling is used as a filtering step.
+modeling is used as a filtering step. It also uses the same data twice,
+causing bias.
 
-\paragraph{Disadvantages and improvement}
+\paragraph*{Possible improvements}
 
 An obvious way to improve the model would be to include sequence-based target
 information. Bayesian modeling provides a formal and relatively easy way to
 achieve this with hierarchical models. MicroRNAs that that are putative
-regulators of a gene based on sequence could have different (more slack)
-priors or superpriors than miRNAs without seed sequence matches. Furthermore,
-experimentally validated regulators could have different priors as well.
+regulators of a gene based on sequence could have priors (or hyperpriors) with
+less regularization than miRNAs without sequence matches. However, as
+the authors of GenMir noted, including sequence features did not result
+in a significant improvement of their method \citep{Huang2007}.
 
 One disadvantage of the proposed method relates to scaling of the regression
 covariates, that is, the mRNA and miRNA expression variables. Sequencing studies have shown
 that a relatively small number of miRNAs accounts for over 80\% of tissue microRNA
 \citep{Landgraf2007}. Therefore, changes in the expression of these highly
 abundant miRNAs may have a relatively large impact on protein levels, where as
-similar changes in less expressed miRNAs may have little to no efect on target gene
+similar changes in less expressed miRNAs may have little to no effect on target gene
 expression. This difference is lost by scaling all miRNA variables to a similar scale.
 
 However, many of the most abundant miRNAs are ubiquitously expressed across
@@ -67,7 +76,7 @@ experimentally validated human miRNA targets listed in DIANA-TarBase, only
 around 0.2\% report positive regulation by the miRNA. Therefore, many of the
 predicted positive interactions are possibly false positives. To amend this,
 the model could easily be restricted to only negative interactions (using a
-nonpositive prior for $\beta$), and this has previously been reported to
+non-positive prior for $\beta$), and this has previously been reported to
 increase prediction accuracy \citep{Muniategui2013}.
 
 The proposed model also does not account for the fact that microRNAs have
@@ -79,14 +88,14 @@ that model the whole regulatory network at once. This, however, becomes a much
 more difficult problem than simple multiple linear regression. \textbf{Akilla
 oli tähän joku metodiehdotus, johon voisi viitata.}
 
-\paragraph{Future prospects}
+\paragraph*{Future prospects}
 
 The recent development of CLIPseq and similar methods has made high-throughput
 experimental microRNA target discovery possible, partially replacing the need
 for computational target prediction. Nonetheless, experimental methods
-(particularily high-throughput ones) are not immune to error, and microRNA
+(particularly high-throughput ones) are not immune to error, and microRNA
 regulation is complex with many unconventional regulatory relationships and
-mechanisms haveing been discovered. Integrative computational approaches --
+mechanisms having been discovered. Integrative computational approaches --
 combining several levels of data -- beyond correlation will, thus, remain
 important in the future. The elucidation of complex regulatory networks using
 network-level modeling is becoming feasible with modern experimental and

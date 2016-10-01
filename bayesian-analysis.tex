@@ -32,7 +32,7 @@ observations $y$:
 \end{equation}
 where $p(y) = \int_{\theta} p(\theta) \cdot p(y|\theta) d\theta$.
 Noting that $p(y)$ does not depend on $\theta$, we can write Equation
-\ref{eq:bayes} as
+\eqref{eq:bayes} as
 \begin{equation}
   p(\theta|y) \propto p(\theta) p(y|\theta).
 \end{equation}
@@ -110,8 +110,8 @@ analyses.
 
 \subsection{Bayesian inference}\label{simulation}
 
-The goal of Bayesian inference is often to make conclusions about uknown
-parameters $\theta$ of uknown observations $\tilde{y}$ given observed data
+The goal of Bayesian inference is often to make conclusions about unkown
+parameters $\theta$ of unkown observations $\tilde{y}$ given observed data
 $y$. These are formulated as probability statements.
 
 Often it is not possible to obtain analytical solutions to integrals
@@ -162,7 +162,7 @@ Bayesian regression analysis aims to infer the posterior distributions
 for the regression coefficients of covariates and other model parameters,
 such as the variance (i.e. the error term) of the observation model.
 Within the Bayesian framework, the normal linear regression defined in
-Equation \ref{eq:linear-regression} can be expressed as
+Equation \eqref{eq:linear-regression} can be expressed as
 \begin{equation}
   y | \beta, \sigma, X \sim N(X \beta, \sigma^2I),
   \label{eq:bayesian-linear-regression}
@@ -269,6 +269,5 @@ Previous Bayesian miRNA methods:
   \item Stingo et al
   \item GenMir3/GenMir++
   \item Se joku graafinen (korkeintaan lauseen maininta)
+  \item GroupMir
 \end{itemize}
-
-

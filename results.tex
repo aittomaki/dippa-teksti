@@ -51,10 +51,10 @@ hierarchical clustering of samples (not shown) had a similar result.
 
 \subsection{Correlation analysis}
 
-Pearson correlations between variables from the different datatypes are shown in Figure
+Pearson correlations between variables from the different data types are shown in Figure
 \ref{fig:correlations}. Protein-mRNA correlation is clearly higher for gene-matched pairs
 (that is protein and mRNA expression corresponding to the same gene), and for
-unmathced pairs correlations are concentrated around zero, both expected
+unmatched pairs correlations are concentrated around zero, both expected
 results. Notable, even the gene-matched correlations are quite low, with a
 mean $\bar{\rho} \approx 0.37$ and roughly 67\% of genes having $\rho < 0.5$, and
 some having negative correlation. This is in alignment with earlier results. 
@@ -143,19 +143,19 @@ account for (e.g. protein degradation), possibly dominate.
 Secondly, the marginal posterior of a single predictor can indicate
 non-significance, while the joint posterior of several predictors combined
 might still achieve significance. This would indicate that the effect of
-miRNAs is only significant when acting simultaneosly, a hypothesis that is
+miRNAs is only significant when acting simultaneously, a hypothesis that is
 supported by experimental evidence, as discussed in section
 \ref{microrna-function}.
 
-A table of properties for the projected models is available in Appendix
+A table of properties for the projected models is presented in Appendix
 \ref{app:full-model-table}.
 
 
 \subsubsection{Comparison to lasso regression}
 
-The distribution of final model sizes for both projection prediction (PPVS)
-and lasso regression are shown in Figure \ref{}. The models
-
+The distribution of final model sizes and $\Delta\bar{R}^2$'s
+(compared to the gene-only model) for both projection prediction (PPVS)
+and lasso regression are shown in Figure \ref{}.
 Figure \ref{fig:venn-ppvs-lasso} shows the number of putative targets
 predicted by each method, PPVS and lasso,
 and the number of shared predictions. Both significant and non-significant
@@ -187,21 +187,13 @@ fairly high ($0.88$).
   \label{fig:scatter-ppvs-lasso}
 \end{figure}
 
-Tarbase contained 5197 validated target interactions for the genes and miRNAs
-included in the data. Only 7 of these were classified as originating from
-breast cancer tissue. Additionally, 206 negative interactions were listed for
-the data, i.e. gene-miRNA pairs that showed no interaction in some experiment.
-Table \ref{table:tarbase} shows the number of these discovered by both
-prediction methods. PPVS and lasso had similar performance in this regard,
-with approximately 17\% and 24\% of predicted targets being validated,
-repsectively (imilarly, 17\% of significant predictions by PPVS were
-validated). For both methods, approximately half of the coefficients for both
-all predicted and validated targets were positive, indicating upregulation by
-the miRNA, whereas all of the discovered validated interactions were classified as downregulative
+Additionally, 206 negative interactions were listed for the data, i.e. gene-
+miRNA pairs that showed no interaction in some experiment. PPVS and lasso had
+similar performance in regards of discovering validated targets, with
+approximately 17\% and 24\% of predicted targets being validated, respectively
+(similarly, 17\% of significant predictions by PPVS were validated). Neither
+method found any of the validated targets from breast cancer tissue. For both
+methods, approximately half of the coefficients for both all predicted and
+validated targets were positive, indicating upregulation by the miRNA, whereas
+all of the discovered validated interactions were classified as downregulative
 in Tarbase.
-
-In summary, model fit and performance were quite similar for PPVS and lasso.
-Only a small fraction of predicted targets were validated (according to
-Tarbase), but it should be noted, that is probably true in general
-of all miRNA targets. Only a limit number of validation studies have
-been done.

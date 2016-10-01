@@ -7,7 +7,7 @@
 
 \subsection{Research material}
 
-The data analysed in this thesis consists of 283 tumor samples collected from
+The data analyzed in this thesis consists of 283 tumor samples collected from
 280 breast cancer patients treated in two Norwegian hospitals. Protein, mRNA
 and microRNA expression were measured from each sample. The data were
 published by Aure et al. \citep{Aure2015} and are publicly available. Analyses
@@ -32,7 +32,7 @@ The mRNA and microRNA expression were measured using Agilent Technologies
 SurePrint G3 Human GE 8x60K and Human miRNA Microarray Kit (V2) microarrays,
 respectively. These microarrays measure 27958 genes and 887 miRNAs, according
 to manufacturer annotation. Protein expression was measured using a reverse
-phospatase protein array (RPPA) containing a set of 105 proteins. Most of the
+phoshatase protein array (RPPA) containing a set of 105 proteins. Most of the
 proteins are found on the PI3K/AKT intracellular pathway, which is important
 for cell-cycle regulation and, thus, cancer. \textbf{(ref to G.Mills?)}.
 
@@ -71,13 +71,10 @@ project.
 \subsubsection{Preprocessing and quality control}
 
 MicroRNA and mRNA expression data were downloaded from the Gene Expression
-Omnibus (accessions GSE8210 and GSE8212, respectively \citep{Edgar2002}) using
+Omnibus \citep{Edgar2002} (accessions GSE8210 and GSE8212, respectively) using
 the GEOquery R package \citep{GEOquery}. Protein expression data were
 downloaded as a Microsoft Excel sheet from the supplementary data of Aure et
-al \citep{Aure2015}. All of the data are in log scale, as is usual for
-expression data analyses. For regression analyses, all variables (miRNA, mRNA
-and protein) were further scaled to have zero mean and unit variance,
-a commonly used transformation in regression.
+al \citep{Aure2015}.
 
 Notably, the protein data have only a single set of measurements for two sets
 of related genes, namely AKT1, AKT2, AKT3 and GSK3A, GSK3B (labeled
@@ -96,13 +93,16 @@ on miRBase, these miRNAs are reported as being fragments of other RNA species
 (e.g. tRNA or rRNA) and, thus, removed from the database. The eleven miRNAs
 were therefore removed from subsequent analyses, leaving 410 miRNAs.
 
-The publicly available expression data are in preprocessed form, and as such,
+The publicly available expression data are in preprocessed form and 
+in log2 scale (as per convention for expression data). As such,
 no further preprocessing of the actual measurements was done. For details on
 the preprocessing, the reader is referred to the supplementary data of Aure et
 al \citep{Aure2015}. The mRNA expression data are available as probe-level
 measurements, these were summarized to gene-level using manufacturer probe
-annotations by taking the median of all probes targeting the same gene.
-Only the genes present in the protein data were used in analyses.
+annotations by taking the mean of all probes targeting the same gene.
+For regression analyses, all variables (miRNA, mRNA
+and protein) were further scaled to have zero mean and unit variance,
+a commonly used transformation.
 
 For assessing the quality of the expression data, distributions of each
 microarray and each variable (miRNA, mRNA and protein) were plotted. The data
@@ -155,7 +155,7 @@ as defined in Equation \eqref{eq:hs-prior}. The degrees of freedom for the
 $\lambda_j$ priors was set at $\nu=3$ (similar to Piironen and Vehtari
 \citep{Piironen2015}). The prior for $\tau$ was defined as:
 \begin{equation}
-    \tau ~ \textup{half-Cauchy}(0, \frac{p_n}/{n}*\sqrt{\textup{log}(n/p_n)}),
+    \tau \sim \textup{half-Cauchy} \left ( 0, \frac{p_n}{n}\sqrt{\textup{log}(n/p_n)} \right ),
 \end{equation}
 combining the previous suggestions of half-Cauchy and fixed $tau$.
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
@@ -165,7 +165,9 @@ taken, and known validated microRNA interaction partners for each sampled gene
 were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
 validated miRNA interactors were assumed to have zero. The mean number of
 miRNA interactors per gene was used as an estimate, giving
-$\hat{p_n} = 13.75$.
+$\hat{p_n} = 13.75$.\footnote{Note that this is probably an underestimate of
+the true $p_n$, as the set of experimentally validated miRNA targets is
+very likely to underrepresent the true \emph{in vivo} set of miRNA targets.}
 
 
 
@@ -187,7 +189,7 @@ The forward search was continued up to 200 variables.
 For choosing the model size, 10-fold cross validation was used, as proposed by
 Piironen and Vehtari \citep{Piironen2016}. That is, the above model selection
 process was performed $K=10$ times, each leaving $n/K$ observations out for
-evaluation. To judge the appropriote model size, estimation of submodel
+evaluation. To judge the appropriate model size, estimation of submodel
 predictive performance was used as explained below.
 
 \paragraph{Model predictive performance}
@@ -213,22 +215,24 @@ distribution for $\Delta \textup{MLPD}$ as:
 where $w_i^{(s)}, i = 1, \dotsc,n$, are the bootstrap weights
 for the $s$'th bootstrap sample (subject to $\sum_i w_i^{(s)} = 1$).
 The \emph{bayesboot} R package was used for computing the bootstrap.
-The $\Delta \textup{MLPD}^{s}(M_\perp,M_{\textup{full}})$ was then used
+The $\Delta \textup{MLPD}(M_\perp,M_{\textup{full}})$ was then used
 as an estimate of the predictive performance of submodel $M_\perp$.
 
 \paragraph{Choosing model size}
-The threshold for choosing the model size was defined as the smallest
-model satisfying
+As proposed by Piironen and Vehtari \citep{Piironen2016},
+the threshold for choosing the model size was defined as the smallest
+model satisfying:
 \begin{equation}
 	\label{eq:size-condition}
 	\textup{Pr}(\Delta \textup{MLPD}(M_\perp,M_{\textup{full}}) > U) \geq \alpha,
 \end{equation}
 where $U = \gamma \Delta \textup{MLPD}(M_0,M_{\textup{full}})$, and
 $M_0$ refers to the intercept-only model. This means that model
-size was chosen such, that the probability of the predictive
-performance of the projected model being larger than a constant times
+size was chosen such, that the probability of the projected model's
+performance being larger than a constant ($\gamma$) times
 the performance of the intercept-only model was at least $\alpha$.
-Several different values for $\alpha$ and $\gamma$ were experimented with.
+No rule exists for choosing the values of $\alpha$ and $\gamma$, and
+several different values for were experimented with.
 
 \paragraph{Final model selection}
 The final projected model was obtained by redoing the projection search up to
@@ -288,8 +292,10 @@ projected model with the gene only model.
 \subsubsection{Verifying predicted targets}
 
 The predicted miRNA targets from both projection prediction and lasso
-regression were compared to validated targets in DIANA-TarBase 
+regression were compared to validated targets in DIANA-TarBase
 \citep{Vlachos2015} (referred to as Tarbase from here on). The Tarbase
 database was downloaded and filtered down to human genes and miRNAs included
-in the analysed data set. The proportion of validated targets in all predicted
-targets was computed.
+in the analyzed data set. This resulted in a set of 5197 validated target
+interactions. Only 7 of these were classified as originating from breast
+cancer tissue. The proportion of validated targets in all predicted targets
+was computed.

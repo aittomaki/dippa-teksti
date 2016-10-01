@@ -28,7 +28,7 @@
 
 	\caption{Scatter plots of first two principal components for each tumor sample (or microarray)
 	computed from (a) protein expression, (b) mRNA expression, and (c) miRNA expression data.
-	The point color corresponds to the hospital where the sample was handled.}
+	The point color corresponds to the hospital where each sample was handled.}
 	\label{fig:qc-pca}
 \end{figure}
 
@@ -52,10 +52,11 @@
 	\end{subfigure}
 
 	\caption{Quality control boxplots for protein expression, plotted by
-	(a) each tumor sample (i.e. microarray),
-	(b) each protein expression variable, 
+	(a) each tumor sample,
+	(b) each protein expression variable (i.e. microarray), 
 	and (c) scaled protein variables.
-	The fill color in (a) corresponds to the hospital where the sample was handled.}
+	The fill color in (a) corresponds to the hospital where the sample was handled. Note that
+	the protein data differ from mRNA and miRNA data in that each array measures one protein instead of one sample.}
 	\label{fig:qc-protein-boxplot}
 \end{figure}
 
@@ -73,8 +74,8 @@
 		\subcaption{Protein variables \label{fig:protein-variable-density}}
 	\end{subfigure}
 
-	\caption{Density estimates for protein expression data. In (a) each curve represents one microarray,
-	and in (b) each curve represents one protein variable. The color of the curves is only for illustration,
+	\caption{Density estimates for protein expression data. In (a) each curve represents one tumor sample,
+	and in (b) each curve represents one protein variable. The color of the curves is purely for visualization,
 	it bears no meaning.}
 	\label{fig:qc-protein-density}
 \end{figure}
@@ -121,7 +122,7 @@
 	\end{subfigure}
 
 	\caption{Density estimates for mRNA expression data. In (a) each curve represents one microarray,
-	and in (b) each curve represents one mRNA variable. The color of the curves is only for illustration,
+	and in (b) each curve represents one mRNA variable. The color of the curves is purely for visualization,
 	it bears no meaning.}
 	\label{fig:qc-mrna-density}
 \end{figure}
@@ -173,7 +174,8 @@
 	\end{subfigure}
 
 	\caption{Density estimates for miRNA expression data. In (a) each curve represents one microarray,
-	and in (b) each curve represents one miRNA variable. The color of the curves is only for illustration,
-	it bears no meaning. Note the bimodal distributions in (a) and the large spread in location in (b).}
+	and in (b) each curve represents one miRNA variable. The color of the curves is purely for visualization,
+	it bears no meaning. Note the bimodal distributions in (a) and the corresponding break
+	and large spread in centroid location in (b).}
 	\label{fig:qc-mirna-density}
 \end{figure}
