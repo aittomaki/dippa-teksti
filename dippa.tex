@@ -47,7 +47,7 @@
 \usepackage[numbers,square]{natbib}
 \usepackage[parfill]{parskip}
 \usepackage{longtable}
-\usepackage[font={small,it},labelfont={sf}]{caption}
+\usepackage[font={small,sf},labelfont={sf,it}]{caption}
 \usepackage{subcaption}
 \captionsetup[sub]{font={scriptsize},labelfont={sf}}
 \usepackage{pdflscape}
@@ -57,7 +57,7 @@
 \setlength{\LTright}{\LTleft}
 
 %% Define which sections to include
-\includeonly{results}
+\includeonly{microrna-target-identification}
 
 
 
@@ -257,18 +257,18 @@ Helsinki, 10.10.2016
 \subsection*{Symbols}
 
 \begin{tabular}{ll}
-$N(\mu,\sigma^2)$ & Normal distribution with mean $\mu$ and variance $\sigma^2$ \\
-$p(y)$            & Probability density of $x$ \\
-$p(y,\theta)$     & Joint probability of $y$ and $\theta$ \\
-$p(y|\theta)$     & Conditional probability of $y$ given $\theta$ \\
-$\theta$          & Parameter vector for a probability model \\
-$w$               & Regression coefficients for explanatory variables \\
-$x$               & Explanatory variable (or microRNA expression vector) \\
-$X$               & Matrix of explanatory variables (or microRNA expression values) \\
-$y$               & Outcome variable (or protein expression vector) \\
-$y \sim N(.)$     & Random variable $y$ has probability distribution $N(.)$ \\
-$y \propto x$     & $y$ is proportional to $x$, up to a constant factor \\
-$z$               & mRNA expression vector
+$\textup{N}(\mu,\sigma^2)$ & Normal distribution with mean $\mu$ and variance $\sigma^2$ \\
+$p(y)$                     & Probability density of $x$ \\
+$p(y,\theta)$              & Joint probability of $y$ and $\theta$ \\
+$p(y|\theta)$              & Conditional probability of $y$ given $\theta$ \\
+$\theta$                   & Parameter vector for a probability model \\
+$w$                        & Regression coefficients for explanatory variables \\
+$x$                        & Explanatory variable (or microRNA expression vector) \\
+$X$                        & Matrix of explanatory variables (or microRNA expression values) \\
+$y$                        & Outcome variable (or protein expression vector) \\
+$y \sim \textup{N}(.)$     & Random variable $y$ has probability distribution $N(.)$ \\
+$y \propto x$              & $y$ is proportional to $x$, up to a constant factor \\
+$z$                        & mRNA expression vector
 \end{tabular}
 
 % \subsection*{Expressions}
@@ -283,7 +283,8 @@ $z$               & mRNA expression vector
 \subsection*{Abbreviations}
 
 \begin{tabular}{ll}
-bp          & Base pairs (as a measure of sequence length) \\
+bp          & Base pairs (as a measure of double-stranded sequence length) \\
+lasso       & Least absolute shrinkage and selection operator \\
 nt          & Nucleotides (as a measure of sequence length) \\
 miRNA       & MicroRNA \\
 MLR         & Multivariate linear regression \\
@@ -291,7 +292,6 @@ mRNA        & Messenger RNA \\
 NGS         & Next generation sequencing \\
 PPVS        & Projection predictive variable selection \\
 RISC        & RNA-induced silencing complex \\
-RNA         & Ribonucleic acid \\
 RPPA        & Reverse phosphatase protein array
 \end{tabular}
 
