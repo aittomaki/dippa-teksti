@@ -113,7 +113,32 @@ type.
 
 
 
+\subsubsection{Validated target reference}
+
+The predicted miRNA targets from both projection prediction and lasso
+regression were compared to validated targets in DIANA-TarBase v7.0
+\citep{Vlachos2015} (referred to as TarBase from here on) and miRTarBase
+release 6.0 \citep{Chou2016}. Data from both databases were downloaded and a
+union of the databases was used as a reference set of validated interactions.
+The resulting set contained 328825 validated miRNA-mRNA interactions, out of
+which only 4082 were between a gene and miRNA present in the analyzed data,
+however.
+
+
+
+
 \subsubsection{Correlation analysis}
+
+To assess dependencies between variables from the different expression data
+types (protein, mRNA, miRNA) and the validity of correlation as a target
+prediciton tool, Pearson's correlations were computed between matched and
+unmatched protein-mRNA pairs (where matched refers to both corresponding to
+the same gene) as well as validated and random protein-miRNA and mRNA-miRNA
+pairs, where validated pairs were ones present in the reference set described
+above. The random correlations consisted of 5000 randomly picked pairs (with
+replacement).
+
+
 
 
 \subsubsection{Regression models}
@@ -174,7 +199,8 @@ very likely to underrepresent the true \emph{in vivo} set of miRNA targets.}
 \subsubsection{Variable selection}
 
 Projection predictive variable selection (as described in Section
-\ref{sec:bayes-variable-selection}) was used to obtain the relevant set
+\ref{sec:bayes-variable-selection} and as applied by Piironen and Vehtari \citep{Piironen2015}
+and Peltola et al \citep{Peltola2015}) was used to obtain the relevant set
 of microRNAs for each gene. A full model was fitted by drawing 2000 samples
 from the posterior using RStan (4 chains, 1000 samples each and the first half
 discarded as burn-in). A random sample of $S=1000$ simulation samples from the
@@ -238,8 +264,8 @@ several different values for were experimented with.
 The final projected model was obtained by redoing the projection search up to
 the chosen number of variables, using all data for each gene. miRNAs included
 in each gene's model were considered putative target interactors. miRNAs for
-which the 95\% posterior interval did not include the origo are termed
-\emph{significant miRNAs}. For some genes the condition in \eqref{eq:size-condition} was not
+which the 95\% posterior interval did not include the origo were considered
+\emph{significant}. For some genes the condition in \eqref{eq:size-condition} was not
 met after including 200 covariates. In these cases it was concluded that the
 miRNA covariates provided no additional information on the protein expression
 and, thus, none of them were deemed as targeting the gene. In some cases the
@@ -273,7 +299,7 @@ The coefficient of determination $R^2$ of a predictive model is defined as
 	R^2 = \frac{SS_{\textup{residuals}}}{SS_{\textup{total}}} = \frac{\sum_{i=1}^{n}(\hat{y}_i-y_i)^2}{\sum_{i=1}^{n}(y_i-\bar{y})^2},
 \end{equation}
 where $\hat{y}_i$ are the predictions made by the model and $\bar{y}$ is the
-mean of the outcome variable $y$. $R^2$ indicates the proportion of variance
+mean of the outcome variable $y$. $R^2$ corresponds to the proportion of variance
 of the outcome variable that is explained by a statistical model, and can be
 used as a measure of model fit. $R^2$ has the property of being invariant to
 variable scaling, which makes it suitable for use with expression data, as
@@ -286,16 +312,3 @@ observations and $p$ the number of explanatory variables) adjusts for the
 number of regressors relative to the number of observations, thus penalizing
 inclusion of additional variables. $\bar{R}^2$ was used for comparing the
 projected model with the gene only model.
-
-
-
-\subsubsection{Verifying predicted targets}
-
-The predicted miRNA targets from both projection prediction and lasso
-regression were compared to validated targets in DIANA-TarBase v7.0
-\citep{Vlachos2015} (referred to as Tarbase from here on). The Tarbase
-database was downloaded and filtered down to genes and miRNAs included
-in the analyzed data set. This resulted in a set of 5197 validated target
-interactions. Only 7 of these were classified as originating from breast
-cancer tissue. The proportion of validated targets in all predicted targets
-was computed.
