@@ -44,7 +44,7 @@ results. Notably, even the gene-matched correlations are quite low, with a
 mean $\bar{\rho} \approx 0.37$. Using the squared correlation coefficient $\rho^2$ as a
 measure of explained variance (although this has been criticized), the amount
 of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a mean of
-21\%. This is in alignment with earlier results. 
+21\%. This is in alignment with earlier results.
 
 \begin{figure}[!h]
   \centering
@@ -69,7 +69,7 @@ of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a
   (a) Correlation between protein and mRNA pairs, where "matched" refers to correlating
   protein and mRNA from the same gene.
   (b) Correlation between protein and miRNA pairs, where "validated" refers to the gene
-  being a validated target of the miRNA (according to Tarbase),
+  being a validated target of the miRNA (according to TarBase),
   and "random" to a randomly picked group of protein-miRNA pairs.
   (c) Correlation between mRNA and miRNA pairs,
   where grouping is the same as in (b).}
@@ -77,7 +77,7 @@ of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a
 \end{figure}
 
 Correlations between miRNAs and their validated target genes (fetched from
-Tarbase) are mostly low with no preference towards negative (or positive)
+TarBase) are mostly low with no preference towards negative (or positive)
 values. There is virtually no difference in correlations between validated
 targets and randomly picked gene-miRNA pairs, contrary to what might be
 expected. This suggests that (Pearson) correlation of expression data is not a
@@ -100,16 +100,15 @@ final projected models took between 2 to 45 minutes, depending on the chosen
 model size. All parameters for all simulations had $\hat{R}^2 < 1.1$,
 indicating good convergence of simulation chains \citep{Gelman2013}.
 
-The
-parameters for the model-size criterion, $\alpha$ and $\gamma$ had a
+The parameters for the model-size criterion, $\alpha$ and $\gamma$ had a
 significant effect on the resulting model sizes (a plot of model-size
 distributions is shown in appendix Figure \ref{fig:model-size-distribution}).
-Values $\alpha = 0.50$ and
-$\gamma = 0.2$ were chosen to keep models relatively sparse. This choice was,
-however, largely subjective. Out of the 105 genes in the data, a projected model (where
-at least one miRNA variable was included, and the model-size criterion was met
-in under 200 variables) was then found for 74 genes. 
-A table of properties for the projected models is presented in Appendix
+Values $\alpha = 0.50$ and $\gamma = 0.2$ were chosen to keep models
+relatively sparse. This choice was, however, largely subjective. Out of the
+105 genes in the data, a projected model (where at least one miRNA variable
+was included, and the model-size criterion was met in under 200 variables) was
+found for 74 genes. A table of properties for the projected models is
+presented in Appendix
 \ref{app:full-model-table}.
 
 Figure \ref{n-miRNAs-vs-R2} shows the number of miRNA variables included in
@@ -127,7 +126,15 @@ average, but an equal trend and turning point were observed (data not shown).
 \begin{figure}[!h]
   \centering
   \includegraphics[height=11cm]{n_miRNAs_vs_R2.pdf}
-  \caption{Size of final model compared to model goodness-of-fit. Plotted is the total number of chosen miRNA variables in each full model (N miRNAs) versus number of significant miRNA variables, R$^2$ of full model, and difference of $\bar{R}^2$ between full and gene only model ($\Delta\bar{R}^2$). Each point represents one model fitted for one gene. A small jitter has been added to the points to help visualize all of them. Curves were fitted with locally weighted scatter plot smoothing (LOESS) and shaded areas represent 95\% confidence interval. \label{n-miRNAs-vs-R2}}
+  \caption{Size of final model compared to model goodness-of-fit. Plotted is
+  the total number of chosen miRNA variables in each full model (N miRNAs)
+  versus number of significant miRNA variables, R$^2$ of full model, and
+  difference of $\bar{R}^2$ between full and gene only model
+  ($\Delta\bar{R}^2$). Each point represents one model fitted for one gene. A
+  small jitter has been added to the points to help visualize all of them.
+  Curves were fitted with locally weighted scatter plot smoothing (LOESS) and
+  shaded areas represent 95\% confidence interval.}
+  \label{n-miRNAs-vs-R2}
 \end{figure}
 
 There could be several explanations for this trend. Firstly, the largest
@@ -173,31 +180,43 @@ and $\Delta\bar{R}^2$ between PPVS and lasso.
 
 \subsubsection{Target prediction performance}
 
-Figure \ref{fig:venn} shows the number of putative targets
-predicted by projection predictive variable
-selection (PPVS) and lasso regression, as well as a comparison
-of the distriburions of regression model sizes and $\Delta\bar{R}^2$'s
-(compared to the gene-only model).
+Considering each selected miRNA variable as a putative miRNA-mRNA target
+interaction, PPVS generated a total 945 target predictions, out of which
+253 were significant (in the sense described above).
+Lasso regression generated all together 650 target predictions. Figure
+\ref{fig:venn} shows the overlap of predictions by PPVS and lasso, and also
+the overlap of significant predictions from PPVS and the same number of top
+predictions from lasso, where lasso predictions were ranked by the absolute value of
+the regression coefficient.\footnote{Lasso regression does not provide any tests of
+significance or other ranking measures}
 
-\begin{figure}
+\begin{figure}[!h]
   \centering
-  \includegraphics[width=.45\linewidth]{figures/compareModels/Venn_PPVS_PPVS-sig_Lasso.pdf}
-  \caption{A Venn diagram showing the overlap of target predictions from both
-  methods (including significant predictions from PPVS as their own group,
-  shown left).}
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/compareModels/Venn-PPVS-lasso.pdf}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/compareModels/Venn-PPVS_sig-lasso_top.pdf}
+  \end{subfigure}
+
+  \caption{Venn diagrams showing the overlap of target predictions from PPVS
+  and lasso (shown left). Shown right is the overlap of significant predictions
+  from PPVS and the same number of top predictions from lasso (ranked by
+  absolute value of regression coefficient).}
   \label{fig:venn}
 \end{figure}
 
 Figure \ref{fig:scatter-ppvs-lasso} shows a comparison of the regression
 coefficients from PPVS and lasso for targets predicted by both methods. There
-were only 4 predicted targets for which the methods did not agree on the sign
-of the coefficient, and all these coefficients were relatively small. PPVS
-produced larger coefficients in general. Correlation for the coefficients was
-fairly high ($0.86$).
+were only three predicted targets for which the methods did not agree on the
+sign of the coefficient. PPVS produced larger coefficients in general, and
+correlation for the coefficients was fairly high ($0.86$).
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=.6\linewidth]{figures/compareModels/PPVS_Lasso_coef_scatter.pdf}
+  \includegraphics[width=.6\linewidth]{figures/compareModels/Scatter-PPVS-lasso.pdf}
   \caption{Scatter plot of miRNA regression coefficients from projection
   prediction (PPVS) and lasso for the 145 common targets predicted by both methods.
   Note that PPVS coefficients generally have greater magnitude. Triangles
@@ -206,13 +225,15 @@ fairly high ($0.86$).
   \label{fig:scatter-ppvs-lasso}
 \end{figure}
 
-Additionally, 206 negative interactions were listed for the data, i.e. gene-
-miRNA pairs that showed no interaction in some experiment. PPVS and lasso had
-similar performance in regards of discovering validated targets, with
-approximately 17\% and 24\% of predicted targets being validated, respectively
-(similarly, 17\% of significant predictions by PPVS were validated). Neither
-method found any of the validated targets from breast cancer tissue. For both
-methods, approximately half of the coefficients for both all predicted and
-validated targets were positive, indicating upregulation by the miRNA, whereas
-all of the discovered validated interactions were classified as downregulative
-in Tarbase.
+PPVS and lasso had similar performance in regards of discovering validated
+targets, with approximately 12\% of PPVS and 14\% of lasso predictions
+appearing in the union of TarBase and miRTarBase. For the significant PPVS and top lasso
+predictions, 13\% and 14\% were in the validated reference set, respectively. Therefore,
+limiting predictions to the ones with most confidence did not significantly increase
+the proportion of validated targets for either method.
+
+For both methods, approximately half of the coefficients for both all
+predicted and validated targets were positive, indicating upregulation by the
+miRNA. In contrast, in TarBase, all of the discovered validated interactions
+were classified as downregulative. miRTarBase does not provide data on the
+nature of the regulation.
