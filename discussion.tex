@@ -12,6 +12,7 @@ samples, with the goal of identifying putative miRNA target genes in breast
 cancer. The Bayesian method was compared to lasso regression, a popular method
 for target prediction from expression data.
 
+
 \subsection*{Overview of results}
 
 Correlation between mRNA and protein expression was mostly low, a finding
@@ -38,6 +39,7 @@ lasso regression. This approach is flawed in the sense, that it loses some of
 the power of multivariate models to identify singly weak but combinatorially
 strong effects, since univariate modeling is used as a filtering step. It also
 uses the same data twice, causing bias.
+
 
 \subsection*{Possible improvements}
 
@@ -88,18 +90,19 @@ nature of microRNA regulation ultimately calls for computational methods
 that model the whole regulatory network at once. This, however, becomes a much
 more difficult problem than multivariate linear regression.
 
-
-\subsection*{Future prospects}
-
 In conclusion, the work in this thesis shows that the proposed method of
 projection predictive variable selection is applicable to microRNA target
-predction. However, further refinements to the model are warranted to
-improve preformance, and in the presented form, the method did not offer
-significant improvement over a simpler alternative, but incurred a large
-computational burden. The choice of model-size parameters $\alpha$ and $\gamma$,
-and therefore the choice of final model size and ultimately the model itself,
-proved untrivial. A data-driven approach for optimizing the parameter values
-would perhaps be of value.
+predction. However, further refinements to the model are warranted to improve
+preformance. In the presented form, compared to a simpler alternative, the
+method offered only a small advantage from a modeling perspective, and
+apparent advantage from a biological perspective , but incurred a large
+computational burden. The choice of model-size parameters $\alpha$ and
+$\gamma$, and therefore the choice of final model size and ultimately the
+model itself, proved untrivial. A data-driven approach for optimizing the
+parameter values would perhaps be of value.
+
+
+\subsection*{Future prospects}
 
 The recent development of CLIPseq and similar methods has made high-throughput
 experimental microRNA target discovery possible, partially replacing the need

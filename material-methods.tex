@@ -295,10 +295,10 @@ the gene.
 
 \subsubsection{Measuring model fit}
 
-To assess convergence of simulation chains, the $\hat{R}^2$ measure proposed
-by Gelman et al was used.
-
-The coefficient of determination $R^2$ of a predictive model is defined as
+To assess convergence of simulations, the potential scale reduction
+measure $\hat{R}$ proposed by Gelman et al was used \citep{Gelman2013}.
+The coefficient of determination $R^2$ was used as a measure
+of regression model performance. $R^2$ is defined as
 \begin{equation}
 	R^2 = \frac{SS_{\textup{residuals}}}{SS_{\textup{total}}} = \frac{\sum_{i=1}^{n}(\hat{y}_i-y_i)^2}{\sum_{i=1}^{n}(y_i-\bar{y})^2},
 \end{equation}
@@ -314,5 +314,5 @@ monotonically by adding more explanatory variables. The adjusted $R^2$,
 defined as $\bar{R}^2 = 1-(1-R^2)\frac{n-1}{n-p}$ (where $n$ is the number of
 observations and $p$ the number of explanatory variables) adjusts for the
 number of regressors relative to the number of observations, thus penalizing
-inclusion of additional variables. $\bar{R}^2$ was used for comparing the
+inclusion of additional variables. Therefore, $\bar{R}^2$ was used for comparing the
 projected model with the gene only model.
