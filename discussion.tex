@@ -4,43 +4,42 @@
 
 \section{Discussion}
 
-This thesis presented a review of literature concerning microRNAs and the
-prediction of microRNA target genes. A modern Bayesian regression model and
-variable selection method was applied to predict protein expression from mRNA
-and miRNA expression in breast cancer tumor samples with the goal of
-identifying putative miRNA target genes.
+This thesis presented a review of the basics of gene expression, microRNAs and
+the computational prediction of microRNA target genes. A modern Bayesian
+variable selection method was applied in the context of regression, to predict
+protein expression from mRNA and miRNA expression in breast cancer tumor
+samples, with the goal of identifying putative miRNA target genes in breast
+cancer. The Bayesian method was compared to lasso regression, a popular method
+for target prediction from expression data.
 
 \subsection*{Overview of results}
 
 Correlation between mRNA and protein expression was mostly low, a finding
 supported by many previous studies \citep{Payne2015}. Interestingly, there was
-no difference between correlations of predicted or validated miRNA-target
-pairs or randomly chosen ones and all of these correlations were clustered
-close to zero. This illustrates the complexity of expression regulation and
-supports the view that modeling single interaction pairs individually is
-unlikely to be sufficient in general.
+no virtually difference between correlations of validated miRNA-target pairs
+or randomly chosen ones. This illustrates the complexity of expression
+regulation and supports the view that modeling single interaction pairs
+individually is unlikely to be sufficient in general.
 
-Compared to lasso regression PPVS achieved slightly better model fit, but
-otherwise performance were quite similar. There was quite small overlap of
-predictions made by the two methods, a common problem in microRNA target
-prediction. Only a small fraction of predicted targets were validated
-according to Tarbase, but it should be noted, that is probably true in general
-of all miRNA targets. Only a limit number of validation studies have been
-done.
+Compared to lasso regression PPVS achieved better model fit, yet from a target
+prediction point of view, performance of the two methods was quite similar.
+There was quite small overlap of predictions made by the two methods, a common
+problem in microRNA target prediction. Only a small fraction of predicted
+targets were validated according to Tarbase, but it should be noted, that is
+probably true in general of all miRNA targets; only a limited number of
+validation studies have been done.
 
-Aure et al used Lasso regression for a similar analysis
+Aure et al used lasso regression for a similar analysis of the same dataset
 %prediction of protein expression from mRNA and miRNA expression 
-to identify miRNAs significantly
-affecting protein expression in breast cancer. They used a multi-step
-process, where miRNAs input into the Lasso regression were first
-filtered with simple linear regression, only miRNAs deemed significant
-in the univariate regression model were included. This approach is
-flawed in the sense, that it does not have the advantage of multivariate
-models to identify singly weak but combinatorially strong effects, since univariate
-modeling is used as a filtering step. It also uses the same data twice,
-causing bias.
+to identify miRNAs significantly affecting protein expression in breast
+cancer \citep{Aure2015}. They used a multi-step process, where miRNAs deemed significant in a
+simple univariate regression model were used as input in lasso regression.
+This approach is flawed in the sense, that it loses some of the power of
+multivariate models to identify singly weak but combinatorially strong
+effects, since univariate modeling is used as a filtering step. It also uses
+the same data twice, causing bias.
 
-\paragraph*{Possible improvements}
+\subsection*{Possible improvements}
 
 An obvious way to improve the model would be to include sequence-based target
 information. Bayesian modeling provides a formal and relatively easy way to
@@ -88,7 +87,7 @@ that model the whole regulatory network at once. This, however, becomes a much
 more difficult problem than simple multiple linear regression. \textbf{Akilla
 oli tähän joku metodiehdotus, johon voisi viitata.}
 
-\paragraph*{Future prospects}
+\subsection*{Future prospects}
 
 The recent development of CLIPseq and similar methods has made high-throughput
 experimental microRNA target discovery possible, partially replacing the need
