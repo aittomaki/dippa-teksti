@@ -7,9 +7,12 @@
 Bayesian data analysis is a modeling framework that is based on the principle
 of quantifying uncertainty as probability. Current knowledge about unknown
 model parameters, variables and future observations is described in terms of
-probability statements \citep{Gelman2013}. This provides a framework which
-is inherently suited to dealing with noisy real-world data, as measurement
-noise is naturally incorporated into probability distributions.
+probability statements \citep{Gelman2013}. This provides a framework which is
+inherently suited to dealing with noisy real-world data, as measurement noise
+is naturally incorporated into probability distributions. This section
+provides a brief introduction into Bayesian analysis and discusses Bayesian
+regerssion and variable selection as applicable to the problem of microRNA
+target prediction.
 
 \subsection{Basics of Bayesian analysis}
 
@@ -17,10 +20,10 @@ Bayesian analysis begins by defining a joint probability model $p(y,\theta)$
 for observed data $y$ and unknown model parameters $\theta$.
 The joint distribution can be written as a product of two probability distributions
 \begin{equation}
-  p(y,\theta) = p(\theta) p(y|\theta),
+  p(y,\theta) = p(\theta) p(y\mid\theta),
 \end{equation}
 which are referred to as the \emph{prior distribution} $p(\theta)$ and the
-data distribution or \emph{likelihood} $p(y|\theta)$. The prior conveys
+data distribution or \emph{likelihood} $p(y\mid\theta)$. The prior conveys
 information on the presumed values a parameter may take and the likelihood
 represents the likeliness of observed data for given parameter values (in the
 context of the chosen data model). Applying the Bayes' theorem we obtain the
@@ -28,60 +31,57 @@ context of the chosen data model). Applying the Bayes' theorem we obtain the
 observations $y$:
 \begin{equation}
   \label{eq:bayes}
-  p(\theta|y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta) p(y|\theta)}{p(y)},
+  p(\theta \mid y) = \frac{p(y,\theta)}{p(y)} = \frac{p(\theta) p(y\mid\theta)}{p(y)},
 \end{equation}
-where $p(y) = \int_{\theta} p(\theta) \cdot p(y|\theta) d\theta$.
+where $p(y) = \int_{\theta} p(\theta) \cdot p(y\mid\theta) d\theta$.
 Noting that $p(y)$ does not depend on $\theta$, we can write Equation
 \eqref{eq:bayes} as
 \begin{equation}
-  p(\theta|y) \propto p(\theta) p(y|\theta).
+  p(\theta \mid y) \propto p(\theta) p(y\mid\theta).
 \end{equation}
 The latter is referred to as the unnormalized posterior distribution. The
 Bayes' theorem forms the heart of Bayesian inference and illustrates the core
 concept of updating prior beliefs to account for observed evidence. The
 posterior provides a probability assessment of the possible values of
 a parameter, and represents a compromise between prior knowledge and information
-contained in observed data. As the number of observations increases, the
+obtained from observations. As the number of observations increases, the
 data have increasing influence on the posterior \citep{Gelman2013}.
 
-The virtue of modeling uncertainty as probabilities -- in addition to
-naturally dealing with noise -- is that they are conceptually easy to grasp
-and often allow common-sense interpretations of conclusions to be made.
-\footnote{This is especially true compared to classical frequentist analysis,
-which is defined within the context of repeated sampling (and inference) from
-a fixed but unknown process generating the observations. For
-example, frequentist confidence intervals strictly do not indicate that the
-true value of the parameter is contained within with high probability -- a
-common misconception -- where as Bayesian posterior intervals do (subject to
-modeling assumptions, of course).}
-Bayesian modeling is also flexible and can cope with complex problems with
-relative ease. Prior and expert knowledge about the parameters of interest can be
-embedded in the prior distribution and different priors may be assigned to
-each parameter.
-% additional data can be included sequentially using a
-% previously obtained posterior as a new prior distribution.
-
-Hierarchical models -- where parameters of the prior
-distributions have their own priors called \emph{hyperpriors} -- provide
-additional flexibility. In situations where model parameters are
+Hierarchical models -- where parameters of prior
+distributions have their own priors, called \emph{hyperpriors} -- allow significant
+flexibility in Bayesian modeling. In situations where model parameters are
 related to each other, a common hyperprior may be used for several parameters.
 Hierarchical models are particularly appropriate in settings where
 data are sparse (as available information is be shared between parameters)
 or the data are naturally structured into several levels, such as 
 similar measurements from different hospitals or schools.
 
+The virtue of modeling uncertainty as probabilities -- in addition to
+naturally dealing with noise -- is that they are conceptually easy to grasp
+and often allow common-sense interpretations of conclusions to be made.
+\footnote{This is especially true compared to classical frequentist analysis,
+which is defined within the context of repeated sampling (and inference) from
+a fixed but unknown process generating the observations. For example,
+frequentist confidence intervals strictly do not indicate that the true value
+of the parameter is contained within with high probability -- a common
+misconception -- where as Bayesian posterior intervals do (subject to modeling
+assumptions, of course).} Perhaps the foremost advantage of Bayesian modeling,
+however, is its flexibility and extensibility; it can cope with complex
+problems and data with relative ease. Prior knowledge about the parameters of
+interest can be embedded in prior distributions, priors can be assigned freely
+to each parameter, hierachical models can be used to model layered data, and
+new observations can be added sequentially to update previous conclusions.
+
 The challenge in Bayesian analysis is choosing proper probability models for
 the parameters and observations, including prior distributions as well as the
 likelihood \citep{Gelman2013}. In fact, Bayesian methodology has been
-criticized for the subjectivity related to choosing suitable priors, as it is
-based on the experience and reasoning of the statistician. One could, however,
+criticized for the subjectivity related to choosing suitable priors. One could, however,
 argue that the choice of any model is always subjective to a certain degree,
 irrespective of chosen methodology. Additionally, weakly informative or non-informative
 priors can be used to decrease the effect of subjective information (or
-in cases where no prior knowledge is available) and results from
+in cases where no prior knowledge is available) and conclusions from
 inferences using non-informative priors often coincide with classical
 analyses.
-
 
 % In cases where no prior information is available, weakly informative
 % or noninformative priors can be used. These convey little or no
@@ -108,16 +108,26 @@ analyses.
 % into account, or finding the sufficient and ancillary statistics is hard.
 
 
-\subsection{Bayesian inference}\label{simulation}
+\subsection{Bayesian inference}\label{sec:bayesian-inference}
 
-The goal of Bayesian inference is often to make conclusions about unkown
-parameters $\theta$ of unkown observations $\tilde{y}$ given observed data
-$y$. These are formulated as probability statements.
+The goal of Bayesian inference is to make conclusions about unkown parameters
+$\theta$ or unkown observations $\tilde{y}$, given the observed data $y$.
+These are formulated as posterior distributions or features describing them,
+such as point or interval estimates. In simple cases, the posterior $p(\theta \mid y)$
+can be derived in analytical form. In practice, however, it is often not possible to obtain
+explicit forms of posteriors or analytical solutions to integrals involved in
+inference, epecially with complex and hierarchical models. Therefore,
+numerical estimation or simulation methods, in the form of sampling from
+probability distributions, are frequently used to approximate the posterior.
 
-Often it is not possible to obtain analytical solutions to integrals
-. This is especially true for hierarchical models. It is therefore
-oftentimes necessary to use numerical estimation or simulation to
-derive estimates of the posterior.
+% In practice, one is often interested
+% in a subset of the model parameters. \emph{Marginalization} over the
+% uninteresting \emph{nuisance} parameters can be employed to obtain the marginal posterior
+% \[
+%   p(\theta_1 \mid \theta_2, y) = \int p(\theta_1, \theta_2 \mid y) d\theta_2,
+% \]
+% where $\theta_1$ are the parameters of interest and $\theta_2$ the
+% nuisance parameters.
 
 % Bayesian analysis often involves simulation if the form of sampling from the
 % obtained posterior distribution. This is convenient -- and necessary -- when
@@ -133,27 +143,30 @@ derive estimates of the posterior.
 % use these to compute estimates for parameters and other quantities of
 % interest.
 
-Simplest approaches to simulation include sampling directly from the posterior
-distribution $p(\theta|y)$, where possible, or a distribution proportional
-to $p(\theta|y)$. More commonly Markov chain methods are used. These entail
-drawing iterative samples of $\theta$ from a distribution that approaches
-the true posterior during iteration rounds, where each draw $\theta^t$ is
-conditional (only) on the previous one $\theta^{t-1}$.
-\footnote{This is essentially the definition of a Markov chain; a sequence of random
-variables, where the probability density of each one is dependent on only the
-previous one.} It is advisable to run several separate simulations with
-different starting values $\theta^0$ to assure proper coverage of the whole
-posterior. These are referred to as chains.
+The simplest approaches to simulation include sampling directly from the
+posterior distribution $p(\theta \mid y)$, when possible, or from a simpler distribution
+proportional to $p(\theta \mid y)$ using e.g. rejection sampling \citep{Gelman2013}.
+More sophisticated methods are often needed when dealing with complex models.
+Markov chain Monte Carlo (MCMC) is a general approach to simulation
+that is based on drawing samples of $\theta$ sequentially from approximate
+distributions. The draws are corrected at each iteration so that their
+distribution becomes closer to $p(\theta \mid y)$.
+Each draw $\theta^t$ is conditional (only) on the previous one
+$\theta^{t-1}$.\footnote{This is essentially the definition of a Markov chain;
+a sequence of random variables, where the probability density of each one is
+dependent on only the previous one.}
+MCMC methods are applicable to arbitrary posterior distributions and a range
+of programs for running simulations of full Bayesian inferences are available.
 
-Markov chain simulations should always be assessed for proper converge, both
-for each chain and between the chains. For this purpose, Gelman et al have
-proposed the $\hat{R}$ measure\footnote{Not to be confused with $\bar{R}^2$,
-the adjusted coefficient of determination of a regression model, defined in
-the next section.}, which estimates the ratio of between-chain variation and
-within-chain variation for each parameter \citep{Gelman2013}. Gelman et al
-suggest $\hat{R}^2 < 1.1$ is a reasonable indicator of good convergence. It is
-also good practice to discard the first simulation samples (commonly the first
-half of each chain) to ensure that samples arise from a converged state.
+A key issue with iterative methods, such as MCMC, is running the simulation
+long enough, so that the distribution for drawing samples has converged 
+close enough to the target distribution. Basic solutions to this include discarding a
+burn-in period of samples from the beginning of each simulation (to assure
+that the samples arise from a converged state), and running several separate
+simulations (chains) with different starting points to improve coverage of the
+posterior. Various approaches to measuring convergence have been proposed.
+
+
 
 
 \subsection{Bayesian regression}
@@ -161,28 +174,28 @@ half of each chain) to ensure that samples arise from a converged state.
 Bayesian regression analysis aims to infer the posterior distributions
 for the regression coefficients of covariates and other model parameters,
 such as the variance (i.e. the error term) of the observation model.
-Within the Bayesian framework, the normal linear regression defined in
+Within the Bayesian framework, the \emph{normal linear regression} defined in
 Equation \eqref{eq:linear-regression} can be expressed as
 \begin{equation}
-  y | \beta, \sigma, X \sim N(X \beta, \sigma^2I),
+  y \mid \beta, \sigma, X \sim N(X \beta, \sigma^2I),
   \label{eq:bayesian-linear-regression}
 \end{equation}
 where $N$ is the multivariate normal distribution, and $I$ is the $n \times n$
 identity matrix. The mean of $y$ is then the familiar linear sum of $x_k$
 \begin{equation}
-  \textrm{E}(y|\beta,X) = X \beta = \beta_0 + \beta_1 x_1 + \dotsb + \beta_p x_p.
+  \textrm{E}(y\mid\beta,X) = X \beta = \beta_0 + \beta_1 x_1 + \dotsb + \beta_p x_p.
 \end{equation}
 The posterior distribution for the regression coefficients (up to a
 normalizing constant) is obtained from the marginal posterior
 \begin{equation}
-  p(\beta | \sigma, y, X) \propto \int p(y | \beta, \sigma, X) p(\beta | \sigma) p(\sigma) d\sigma,
+  p(\beta \mid \sigma, y, X) \propto \int p(y \mid \beta, \sigma, X) p(\beta \mid \sigma) p(\sigma) d\sigma,
 \end{equation}
-with the joint prior $p(\beta, \sigma) = p(\beta | \sigma) p(\sigma)$.
+with the joint prior $p(\beta, \sigma) = p(\beta \mid \sigma) p(\sigma)$.
 It is relatively straightforward to extend this simple model, for instance by
 allowing unequal variances or correlation between observations, choosing a
 different data distribution
 % than the normal distribution
-to represent the error term or including hyperparameters to construct a
+to represent the error term, or including hyperparameters to construct a
 hierarchical model.
 
 As mentioned in Section \ref{expr-methods}, microRNA target prediction using
@@ -192,30 +205,29 @@ have been proposed, including the Laplace prior (which is closely related to
 lasso regression), the horseshoe prior, and the hierarchical shrinkage prior
 (a generalization of the horseshoe).
 A hierarchical shrinkage prior for regression weight
-$\beta_j$ can be defined as
-\begin{subequations}
+$\beta_j$ can be formulates as
+\begin{equation}
   \label{eq:hs-prior}
-  \begin{align}
-    \beta_j | \lambda_j, \tau & \sim N(0, \lambda_j^2 \tau^2) \\
+  \begin{aligned}
+    \beta_j \mid \lambda_j, \tau & \sim N(0, \lambda_j^2 \tau^2) \\
     \lambda_j                 & \sim t_\nu^+(0,1),
-  \end{align}
-\end{subequations}
+  \end{aligned}
+\end{equation}
 where $t_\nu^+$ denotes the half-Student-$t$ prior with $\nu$ degrees of
 freedom \citep{Piironen2015}. The $\lambda_j$ correspond to a local scale
 parameter and $\tau$ controls the amount of global shrinkage. As an example,
 in a very sparse model with many irrelevant covariates, the model would
-ideally have small $\tau$ (so that $p(\beta)$ is shrunk close to zero), but
-allow some $\lambda_j$ to be large to escape the shrinkage. A weakly
+ideally have small $\tau$ (so that $p(\beta)$ is mostly shrunk close to zero), but
+allow some $\lambda_j$ to be large to escape the shrinkage.
+
+A weakly
 informative half-Cauchy distribution is often the suggested choice of prior
 for $\tau$, but van der Pas et al have also proposed (for the horseshoe prior)
-using a fixed value of $\tau = \frac{p_n}/{n}*\sqrt{\textup{log}(n/p_n)}$,
+using a fixed value of $\tau = \frac{p_n}{n}\sqrt{\textup{log}(n/p_n)}$,
 where $p_n$ is the assumed number of relevant covariates and $n$ is the number
-of observations \citep{vanderpas2014}. Additional priors need to be
-assigned to $\tau$, $\sigma$ and $\beta_0$, of course.
-
-Bayesian shrinkage priors, however, do not lead to a sparse solution as there remains
-uncertainty in the posterior distribution and no coefficient can be considered
-exactly zero.
+of observations \citep{vanderpas2014}. Bayesian shrinkage priors, however, do
+not lead to a sparse solution as there remains uncertainty in the posterior
+distribution and no coefficient can be considered exactly zero.
 
 
 \subsection{Bayesian variable selection}\label{sec:bayes-variable-selection}
@@ -223,32 +235,52 @@ exactly zero.
 In order to find a small set of relevant predictive variables, a model
 selection approach needs to be applied. To this end, a range of methods
 applicable in Bayesian analysis have been proposed; examples include using
-Bayesian cross validation, different information criteria, and projection
+cross validation, different information criteria, and projection
 methods to determine the submodel giving the best compromise between
 prediction accuracy and model size. A detailed review of these falls outside
 the scope of this thesis, however, a comprehensive one has been recently
-written by Vehtari and Ojanen
-\citep{Vehtari2012}.
+written by Vehtari and Ojanen \citep{Vehtari2012}.
 
 In the context of variable selection for regression,
 Piironen and Vehtari recently suggested that, for problems where data
 are scarce and the number of candidate variables high, using projection predictive
 variable selection is effective \citep{Piironen2016}. The idea, proposed by
-Dupuis and Robert \citep{Dupuis2003}, is to fit a full reference model
-encompassing all candidate variables and uncertainties related to their
-effect, and then use projection to find a submodel that gives similar
-predictions compared to the reference model.
+Dupuis and Robert \citep{Dupuis2003}, is to fit a full reference model $M_{\textup{r}}$
+encompassing all candidate variables,
+%and uncertainties related to their effect,
+and then project the information in the reference posterior onto a submodel $M_\perp$
+so that the predictions are as similar as possible.
 
-An issue with this method is deciding how many variables should be included
-in the model, and what is considered similar-enough predictive performance
-from the submodel. Piironen and Vehtari suggest using cross-validation
+Given the reference model parameters $\theta_{\textup{r}}$, the projection $\theta_\perp$
+in the parameter space of $M_\perp$ is obtained by solving
+\begin{equation}
+  \label{eq:projection}
+  \theta_\perp = \textup{arg}\underset{\theta}{\textup{min}} \frac{1}{n}\sum_i^n \textup{KL} \left ( p(\tilde{y} \mid x_i, \theta_{\textup{r}}, M_{\textup{r}}) \parallel p(\tilde{y} \mid x_i, \theta, M_\perp) \right ),
+\end{equation}
+where $\textup{KL} \left ( P \parallel Q \right )$ is the Kullback-Leibler divergence
+between probability distributions $P$ and $Q$. The discrepancy between the reference
+model  $M_{\textup{r}}$ and submodel $M_\perp$ is then defined as the expectation
+of the divergence over the posterior of the reference model:
+\begin{equation}
+  \label{eq:model-discrepancy}
+  \delta(M_{\textup{r}} \parallel M_\perp) = \frac{1}{n} \sum_i^n \textup{E}_{\theta_{\textup{r}} \mid D,M_\textup{r}} \left [ \textup{KL} \left ( p(\tilde{y} \mid x_i, \theta_{\textup{r}}, M_{\textup{r}}) \parallel p(\tilde{y} \mid x_i, \theta_\perp, M_\perp) \right ) \right ].
+\end{equation}
+The posterior expectation in \eqref{eq:model-discrepancy} can, in practice, be
+estimated by drawing samples from the reference posterior (using e.g. MCMC).
+It can be shown, that in the case of normal linear regression, the
+minimization in \eqref{eq:projection} can be solved analytically and the
+discrepancy \eqref{eq:model-divergence} has a simple form depending only on
+the reference and projected model variances $\sigma^2$ \citep{Piironen2015}.
+
+A practical issue with this method is deciding how many variables should be included
+in the model; what is considered similar-enough predictive performance
+for the submodel. Piironen and Vehtari suggest using cross-validation
 to guide the variable selection process and give a practical guideline
-for stopping the selection, which we will return to in Section \ref{sec:PPVS}.
-
-In this thesis, projection predictive variable selection is used for
+for stopping the selection, which we will return to in Section \ref{sec:methods-variable-selection}.
+In this thesis, projection predictive variable selection was used for
 inferring putative microRNA targets from breast cancer expression
 data using Bayesian regression. Further details of the used method are
-presented in section \ref{sec:PPVS}.
+presented in Section \ref{sec:methods-variable-selection}.
 
 
 \subsection{Bayesian microRNA target-prediction methods}

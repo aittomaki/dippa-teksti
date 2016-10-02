@@ -22,14 +22,16 @@ observations are worth noting. First, several genes have significant outliers
 in the protein data (most notably the genes CDK1, ERRFI1, PIK3CA). This is
 most apparent in the scaled data. Second, the miRNA microarrays have bimodal
 distributions, and many miRNA variables are highly skewed towards very small
-values. This is indicative of the generally low abundances of some miRNA molecules
+values. This is indicative of generally low abundances of some miRNA molecules
 and, although partly due to different preprocessing compared to the mRNA and
 protein arrays, it raises suspicion of significant noise in the miRNA data.
-The raw array data produced from Agilent array readers was not assessed here.
+More strict filtering of data from the miRNA microarrays could lead to better
+overall results.
 
 The first two principal components for each data type were plotted and are
 shown in Figure \ref{fig:qc-pca}. No significant batch effect is visible. The
 hierarchical clustering of samples (not shown) had a similar result.
+Raw array data produced from Agilent array readers was not assessed.
 
 
 
@@ -37,10 +39,10 @@ hierarchical clustering of samples (not shown) had a similar result.
 \subsection{Correlation analysis}
 
 Pearson correlations between variables from the different data types are shown in Figure
-\ref{fig:correlations}. Protein-mRNA correlation is clearly higher for gene-matched pairs
+\ref{fig:correlations}. Protein-mRNA correlation was clearly higher for gene-matched pairs
 (that is protein and mRNA expression corresponding to the same gene) than unmatched pairs,
-and correlations for unmatched pairs are concentrated around zero, both expected
-results. Notably, even the gene-matched correlations are quite low, with a
+and correlations for unmatched pairs were concentrated around zero, both expected
+results. Notably, even the gene-matched correlations were quite low, with a
 mean $\bar{\rho} \approx 0.37$. Using the squared correlation coefficient $\rho^2$ as a
 measure of explained variance (although this has been criticized), the amount
 of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a mean of
@@ -95,10 +97,11 @@ results with using correlation have been reported before
 \subsection{Model simulations}
 
 Simulations for the cross validation (to determine good model size) took
-between 4 to 6 hours (\textbf{on a triton peXX machine}). Simulations for the
-final projected models took between 2 to 45 minutes, depending on the chosen
-model size. All parameters for all simulations had $\hat{R}^2 < 1.1$,
-indicating good convergence of simulation chains \citep{Gelman2013}.
+between 4 to 6 hours (on a computing-cluster node with 2 12-core Xeon E5 2680
+2.50GHz processors). Simulations for the final projected models took between 2
+to 45 minutes, depending on the chosen model size. All parameters for all
+simulations had low potential scale reduction $\hat{R}^2 < 1.1$, indicating
+good convergence of simulation chains \citep{Gelman2013}.
 
 The parameters for the model-size criterion, $\alpha$ and $\gamma$ had a
 significant effect on the resulting model sizes (a plot of model-size
@@ -108,15 +111,13 @@ relatively sparse. This choice was, however, largely subjective. Out of the
 105 genes in the data, a projected model (where at least one miRNA variable
 was included, and the model-size criterion was met in under 200 variables) was
 found for 74 genes. A table of properties for the projected models is
-presented in Appendix
-\ref{app:full-model-table}.
+presented in Appendix \ref{app:full-model-table}.
 
 Figure \ref{n-miRNAs-vs-R2} shows the number of miRNA variables included in
 each projected model plotted against the number of significant miRNA
 variables, the $R^2$ of the projected model, and the difference in $\bar{R}^2$
 between the projected model and the gene-only model. Each point in each plot
-corresponds to one gene, and smoothed curves were fitted using locally
-weighted scatter plot smoothing (LOESS). A trend emerges, where including more
+corresponds to one gene. A trend emerges, where including more
 miRNA variables tends to achieve better performance up to a turning point --
 around 28 miRNA variables -- after which larger models seem to perform
 increasingly poorly. Similar plots were created with more strict model-size
@@ -182,7 +183,8 @@ and $\Delta\bar{R}^2$ between PPVS and lasso.
 
 Considering each selected miRNA variable as a putative miRNA-mRNA target
 interaction, PPVS generated a total 945 target predictions, out of which
-253 were significant (in the sense described above).
+253 were significant (in the sense described above). Table \ref{table:final-models}
+lists the significant predictions.
 Lasso regression generated all together 650 target predictions. Figure
 \ref{fig:venn} shows the overlap of predictions by PPVS and lasso, and also
 the overlap of significant predictions from PPVS and the same number of top

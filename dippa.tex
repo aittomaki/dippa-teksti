@@ -57,7 +57,7 @@
 \setlength{\LTright}{\LTleft}
 
 %% Define which sections to include
-\includeonly{microrna-target-identification}
+%\includeonly{bayesian-analysis}
 
 
 
@@ -286,6 +286,7 @@ $z$                        & mRNA expression vector
 bp          & Base pairs (as a measure of double-stranded sequence length) \\
 lasso       & Least absolute shrinkage and selection operator \\
 nt          & Nucleotides (as a measure of sequence length) \\
+MCMC        & Markov chain Monte Carlo \\
 miRNA       & MicroRNA \\
 MLR         & Multivariate linear regression \\
 mRNA        & Messenger RNA \\
@@ -400,7 +401,7 @@ RPPA        & Reverse phosphatase protein array
 \begin{figure}[htb]
   \centering
   \includegraphics[width=1\linewidth]{figures/varNumHistogram/ZZ_variable_number_hist.pdf}
-  \caption{Distributions of model sizes for differrent values of parameters $\alpha$ and $\gamma$.
+  \caption{Distributions of chosen model sizes for differrent values of parameters $\alpha$ and $\gamma$.
   $\# 0$ refers to the number of models with no covariates (i.e. not even the mRNA covariate was chosen)
   and $\# \textup{NA}$ to the number of models where the model-size criterion was not met.}
   \label{fig:model-size-distribution}

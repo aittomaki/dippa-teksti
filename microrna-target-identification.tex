@@ -33,15 +33,55 @@ other databases using text mining.
 
 Although recent advances in high-throughput methodologies, such as CLIP-seq,
 have significantly increased the scale of experimental studies, experimental
-identification of microRNA targets remains laborious and costly and many
-methods rely on computational processing of results \citep{Vlachos2015}. To
+identification of microRNA targets remains laborious and costly, and many
+methods still rely on computational processing of results \citep{Vlachos2015}. To
 this end, a wide range of computational tools have been developed to aid in
-miRNA target discovery. Computational approaches to target prediction
-can be roughly classified into solely sequence-based tools and
-expression-data-based tools (which often include sequence-features).
-This section presents an overview of published methods developed for the
-task of target prediction.
-For more in-depth reviews, see for example \citep{Yue2009,Muniategui2013}.
+miRNA target discovery.
+
+Computational approaches to target prediction can be roughly classified into
+solely sequence-based tools and tools based on analysis of expression data
+(which often incorporate sequence-based predictions). This section presents an
+overview of published methods developed for the task of target prediction.
+Table \ref{table:prediction-methods} lists examples of target prediction
+methods. For more in-depth reviews, see for example references
+\citep{Yue2009,Muniategui2013}.
+
+
+\begin{table}
+  \caption{Examples of tools for computational prediction of miRNA targets. \\
+  Method: type of inference method used for predictions. \\
+  Seq. used: sequence features considered (sequence-based methods) or use of
+  previous sequence-based predictions (expression-based methods) \\
+  SVM: support vector machine. HMM: hidden Markov model. MI: mutual information.}
+  \label{table:prediction-methods}
+  \centering
+  \begingroup\fontsize{10pt}{12pt}\selectfont
+  \begin{tabular}{ lp{3cm}lp{5cm} }
+    %\\[-1ex] \hline\hline
+    \hline
+    \textbf{Name} & \textbf{Method} & \textbf{Seq. used} & \textbf{Additional notes} \\
+    \hline \\
+    \multicolumn{4}{l}{\textbf{Sequence-based methods}} \\
+    \\
+    TargetScan \citep{Friedman2009,Agarwal2015} & rule based & i, ii, iii & First published target prediction tool. \\
+    JEE \citep{}                    & rule based          &  &  \\
+    mirTarget \citep{}              & SVM                 & i, ii, iii, iv, v &  \\
+    rna22 \citep{}                  & HMM and rule        & ??? &  \\
+    PicTar \citep{}                 & HMM                 &  & Does pseudo-combinatorial predictions by \textbf{JTN} \\
+    TargetBoost \citep{}            & genetic programming & learned & Learns sequence features used from training data. \\
+    \\
+    \multicolumn{4}{l}{\textbf{Expression-based methods}} \\
+    \\
+    MAGIA \citep{Sales2010}          & correlation, MI        & filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
+    TaLasso \citep{Muniategui2013}   & lasso regression       & filter &  \\
+    Engelmann \citep{Engelmann2012}  & least-angle regression & none or filter & Least-angle regression is a specific implementation of lasso. \\
+    miRNAmRNA \citep{vanIterson2013} & global test            & filter   & Uses mRNA expression profiles to predict miRNA expression. \\
+    Joku GSE                         & gene-set enrichment    & filter   & \\
+    GenMir++/3 \citep{Huang2007}       & Bayesian regression    & none or filter & \\
+    \hline
+    \end{tabular}
+    \endgroup
+\end{table}
 
 
 
@@ -57,29 +97,6 @@ problem, where the goal is to identify a set features (both of the miRNA and
 mRNA) that allows classifying mRNAs as either a target or a non-target of any
 given miRNA. Table \ref{table:sequence-methods} lists examples of sequence-
 based methods.
-
-\begin{table}
-  \caption{Examples of sequence-based tools for miRNA target prediction.
-  Features used: experimentally derived sequence features used by the method (see text for explanation).
-  SVM: support vector machine.
-  HMM: hidden Markov model.}
-  \label{table:sequence-methods}
-  \centering
-  \begingroup\small
-  \begin{tabular}{ llllp{4cm} }
-    \\[-1ex] \hline\hline
-    \textbf{Name} & \textbf{Ref.} & \textbf{Type} & \textbf{Features used} & \textbf{Additional notes} \\
-    \hline
-    TargetScan  & \citep{Friedman2009,Agarwal2015} & Rule based & i, ii, iii & The first published target prediction tool. \\
-          & \citep{} & Rule based &  &   \\
-    mirTarget   & \citep{} & SVM & i, ii, iii, iv, v &  \\
-    rna22       & \citep{} & HMM and rule & ??? &  \\
-    PicTar      & \citep{} & HMM &  & Does pseudo-combinatorial predictions by \textbf{JTN} \\
-    TargetBoost & \citep{} & Genetic programming & learned & The algorithm learns sequence features from training data. \\
-    \hline\hline
-    \end{tabular}
-    \endgroup
-\end{table}
 
 Most sequence-based approaches are essentially rule-based filters, where
 features of both the miRNA and mRNA sequence are used to narrow down candidate
@@ -141,15 +158,16 @@ mRNA degradation \citep{Guo2010}. Thus, it is feasible to use mRNA or protein
 expression data to infer target relationships, since the regulatory effect of
 miRNAs should be reflected in mRNA and protein abundances. Sequence-based
 predictions are often incorporated as a preliminary filter step to limit the
-potential interactions examined. Examples of published methods using
-expression data are listed in Table \ref{table:expression-methods}. Various
-mathematical approaches, ranging from correlation to complex Bayesian models,
-have been proposed for expression-based prediction. Notably, most methods
-limit the studied relationship to repression by the miRNA. This has
-been suggested to improve performance \citep{Muniategui2013}, but
-has the limitation of not being able to detect positive regulation,
-both direct and indirect (mediated through regulation of other mRNAs)
-\citep{Engelmann2012}.
+potential interactions examined.
+
+Various mathematical approaches, ranging from correlation to complex Bayesian
+models, have been proposed for expression-based prediction. Most
+methods limit the studied relationship to repression by the miRNA. This has
+been suggested to improve performance \citep{Muniategui2013}, but has the
+limitation of not being able to detect positive regulation, both direct and
+indirect (mediated through regulation of other mRNAs) \citep{Engelmann2012}.
+Notably, the majority of published efforts use either protein or mRNA 
+expression together with miRNA expression, very few have combined all three.
 
 % Mathematical models used in such expression
 % analyses range from simple similarity measures to regression and complex
@@ -162,28 +180,6 @@ both direct and indirect (mediated through regulation of other mRNAs)
 % target prediction becomes essentially a variable selection, where 
 % the goal is to select microRNAs that best predict mRNA expression and then
 % classify the mRNA in question as a target of chosen miRNAs.
-
-\begin{table}
-  \caption{Examples of expression-data based approaches to miRNA target prediction.
-  %See text for details on several methods.
-  Ref. $=$ reference, Method $=$ statistical method used, Seq. data $=$ how the method utilizes sequence-based predictions.}
-  \label{table:expression-methods}
-  \centering
-  \begingroup\small
-  \begin{tabular}{ llllp{4cm} }
-    \\[-1ex] \hline\hline
-    \textbf{Name} & \textbf{Ref.} & \textbf{Method} & \textbf{Seq. data} & \textbf{Additional notes} \\
-    \hline
-    MAGIA     & \citep{Sales2010}      & Correlation, MI        & Filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
-    TaLasso   & \citep{Muniategui2013} & Lasso regression       & Filter &  \\
-    Engelmann & \citep{Engelmann2012}  & Least-angle regression & None or filter & Least-angle regression is a specific implementation of lasso. \\
-    miRNAmRNA & \citep{vanIterson2013} & Global test & Filter   & Uses mRNA expression profiles to predict miRNA expression. \\
-    Joku GSE  &                        & Gene-set enrichment    & \\
-    GenMir++  & \citep{Huang2007}      & Bayesian regression    & None or filter & \\
-    \hline\hline
-    \end{tabular}
-    \endgroup
-\end{table}
 
 Let us henceforth define $y_k = [y_{1k}, \dotsc y_{nK}]$ as a vector of expression
 values of mRNA $k (k = 1, 2, \dotsc, K)$ and $X_{n \times p} = [x_j] =

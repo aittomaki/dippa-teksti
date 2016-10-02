@@ -22,24 +22,26 @@ regulation and supports the view that modeling single interaction pairs
 individually is unlikely to be sufficient in general.
 
 Compared to lasso regression PPVS achieved better model fit, yet from a target
-prediction point of view, performance of the two methods was quite similar.
-There was quite small overlap of predictions made by the two methods, a common
-problem in microRNA target prediction. Only a small fraction of predicted
-targets were validated according to Tarbase, but it should be noted, that is
+prediction point of view, performance of the two methods was similar.
+There was little overlap of predictions made by the two methods, a common
+issue in microRNA target prediction. Only a small fraction of predicted
+targets were validated according to TarBase, but it should be noted, that is
 probably true in general of all miRNA targets; only a limited number of
 validation studies have been done.
 
 Aure et al used lasso regression for a similar analysis of the same dataset
 %prediction of protein expression from mRNA and miRNA expression 
-to identify miRNAs significantly affecting protein expression in breast
-cancer \citep{Aure2015}. They used a multi-step process, where miRNAs deemed significant in a
-simple univariate regression model were used as input in lasso regression.
-This approach is flawed in the sense, that it loses some of the power of
-multivariate models to identify singly weak but combinatorially strong
-effects, since univariate modeling is used as a filtering step. It also uses
-the same data twice, causing bias.
+to identify miRNAs significantly affecting protein expression in breast cancer
+\citep{Aure2015}. They used a multi-step process, where miRNAs deemed
+significant in a simple univariate regression model were used as input in
+lasso regression. This approach is flawed in the sense, that it loses some of
+the power of multivariate models to identify singly weak but combinatorially
+strong effects, since univariate modeling is used as a filtering step. It also
+uses the same data twice, causing bias.
 
 \subsection*{Possible improvements}
+
+\textbf{KERTOIMIEN RAJOITTAMINEN NEGATIIVISIKSI!}
 
 An obvious way to improve the model would be to include sequence-based target
 information. Bayesian modeling provides a formal and relatively easy way to
@@ -84,23 +86,38 @@ effect of a single miRNA is most likely spread across several genes. In
 combination with transcripts having several regulating miRNAs, this many-to-many
 nature of microRNA regulation ultimately calls for computational methods
 that model the whole regulatory network at once. This, however, becomes a much
-more difficult problem than simple multiple linear regression. \textbf{Akilla
-oli tähän joku metodiehdotus, johon voisi viitata.}
+more difficult problem than multivariate linear regression.
+
 
 \subsection*{Future prospects}
+
+In conclusion, the work in this thesis shows that the proposed method of
+projection predictive variable selection is applicable to microRNA target
+predction. However, further refinements to the model are warranted to
+improve preformance, and in the presented form, the method did not offer
+significant improvement over a simpler alternative, but incurred a large
+computational burden. The choice of model-size parameters $\alpha$ and $\gamma$,
+and therefore the choice of final model size and ultimately the model itself,
+proved untrivial. A data-driven approach for optimizing the parameter values
+would perhaps be of value.
 
 The recent development of CLIPseq and similar methods has made high-throughput
 experimental microRNA target discovery possible, partially replacing the need
 for computational target prediction. Nonetheless, experimental methods
-(particularly high-throughput ones) are not immune to error, and microRNA
-regulation is complex with many unconventional regulatory relationships and
-mechanisms having been discovered. Integrative computational approaches --
-combining several levels of data -- beyond correlation will, thus, remain
-important in the future. The elucidation of complex regulatory networks using
-network-level modeling is becoming feasible with modern experimental and
-computational methods. Adapting this approach will be essential, as it has the
-ability to better capture the true biology of the regulation of gene
-expression.
+(particularly high-throughput ones) are not immune to error, and gene
+regulation is vastly complex with many unconventional regulatory mechanisms
+having been discovered. Integrative computational approaches --
+combining several levels and types of data -- beyond correlation will, thus, remain
+important in the future.
 
-Many aspects of microRNA biology and function are still unknown, and they 
-remain an exciting avenue of research. \textbf{HOITOJA JA SEMMOSTA.}
+The elucidation of complex regulatory networks using
+network-level modeling is becoming feasible with modern experimental and
+computational methods. Employing this approach will be essential, as it has the
+ability to better capture the true nature of gene regulation and cellular
+biology.
+
+Many aspects of microRNA biology and function are still unknown. As well as
+helping us understand the complexities of molecular cell biology, uncovering
+microRNA function also offers interesting possibilities in diagnostics and even
+treatment of cancer, as has already been shown for instance for breast
+cancer. MicroRNAs will, therefore, remain an exciting avenue of research in the future.
