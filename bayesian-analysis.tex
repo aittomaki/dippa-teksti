@@ -14,6 +14,9 @@ provides a brief introduction into Bayesian analysis and discusses Bayesian
 regerssion and variable selection as applicable to the problem of microRNA
 target prediction.
 
+
+
+
 \subsection{Basics of Bayesian analysis}
 
 Bayesian analysis begins by defining a joint probability model $p(y,\theta)$
@@ -47,14 +50,14 @@ a parameter, and represents a compromise between prior knowledge and information
 obtained from observations. As the number of observations increases, the
 data have increasing influence on the posterior \citep{Gelman2013}.
 
-Hierarchical models -- where parameters of prior
-distributions have their own priors, called \emph{hyperpriors} -- allow significant
-flexibility in Bayesian modeling. In situations where model parameters are
-related to each other, a common hyperprior may be used for several parameters.
-Hierarchical models are particularly appropriate in settings where
-data are sparse (as available information is be shared between parameters)
-or the data are naturally structured into several levels, such as 
-similar measurements from different hospitals or schools.
+Hierarchical models -- where parameters of prior distributions have their own
+priors, called \emph{hyperpriors} -- allow significant flexibility in Bayesian
+modeling. In situations where model parameters are related to each other, a
+common hyperprior may be used for several parameters. Hierarchical models are
+particularly appropriate in settings where data are sparse (as available
+information is shared between parameters) or the data are naturally structured
+into several levels, such as similar measurements from different hospitals or
+schools.
 
 The virtue of modeling uncertainty as probabilities -- in addition to
 naturally dealing with noise -- is that they are conceptually easy to grasp
@@ -106,6 +109,8 @@ analyses.
 % credibility intervals won't be able to improve much on confidence intervals
 % unless there is prior information which the confidence interval can't take
 % into account, or finding the sufficient and ancillary statistics is hard.
+
+
 
 
 \subsection{Bayesian inference}\label{sec:bayesian-inference}
@@ -230,6 +235,8 @@ not lead to a sparse solution as there remains uncertainty in the posterior
 distribution and no coefficient can be considered exactly zero.
 
 
+
+
 \subsection{Bayesian variable selection}\label{sec:bayes-variable-selection}
 
 In order to find a small set of relevant predictive variables, a model
@@ -281,6 +288,8 @@ In this thesis, projection predictive variable selection was used for
 inferring putative microRNA targets from breast cancer expression
 data using Bayesian regression. Further details of the used method are
 presented in Section \ref{sec:methods-variable-selection}.
+
+
 
 
 \subsection{Bayesian microRNA target-prediction methods}

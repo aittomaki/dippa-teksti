@@ -5,8 +5,8 @@
 
 \section{MicroRNAs}\label{micrornas}
 
-MicroRNAs (miRNAs) are a family of endogenous (i.e. coming from within the
-cell itself) noncoding small RNA molecules that function as post-transcriptional
+MicroRNAs (miRNAs) are a family of endogenous (i.e. synthesized within the
+cell) noncoding small RNA molecules that function as post-transcriptional
 regulators of gene expression \citep{Ambros2004}. In their
 functional, mature form miRNAs are single stranded and approximately 22
 nucleotides long. MicroRNAs are not translated into protein. Instead, they
@@ -38,7 +38,7 @@ necessary for the normal repression of lin-14 expression by lin-4
 %We will return to the issue of microRNA action in chapter \ref{microrna-function}.
 
 Let-7, the second microRNA to be discovered, was also first found in \emph{C.
-elegans}, however, homologues of let-7 were found in several other species
+elegans}, however, homologues of let-7 were later found in several other species
 \citep{Pasquinelli2000}. Soon after, numerous microRNA genes were found across
 a variety of species, and a registry was set up to serve as a comprehensive
 knowledge base of published microRNAs and as an independent authority on
@@ -54,7 +54,7 @@ The number of records in miRBase has risen exponentially
 from %218 precursor and
 218 mature miRNAs in the first release in 2002 to %28645 precursor and
 35828 mature miRNAs in 223 species in the most recent version (v21, released June
-2014 \citep{VanPeer2014,MiRBaseWeb}), illustrating the vast amount of novel
+2014 \citep{VanPeer2014,MiRBaseWeb}), illustrating the number of novel
 microRNA molecules discovered recently, mainly due to increasing efforts in
 and availability of sequencing. miRBase lists 2588 known human miRNAs at the
 time of writing this thesis. A web service called miRBaseTracker has been
@@ -67,8 +67,8 @@ of miRNA study results and reannotation of miRNA analysis platforms.
 
 \subsection{MicroRNA genomics}\label{microrna-genomics}
 
-MicroRNAs are highly conserved in evolution \citep{Bartel2004}, for example,
-55\% of \emph{C. elegans} miRNAs have homologues in humans
+MicroRNAs are highly conserved in evolution \citep{Bartel2004}. For instance,
+approximately 55\% of \emph{C. elegans} miRNAs have homologues in humans
 \citep{IbanezVentoso2008}. Interestingly, the
 appearance of multi-cellular organisms appears to correlate with the
 appearance of the microRNA machinery, and organism complexity and speciation
@@ -86,9 +86,9 @@ mirtrons \citep{Ruby2007}.
 
 MicroRNAs are expressed in all tissues, however, different tissues have
 differing miRNA expression profiles \citep{Krol2010}. Many microRNAs also have
-differing expression in different developmental stages of some organisms, e.g.
-let-7 functions to control the transition from the second larval stage to the
-adult stage in \emph{C. elegans} \citep{Bartel2004}.
+differing expression in different developmental stages of certain organisms, e.g.
+let-7 functions to control the transition from late larval to adult stage in
+\emph{C. elegans} \citep{Bartel2004}.
 
 % Tight evolutionary control, extensive transcriptome
 % targeting, and the fact that miRNAs and their associated proteins are one of
@@ -129,7 +129,6 @@ The hairpin is then exported from the nucleus to the cytoplasm by Exportin 5
   Reprinted with permission from \citep{Bartel2004}.}
   \label{fig:premirna-structure}
 \end{figure}
-
 
 In the cytoplasm, the ribonuclease Dicer cleaves out the loop of the hairpin
 to form a 22-nt-long double-stranded miRNA:miRNA* duplex corresponding to
@@ -172,10 +171,10 @@ has an important role in erythropoiesis, is cleaved by Ago2 \citep{Cheloufi2010}
 
 \subsection{MicroRNA mechanism of action}\label{microrna-mechanism}
 
-The RISC is the effector of RNA interference. Ago functions as the catalytic
-engine of the RISC and the miRNA bound to it guides the RISC to target
-messenger RNAs \citep{Filipowicz2008}. Figure \ref{fig:mirna-biogenesis}
-illustrates a rough outline of how miRNAs act to regulate mRNA expression.
+RISC is the effector of RNA interference, and Ago functions as its catalytic
+engine. MicroRNA sequnce guides the RISC to target messenger RNAs
+\citep{Filipowicz2008}. Figure \ref{fig:mirna-biogenesis} illustrates a rough
+outline of how miRNAs act to regulate mRNA expression.
 
 Target recognition is based on sequence complementarity of the miRNA and mRNA.
 In animal miRNAs this complementarity is almost always limited \citep{Ambros2004}.
@@ -184,24 +183,21 @@ crucial to target mRNA matching; these nucleotides are termed the miRNA "seed se
 miRNA target sequences are mostly located in the 3' UTR (untranslated region)
 of the mRNA transcript, but in some instances target sites also reside in the
 coding region or 5' UTR of the mRNA \citep{Bartel2009}.
-\textbf{TÄÄ KAPPALE PAREMMIN, MUITA FIITSUJA MUKAAN, KOSKA NIITÄ KÄYTETÄÄN PREDICTIOSSA, KTS GRIMSON.)}
 
-The action of microRNAs is \textbf{related} through inhibition of mRNA
-translation or destabilization and subsequent degradation of mRNA. The exact
-mechanisms by which the miRNA and Ago induce translational repression or
-destabilization of mRNA are unclear \citep{Filipowicz2008}. Translational
-inhibition was earlier believed to be the major form of miRNA action in animals,
-but recent evidence suggests that mRNA destabilization dominates \citep{Guo2010}.
-In some cases the mRNA is directly cleaved by Ago. Ago2 is the only mammalian
-Argonaute capable of cleavage, and this is assumed to require
-extensive base-pair matching between the miRNA and mRNA \citep{Du2005}.
-However, mRNA cleavage appears to be rare in animals (while much more common
-in plants).
+MicroRNAs act through inhibition of mRNA translation or destabilization and
+subsequent degradation of mRNA. The exact mechanisms by which the miRNA and
+Ago induce translational repression or destabilization of mRNA are unclear
+\citep{Filipowicz2008}. Translational inhibition was earlier believed to be
+the major form of miRNA action in animals, but recent evidence suggests that
+mRNA destabilization predominates \citep{Guo2010}. Rarely, the mRNA is
+cleaved by Ago. However, in mammals Ago2 is the only Argonaute capable of
+cleavage, and this is assumed to require extensive base-pairing between
+the miRNA and mRNA \citep{Du2005}.
 
 mRNAs bound to RISC accumulate in so called processing bodies (P-bodies),
 which are known sites of mRNA catabolism and translational repression in the
 cytoplasm. The localization in P-bodies, however, appears to be a consequence
-of RNA silencing, not the cause, and is reversible  \citep{Eulalio2007}.
+of RNA silencing, not the cause, and is reversible \citep{Eulalio2007}.
 
 Interestingly, several alternative mechanisms of action for microRNA have been
 reported. For example, some miRNAs can increase the translation of target mRNA instead of
@@ -216,22 +212,18 @@ microRNA biology and gene regulation in general.
 
 \subsection{MicroRNA function}\label{microrna-function}
 
-SIIRRÄ TÄMÄ AIEMMAKSI?
-
-MicroRNAs have been found to participate in regulation of almost all studied
-cellular processes, including embryo development, cell proliferation,
-apoptosis and metabolism, by regulating protein expression \cite{}.
-
-miRNAs assert extensive control over the transcriptome. More than 60\% of
-human mRNA transcripts are predicted to be regulated by miRNAs and a single
-transcript has target sites for several different miRNA families
+MicroRNAs assert extensive control over the transcriptome, and have been found
+to participate in regulation of almost all studied cellular processes,
+including embryo development, cell proliferation, apoptosis and metabolism.
+More than 60\% of human mRNA transcripts are predicted to be regulated by
+miRNAs and most have target sites for several different miRNAs
 \citep{Friedman2009}. Furthermore, a single microRNA can have as many as hundreds or
-thousands of target mRNAs. The effect of a
-single miRNA on its target tends to be subtle, usually causing less than a
-2-fold change in protein expression \citep{Baek2008}. However, a single
-miRNA can have multiple binding sites in one mRNA and multiple miRNAs
-acting on the same target have additive, and in some cases even synergistic
-effects \citep{Bartel2009}.
+thousands of target mRNAs. The effect of a single miRNA on its target tends to
+be subtle, usually causing less than a 2-fold change in protein abundance
+\citep{Baek2008}. Thus, microRNAs are considered fine-tuners of gene expression.
+However, the subtle effect can be enhanced by multiple binding sites and
+multiple miRNAs acting on the same target, enabling synergistic
+interactions \citep{Bartel2009}.
 
 % , and depending also on 
 % of multiple miRNAs acting in tandem can, however, be much more pronounced and
@@ -242,7 +234,7 @@ effects \citep{Bartel2009}.
 
 It should be noted, however, that the functional role and importance of many
 miRNA-mRNA interactions are unknown, even for validated interaction pairs.
-Uncovering these roles is challenging because of the subtle regulatory effects
+Uncovering these roles is challenging due to the subtle regulatory effects
 that miRNAs often have and, additionally, because of the complexity and
 robustness of most cellular regulatory networks \citep{Bartel2009}.
 Furthermore, experimentally validated target mRNAs exist only for a subset of
@@ -261,35 +253,33 @@ breast cancer \citep{Melo2011}.
 
 \subsection{Measuring MicroRNA expression}
 
-The same methods that have been employed for measuring mRNA (i.e. gene)
-expression are generally applicable for measuring microRNA expression as well,
-ranging from northern blotting to microarrays and more recent studies using next
+The same methods that have been employed for measuring mRNA
+expression are generally applicable for measuring microRNA expression.
+These include northern blotting, microarrays and, more recently, next
 generation sequencing (NGS) \citep{Huang2011}. However, as Hunt and colleagues
-in a recent and thorough review point out, there are several challenges in
-detecting miRNAs in particular \citep{Hunt2015}.
+in a recent review point out, there are several challenges in
+detecting miRNA expression in particular \citep{Hunt2015}.
 
-MicroRNAs are very short and only comprise approximately 0.01\% of RNA
-typically extracted from a sample \citep{Dong2013}. This implies that miRNA
-detection must be highly sensitive. MicroRNAs from the same family can differ
-by only one base, which in turn requires high specificity to be able to
-distinguish between family members. On the other hand, variation in miRNA
-processing can result in slight sequence variations, or isoforms, of a single
-miRNA, also known as isomiRs \citep{StaregaRoslan2011,Lee2010}. This means
-high specificity or an incorrect reference sequence (e.g. that of a
-weakly-expressed isomiR) used for detection can cause inaccurate measurements.
-IsomiRs may also have different functions resulting from altered target
-specificity \citep{Chugh2012}. The existence of the pri-miRNA, pre-miRNA and
-mature miRNA molecules provides an additional challenge for measurement
-methods.
+MicroRNAs are very short and typically comprise approximately 0.01\% of RNA
+typically extracted from any tissue sample \citep{Dong2013}. This implies that
+miRNA detection methods must be highly sensitive. Additionally, microRNAs from
+the same family can differ by only one base, which in turn requires high
+specificity to distinguish between members of the same miRNA family. On the
+other hand, variation in miRNA processing can result in slight sequence
+variations, or isoforms, of a single miRNA, also known as isomiRs
+\citep{StaregaRoslan2011,Lee2010}. This means high specificity or an incorrect
+reference sequence (e.g. that of a weakly-expressed isomiR) used for detection
+can cause inaccurate measurements. IsomiRs may also have different functions
+resulting from altered target specificity \citep{Chugh2012}. The existence of
+the pri-miRNA, pre-miRNA and mature miRNA molecules provides an additional
+challenge for measurement methods.
 %, although differentiation between these maturation stages is not necessarily required.
 
 Many of the challenges mentioned are solved by NGS, which is sensitive and
 reliable in quantifying known microRNAs and identifying novel ones
-\citep{Huang2011}. Sequencing can detect variations of even one nucleotide and
+\citep{Huang2011}. Sequencing can detect variations of single nucleotides and
 does not necessarily depend on previously identified sequences. However, not
 all identified short RNAs are functional miRNAs, and NGS conveys its own set
-of problems relating to high cost, significant computational complexity and
+of problems relating to significant computational complexity and
 validation efforts to distinguish relevant data from noise
 \citep{Chugh2012,Hunt2015}.
-
-\textbf{TÄHÄN VIELÄ ERI PLATFORMIEN VERTAILUA JA PREPROSESSOINNISTA?}

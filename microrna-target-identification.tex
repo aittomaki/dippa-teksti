@@ -3,7 +3,7 @@
 %%% This section cover the computational methods for miRNA target identification.
 %%% Author: Viljami Aittomäki
 
-\section{Computational identification of microRNA targets}
+\section{Computational identification of miRNA targets}
 
 % This section presents computational methods that have been used to predict
 % putative target genes for microRNAs and regulatory networks between genes and
@@ -17,13 +17,13 @@
 % A recent review covering many published methods for different tasks
 % has been written by Akhtar et al \citep{Akhtar2016}.
 
-Recognizing the targets of microRNAs is essential to understand their
-biological function and role in disease such as cancer. Many target
+Recognizing the targets of microRNAs is essential in understanding their
+biological function and role in disease. Many target
 interactions have been found in experimental laboratory studies. Common
 methods for such studies include using cell lines and introducing exogenous
 miRNAs by transfection or suppressing endogenous ones and measuring the
 effect on mRNA or protein expression. For a detailed review of experimental
-methods, see for example Thomson et al \citep{Thomson2011}.
+methods, see Thomson et al \citep{Thomson2011}.
 
 Several public databases list currently known experimentally validated
 microRNA targets. Examples include DIANA-TarBase \citep{Vlachos2015} and
@@ -41,10 +41,9 @@ miRNA target discovery.
 Computational approaches to target prediction can be roughly classified into
 solely sequence-based tools and tools based on analysis of expression data
 (which often incorporate sequence-based predictions). This section presents an
-overview of published methods developed for the task of target prediction.
-Table \ref{table:prediction-methods} lists examples of target prediction
-methods. For more in-depth reviews, see for example references
-\citep{Yue2009,Muniategui2013}.
+overview of published methods developed for target prediction.
+Examples of these methods are shown in Table \ref{table:prediction-methods}.
+For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
 
 
 \begin{table}
@@ -89,21 +88,21 @@ methods. For more in-depth reviews, see for example references
 \subsection{Sequence-based target prediction}
 
 Sequence-based prediction methods focus on finding miRNA-mRNA pairs that
-have complementary sequences, basing on the fact that sequence complementarity
-is the primary determinant of miRNA targeting. Hence, they can
-only determine pair-wise relationships. From a machine learning perspective,
+have complementary sequences, as sequence complementarity
+is the primary determinant of miRNA targeting.
+% Hence, they can only determine pair-wise relationships.
+From a machine learning perspective,
 prediction of miRNA targets is essentially a \emph{classification}
 problem, where the goal is to identify a set features (both of the miRNA and
 mRNA) that allows classifying mRNAs as either a target or a non-target of any
-given miRNA. Table \ref{table:sequence-methods} lists examples of sequence-
-based methods.
+given miRNA.
 
 Most sequence-based approaches are essentially rule-based filters, where
 features of both the miRNA and mRNA sequence are used to narrow down candidate
 target lists \citep{Yeu2009}. These features are derived from earlier
 experimental knowledge, and commonly used features include: (i) sequence
-complementarity between the seed region of the miRNA and 3' UTR of the mRNA
-(see Section \ref{mirna-mechanism}), (ii) seed matches in the coding region or
+complementarity between the seed region of the miRNA and 3' UTR of the mRNA,
+(ii) seed matches in the coding region or
 5' UTR of the mRNA, (iii) evolutionary conservation of seed matches between
 species, (iv) target site accessibility and (v) free energy of the bound
 miRNA-mRNA duplex. These rule-based prediction methods are unsupervised, i.e.
@@ -139,7 +138,7 @@ region matches cannot identify miRNA targets without seed matches (while these
 appear rare, they should not be discounted altogether \citep{Bartel2009}); a
 sequence match does not always confer %\citep{Grimson2007}
 repression and could be functionally inactive; and, finally, rule-based
-methods are static do not account for differing miRNA and mRNA expression
+methods are static and do not account for differing miRNA and mRNA expression
 profiles in various tissues and disease states. There is also a general lack
 of overlap between predictions from different sequence-based approaches,
 suggesting that many results are spurious false positives
@@ -216,7 +215,7 @@ examined miRNA-mRNA pairs to alleviate this to some extent
 Many proposed expression-based methods use some form of multivariate linear
 regression (MLR) to examine the relationship between miRNAs and mRNAs.
 Expression profiles of miRNAs are commonly used to predict the expression of a
-single mRNA (or protein) (although the opposite has also been proposed).
+single mRNA.
 Recently Engelmann and showed that miRNA expression can indeed be used to
 predict mRNA expression \citep{Engelmann2012}. In the context of regression,
 target prediction essentially becomes a \emph{variable selection} problem, where the
@@ -299,7 +298,7 @@ Other suggested approaches used include the global test, which does \textbf{jota
 \citep{vanIterson2013}, and approaches similar to gene-set enrichment
 analysis, where the over-representation of sequence-predicted targets in
 differential expression sets is considered indicative of a target
-relationship. Le at al proposed an ensemble method, which
+relationship. Le at al have proposed an ensemble method, which
 combines predictions from several separate algorithms to
 build on the advantages and compensate for the drawbacks of each
 \citep{Le2015}.
