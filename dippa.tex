@@ -341,42 +341,19 @@ RPPA        & Reverse phosphatase protein array
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 %%=========================================================
 %% References
 
 \clearpage
 %% The \phantomsection command is nessesary for hyperref to jump to the 
 %% correct page, in other words it puts a hyper marker on the page.
-
 \phantomsection
+
 \addcontentsline{toc}{section}{\refname}
 %\addcontentsline{toc}{section}{References}
 
 \bibliographystyle{apalike}
 \bibliography{dippa}
-%\begin{thebibliography}{99}
-%% Alla pilkun j\"alkeen on pakotettu oikea v\"ali \<v\"alily\"onti>-merkeill\"a.
-%\bibitem{Kauranen} Kauranen,\ I., Mustakallio,\ M. ja Palmgren,\ V.
-%  \textit{Tutkimusraportin kirjoittamisen opas opinn\"aytety\"on
-%    tekij\"oille.}  Espoo, Teknillinen korkeakoulu, 2006.
-%\end{thebibliography}
-
-
-
-
-
-
 
 
 
@@ -387,25 +364,16 @@ RPPA        & Reverse phosphatase protein array
 \clearpage
 \thesisappendix
 
-\clearpage
-\section{Table of model properties\label{app:full-model-table}}
-%\begin{landscape}
-\input{final-model-table}
-%\end{landscape}
+\include{appendix-model-table}
 
-\clearpage
-\section{Model size distributions\label{app:model-sizes}}
-
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=1\linewidth]{figures/varNumHistogram/ZZ_variable_number_hist.pdf}
-  \caption{Distributions of chosen model sizes for differrent values of parameters $\alpha$ and $\gamma$.
-  $\# 0$ refers to the number of models with no covariates (i.e. not even the mRNA covariate was chosen)
-  and $\# \textup{NA}$ to the number of models where the model-size criterion was not met.}
-  \label{fig:model-size-distribution}
-\end{figure}
-
+\include{appendix-model-sizes}
 
 \include{appendix-QC-plots}
+
+
+
+
+%%=========================================================
+%% The End  ==DDDDDDD
 
 \end{document}
