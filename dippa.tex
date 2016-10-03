@@ -1,30 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                %%
-%% An example for writting your thesis using LaTeX                %%
-%% Original version by Luis Costa,  changes by Perttu Puska       %%
-%% Support for Swedish added 15092014                             %%
-%%                                                                %%
-%% Explanatory comments in this example begin with                %%
-%% the characters %%, and changes that the user can make          %%
-%% with the character %                                           %%
-%%                                                                %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Master's thesis for Aalto University
+%% Author: Viljami Aittomaki
+%%
+%% Written on official LaTeX template:
+%% Original version by Luis Costa, changes by Perttu Puska
 
-%% Uncomment one of these:
-%% the 1st when using pdflatex, which directly typesets your document in
-%% pdf (use jpg or pdf figures), or
-%% the 2nd when producing a ps file (use eps figures, don't use ps figures!).
+
 \documentclass[english,12pt,a4paper,pdftex,elec,utf8]{aaltothesis}
-%\documentclass[english,12pt,a4paper,dvips]{aaltothesis}
 
-%% To the \documentclass above
-%% specify your school: arts, biz, chem, elec, eng, sci
-%% specify the character encoding scheme used by your editor: utf8, latin1
+
+%%%% PAKCAGES %%%%
 
 \usepackage{graphicx}
-
 %% Use this if you write hard core mathematics, these are usually needed
 \usepackage{amsmath,amsfonts,amssymb,amsbsy}
 
@@ -32,7 +18,6 @@
 %% typesets its hypertext -- hyperlink colour, font, etc. See the package
 %% documentation. It also defines the \url macro, so use the package when 
 %% not using the hyperref package.
-%%
 %\usepackage{url}
 
 %% Use this if you want to get links and nice output. Works well with pdflatex.
@@ -41,7 +26,6 @@
   colorlinks=true,urlcolor=red,linkcolor=blue,citecolor=black,
   pdftitle={MicroRNA regulation in breast cancer},pdfauthor={Viljami Aittom\"aki},
   pdfkeywords={Bayesian analysis, breast cancer, microRNA}}
-
 
 %% User-added packages
 \usepackage[numbers,square]{natbib}
@@ -56,8 +40,8 @@
 %\setlength{\LTleft}{-30cm}
 \setlength{\LTright}{\LTleft}
 
-%% Define which sections to include
-%\includeonly{bayesian-analysis}
+%% Which sections to include
+%\includeonly{introduction}
 
 
 
@@ -81,7 +65,7 @@
 %% professorship and professorship code. 
 %%
 \department{Department of Computer Science}
-%\professorship{Computational ROFESSUURI}
+\professorship{--}
 %%
 
 %% Valitse yksi näistä kolmesta
@@ -103,33 +87,22 @@
 \thesistitle{MicroRNA regulation in breast cancer -- a Bayesian analysis of expression data}
 
 \place{Espoo}
-
-%% For B.Sc. thesis use the date when you present your thesis.
-%% BUT WHAT IS IT FOR MSc THESIS?
 \date{10.10.2016}
 
-%% B.Sc. or M.Sc. thesis supervisor 
-%% Note the "\" after the comma. This forces the following space to be 
-%% a normal interword space, not the space that starts a new sentence. 
-%% This is done because the fullstop isn't the end of the sentence that
-%% should be followed by a slightly longer space but is to be followed
-%% by a regular space.
-%%
+%% Thesis supervisor 
 \supervisor{Aki Vehtari, professor}
 
-%% B.Sc. or M.Sc. thesis advisors(s).
-%%
+%% Thesis advisors(s).
 \advisor{Rainer Lehtonen, associate professor}
 
 %% Aalto logo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
 %% Logo language is set to be the same as the document language.
 %%
-\uselogo{aaltoRed}{''}
+\uselogo{aaltoRed}{?}
 
 
 %% Create the coverpage
-%%
 \makecoverpage
 
 
@@ -151,35 +124,36 @@
 %% is used as specified above.
 %% Specify keywords
 %%
-\keywords{Bayesian analysis, breast cancer, gene expression, microRNA, microarray}
+\keywords{Bayesian analysis, breast cancer, gene expression, microarray, microRNA, target prediction}
 %% Abstract text
 \begin{abstractpage}[english]
 
+MicroRNAs are a class of small RNAs, that regulate gene expression
+post-transcriptionally by targeting messenger RNA transcripts and causing their
+suppression. Extensive research has revealed microRNAs to participate in
+almost all cellular functions, such as differentiation and apoptosis, and
+many pathological processes, including cancer. \\
+
+Identification of microRNA target genes is crucial to understand their
+function in cell biology and disease. A wide array of methods have been
+proposed for computational prediction of microRNA targets. Early methods used
+sequence information, where as recent tools have integrated gene expression
+and microRNA expression measurements. Very few published analyses have
+included both protein and mRNA expression. \\
+
 Breast cancer is the most common cancer in women and a significant cause of
 morbidity and mortality globally. Analyses of gene expression data have
-provided insight into the pathogenesis of breast cancer and  intrinsic subtypes
-correlating with prognosis have been identified. \\
-
-MicroRNAs are a class of small RNAs that regulate gene expression post-
-transcriptionally by targeting messenger RNA transcripts. Recent research has
-revealed microRNAs to participate in almost all cellular functions and many
-pathological processes, including cancer. Several microRNAs have been
-indicated to contribute to breast cancer pathogenesis. \\
-
-Identification of target genes of microRNAs is crucial to understand their
-function in normal cell biology and disease. A wide array of methods have been
-proposed for computational prediction of microRNA targets. Early methods used
-sequence information and recent tools have integrated mRNA and microRNA
-expression measurements. Very few published analyses have included both
-protein and mRNA expression. \\
+provided insight into the pathogenesis of breast cancer, and intrinsic subtypes
+correlating with prognosis have been identified. A range microRNAs have been
+indicated to contribute to breast cancer pathogenesism. \\
 
 This thesis provides a review of microRNA biology and target prediction. A
-recently published Bayesian variable selection method is applied for
-uncovering putative microRNA targets in breast cancer using microarray
-expression data. Results are compared with a recently published analysis of
-the same data and previous literature. The analysis shows that the choice of
-modeling parameters is not trivial and has impact on results. The importance
-of an integrating different data types is highlighted.
+recent Bayesian variable selection method is applied for uncovering putative
+microRNA targets in breast cancer using microarray expression data. Results
+are compared with another popular prediction method and a recently published
+analysis of the same data. Analyses show that the proposed method is
+applicable to microRNA target prediction, however, further refinements are
+suggested. The importance of an integrative approach is highlighted.
 
 \end{abstractpage}
 
@@ -187,18 +161,42 @@ of an integrating different data types is highlighted.
 \newpage
 
 %% Abstract in Finnish.  Delete if you don't need it. 
-\thesistitle{MikroRNA-säätely rintasyövässä -- ekspressiodatan bayeslainen analyysi}
+\thesistitle{MikroRNA-säätely rintasyövässä -- ekspressiodatan bayesilainen analyysi}
 \supervisor{Professori Aki Vehtari}
 \advisor{Dosentti Rainer Lehtonen}
 \degreeprogram{Electronics and electrical engineering}
 \department{Tietotekniikan laitos}
-%\professorship{JA TÄÄ}
+\professorship{--}
 %% Avainsanat
-\keywords{Bayeslainen analyysi, geeniekspressio, mikroRNA, mikrosiru, rintasy\"op\"a}
+\keywords{bayesilainen analyysi, geeniekspressio, kohdegeenien ennustaminen, mikroRNA, mikrosiru, rintasy\"op\"a}
 %% Tiivistelman tekstiosa
 \begin{abstractpage}[finnish]
 
-\textbf{Käännä suomeksi enkkuabstrakti.}
+MikroRNA:t ovat lyhyitä RNA-molekyylejä, jotka säätelevät geeniekspressiota
+sitoutumalla lähetti-RNA-molekyyleihin johtaen niiden vaimennukseen. Lukuisat
+tutkimukset ovat osoittaneet, että mikroRNA:t osallistuvat laajasti solujen
+toiminnan säätelyyn, kuten erilaistumiseen ja apoptoosiin, ja ovat
+osallisena monien tautien, muun muassa syövän, synnyssä. \\
+
+MikroRNA:n säätelemien kohdegeenien tunnistaminen on olennainen
+askel mikroRNA:n toiminnan ymmärtämisessä. Kohdegeenien
+ennustamiseen on kehitetty lukuisia laskennallisia menetelmiä. Varhaiset
+menetelmät perustuivat RNA-sekvenssien vertailuun. Uudemmat työkalut
+hyödyntävät geeni- ja mikroRNA-ekspressiodataa. Sekä mRNA- että
+proteeiniekspressiota yhdistäviä tutkimuksia on julkaistu hyvin vähän. \\
+
+Rintasyöpä on naisten yleisin syöpä ja merkittävä sairastavuuden ja
+kuolleisuuden aiheuttaja maailmanlaajuisesti. Geeniekspressiodatan analysointi
+on lisännyt tietoa rintasyövän synnystä, ja geeniekspressioon perustuen on
+kyetty erottamaan rintasyövän alatyyppejä, jotka korreloivat syövän
+ennusteeseen. MikroRNA:n on todettu olevan osatekijä rintasyövän synnyssä. \\
+
+Tässä diplomityössä esitetään katsaus mikroRNA:n biologiaan sekä kohdegeenien
+tunnistamiseen. Äskettäin julkaistua bayesilaista muuttujavalintamenetelmää
+sovelletaan mikroRNA:n kohdegeenien ennustamiseen rintasyövässä
+geeniekspressiodatan avulla. Analyysit osoittavat, että menetelmä soveltuu
+kohdegeenien ennustamiseen. Menetelmään ehdotetaan parannuksia. Erilaista
+dataa yhdistävän lähestymistavan tärkeyttä korostetaan.
 
 \end{abstractpage}
 
