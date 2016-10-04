@@ -65,7 +65,7 @@ al \citep{Aure2015}.
 Notably, the protein data have only a single set of measurements for two sets
 of related genes, namely AKT1, AKT2, AKT3 and GSK3A, GSK3B (labeled
 respectively as "AKT1/2/3" and "GSK3A/GSK3B" in the original data). Presumably
-the protein array used cannot differentiate the proteins of these genes, but
+the protein array used cannot differentiate these proteins, but
 no mention of this is made by Aure et al. For the analyses presented here,
 each of these genes was considered separately, and the same expression values
 from the single measurement set were used for all of the related genes
@@ -74,8 +74,8 @@ respectively.
 Out of the 421 microRNAs present in the public dataset, eleven miRNAs (hsa-
 miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308, hsa- miR-1826, hsa-
 miR-1974, hsa-miR-1975, hsa-miR-1977, hsa-miR-1979, hsa-miR-720, hsa-
-miR-886-3p) were reported as missing from miRBase by miRBase Tracker. Reviewed
-on miRBase, these miRNAs are reported as being fragments of other RNA species
+miR-886-3p) were reported as missing from miRBase by miRBase Tracker \citep{VanPeer2014}.
+Reviewed on miRBase, these miRNAs are reported as being fragments of other RNA species
 (e.g. tRNA or rRNA) and, thus, removed from the database. The eleven miRNAs
 were therefore removed from subsequent analyses, leaving 410 miRNAs.
 
@@ -135,11 +135,11 @@ regression model to Aure et al was used:
 	\label{eq:reg-model}
 	y = \beta_0 + z \beta_g + X \beta + \epsilon,
 \end{equation}
-where $y$ denotes the protein expression vector for the protein, which
-is produced from translation of the mRNA $z$, $w_g$
+where $y$ is the protein expression and $z$ the
+mRNA expression for gene $k$ ($k$ is suppressed for clarity), $w_g$
 is the regression coefficient for the mRNA, $X$ is the matrix of miRNA
 expression vectors, and $w_0$ is the intercept term
-(for a justification of this equation, see Aure et al \citep{Aure2015}).
+(for a justification of this equation, see \citep{Aure2015}).
 A separate model was fitted for each gene.
 A model with only the mRNA expression covariate (called the \emph{gene-only model}),
 defined as $y = \beta_0 + z \beta_g + \epsilon$, was used as a baseline.
@@ -160,7 +160,6 @@ and $\sigma$ a uniform prior:
     \sigma  & \propto 1.
   \end{align}
 \end{subequations}
-These were also used in the gene-only model.
 A hierarchical shrinkage prior was applied to the miRNA coefficients $\beta$,
 as defined in Equation \eqref{eq:hs-prior}. The degrees of freedom for the
 $\lambda_j$ priors was set at $\nu=3$ (similar to Piironen and Vehtari
@@ -210,13 +209,13 @@ predictive performance was performed as explained below.
 The predictive performance of each submodel was evaluated using 
 a log predictive density.
 Given submodel $M_\perp$ with the posterior predictive distribution
-$p(\tilde{y}| \tilde{z}, \tilde{X}_\perp, \mathbf{\theta}_\perp, D_\perp)$,
-where $D_\perp$ is the observed data in the current submodel and
-$\mathbf{\theta}_\perp$ the projected model parameters, the logarithm of the predictive density
+$p(\tilde{y}| \tilde{z}, \tilde{X}_\perp, \mathbf{\beta}_\perp, \sigma_\perp, D_\perp)$,
+where $D_\perp$ is the observed data in the current submodel and CV fold and
+$(\mathbf{\beta}_\perp, \sigma_\perp)$ the projected model parameters, the logarithm of the predictive density
 (LPD) was computed at each of the left-out observations $(y_*, z_*, X_*)$.
 The LPD was estimated by averaging over the $S$ simulated posterior samples:
 \[
-	\textup{LPD}_*(M_\perp) \approx \textup{log}\frac{1}{S} \sum_s^S p(y_*| z_*, X_*, \mathbf{\beta}_\perp, \sigma_\perp).
+	\textup{LPD}_*(M_\perp) \approx \textup{log}\frac{1}{S} \sum_s^S p(y_*| z_*, X_*, \mathbf{\beta}_\perp, \sigma_\perp, D_\perp).
 \]
 The LPD's from each CV fold were pooled and a mean over the full set of data
 (MLPD) was used as a summary. To compare the predictive performance of a

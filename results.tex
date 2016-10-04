@@ -2,41 +2,43 @@
 %%% This file contains the results section of my master's thesis.
 %%% Author: Viljami Aittomäki
 
-\section{Results}
+\section{Analysis results}
 
-This section presents the results of performed analyses, and is structured as
-follows. First, a short summary of quality control. The second subsection
-present results from correlation analyses between variables of different data
-types. Then results from the model simulations for projection predictive
-variable selection are presented. Last, the performance of projection
-prediction and lasso regression is assessed from a target prediction point of
-view.
+This section presents the results of performed analyses. First, short
+summaries on quality control and correlation analyses between the different
+data types are provided. Results from regression model simulations are then
+presented. Lastly, the performance of projection prediction and lasso regression
+is compared from a target prediction point of view.
 
 
 
 
-\subsection{Quality control}
+\subsection*{Quality control}
 
-Quality-control plots are presented in Appendix \ref{app:qc-plots}. Two
-observations are worth noting. First, several genes have significant outliers
-in the protein data (most notably the genes CDK1, ERRFI1, PIK3CA). This is
-most apparent in the scaled data. Second, the miRNA microarrays have bimodal
-distributions, and many miRNA variables are highly skewed towards very small
-values. This is indicative of generally low abundances of some miRNA molecules
+Quality-control plots are presented in Appendix \ref{app:qc-plots}. 
+The preprocessed protein and mRNA expression data appeared reasonably uniform
+and approximately Gaussian, though several variables had long tails
+and a few had significant outliers (most notably proteins CDK1, ERRFI1, PIK3CA).
+This was most apparent in the scaled data. miRNA microarrays had strongly bimodal
+distributions, there was large variation in miRNA variable median expression,
+and many miRNA variables are highly skewed towards very small values.
+There appeared to be quantification artifacts in the miRNA variables.
+
+This is indicative of generally low abundances of some miRNA molecules
 and, although partly due to different preprocessing compared to the mRNA and
 protein arrays, it raises suspicion of significant noise in the miRNA data.
 More strict filtering of data from the miRNA microarrays could lead to better
 overall results.
 
-The first two principal components for each data type were plotted and are
-shown in Figure \ref{fig:qc-pca}. No significant batch effect is visible. The
+The first two principal components for each data type are
+plotted in Figure \ref{fig:qc-pca}. No significant batch effect is visible. The
 hierarchical clustering of samples (not shown) had a similar result.
 Raw array data produced from Agilent array readers was not assessed.
 
 
 
 
-\subsection{Correlation analysis}
+\subsection*{Correlation analysis}
 
 Pearson correlations between variables from the different data types are shown in Figure
 \ref{fig:correlations}. Protein-mRNA correlation was clearly higher for gene-matched pairs
@@ -51,19 +53,19 @@ of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a
 \begin{figure}[!h]
   \centering
   \begin{subfigure}{.45\textwidth}
+    \subcaption{ \label{fig:protein-gene-cor}}
     \centering
     \includegraphics[width=1\linewidth]{figures/correlationPlots/protein-gene-correlation.pdf}
-    \subcaption{ \label{fig:protein-gene-cor}}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
+    \subcaption{ \label{fig:protein-mirna-cor}}
     \centering
     \includegraphics[width=1\linewidth]{figures/correlationPlots/protein-mirna-correlation.pdf}
-    \subcaption{ \label{fig:protein-mirna-cor}}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
+    \subcaption{ \label{fig:gene-mirna-cor}}
     %\centering
     \includegraphics[width=1\linewidth]{figures/correlationPlots/gene-mirna-correlation.pdf}
-    \subcaption{ \label{fig:gene-mirna-cor}}
   \end{subfigure}
 
   \caption{Distributions of Pearson correlations between variables of different expression data types.
@@ -79,22 +81,22 @@ of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a
 \end{figure}
 
 Correlations between miRNAs and their validated target genes (fetched from
-TarBase) are mostly low with no preference towards negative (or positive)
-values. There is virtually no difference in correlations between validated
+TarBase) were mostly low with no preference towards negative (or positive)
+values. There was virtually no difference in correlations between validated
 targets and randomly picked gene-miRNA pairs, contrary to what might be
 expected. This suggests that (Pearson) correlation of expression data is not a
-suitable method for finding miRNA targets. It is possible that this is due to
-the dataset used (and the noise in said data), however, as discussed in
+suitable method for finding miRNA targets. It is possible that this was due to
+the dataset used (and any noise within), however, as discussed in
 Section \ref{expr-methods}, correlation has low power to detect weak
 relationships and cannot capitalize on combinatorial effects. Therefore,
 correlation was not used for target prediction in this work; poor
-results with using correlation have been reported before
-(see e.g. \citep{Muniategui2012}).
+prediction results using correlation have been reported before
+(e.g. in \citep{Muniategui2012}).
 
 
 
 
-\subsection{Model simulations}
+\subsection*{Model simulations}
 
 Simulations for the cross validation (to determine good model size) took
 between 4 to 6 hours (on a computing-cluster node with 2 12-core Xeon E5 2680
@@ -105,23 +107,23 @@ good convergence of simulation chains \citep{Gelman2013}.
 
 The parameters for the model-size criterion, $\alpha$ and $\gamma$ had a
 significant effect on the resulting model sizes (a plot of model-size
-distributions is shown in appendix Figure \ref{fig:model-size-distribution}).
+distributions is shown in Figure \ref{fig:model-size-distribution}).
 Values $\alpha = 0.50$ and $\gamma = 0.2$ were chosen to keep models
 relatively sparse. This choice was, however, largely subjective. Out of the
 105 genes in the data, a projected model (where at least one miRNA variable
 was included, and the model-size criterion was met in under 200 variables) was
 found for 74 genes. A table of properties for the projected models is
-presented in Appendix \ref{app:model-table}.
+available in Appendix \ref{app:model-table}.
 
 Figure \ref{n-miRNAs-vs-R2} shows the number of miRNA variables included in
 each projected model plotted against the number of significant miRNA
 variables, the $R^2$ of the projected model, and the difference in $\bar{R}^2$
 between the projected model and the gene-only model. Each point in each plot
-corresponds to one gene. A trend emerges, where including more
-miRNA variables tends to achieve better performance up to a turning point --
-around 28 miRNA variables -- after which larger models seem to perform
+corresponds to one gene. A trend emerged, where including more
+miRNA variables tended to achieve better model performance up to a turning point --
+around 28 miRNA variables -- after which larger models seemed to perform
 increasingly poorly. Similar plots were created with more strict model-size
-thresholds ($\gamma$ and $\alpha$); the models were larger on
+thresholds (larger $\alpha$ and smaller $\gamma$); the models were larger on
 average, but an equal trend and turning point were observed (data not shown).
 
 \begin{figure}[!h]
@@ -163,15 +165,13 @@ and $\Delta\bar{R}^2$ between PPVS and lasso.
 \begin{figure}[!h]
   \centering
   \begin{subfigure}{.45\textwidth}
-    \centering
     \includegraphics[width=1\linewidth]{figures/R2comparison/n_miRNA_comparison.pdf}
   \end{subfigure}
   \begin{subfigure}{.45\textwidth}
-    \centering
     \includegraphics[width=1\linewidth]{figures/R2comparison/R2_comparison.pdf}
   \end{subfigure}
 
-  \caption{Comparison of model sizes and $\Delta\bar{R}^2$ for
+  \caption{Comparison of model sizes (shown left) and $\Delta\bar{R}^2$ (shown right) for
       projection prediction (PPVS) and lasso regression.}
   \label{fig:model-size}
 \end{figure}
@@ -179,15 +179,15 @@ and $\Delta\bar{R}^2$ between PPVS and lasso.
 
 
 
-\subsubsection{Target prediction performance}
+\subsubsection*{Target prediction performance}
 
 Considering each selected miRNA variable as a putative miRNA-mRNA target
 interaction, PPVS generated a total 945 target predictions, out of which
-253 were significant (in the sense described above). Table \ref{table:final-models}
+253 were significant (on a 95\% posterior interval). Table \ref{table:final-models}
 lists the significant predictions.
 Lasso regression generated all together 650 target predictions. Figure
 \ref{fig:venn} shows the overlap of predictions by PPVS and lasso, and also
-the overlap of significant predictions from PPVS and the same number of top
+that of significant predictions from PPVS and the same number of top
 predictions from lasso, where lasso predictions were ranked by the absolute value of
 the regression coefficient.\footnote{Lasso regression does not provide any tests of
 significance or other ranking measures}
@@ -228,9 +228,9 @@ correlation for the coefficients was fairly high ($0.86$).
 \end{figure}
 
 PPVS and lasso had similar performance in regards of discovering validated
-targets, with approximately 12\% of PPVS and 14\% of lasso predictions
-appearing in the union of TarBase and miRTarBase. For the significant PPVS and top lasso
-predictions, 13\% and 14\% were in the validated reference set, respectively. Therefore,
+targets: approximately 12\% of PPVS and 14\% of lasso predictions were present
+in the union of TarBase and miRTarBase. These proportions were 13\% and 14\% for
+the significant PPVS and top lasso predictions, respectively. Therefore,
 limiting predictions to the ones with most confidence did not significantly increase
 the proportion of validated targets for either method.
 

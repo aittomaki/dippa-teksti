@@ -31,9 +31,9 @@
 \usepackage[numbers,square]{natbib}
 \usepackage[parfill]{parskip}
 \usepackage{longtable}
-\usepackage[font={small},labelfont={sf,sl},format=plain,indention=.5cm]{caption}
+\usepackage[font={small},labelfont={bf},format=plain,indention=.5cm]{caption}
 \usepackage{subcaption}
-\captionsetup[sub]{font={scriptsize},labelfont={sf}}
+\captionsetup[sub]{font={scriptsize,sf},labelfont={sf}}
 \usepackage{pdflscape}
 \setlength\LTcapwidth{\textwidth}
 \setlength{\LTleft}{-20cm plus -1fill}
@@ -41,7 +41,7 @@
 \setlength{\LTright}{\LTleft}
 
 %% Which sections to include
-%\includeonly{gene-expression}
+%\includeonly{appendix-QC-plots}
 
 
 
@@ -137,23 +137,24 @@ many pathological processes, including cancer. \\
 Identification of microRNA target genes is crucial in understanding their
 function in cell biology and disease. A wide array of methods have been
 proposed for computational prediction of microRNA targets. Early methods used
-sequence information, where as recent tools have integrated gene expression
-and microRNA expression measurements. Very few published analyses have
+sequence information, while recent tools have integrated gene expression
+and microRNA expression measurements. Few published analyses have
 included both protein and mRNA expression. \\
 
 Breast cancer is the most common cancer in women and a significant cause of
 morbidity and mortality globally. Analyses of gene expression data have
 provided insight into the pathogenesis of breast cancer, and intrinsic subtypes
-correlating with prognosis have been identified. A range microRNAs have been
-indicated to contribute to breast cancer pathogenesism. \\
+correlating with prognosis have been identified. A range of microRNAs have been
+indicated to contribute to breast cancer pathogenesis. \\
 
 This thesis provides a review of microRNA biology and target prediction. A
 recent Bayesian variable selection method is applied for uncovering putative
 microRNA targets in breast cancer using microarray expression data. Results
 are compared with another popular prediction method and a recently published
 analysis of the same data. Analyses show that the proposed method is
-applicable to microRNA target prediction. Limitations and refinements of
-the method are discussed. The importance of an integrative approach is highlighted.
+applicable to microRNA target prediction. Limitations and refinements of the
+method and study are discussed. The importance of an integrative approach is
+highlighted.
 
 \end{abstractpage}
 
@@ -173,10 +174,10 @@ the method are discussed. The importance of an integrative approach is highlight
 \begin{abstractpage}[finnish]
 
 MikroRNA:t ovat lyhyitä RNA-molekyylejä, jotka säätelevät geeniekspressiota
-sitoutumalla lähetti-RNA-molekyyleihin johtaen niiden vaimennukseen. Lukuisat
-tutkimukset ovat osoittaneet, että mikroRNA:t osallistuvat laajasti solujen
-toiminnan säätelyyn, kuten erilaistumiseen ja apoptoosiin, ja ovat
-osallisena monien tautien, muun muassa syövän, synnyssä. \\
+sitoutumalla lähetti-RNA-molekyyleihin estäen niide translaation
+proteiineiksi. Lukuisat tutkimukset ovat osoittaneet, että mikroRNA:t
+osallistuvat laajasti solujen toiminnan säätelyyn, kuten erilaistumiseen ja
+apoptoosiin, ja ovat osallisena monien tautien, kuten syövän synnyssä. \\
 
 MikroRNA:n säätelemien kohdegeenien tunnistaminen on olennainen
 askel mikroRNA:n toiminnan ymmärtämisessä. Kohdegeenien
@@ -188,7 +189,7 @@ proteeiniekspressiota yhdistäviä tutkimuksia on julkaistu hyvin vähän. \\
 Rintasyöpä on naisten yleisin syöpä ja merkittävä sairastavuuden ja
 kuolleisuuden aiheuttaja maailmanlaajuisesti. Geeniekspressiodatan analysointi
 on lisännyt tietoa rintasyövän synnystä, ja geeniekspressioon perustuen on
-kyetty erottamaan rintasyövän alatyyppejä, jotka korreloivat syövän
+kyetty tunnistamaan rintasyövän alatyyppejä, jotka korreloivat syövän
 ennusteeseen. MikroRNA:n on todettu olevan osatekijä rintasyövän synnyssä. \\
 
 Tässä diplomityössä esitetään katsaus mikroRNA:n biologiaan sekä kohdegeenien
@@ -196,7 +197,7 @@ tunnistamiseen. Äskettäin julkaistua bayesilaista muuttujavalintamenetelmää
 sovelletaan mikroRNA:n kohdegeenien ennustamiseen rintasyövässä
 geeniekspressiodatan avulla. Tulokset osoittavat, että menetelmä soveltuu
 kohdegeenien ennustamiseen. Menetelmän rajoituksia ja parannusehdotuksia
-käsitellään. Erilaista dataa yhdistävän lähestymistavan tärkeyttä korostetaan.
+käsitellään.
 
 \end{abstractpage}
 

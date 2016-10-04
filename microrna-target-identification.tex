@@ -49,37 +49,39 @@ For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
 \begin{table}
   \caption{Examples of tools for computational prediction of miRNA targets. \\
   Method: type of inference method used for predictions. \\
+  SVM: support vector machine. HMM: hidden Markov model. MI: mutual information. \\
   Seq. used: sequence features considered (sequence-based methods) or use of
-  previous sequence-based predictions (expression-based methods) \\
-  SVM: support vector machine. HMM: hidden Markov model. MI: mutual information.}
+  previous sequence-based predictions (expression-based methods), see text for details \\
+  prefilter: previous sequence-based predictions used as a prefilter
+  }
   \label{table:prediction-methods}
-  \centering
-  \begingroup\fontsize{10pt}{12pt}\selectfont
+  %\centering
+  {\fontfamily{lmss}\fontsize{10pt}{13pt}\selectfont
   \begin{tabular}{ lp{3cm}lp{5cm} }
     %\\[-1ex] \hline\hline
     \hline
     \textbf{Name} & \textbf{Method} & \textbf{Seq. used} & \textbf{Additional notes} \\
     \hline \\
     \multicolumn{4}{l}{\textbf{Sequence-based methods}} \\
-    \\
-    TargetScan \citep{Friedman2009,Agarwal2015} & rule based & i, ii, iii & First published target prediction tool. \\
-    JEE \citep{}                    & rule based          &  &  \\
-    mirTarget \citep{}              & SVM                 & i, ii, iii, iv, v &  \\
-    rna22 \citep{}                  & HMM and rule        & ??? &  \\
-    PicTar \citep{}                 & HMM                 &  & Does pseudo-combinatorial predictions by \textbf{JTN} \\
-    TargetBoost \citep{}            & genetic programming & learned & Learns sequence features used from training data. \\
+    \\[-.3cm]
+    TargetScan \citep{Agarwal2015}  & rule based            & i,ii,iv,v     & First published target prediction tool (originally) \\
+    miRanda \citep{Betel2008}       & rule based            & i,ii,v        & Aligns whole miRNA to mRNA 3' UTR \\
+    mirTarget \citep{Wang2008}      & SVM                   & i,ii,iii,iv,v &  \\
+    rna22 \citep{Miranda2006}       & Markov chain and rule & i,ii,iv       & Uses a Markov chain to identify potential regions in mRNA 3' UTR and then sequence-rule filtering \\
+    PicTar \citep{Krek2005}         & rule and HMM          & i (iv,v)      & Semi-supervised-like approach, uses strict sequence rules$^{\textup{i,iv,v}}$ to obtain a training set for a HMM classifier \\
+    TargetBoost \citep{Saetrom2005} & genetic \mbox{programming} & learned  & Learns sequence features and classifier from training data. \\
     \\
     \multicolumn{4}{l}{\textbf{Expression-based methods}} \\
-    \\
-    MAGIA \citep{Sales2010}          & correlation, MI        & filter & Also produces a bipartite network of miRNA-mRNA interactions. \\
-    TaLasso \citep{Muniategui2013}   & lasso regression       & filter &  \\
-    Engelmann \citep{Engelmann2012}  & least-angle regression & none or filter & Least-angle regression is a specific implementation of lasso. \\
-    miRNAmRNA \citep{vanIterson2013} & global test            & filter   & Uses mRNA expression profiles to predict miRNA expression. \\
-    Joku GSE                         & gene-set enrichment    & filter   & \\
-    GenMir++/3 \citep{Huang2007}       & Bayesian regression    & none or filter & \\
+    \\[-.3cm]
+    MAGIA \citep{Sales2010}               & correlation, MI               & prefilter & Also produces a bipartite network of miRNA-mRNA interactions. \\
+    TaLasso \citep{Muniategui2013}        & lasso \mbox{regression}       & prefilter &  \\
+    Engelmann et al \citep{Engelmann2012} & least angle \mbox{regression} & none/prefilter & Least-angle regression is a specific implementation of lasso. \\
+    miRNAmRNA \citep{vanIterson2013}      & global test                   & prefilter   & Uses mRNA expression profiles to predict miRNA expression. \\
+    GenMir++/3 \citep{Huang2007,Huang2008}& Bayesian \mbox{regression}    & prefilter/i,iv,v & GenMir3 can incorporate sequence features into the model. \\
+    Stingo et al \citep{Stingo}         & Bayesian \mbox{variable} \mbox{selection} & ? & Uses a spike-and-slab variable selection approach. \\
     \hline
     \end{tabular}
-    \endgroup
+    }
 \end{table}
 
 
@@ -100,28 +102,40 @@ given miRNA.
 Most sequence-based approaches are essentially rule-based filters, where
 features of both the miRNA and mRNA sequence are used to narrow down candidate
 target lists \citep{Yeu2009}. These features are derived from earlier
-experimental knowledge, and commonly used features include: (i) sequence
-complementarity between the seed region of the miRNA and 3' UTR of the mRNA,
-(ii) seed matches in the coding region or
-5' UTR of the mRNA, (iii) evolutionary conservation of seed matches between
-species, (iv) target site accessibility and (v) free energy of the bound
-miRNA-mRNA duplex. These rule-based prediction methods are unsupervised, i.e.
-no training data is used to form the classifier. Instead, the relevance of the
-used features is decided by the method's authors.
+experimental knowledge, and commonly used features include:
+(i) sequence matches between the seed region of the miRNA and 3' UTR of the mRNA,
+(ii) sequence matches outside the seed region (in the 3' UTR),
+(iii) sequence matches in the 5' UTR or coding sequence (CDS) of the mRNA,
+(iv) free energy of the bound miRNA-mRNA duplex, and
+(v) evolutionary conservation of matches between species.
+Rule-based prediction methods are unsupervised, i.e. no training data is
+used to form the classifier. Instead, the relevance of the used features is
+decided by the method's authors. An example of a rule-based algorithm
+is depicted in Figure \ref{fig:miranda-flow}.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.3\linewidth]{figures/miRanda-flow.pdf}
+  \caption{A schematic flowchart of the miRanda \citep{Betel2008} algorithm for
+  miRNA target prediction. Modified with permission from \citep{Karhu2009}.}
+  \label{fig:miranda-flow}
+\end{figure}
+
 
 % An example of a rule-based predictor is illustrated in Figure \ref{fig:rule-flow}.
 
-A supervised machine-learning approach has also been employed, where a
+Supervised machine-learning approaches has also been employed, where a
 training data set consisting of experimentally validated targets and non-targets
--- often obtained from expression data sets -- is used to train a
-classifier for classifying miRNA-mRNA pairs. Support vector machines (SVM)
+(often obtained from expression data sets) is used to train a
+classifier for classifying mRNAs as miRNA targets. Support vector machines (SVM)
 are the most common choice for classifier. The features used for classification
-are similar to rule-based tools -- mostly derived from sequences -- but supervised
-learning allows the inclusion of many more features. For example mirTarget
+are similar to rule-based tools, i.e. mostly derived from sequences, but supervised
+learning allows the inclusion of much more features. For example mirTarget
 uses a set of 113 features including seed region matches, conservation and a
 range of different sequence features from different parts of the miRNA
-sequence \citep{mirTarget}. More complex approaches have also been applied,
-such as genetic programming and using hidden Markov models (HMM) as a sequence
+sequence \citep{Wang2008}. More complex approaches have also been applied,
+such as using genetic programming to learn sequence features, and using
+Markov chains or hidden Markov models (HMM) as a sequence
 generative model to estimate targeting probability.
 
 % For a more thorough
@@ -196,7 +210,7 @@ $j$ is defined as:
 	\rho_{kj} = (y_k)_{\mu_k=0|\sigma_k=1}^T \cdot (x_j)_{\mu_j=0|\sigma_j=1},
 	\label{eq:pearson}
 \end{equation}
-where $\mu_i=0|\sigma_i=1$ indicates normalization to zero mean and unit
+where $\mu=0|\sigma=1$ indicates normalization to zero mean and unit
 variance. Significantly correlated miRNA-mRNA pairs are classified as putative
 target interactions. Other measures used include Spearman correlation and
 mutual information (MI). A crucial limitation of correlation analysis is being
@@ -215,32 +229,33 @@ examined miRNA-mRNA pairs to alleviate this to some extent
 Many proposed expression-based methods use some form of multivariate linear
 regression (MLR) to examine the relationship between miRNAs and mRNAs.
 Expression profiles of miRNAs are commonly used to predict the expression of a
-single mRNA.
-Recently Engelmann and showed that miRNA expression can indeed be used to
+single mRNA. Recently, Engelmann and Spang reported that miRNA expression can indeed be used to
 predict mRNA expression \citep{Engelmann2012}. In the context of regression,
 target prediction essentially becomes a \emph{variable selection} problem, where the
 goal is to choose a set of miRNAs that best predict mRNA expression without
 overfitting.
 
-A linear regression model for mRNA expression $y$ is defined as
+A linear regression model for the expression of mRNA $k$ is defined as
 \begin{equation}
   \label{eq:linear-regression}
-	y = \sum_{j=0}^{p} (\beta_j \cdot x_j + \epsilon_{j}) =  X \beta + \epsilon,
+	y_k = \sum_{j=0}^{p} (\beta_{kj} \cdot x_j) + \epsilon_k =  X \beta_k + \epsilon_k,
 \end{equation}
-where $\beta = [\beta_0, \ldots, \beta_p]$ is the vector of regression coefficients,
-$\beta_0$ is the intercept term, $\epsilon$ is the error term, and $X$ is the
+where $\beta_k = [\beta_{k0}, \dotsc, \beta_{kp}]$ is the vector of regression coefficients,
+$\beta_{k0}$ is the intercept term, $\epsilon_k$ is the error term, and $X$ is the
 matrix of covariates, i.e. the miRNA expression vectors (where a constant column
 vector of $x_0=1$ has been added for the intercept). The parameter of
-interest is $\beta$, which determines to the contribution of each miRNA to the
-response variable, i.e. mRNA expression. The regression error $\epsilon$
+interest is $\beta_k$, which determines to the contribution of each miRNA to the
+response variable $y_k$, i.e. mRNA expression. The regression error $\epsilon_k$
 represents noise and fitting error caused by variation not captured by the
-included covariates. $\epsilon$ is commonly assumed to be normally
-distributed with equal variance and no correlation between observations,
-giving the \emph{normal linear model}.
+included covariates. $\epsilon_k$ is commonly assumed to be normally
+distributed, with equal variance and no correlation between observations,
+giving the \emph{normal linear model}. It is straightforward to incorporate previous
+sequence-based predictions by adding an indicator variable $y_k = X c_k \beta_k + \epsilon_k$,
+where $c_{kj} = 1$ if mRNA $k$ is a potential target of miRNA $j$, and $c_{kj} = 0$ otherwise.
 % Commonly the solution is obtained by
 % least squares, which involves minimizing the objective function,
 % \begin{equation}
-% 	min\{ || y - X \cdot \beta ||_2 \},
+% 	min\{ || y_k - X \cdot \beta_k ||_2 \},
 % \end{equation}
 % which is equal to the sum of squares of the residuals.
 
@@ -264,12 +279,12 @@ regression. The most common approach is to apply regularized least squares,
 where a penalty depending on the magnitude of the coefficients $\beta$
 is applied to force them small. This entails minimizing the expression
 \begin{equation}
-	min\{ \left \| y - X \cdot \beta \right \|_2 + \lambda \cdot R(\beta) \} ,
+	min\{ \left \| y_k - X \cdot \beta_k \right \|_2 + \lambda \cdot R(\beta_k) \} ,
 \end{equation}
 where the first term corresponds to fitting error (the sum of squared residuals),
-$R(w_j)$ is the penalty function and $\lambda$ is a tuning
+$R(\beta_k)$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-The 1-norm ($R(w) = \left \| \beta \right \|_1 = \sum_{j=0}^{j} \left | \beta_j \right |$)
+The 1-norm ($R(\beta_k) = \left \| \beta_k \right \|_1 = \sum_{j=0}^{j} \left | \beta_{gj} \right |$)
 is frequently used for regularization; this is referred to as lasso regression
 (shorthand for \emph{least absolute shrinkage and selection operator}).
 % , where 
@@ -278,32 +293,33 @@ is frequently used for regularization; this is referred to as lasso regression
 % regression and a combination of these ($R(w) =
 % \lambda_1||\beta||_1 + \lambda_2||\beta||_2$) in what is called
 % elastic-net regression.
-Lasso regression in effect forces the number of non-zero coefficients to be small,
-leading to a sparse solution that chooses seemingly important covariates.
+Lasso regression in effect forces the number of non-zero coefficients in $\beta_k$
+to be small, leading to a sparse solution that chooses seemingly important covariates.
 % where as ridge regression results in a solution
 % where coefficients are small but mostly non-zero \citep{Muniategui2013}.
 While regularization solves the dimensionality problem and improves
-interpretability, it has several important drawbacks. First, regularization
+interpretability, it has several important limitations. First, regularization
 may remove covariates highly associated with and functionally regulating the
 response, instead retaining an unimportant covariate that correlates with
 actual regulators \citep{Engelmann2012}. Second, only a limited number of
 covariates may be included in the model, and thus some relevant associations
 can be missed by number of included covariates alone.% \citep{vanIterson2013}.
-Relating to both limitations, van Iterson et al showed for one dataset that
+Relating to both limitations, van Iterson et al showed (for one dataset) that
 lasso did not consistently select highly correlated miRNA-mRNA pairs
 \citep{vanIterson2013}.
 
 \paragraph{Other approaches}
-Other suggested approaches used include the global test, which does \textbf{jotain}
-\citep{vanIterson2013}, and approaches similar to gene-set enrichment
-analysis, where the over-representation of sequence-predicted targets in
-differential expression sets is considered indicative of a target
-relationship. Le at al have proposed an ensemble method, which
-combines predictions from several separate algorithms to
-build on the advantages and compensate for the drawbacks of each
+Other suggested approaches used include the global test, which is a
+generalization for testing the global null hypothesis ($H_0: \beta = 0$) of a
+linear regression model when $p >> n$ \citep{vanIterson2013}, and approaches
+similar to gene-set enrichment analysis, where the over-representation of
+sequence-based target genes in differentially-expressed gene sets is considered
+indicative of a target relationship in the studied condition. Le at al have proposed an ensemble
+method, which combines predictions from several separate algorithms to build
+on the advantages and compensate for the drawbacks of each
 \citep{Le2015}.
-Several Bayesian approaches have also been proposed;
-these are discussed in the next section.
+Several Bayesian approaches have also been proposed; these are discussed in
+the next section.
 
 
 % A group of bioinformatics tools uses mRNA expression data to suggest

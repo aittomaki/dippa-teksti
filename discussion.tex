@@ -41,7 +41,7 @@ strong effects, since univariate modeling is used as a filtering step. It also
 uses the same data twice, causing bias.
 
 
-\subsection*{Possible improvements}
+\subsection*{Limitations}
 
 \textbf{KERTOIMIEN RAJOITTAMINEN NEGATIIVISIKSI!}
 
@@ -82,6 +82,13 @@ the model could easily be restricted to only negative interactions (using a
 non-positive prior for $\beta$), and this has previously been reported to
 increase prediction accuracy \citep{Muniategui2013}.
 
+Previous studies have shown that microRNA signatures correlate
+with different breast cancer subtypes \citep{Blenkiron2007}. This suggests that
+using pooled datasets of various tumors, such as the data used in this
+study, is likely to miss subtype-specific miRNA effects, unless this is accounted
+for in the model. This could be achieved in the proposed method by
+constructing a hierarchical model with tumor-subtype data included.
+
 The proposed model also does not account for the fact that microRNAs have
 several, even hundreds, of target transcripts \citep{}. Therefore, the regulatory
 effect of a single miRNA is most likely spread across several genes. In
@@ -92,13 +99,13 @@ more difficult problem than multivariate linear regression.
 
 In conclusion, the work in this thesis shows that the proposed method of
 projection predictive variable selection is applicable to microRNA target
-predction. However, further refinements to the model are warranted to improve
-preformance. In the presented form, compared to a simpler alternative, the
+prediction. However, further refinements to the model are warranted to improve
+performance. In the presented form, compared to a simpler alternative, the
 method offered only a small advantage from a modeling perspective, and
 apparent advantage from a biological perspective , but incurred a large
 computational burden. The choice of model-size parameters $\alpha$ and
 $\gamma$, and therefore the choice of final model size and ultimately the
-model itself, proved untrivial. A data-driven approach for optimizing the
+model itself, proved nontrivial. A data-driven approach for optimizing the
 parameter values would perhaps be of value.
 
 

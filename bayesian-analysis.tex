@@ -180,13 +180,14 @@ Bayesian regression analysis aims to infer the posterior distributions
 for the regression coefficients of covariates and other model parameters,
 such as the variance (i.e. the error term) of the observation model.
 Within the Bayesian framework, the \emph{normal linear regression} defined in
-Equation \eqref{eq:linear-regression} can be expressed as
+Eq. \eqref{eq:linear-regression} can be expressed as
 \begin{equation}
   y \mid \beta, \sigma, X \sim N(X \beta, \sigma^2I),
   \label{eq:bayesian-linear-regression}
 \end{equation}
 where $N$ is the multivariate normal distribution, and $I$ is the $n \times n$
-identity matrix. The mean of $y$ is then the familiar linear sum of $x_k$
+identity matrix (the gene index $k$ has been suppressed for clarity).
+The mean of $y$ is then the familiar linear sum of $x_k$
 \begin{equation}
   \textrm{E}(y\mid\beta,X) = X \beta = \beta_0 + \beta_1 x_1 + \dotsb + \beta_p x_p.
 \end{equation}
@@ -294,21 +295,37 @@ presented in Section \ref{sec:methods-variable-selection}.
 
 \subsection{Bayesian microRNA target-prediction methods}
 
-% Bayesian analysis has previously been applied to miRNA target prediction.
-
 One of the earliest tools to use expression data for target prediction was
-GenMir++. It is based on A BAYESIAN SYSTEEMI, KIRJOITA AUKI.
-The latest version of GenMir (GenMir3) now integrates sequence-based features
-into the algorithm, although the authors note that this does not affect the
-results to a significant extent.
+GenMir++ \citep{Huang2007}. It takes as input a candidate set of miRNA target predictions (the authors
+have used TargetScanS) and uses mRNA and miRNA expression data across multiple tissues
+to predict whether a given candidate miRNA-target interaction is functional.
+GenMir is based on a Bayesian regression model, where
+mRNAs are assumed to share a tissue-specific common background expression,
+which is downregulated by regulating miRNAs. Let $\mu_t$ represent the
+background mRNA expression in tissue $t$, the probability of mRNA expression
+$y_{kt}$ in the GenMir model is defined as:
+\begin{equation}
+  y_{kt} \mid X, S_k, \Gamma, \Beta, \mu_t, \Sigma \sim \textup{N} \left( \mu_t - \gamma_t \sum_j^p \beta_j s_{kj} x_k, \Sigma \right),
+\end{equation}
+where $\gamma_t$ is a tissue-specific scaling factor (modeling differences in
+mRNA and miRNA measurements and normalization) and $\lambda_j$ are regulatory
+weights of the miRNAs (irrespective of candidate target $k$). The parameter of
+interest is $S$, a matrix of indicators, where $s_{kj}=1$ if candidate mRNA
+$k$ is a functional target of miRNA $j$ and $0$ if not. The latest version of
+GenMir (GenMir3) defines Gamma priors for $\gamma_t$ and $\lambda_t$ and a
+Bernoulli prior for $s_{kj}$, and allows including sequence features as
+hyperparameters for the prior of $s_{kj}$. The model is solved simultaneously
+for all genes and tissues, using a variational Bayes method, to obtain a
+posterior for $S$. The authors note, that the method can be easily extended to
+add protein expression and that the inclusion of sequence features into the
+model does not seem to affect results to a significant degree \citep{}.
 
-Stingo et al have proposed a Bayesian method based on spike-and-slab variable
-selection.
+Other Bayesian approaches to target prediction include a spike-and-slab variable
+selection method \citep{Stingo} and a 
 
 Previous Bayesian miRNA methods:
 \begin{itemize}
   \item Stingo et al
-  \item GenMir3/GenMir++
   \item Se joku graafinen (korkeintaan lauseen maininta)
   \item GroupMir
 \end{itemize}
