@@ -621,7 +621,7 @@
 \newlength{\coverpageindent}%
 \setlength{\coverpageindent}{10mm}%
 \newlength{\coverindent}%
-\setlength{\coverindent}{5cm}%
+\setlength{\coverindent}{4cm}%
 \newcommand{\makecoverpage}{%
  \pagestyle{empty}%
  \noindent% Position the title and author
