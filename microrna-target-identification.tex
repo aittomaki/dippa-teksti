@@ -47,7 +47,8 @@ For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
 
 
 \begin{table}
-  \caption{Examples of tools for computational prediction of miRNA targets. \\
+  \caption{Examples of tools for computational prediction of miRNA targets. All listed methods,
+  except MAGIA, allow only downregulation by miRNAs. \\
   Method: type of inference method used for predictions. \\
   SVM: support vector machine. HMM: hidden Markov model. MI: mutual information. \\
   Seq. used: sequence features considered (sequence-based methods) or use of
@@ -74,11 +75,11 @@ For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
     \multicolumn{4}{l}{\textbf{Expression-based methods}} \\
     \\[-.3cm]
     MAGIA \citep{Sales2010}               & correlation, MI               & prefilter & Also produces a bipartite network of miRNA-mRNA interactions. \\
-    TaLasso \citep{Muniategui2013}        & lasso \mbox{regression}       & prefilter &  \\
+    TaLasso \citep{Muniategui2012}        & lasso \mbox{regression}       & prefilter &  \\
     Engelmann et al \citep{Engelmann2012} & least angle \mbox{regression} & none/prefilter & Least-angle regression is a specific implementation of lasso. \\
     miRNAmRNA \citep{vanIterson2013}      & global test                   & prefilter   & Uses mRNA expression profiles to predict miRNA expression. \\
     GenMir++/3 \citep{Huang2007,Huang2008}& Bayesian \mbox{regression}    & prefilter/i,iv,v & GenMir3 can incorporate sequence features into the model. \\
-    Stingo et al \citep{Stingo}         & Bayesian \mbox{variable} \mbox{selection} & ? & Uses a spike-and-slab variable selection approach. \\
+    Stingo et al \citep{Stingo2010}       & Bayesian \mbox{variable} \mbox{selection} & prior & Effectively a spike-and-slab variable selection approach, scores from any sequence-based method can be used as prior information. \\
     \hline
     \end{tabular}
     }
@@ -176,7 +177,7 @@ potential interactions examined.
 Various mathematical approaches, ranging from correlation to complex Bayesian
 models, have been proposed for expression-based prediction. Most
 methods limit the studied relationship to repression by the miRNA. This has
-been suggested to improve performance \citep{Muniategui2013}, but has the
+been suggested to improve performance \citep{Muniategui2012}, but has the
 limitation of not being able to detect positive regulation, both direct and
 indirect (mediated through regulation of other mRNAs) \citep{Engelmann2012}.
 Notably, the majority of published efforts use either protein or mRNA 
@@ -219,7 +220,7 @@ small effect on mRNA expression, which leads to weak associations and,
 therefore, low power to identify miRNA targets. This issue is worsened by a
 large multiple-hypothesis testing problem when considering all possible miRNA-mRNA
 pairs. Some approaches have used additional information, such as
-differential expression analysis and sequence-based predictions, for limiting
+sequence-based prediction or differential expression analysis, for limiting
 examined miRNA-mRNA pairs to alleviate this to some extent
 \citep{Muniategui2013}.
 % The drawback of MI is that it only indicates similarity of the variables, but not

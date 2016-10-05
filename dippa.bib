@@ -1392,7 +1392,27 @@
    Abstract={We present a new model and learning algorithm, GenMiR3, which takes into account mRNA sequence features in addition to paired mRNA and miRNA expression profiles when scoring candidate miRNA-mRNA interactions. We evaluate three candidate sequence features for predicting miRNA targets by assessing the expression support for the predictions of each feature and the consistency of Gene Ontology Biological Process annotation of their target sets. We consider as sequence features the total energy of hybridization between the microRNA and target, conservation of the target site and the context score which is a composite of five individual sequence features. We demonstrate that only the total energy of hybridization is predictive of paired miRNA and mRNA expression data and Gene Ontology enrichment but this feature adds little to the total accuracy of GenMiR3 predictions using for expression features alone.}
 }
 
+@Article{Muniategui2012,
+   Author="Muniategui, A.  and Nogales-Cadenas, R.  and Vazquez, M.  and Aranguren, X. L.  and Agirre, X.  and Luttun, A.  and Prosper, F.  and Pascual-Montano, A.  and Rubio, A. ",
+   Title="{{Q}uantification of mi{R}{N}{A}-m{R}{N}{A} interactions}",
+   Journal="PLoS ONE",
+   Year="2012",
+   Volume="7",
+   Number="2",
+   Pages="e30766",
+   Abstract={miRNAs are small RNA molecules (' 22nt) that interact with their corresponding target mRNAs inhibiting the translation of the mRNA into proteins and cleaving the target mRNA. This second effect diminishes the overall expression of the target mRNA. Several miRNA-mRNA relationship databases have been deployed, most of them based on sequence complementarities. However, the number of false positives in these databases is large and they do not overlap completely. Recently, it has been proposed to combine expression measurement from both miRNA and mRNA and sequence based predictions to achieve more accurate relationships. In our work, we use LASSO regression with non-positive constraints to integrate both sources of information. LASSO enforces the sparseness of the solution and the non-positive constraints restrict the search of miRNA targets to those with down-regulation effects on the mRNA expression. We named this method TaLasso (miRNA-Target LASSO).We used TaLasso on two public datasets that have paired expression levels of human miRNAs and mRNAs. The top ranked interactions recovered by TaLasso are especially enriched (more than using any other algorithm) in experimentally validated targets. The functions of the genes with mRNA transcripts in the top-ranked interactions are meaningful. This is not the case using other algorithms.TaLasso is available as Matlab or R code. There is also a web-based tool for human miRNAs at http://talasso.cnb.csic.es/.}
+}
 
+@Article{Stingo2010,
+   Author="Stingo, F. C.  and Chen, Y. A.  and Vannucci, M.  and Barrier, M.  and Mirkes, P. E. ",
+   Title="A {B}ayesian graphical modeling approach to micro{RNA} regulatory network inference",
+   Journal="Ann Appl Stat",
+   Year="2010",
+   Volume="4",
+   Number="4",
+   Pages="2024--2048",
+   Abstract={It has been estimated that about 30% of the genes in the human genome are regulated by microRNAs (miRNAs). These are short RNA sequences that can down-regulate the levels of mRNAs or proteins in animals and plants. Genes regulated by miRNAs are called targets. Typically, methods for target prediction are based solely on sequence data and on the structure information. In this paper we propose a Bayesian graphical modeling approach that infers the miRNA regulatory network by integrating expression levels of miRNAs with their potential mRNA targets and, via the prior probability model, with their sequence/structure information. We use a directed graphical model with a particular structure adapted to our data based on biological considerations. We then achieve network inference using stochastic search methods for variable selection that allow us to explore the huge model space via MCMC. A time-dependent coefficients model is also implemented. We consider experimental data from a study on a very well-known developmental toxicant causing neural tube defects, hyperthermia. Some of the pairs of target gene and miRNA we identify seem very plausible and warrant future investigation. Our proposed method is general and can be easily applied to other types of network inference by integrating multiple data sources.}
+}
 
 
 

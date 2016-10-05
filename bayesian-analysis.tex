@@ -280,15 +280,15 @@ minimization in \eqref{eq:projection} can be solved analytically and the
 discrepancy \eqref{eq:model-divergence} has a simple form depending only on
 the reference and projected model variances $\sigma^2$ \citep{Piironen2015}.
 
-A practical issue with this method is deciding how many variables should be included
-in the model; what is considered similar-enough predictive performance
-for the submodel. Piironen and Vehtari suggest using cross-validation
-to guide the variable selection process and give a practical guideline
-for stopping the selection, which we will return to in Section \ref{sec:methods-variable-selection}.
-In this thesis, projection predictive variable selection was used for
-inferring putative microRNA targets from breast cancer expression
-data using Bayesian regression. Further details of the used method are
-presented in Section \ref{sec:methods-variable-selection}.
+A practical issue with this method is deciding how many variables should be
+included in the submodel. This depends on what is considered acceptable
+loss of prediction performance compared to the submodel. Piironen and Vehtari suggest using cross-validation to
+guide the variable selection process and give a practical guideline for
+stopping the selection. This is discussed Section \ref{sec:methods-variable-
+selection}. In this thesis, projection predictive variable selection was used
+for inferring putative microRNA targets from breast cancer expression data
+using Bayesian regression. Further details of the used method are presented in
+Section \ref{sec:methods-variable-selection}.
 
 
 
@@ -296,36 +296,41 @@ presented in Section \ref{sec:methods-variable-selection}.
 \subsection{Bayesian microRNA target-prediction methods}
 
 One of the earliest tools to use expression data for target prediction was
-GenMir++ \citep{Huang2007}. It takes as input a candidate set of miRNA target predictions (the authors
+GenMir++ \citep{Huang2007}. It takes as input a candidate set of miRNA targets (the authors
 have used TargetScanS) and uses mRNA and miRNA expression data across multiple tissues
-to predict whether a given candidate miRNA-target interaction is functional.
+to predict whether a given candidate miRNA-target interaction is real.
 GenMir is based on a Bayesian regression model, where
 mRNAs are assumed to share a tissue-specific common background expression,
 which is downregulated by regulating miRNAs. Let $\mu_t$ represent the
-background mRNA expression in tissue $t$, the probability of mRNA expression
-$y_{kt}$ in the GenMir model is defined as:
+background mRNA expression in tissue $t$, the probability model for
+mRNA expression $y_{kt}$ is defined in GenMir as:
 \begin{equation}
-  y_{kt} \mid X, S_k, \Gamma, \Beta, \mu_t, \Sigma \sim \textup{N} \left( \mu_t - \gamma_t \sum_j^p \beta_j s_{kj} x_k, \Sigma \right),
+  y_{kt} \mid X, S_k, \Gamma, \Lambda, \mu_t, \Sigma \sim \textup{N} \left( \mu_t - \gamma_t \sum_j^p \lambda_j s_{kj} x_k, \Sigma \right),
 \end{equation}
 where $\gamma_t$ is a tissue-specific scaling factor (modeling differences in
 mRNA and miRNA measurements and normalization) and $\lambda_j$ are regulatory
-weights of the miRNAs (irrespective of candidate target $k$). The parameter of
-interest is $S$, a matrix of indicators, where $s_{kj}=1$ if candidate mRNA
-$k$ is a functional target of miRNA $j$ and $0$ if not. The latest version of
-GenMir (GenMir3) defines Gamma priors for $\gamma_t$ and $\lambda_t$ and a
-Bernoulli prior for $s_{kj}$, and allows including sequence features as
-hyperparameters for the prior of $s_{kj}$. The model is solved simultaneously
-for all genes and tissues, using a variational Bayes method, to obtain a
-posterior for $S$. The authors note, that the method can be easily extended to
-add protein expression and that the inclusion of sequence features into the
-model does not seem to affect results to a significant degree \citep{}.
+weights of the miRNAs (irrespective of candidate target $k$), and s_{kj} an
+indicator variable of target interaction. Compared to Eq.
+\eqref{eq:bayesian-linear-regression}, the degree of regulation of a miRNA becomes $\beta_kj =
+\gamma_t \lambda_j s_kj$. The goal is to infer the posterior
+$p(s_{kj} \mid c_{kj} = 1, D, M)$, that is, the probability of a candidate interaction being true,
+where $c_{kj}$ is an indicator variable of the input putative interactions.
+A log-odds score is given for each miRNA-mRNA interaction.
 
-Other Bayesian approaches to target prediction include a spike-and-slab variable
-selection method \citep{Stingo} and a 
+The latest version of GenMir (GenMir3) defines Gamma priors for $\gamma_t$ and
+$\lambda_t$ and Bernoulli priors for $s_{kj}$ (leading to negative
+interactions only) and allows including sequence features in a logit
+hyperprior for the prior $p(s_{kj})$. The model is solved simultaneously for
+all genes and tissues, using a variational Bayes method, to obtain an
+approximate posterior for $S$. The authors note, that the method can be easily
+extended to add protein expression.
 
-Previous Bayesian miRNA methods:
-\begin{itemize}
-  \item Stingo et al
-  \item Se joku graafinen (korkeintaan lauseen maininta)
-  \item GroupMir
-\end{itemize}
+Another Bayesian approach to target prediction is a Bayesian network method published by Stingo et al
+\citep{Stingo2010}. The approach is essentially an implementation of the spike-and-slab variable
+selection method \citep{Vehtari2012} applied to a Bayesian regression model
+equivalent to Eq. \eqref{eq:bayesian-linear-regression}. Sequence features are
+included in the (Bernoulli) prior of the covariate inclusion variable $S$. The
+posterior for $S$ is obtained with MCMC methods. A time-dependent coefficients version
+is also presented for data measured for several time points.
+Additionally, many published analyses of different expression data for target prediction
+have utilized various probabilistic or Bayesian approaches.

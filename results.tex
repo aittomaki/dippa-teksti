@@ -4,11 +4,11 @@
 
 \section{Analysis results}
 
-This section presents the results of performed analyses. First, short
+The results of performed analyses are presented as follows. First, short
 summaries on quality control and correlation analyses between the different
 data types are provided. Results from regression model simulations are then
-presented. Lastly, the performance of projection prediction and lasso regression
-is compared from a target prediction point of view.
+presented. Finally, the performance of projection prediction and lasso regression
+is compared from a target prediction perspective.
 
 
 
@@ -27,13 +27,11 @@ There appeared to be quantification artifacts in the miRNA variables.
 This is indicative of generally low abundances of some miRNA molecules
 and, although partly due to different preprocessing compared to the mRNA and
 protein arrays, it raises suspicion of significant noise in the miRNA data.
-More strict filtering of data from the miRNA microarrays could lead to better
-overall results.
 
-The first two principal components for each data type are
-plotted in Figure \ref{fig:qc-pca}. No significant batch effect is visible. The
-hierarchical clustering of samples (not shown) had a similar result.
-Raw array data produced from Agilent array readers was not assessed.
+The first two principal components for each data type are plotted in Figure
+\ref{fig:qc-pca}. No significant batch effect was visible. The hierarchical
+clustering of samples (not shown) had a similar result. Raw array data
+produced from Agilent array readers was not assessed.
 
 
 
@@ -48,7 +46,7 @@ results. Notably, even the gene-matched correlations were quite low, with a
 mean $\bar{\rho} \approx 0.37$. Using the squared correlation coefficient $\rho^2$ as a
 measure of explained variance (although this has been criticized), the amount
 of protein variance explained by the matched mRNA ranged from 0\% to 82\% with a mean of
-21\%. This is in alignment with earlier results.
+21\%.
 
 \begin{figure}[!h]
   \centering
@@ -84,14 +82,7 @@ Correlations between miRNAs and their validated target genes (fetched from
 TarBase) were mostly low with no preference towards negative (or positive)
 values. There was virtually no difference in correlations between validated
 targets and randomly picked gene-miRNA pairs, contrary to what might be
-expected. This suggests that (Pearson) correlation of expression data is not a
-suitable method for finding miRNA targets. It is possible that this was due to
-the dataset used (and any noise within), however, as discussed in
-Section \ref{expr-methods}, correlation has low power to detect weak
-relationships and cannot capitalize on combinatorial effects. Therefore,
-correlation was not used for target prediction in this work; poor
-prediction results using correlation have been reported before
-(e.g. in \citep{Muniategui2012}).
+expected.
 
 
 
@@ -115,7 +106,7 @@ was included, and the model-size criterion was met in under 200 variables) was
 found for 74 genes. A table of properties for the projected models is
 available in Appendix \ref{app:model-table}.
 
-Figure \ref{n-miRNAs-vs-R2} shows the number of miRNA variables included in
+Figure \ref{fig:n-miRNAs-vs-R2} shows the number of miRNA variables included in
 each projected model plotted against the number of significant miRNA
 variables, the $R^2$ of the projected model, and the difference in $\bar{R}^2$
 between the projected model and the gene-only model. Each point in each plot
@@ -137,24 +128,8 @@ average, but an equal trend and turning point were observed (data not shown).
   small jitter has been added to the points to help visualize all of them.
   Curves were fitted with locally weighted scatter plot smoothing (LOESS) and
   shaded areas represent 95\% confidence interval.}
-  \label{n-miRNAs-vs-R2}
+  \label{fig:n-miRNAs-vs-R2}
 \end{figure}
-
-There could be several explanations for this trend. Firstly, the largest
-models could simply be a result of the predictors not fitting the observed
-variable well. This can result in a large model, because including more
-predictors often makes the model fit asymptotically better -- both in the
-sense of $R^2$ and generally also the predictive density, which was used as
-the measure of fit for the variable-selection process. From a biological
-perspective, this means that the mRNA and miRNA expression are not sufficient
-to explain the protein expression; other factors, that the model does not
-account for (e.g. protein degradation), possibly dominate.
-Secondly, the marginal posterior of a single predictor can indicate
-non-significance, while the joint posterior of several predictors combined
-might still achieve significance. This would indicate that the effect of
-miRNAs is only significant when acting simultaneously, a hypothesis that is
-supported by experimental evidence, as discussed in section
-\ref{microrna-function}.
 
 Lasso regression produced models with at least one miRNA for 74 genes, out of
 which only 57 were common to the ones found by projection prediction (PPVS).
