@@ -73,34 +73,41 @@ transcribed and non-coding regions of the genome still remains unknown.
 
 \subsection{Regulation of gene expression}\label{regulation-of-gene-expression}
 
-The proper regulation of gene expression is paramount for cells
-to respond to external signals, changes in their environment, and 
-go through different developmental stages. Gene expression can be regulated
-at any stage of the process, and regulation can be roughly divided into transcriptional
-and post-transcriptional regulation.
+The proper regulation of gene expression is paramount for cells to respond to
+external signals, changes in their environment, and to go through different
+developmental stages. Gene expression is, thus, under complex control mechanisms,
+which result in tissue and cell-specific expression. This regulation
+occurs on several stages including transcriptional, post-transcriptional,
+translational and post-translational regulation. \citep{Strachan2011}
 
-Transcriptional regulation with e.g. TFs, methylation, adenylation, splicing.
+The first step of this regulation is control of transcription. To be
+transcribed, genes need active initiation of transcription, which
+occurs in the promotor regions. While the actual transcription is performed by
+RNA polymerases, many different transcription factors and regulatory proteins
+participate in its regulation. Transcription is possible only when
+the chromatin structure of the transcribed genetic region is opened from its
+tight package around histone proteins, which is controlled by additional
+factors such as histone acetylation.
 
-Post-transcriptional
+The produced mRNA undergoes post-transcriptional modifications, such as
+capping, polyadenylation and splicing of introns, which all are essential for
+further translation of the mRNA to protein \citep{Strachan2011}. All these
+steps must maintain a certain level of fidelity, as even slight structural
+changes can render both mRNA and protein to degradation and. The main
+post-transcriptional control mechanism seems to be RNA interference (RNAi). It
+causes suppression of gene expression through mRNA degradation and inhibition of translation.
+MicroRNAs (miRNAs) and small interfering RNAs (siRNAs) are central components of the
+RNAi pathway; they act as target mRNA recognizing templates.
+While miRNAs are cut from endogenous hairpin structures, siRNAs, however,
+are mostly processed from exogenous long double-stranded RNAs
+(dsRNAs)\footnote{The mechanism of RNAi has been postulated to having evolved
+as a defense mechanism against dsRNA coming from pathogens.} \cite{Du2005}. MicroRNAs,
+which are the focus of this study, are discussed in more detail in the next section.
 
-MicroRNAs (miRNAs) and small interfering RNAs (siRNAs) are components of the
-so called RNA interference (RNAi) pathway, which is a mechanism for regulating
-gene expression post-transcriptionally. miRNAs and siRNAs are practically
-interchangeable as substrates for RNAi, both act as target mRNA recognizing
-templates, but have different biogenesis. While miRNAs are cut from endogenous
-hairpin structures and siRNAs are mostly processed from exogenous long double-
-stranded RNAs (dsRNAs). \cite{Du2005} MicroRNAs, which are the focus of this study,
-are discussed in more detail in the next section.
-
-% The Argonaute (Ago) family of proteins is closely associated with small RNAs and
-% Ago act as effectors in RNAi \cite{Ha2014}.
-
-\begin{itemize}
-  \item transcription factors
-  \item post-transcriptional regulation
-  \item translational factors
-  \item protein degradation
-\end{itemize}
+The translation of mRNA to protein can also be directly regulated, but this
+seems less prevalent than control of previous phases. Post-translationally,
+proteins can be modified and degraded to affect their function and cellular
+expression levels \citep{Strachan2011}.
 
 
 
@@ -109,49 +116,50 @@ are discussed in more detail in the next section.
 
 The physical measurement of gene expression can be done on either the level of
 messenger RNA molecules or protein molecules. Although proteins are the
-eventual effectors molecules within cells -- at least for protein-coding genes
+eventual effector molecules -- at least for protein-coding genes
 -- gene expression is usually thought to be synonymous with mRNA expression.
-mRNA abundances are significantly easier than
-measuring protein abundances, due to the chemistry of base-pair formation and
-the relative ease of replicating DNA (or RNA) sequences by exploiting cellular
+mRNA abundances are significantly easier to measure
+than protein abundances, due to the chemistry of hybridization and
+the relative ease of replicating DNA and RNA sequences by exploiting cellular
 machinery evolved for this purpose.
 
-Techniques shortly in one paragraph:
-\begin{itemize}
-  \item blotting, qPCR
-  \item microarrays
-  \item sequencing-based methods
-  \item protein arrays (RPPA)
-\end{itemize}
+Quantitative PCR (qPCR) is a DNA/RNA measurement method based on the
+polymerase chain reaction (PCR) that provides a quantitative measurement of
+PCR products. qPCR is considered a golden standard in gene expression
+measurement and is widely used in research, but also in clinical diagnostics.
+It is often the method of choice for measuring a moderate number of genes. \citep{VanGuilder2008}
 
+Gene expression microarrays are based on probes printed on a
+surface, where each probe is designed to hybridize with a specific mRNA.
+The advantage of microarrays is that they allow massively
+parallel analysis of even whole genomes simultaneously. They are also relatively inexpensive and
+easy to use, making them a ubiquitous tool for expression measurements. Detection
+of expression levels is based on fluorescence and optical sensors, and
+therefore subject to noise. As microarray data are inherently noisy, proper
+normalization methods have been shown to be important. Probe designs can also
+become obsolete as reference genomes are updated and, therefore, reassessment
+of the true targets of probes is advisable. \citep{Allison2006}
 
+More recently next generation sequencing methods have been applied to gene
+expression profiling. These are not dependent on previous reference sequences,
+but are relatively expensive and laborious compared to microarrays.
 
-
-\subsubsection{Microarrays}
-
-\begin{itemize}
-  \item basics of operation
-  \item shortly on microarray analysis
-  \begin{itemize}
-    \item preprocessing and normalization
-    \item probe annotation problems
-  \end{itemize}
-\end{itemize}
+Protein expression can be measured using several different methods. Perhaps most widely
+used are different variations of mass spectrometry (MS). Application of MS methods is
+limited by their resource-intensiveness and poor scaling, however. Reverse phase protein
+arrays (RPPA) are a platform similar to microarrays, where protein samples are fixated
+to a solid surface and then probed with antibodies binding to a specific proteins.
+RPPAs are inexpensive, allow large-scale analyses, and analysis of RPPA data is
+similar to microarrays, making them an attractive choice for studies
+using multiomics data \citep{Mannsperger2010}.
 
 The general assumption has been that mRNA expression is representative of gene
 expression and that changes in mRNA abundances also reflect changes in protein
-abundances and. This assumption has recently been challenged by experiments
-indicating that correlation between the expression of mRNA and corresponding
-protein low, with mRNA expression explaining around 40\% of variation in
-protein abundances \citep{Vogel2012}. There are also contrary findings of
-modest to good correlation and one study suggested that mRNA-protein
-correlations are generally higher for genes that have differing mRNA
-expression between studied conditions (e.g. cancerous versus healthy tissue)
-\citep{Koussounadis2015}, suggesting that, while correlation is perhaps low in
-general, changes in mRNA expression cause detectable changes in protein
-expression.
-
-Nonetheless, Payne recently concluded that "proteome and transcriptome
+abundances. This assumption has recently been challenged by experiments
+indicating that correlations between the expression of mRNA and corresponding
+protein are low, with mRNA expression explaining around 40\% of variation in
+protein expression \citep{Vogel2012}.
+Payne recently concluded that "proteome and transcriptome
 abundances are not sufficiently correlated to act as proxies for each other"
 and that most of this difference is likely caused by biological regulation and
 not by measurement technology \cite{Payne2015}.
@@ -160,3 +168,13 @@ not by measurement technology \cite{Payne2015}.
 Therefore, it is interesting, even necessary, to integrate measurements from
 different stages of gene expression -- for example mRNA, microRNA and protein
 abundances -- to gain new insights into biological processes.
+
+
+% Some studies have reported
+% modest to good correlation, however, and one study suggested that mRNA-protein
+% correlations are generally higher for genes that have differing mRNA
+% expression between studied conditions (e.g. cancerous versus healthy tissue)
+% \citep{Koussounadis2015}, indicating that, while correlation is perhaps low in
+% general, changes in mRNA expression cause detectable changes in protein
+% expression.
+

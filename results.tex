@@ -2,12 +2,12 @@
 %%% This file contains the results section of my master's thesis.
 %%% Author: Viljami Aittomäki
 
-\section{Analysis results}
+\section{Results}
 
-The results of performed analyses are presented as follows. First, short
+The results of performed analyses are presented as follows. First,
 summaries on quality control and correlation analyses between the different
-data types are provided. Results from regression model simulations are then
-presented. Finally, the performance of projection prediction and lasso regression
+data types are presented, followed by results from regression model simulations.
+Finally, the performance of projection prediction and lasso regression
 is compared from a target prediction perspective.
 
 
@@ -21,7 +21,7 @@ and approximately Gaussian, though several variables had long tails
 and a few had significant outliers (most notably proteins CDK1, ERRFI1, PIK3CA).
 This was most apparent in the scaled data. miRNA microarrays had strongly bimodal
 distributions, there was large variation in miRNA variable median expression,
-and many miRNA variables are highly skewed towards very small values.
+and many miRNA variables were highly skewed towards very small values.
 There appeared to be quantification artifacts in the miRNA variables.
 
 This is indicative of generally low abundances of some miRNA molecules
@@ -96,9 +96,9 @@ to 45 minutes, depending on the chosen model size. All parameters for all
 simulations had low potential scale reduction $\hat{R}^2 < 1.1$, indicating
 good convergence of simulation chains \citep{Gelman2013}.
 
-The parameters for the model-size criterion, $\alpha$ and $\gamma$ had a
+The parameters for the model-size criterion, $\alpha$ and $\gamma$, had a
 significant effect on the resulting model sizes (a plot of model-size
-distributions is shown in Figure \ref{fig:model-size-distribution}).
+distributions is shown in Appendix \ref{app:model-sizes}).
 Values $\alpha = 0.50$ and $\gamma = 0.2$ were chosen to keep models
 relatively sparse. This choice was, however, largely subjective. Out of the
 105 genes in the data, a projected model (where at least one miRNA variable

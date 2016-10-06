@@ -4,7 +4,7 @@
 
 \section{Discussion}
 
-This thesis presented a review of the basics of gene expression, microRNAs and
+This thesis presents a review of the basics of gene expression, microRNAs and
 the computational prediction of microRNA target genes. A modern Bayesian
 variable selection method was applied in the context of regression, to predict
 protein expression from mRNA and miRNA expression in breast cancer tumor
@@ -51,12 +51,10 @@ consistently better than the full model.
 From a biological perspective, this means that the miRNA expression provides
 no additional information over the mRNA for predicting protein expression.
 This could be due to a gene truly not having miRNA regulators in breast
-tissue, insufficient data (the true regulators of a given gene in might be
+tissue, insufficient data (the true regulators of a given gene might be
 missing from the data), the model being biologically inaccurate, or simply too
 much noise to make accurate predictions. Other regulatory mechanisms than miRNAs
-(e.g. protein degradation) could also be more dominant, relating to both
-insufficient data and an inaccurate model. The last point is perhaps the most
-important one to consider.
+(e.g. protein degradation) could also be more dominant.
 
 % Secondly, the marginal posterior of a single predictor can
 % indicate non-significance, while the joint posterior of several predictors
@@ -66,7 +64,7 @@ important one to consider.
 % \ref{microrna-function}.
 
 Compared to lasso regression PPVS achieved better model fit, yet from a target
-prediction point of view, performance of the two methods was similar. There
+prediction perspective, performance of the two methods was similar. There
 was little overlap of predictions made by the two methods, a common issue in
 microRNA target prediction \citep{vanIterson2013}. Only a small fraction of
 predicted targets were validated according to TarBase and miRTarBase, however,
@@ -96,13 +94,13 @@ constructing a hierarchical model that includes tumor-subtype data.
 Another way to improve the proposed model would be to include sequence-based
 target information, as most published methods do. This could be achieved with
 indicator variables, a weighting scheme, or more elaborately by including
-sequence-based data within the hierarchical shrinkage prior to impose less
+sequence-based data within the hierarchical-shrinkage prior to impose less
 regularization on putative target pairs. However, as the authors of GenMir
 noted, including sequence features did not result in a significant improvement
 of their method \citep{Huang2008}.\footnote{It should be noted, that GenMir
-uses sequence-based predictions as a preliminary filter the method. Therefore,
+uses sequence-based predictions as a preliminary filter step. Therefore,
 it is perhaps not surprising that including the same type of data within the
-model does not bring about substantial improvement.}
+model does not produce substantial improvement.}
 
 % One disadvantage of the proposed method relates to scaling of the regression
 % covariates, that is, the mRNA and miRNA expression variables. Sequencing studies have shown
@@ -161,22 +159,22 @@ a data-driven approach for optimizing the parameter values would perhaps be usef
 
 \subsection*{Future prospects}
 
-The recent development of CLIP-seq and similar methods has made high-throughput
-experimental microRNA target discovery possible, partially replacing the need
-for computational target prediction. Nonetheless, experimental (particularly high-throughput)
-methods are not immune to error, and gene
-regulation is vastly complex with many unconventional regulatory mechanisms
-having been discovered. Integrative computational approaches --
-combining several levels and types of data -- beyond correlation will, thus, remain
-important in the future.
+The recent development of CLIP-seq and similar methods has made high-
+throughput experimental microRNA target discovery possible, partially
+replacing the need for computational target prediction. Nonetheless,
+experimental (particularly high-throughput) methods are not immune to error,
+and gene regulation is vastly complex with many unconventional regulatory
+mechanisms having been discovered. Integrative computational approaches --
+combining several levels and types of data -- beyond correlation will, thus,
+remain important in the future.
 
-The elucidation of complex regulatory networks using
-network-level modeling is becoming feasible with modern experimental and
-computational methods. Employing this approach will be essential, as it has the
-ability to better capture the true nature of gene regulation and cellular
-biology.
+The elucidation of complex regulatory networks using network-level modeling is
+becoming feasible with modern experimental and computational methods.
+Employing this approach will be essential, as it has the ability to better
+capture the true nature of gene regulation and cellular biology.
 
-Many aspects of microRNA biology and function are still unknown. 
-Uncovering miRNA function offers interesting possibilities in diagnostics and
-treatment of disease, and will further our understanding of the complexities of molecular cell biology.
-MicroRNAs will, therefore, remain an exciting avenue of research.
+Many aspects of microRNA biology and function are still unknown. Uncovering
+miRNA function offers interesting possibilities in diagnostics and treatment
+of disease, and will further our understanding of the complexities of
+molecular cell biology. MicroRNAs will, therefore, remain an exciting avenue
+of research.
