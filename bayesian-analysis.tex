@@ -61,14 +61,14 @@ schools.
 
 The virtue of modeling uncertainty as probabilities -- in addition to
 naturally dealing with noise -- is that they are conceptually easy to grasp
-and often allow common-sense interpretations of conclusions to be made.
-\footnote{This is especially true compared to classical frequentist analysis,
+and often allow common-sense interpretations of conclusions to be
+made.\footnote{This is especially true compared to classical frequentist analysis,
 which is defined within the context of repeated sampling (and inference) from
 a fixed but unknown process generating the observations. For example,
 frequentist confidence intervals strictly do not indicate that the true value
 of the parameter is contained within with high probability -- a common
 misconception -- where as Bayesian posterior intervals do (subject to modeling
-assumptions, of course).} Perhaps the foremost advantage of Bayesian modeling,
+assumptions).} Perhaps the foremost advantage of Bayesian modeling,
 however, is its flexibility and extensibility; it can cope with complex
 problems and data with relative ease. Prior knowledge about the parameters of
 interest can be embedded in prior distributions, priors can be assigned freely
@@ -250,9 +250,9 @@ the scope of this thesis, however, a comprehensive one has been recently
 written by Vehtari and Ojanen \citep{Vehtari2012}.
 
 In the context of variable selection for regression,
-Piironen and Vehtari recently suggested that, for problems where data
+Piironen and Vehtari \citep{Piironen2016} recently suggested that, for problems where data
 are scarce and the number of candidate variables high, using projection predictive
-variable selection is effective \citep{Piironen2016}. The idea, proposed by
+variable selection is effective. The idea, proposed by
 Dupuis and Robert \citep{Dupuis2003}, is to fit a full reference model $M_{\textup{r}}$
 encompassing all candidate variables,
 %and uncertainties related to their effect,
@@ -277,15 +277,15 @@ The posterior expectation in \eqref{eq:model-discrepancy} can, in practice, be
 estimated by drawing samples from the reference posterior (using e.g. MCMC).
 It can be shown, that in the case of normal linear regression, the
 minimization in \eqref{eq:projection} can be solved analytically and the
-discrepancy \eqref{eq:model-divergence} has a simple form depending only on
+discrepancy \eqref{eq:model-discrepancy} has a simple form depending only on
 the reference and projected model variances $\sigma^2$ \citep{Piironen2015}.
 
 A practical issue with this method is deciding how many variables should be
 included in the submodel. This depends on what is considered acceptable
 loss of prediction performance compared to the submodel. Piironen and Vehtari suggest using cross-validation to
 guide the variable selection process and give a practical guideline for
-stopping the selection. This is discussed Section \ref{sec:methods-variable-
-selection}. In this thesis, projection predictive variable selection was used
+stopping the selection. This is discussed Section \ref{sec:methods-variable-selection}.
+In this thesis, projection predictive variable selection was used
 for inferring putative microRNA targets from breast cancer expression data
 using Bayesian regression. Further details of the used method are presented in
 Section \ref{sec:methods-variable-selection}.
@@ -309,7 +309,7 @@ mRNA expression $y_{kt}$ is defined in GenMir as:
 \end{equation}
 where $\gamma_t$ is a tissue-specific scaling factor (modeling differences in
 mRNA and miRNA measurements and normalization) and $\lambda_j$ are regulatory
-weights of the miRNAs (irrespective of candidate target $k$), and s_{kj} an
+weights of the miRNAs (irrespective of candidate target $k$), and $s_{kj}$ an
 indicator variable of target interaction. Compared to Eq.
 \eqref{eq:bayesian-linear-regression}, the degree of regulation of a miRNA becomes $\beta_kj =
 \gamma_t \lambda_j s_kj$. The goal is to infer the posterior

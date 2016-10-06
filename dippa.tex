@@ -23,7 +23,7 @@
 %% Use this if you want to get links and nice output. Works well with pdflatex.
 \usepackage{hyperref}
 \hypersetup{pdfpagemode=UseNone, pdfstartview=FitH,
-  colorlinks=true,urlcolor=red,linkcolor=blue,citecolor=black,
+  colorlinks=false,urlcolor=red,linkcolor=blue,citecolor=black,
   pdftitle={MicroRNA regulation in breast cancer},pdfauthor={Viljami Aittom\"aki},
   pdfkeywords={Bayesian analysis, breast cancer, microRNA}}
 
@@ -31,7 +31,7 @@
 \usepackage[numbers,square]{natbib}
 \usepackage[parfill]{parskip}
 \usepackage{longtable}
-\usepackage[font={small},labelfont={bf},format=plain,indention=.5cm]{caption}
+\usepackage[font={small,sf},labelfont={bf},format=plain,indention=.5cm]{caption}
 \usepackage{subcaption}
 \captionsetup[sub]{font={scriptsize,sf},labelfont={sf}}
 \usepackage{pdflscape}
@@ -39,9 +39,10 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 %\setlength{\LTleft}{-30cm}
 \setlength{\LTright}{\LTleft}
+\usepackage{colortbl}
 
 %% Which sections to include
-%\includeonly{results,discussion}
+\includeonly{microrna-target-identification}
 
 
 
@@ -93,7 +94,7 @@
 \supervisor{Professor Aki Vehtari}
 
 %% Thesis advisors(s).
-\advisor{Associate professor Rainer Lehtonen}
+\advisor{Senior Researcher Rainer Lehtonen}
 
 %% Aalto logo: syntax:
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
@@ -289,10 +290,17 @@ MCMC        & Markov chain Monte Carlo \\
 miRNA       & MicroRNA \\
 MLR         & Multivariate linear regression \\
 mRNA        & Messenger RNA \\
-NGS         & Next generation sequencing \\
+NGS         & Next-generation sequencing \\
 PPVS        & Projection predictive variable selection \\
 RISC        & RNA-induced silencing complex \\
-RPPA        & Reverse phosphatase protein array
+RPPA        & Reverse-phase protein array \\
+RNAi        & RNA interference \\
+WHO         & World Health Organization \\
+MLPD        & Mean log predictive density \\
+PCR         & Polymerase chain reaction \\
+UTR         & Untranslated region at the beginning (5') and end (3') of a messenger RNA \\
+TNM         & primary tumor, lymph node status, distant metastasis \\
+qPCR        & Quantitative PCR \\
 \end{tabular}
 
 

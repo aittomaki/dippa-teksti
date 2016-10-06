@@ -10,28 +10,29 @@
 The data analyzed in this thesis consists of 283 tumor samples collected from
 280 breast cancer patients treated in two Norwegian hospitals. Protein, mRNA
 and microRNA expression were measured from each sample. The data were
-published by Aure et al. \citep{Aure2015} and are publicly available. Analyses
-performed in this thesis used the publicly available preprocessed data.
+published by Aure et al \citep{Aure2015} and are publicly available.
 
 The data are part of the larger Oslo2 cohort, which consists of breast cancer
 patients with primarily operable disease, that is stage cT1--cT2. Collection
 of the cohort started in 2006 and is still ongoing. Therefore, no survival
-data were available for analysis. Clinical data for included patients were
-kindly provided by Aure and associates and a compiled summary is presented in
-Table \ref{clinical-data}. Patient ages ranged from 30 to 83 years with a median of 55 years.
-The vast majority of tumors in the data were ductal carcinomas, which
-is the most common type of breast cancer. No matched
-control samples of healthy breast tissue were available. It is worth noting
-that the data represent a very heterogeneous sampling of different kinds of
-breast tumors.
+data were available for analysis. 
+% Clinical data for included patients were
+% kindly provided by Aure and associates and a compiled summary is presented in
+% Table \ref{clinical-data}.
+Patient ages ranged from 30 to 83 years with a median of 55 years. The vast
+majority of tumors in the data were ductal carcinomas, which is the most
+common type of breast cancer, however, in general the dataset consisted of a
+heterogeneous collection of different histological types and stages of breast
+cancer tumors. No matched control samples of healthy breast tissue were
+available.
 
-\input{clinical_table}
+%\input{clinical_table}
 
-The mRNA and microRNA expression were measured using Agilent Technologies
+The mRNA and microRNA expression were measured using Agilent Technologies (Santa Clara, CA, USA)
 SurePrint G3 Human GE 8x60K and Human miRNA Microarray Kit (V2) microarrays,
 respectively. These microarrays measure 27958 genes and 887 miRNAs, according
-to manufacturer annotation. Protein expression was measured using a reverse
-phase protein array (RPPA) containing a set of 105 proteins related to
+to manufacturer annotation. Protein expression was measured with reverse-phase
+protein arrays (RPPA) \citep{Tibes2006} for a selected set of 105 proteins relevant in
 cancer. Most of the proteins are found on the PI3K/AKT intracellular pathway,
 which is important for cell-cycle regulation.
 
@@ -58,7 +59,7 @@ project.
 
 MicroRNA and mRNA expression data were downloaded from the Gene Expression
 Omnibus \citep{Edgar2002} (accessions GSE8210 and GSE8212, respectively) using
-the GEOquery R package \citep{GEOquery}. Protein expression data were
+the GEOquery R package \citep{Davis2007}. Protein expression data were
 downloaded as a Microsoft Excel sheet from the supplementary data of Aure et
 al \citep{Aure2015}.
 
@@ -170,7 +171,7 @@ $\lambda_j$ priors was set at $\nu=3$ (similar to Piironen and Vehtari
 combining the previous suggestions of half-Cauchy and fixed $tau$.
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
 Ensembl gene ID's were downloaded for all protein-coding genes in the human
-genome using biomaRt \citep{biomaRt}. From these, a sample of 1000 genes was
+genome using biomaRt \citep{Durinck2009}. From these, a sample of 1000 genes was
 taken, and known validated microRNA interaction partners for each sampled gene
 were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
 validated miRNA interactors were assumed to have zero. The mean number of

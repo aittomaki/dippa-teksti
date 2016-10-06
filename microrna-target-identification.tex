@@ -52,8 +52,14 @@ For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
   Method: type of inference method used for predictions. \\
   SVM: support vector machine. HMM: hidden Markov model. MI: mutual information. \\
   Seq. used: sequence features considered (sequence-based methods) or use of
-  previous sequence-based predictions (expression-based methods), see text for details \\
-  prefilter: previous sequence-based predictions used as a prefilter
+  previous sequence-based predictions (expression-based methods); see text for details. \\
+  i: sequence matches between the seed region and 3' UTR,
+  ii: sequence matches outside the seed region (in the 3' UTR),
+  iii: sequence matches in the 5' UTR or coding sequence of the mRNA,
+  iv: free energy of the bound miRNA-mRNA duplex,
+  v: evolutionary conservation of matches between species. \\
+  prefilter: sequence-based predictions used as a prefilter. \\
+  prior: sequence-based predictions included in prior distributions
   }
   \label{table:prediction-methods}
   %\centering
@@ -102,11 +108,11 @@ given miRNA.
 
 Most sequence-based approaches are essentially rule-based filters, where
 features of both the miRNA and mRNA sequence are used to narrow down candidate
-target lists \citep{Yeu2009}. These features are derived from earlier
+target lists \citep{Yue2009}. These features are derived from earlier
 experimental knowledge, and commonly used features include:
 (i) sequence matches between the seed region of the miRNA and 3' UTR of the mRNA,
 (ii) sequence matches outside the seed region (in the 3' UTR),
-(iii) sequence matches in the 5' UTR or coding sequence (CDS) of the mRNA,
+(iii) sequence matches in the 5' UTR or coding sequence of the mRNA,
 (iv) free energy of the bound miRNA-mRNA duplex, and
 (v) evolutionary conservation of matches between species.
 Rule-based prediction methods are unsupervised, i.e. no training data is
@@ -230,8 +236,8 @@ examined miRNA-mRNA pairs to alleviate this to some extent
 Many proposed expression-based methods use some form of multivariate linear
 regression (MLR) to examine the relationship between miRNAs and mRNAs.
 Expression profiles of miRNAs are commonly used to predict the expression of a
-single mRNA. Recently, Engelmann and Spang reported that miRNA expression can indeed be used to
-predict mRNA expression \citep{Engelmann2012}. In the context of regression,
+single mRNA. Recently, Engelmann and Spang \citep{Engelmann2012} reported that miRNA expression can indeed be used to
+predict mRNA expression. In the context of regression,
 target prediction essentially becomes a \emph{variable selection} problem, where the
 goal is to choose a set of miRNAs that best predict mRNA expression without
 overfitting.
@@ -305,20 +311,19 @@ response, instead retaining an unimportant covariate that correlates with
 actual regulators \citep{Engelmann2012}. Second, only a limited number of
 covariates may be included in the model, and thus some relevant associations
 can be missed by number of included covariates alone.% \citep{vanIterson2013}.
-Relating to both limitations, van Iterson et al showed (for one dataset) that
-lasso did not consistently select highly correlated miRNA-mRNA pairs
-\citep{vanIterson2013}.
+Relating to both limitations, van Iterson et al \citep{vanIterson2013} showed (for one dataset) that
+lasso did not consistently select highly correlated miRNA-mRNA pairs.
 
 \paragraph{Other approaches}
-Other suggested approaches used include the global test, which is a
+Other suggested approaches used include the global test \citep{vanIterson2013}, which is a
 generalization for testing the global null hypothesis ($H_0: \beta = 0$) of a
-linear regression model when $p >> n$ \citep{vanIterson2013}, and approaches
+linear regression model when $p >> n$, and approaches
 similar to gene-set enrichment analysis, where the over-representation of
 sequence-based target genes in differentially-expressed gene sets is considered
-indicative of a target relationship in the studied condition. Le at al have proposed an ensemble
+indicative of a target relationship in the studied condition. Le at al \citep{Le2015}
+have proposed an ensemble
 method, which combines predictions from several separate algorithms to build
-on the advantages and compensate for the drawbacks of each
-\citep{Le2015}.
+on the advantages and compensate for the drawbacks of each.
 Several Bayesian approaches have also been proposed; these are discussed in
 the next section.
 

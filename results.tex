@@ -103,8 +103,30 @@ Values $\alpha = 0.50$ and $\gamma = 0.2$ were chosen to keep models
 relatively sparse. This choice was, however, largely subjective. Out of the
 105 genes in the data, a projected model (where at least one miRNA variable
 was included, and the model-size criterion was met in under 200 variables) was
-found for 74 genes. A table of properties for the projected models is
+found for 74 genes. Figure \ref{fig:forward-search} shows the predictive performance during the
+forward search in cross validation for one of the best performing models (\emph{CDH3})
+and one of the worst (\emph{PIK3CA}).
+A table of properties for the projected models is
 available in Appendix \ref{app:model-table}.
+
+\begin{figure}[!h]
+  \centering
+  \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=1\linewidth]{figures/CDH3_CV_path.png}
+  \end{subfigure}
+  \begin{subfigure}{.45\textwidth}
+    \includegraphics[width=1\linewidth]{figures/PIK3CA_CV_path.png}
+  \end{subfigure}
+
+  \caption{Predictive performance ($\Delta\textup{MLPD}$) of projected submodel during
+  each step of the forward search in the model-size-selection phase. Two of the 105 models are shown.
+  The black line shows the median (corresponding to $\alpha = 0.50$) and
+  gray lines the 95\% interval of $\Delta\textup{MLPD}$ computed with Bayesian bootstrap.
+  The red line depicts the model-size selection threshold $U$ (with $\gamma=0.2$).
+  The final \emph{CDH3} model was one of the best performing ones,
+  no model was found for \emph{PIK3CA}.}
+  \label{fig:forward-search}
+\end{figure}
 
 Figure \ref{fig:n-miRNAs-vs-R2} shows the number of miRNA variables included in
 each projected model plotted against the number of significant miRNA
