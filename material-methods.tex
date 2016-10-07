@@ -224,21 +224,21 @@ submodel to the full reference model, the difference in MLPD ($\Delta \textup{ML
 computed. Bayesian bootstrap \citep{Rubin1981} (with 5000 samples) was used to estimate a
 distribution for $\Delta \textup{MLPD}$ as:
 \[
-	\Delta \textup{MLPD}^{b}(M_\perp,M_{\textup{ref}}) = \sum_i^n w_i^{(b)} \left [ \textup{LPD}_i(M_\perp) - \textup{LPD}_i(M_{\textup{ref}}) \right ],
+	\Delta \textup{MLPD}^{b}(M_\perp,M_{\textup{r}}) = \sum_i^n w_i^{(b)} \left [ \textup{LPD}_i(M_\perp) - \textup{LPD}_i(M_{\textup{r}}) \right ],
 \]
 where $w_i^{(b)}, i = 1, \dotsc,n$, are the bootstrap weights
 for the $b$'th bootstrap sample (subject to $\sum_i w_i^{(b)} = 1$).
 The \emph{bayesboot} R package was used for computing the bootstrap.
-The $\Delta \textup{MLPD}(M_\perp,M_{\textup{ref}})$ was then used
+The $\Delta \textup{MLPD}(M_\perp,M_{\textup{r}})$ was then used
 as an estimate of the predictive performance of submodel $M_\perp$.
 
 \paragraph{Choosing model size}
 For choosing the model size, the following condition was used:
 \begin{equation}
 	\label{eq:size-condition}
-	\textup{Pr}(\Delta \textup{MLPD}(M_\perp,M_{\textup{ref}}) > U) \geq \alpha,
+	\textup{Pr}(\Delta \textup{MLPD}(M_\perp,M_{\textup{r}}) > U) \geq \alpha,
 \end{equation}
-where $U = \gamma \Delta \textup{MLPD}(M_0,M_{\textup{ref}})$, and $M_0$
+where $U = \gamma \Delta \textup{MLPD}(M_0,M_{\textup{r}})$, and $M_0$
 refers to the intercept-only model. The number of covariates in the smallest model satisfying this condition
 was chosen as the final model size. This means that model size was chosen
 such, that the probability of the projected model improving performance

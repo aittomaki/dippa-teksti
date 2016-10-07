@@ -89,10 +89,10 @@ expected.
 
 \subsection*{Model simulations}
 
-Simulations for the cross validation (to determine good model size) took
+Simulations for the cross validation (to determine model size) lasted
 between 4 to 6 hours (on a computing-cluster node with 2 12-core Xeon E5 2680
-2.50GHz processors). Simulations for the final projected models took between 2
-to 45 minutes, depending on the chosen model size. All parameters for all
+2.50GHz processors), and simulations for the final projected models lasted
+between 2 to 45 minutes, depending on the chosen model size. All parameters for all
 simulations had low potential scale reduction $\hat{R}^2 < 1.1$, indicating
 good convergence of simulation chains \citep{Gelman2013}.
 
@@ -100,7 +100,9 @@ The parameters for the model-size criterion, $\alpha$ and $\gamma$, had a
 significant effect on the resulting model sizes (a plot of model-size
 distributions is shown in Appendix \ref{app:model-sizes}).
 Values $\alpha = 0.50$ and $\gamma = 0.2$ were chosen to keep models
-relatively sparse. This choice was, however, largely subjective. Out of the
+relatively sparse. This choice was, however, largely subjective.
+
+Out of the
 105 genes in the data, a projected model (where at least one miRNA variable
 was included, and the model-size criterion was met in under 200 variables) was
 found for 74 genes. Figure \ref{fig:forward-search} shows the predictive performance during the
@@ -186,8 +188,8 @@ Lasso regression generated all together 650 target predictions. Figure
 \ref{fig:venn} shows the overlap of predictions by PPVS and lasso, and also
 that of significant predictions from PPVS and the same number of top
 predictions from lasso, where lasso predictions were ranked by the absolute value of
-the regression coefficient.\footnote{Lasso regression does not provide any tests of
-significance or other ranking measures}
+the regression coefficient.\footnote{Lasso regression does not provide any
+rank measures or tests of significance.}
 
 \begin{figure}[!h]
   \centering
