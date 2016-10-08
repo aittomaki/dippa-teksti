@@ -231,11 +231,12 @@ comparing the coefficients of the common predictions is shown in Figure
 \begin{figure}[htb]
   \centering
   \includegraphics[width=.8\linewidth]{figures/compareModels/Scatter-PPVS-lasso.pdf}
-  \caption{Scatter plot of miRNA regression coefficients from projection
+  \caption{Comparison of miRNA regression coefficients from projection
   prediction (PPVS, x-axis, posterior median) and lasso regression (y-axis) for the 145 targets predicted by both methods.
-  Triangles mark significant coefficients in PPVS. The gray line ($y=x$) corresponds to
-  equal coefficients from the two methods. The coefficients from PPVS have
-  larger magnitude on average implying stronger miRNA effects on protein expression.
+  Triangles are significant coefficients in PPVS. The gray line ($y=x$) corresponds to
+  equal coefficients from the two methods. The coefficients from PPVS had
+  larger magnitude on average, implying stronger miRNA effects on protein expression.
+  cor: Pearson correlation between the coefficients.
   }
   \label{fig:scatter-ppvs-lasso}
 \end{figure}

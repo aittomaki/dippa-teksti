@@ -53,7 +53,7 @@ presented in this section.
 All computational analyses were performed in R
 \citep{R} and workflow management was handled with Anduril \citep{Ovaska2010}.
 Monte-Carlo simulations for the Bayesian regression models were computed with
-\emph{RStan} \citep{RStan} using the No-U-Turn variant of a Hamiltonian Monte Carlo
+RStan \citep{RStan} using the No-U-Turn variant of a Hamiltonian Monte Carlo
 algorithm for sampling posterior distributions. The simulations were performed using
 computer resources within the Aalto University School of Science "Science-IT"
 project.
@@ -89,8 +89,8 @@ Members of the \emph{AKT} and \emph{GSK} gene families (namely \emph{AKT1},
 \emph{AKT2}, \emph{AKT3} and \emph{GSK3A}, \emph{GSK3B})
 were not distinguishable in the protein assay. Therefore, the protein data
 included only a single set of measurements for each family. For the analyses
-presented here, each gene was considered separately, and the same expression
-values were used for all family members.
+presented here, each of these genes was considered separately using the same expression
+values for all family members.
 
 For assessing the quality of the data, distributions of expression values for
 each tumor sample and each variable (miRNA, mRNA and protein) were visualized
@@ -118,7 +118,7 @@ however.
 
 To assess dependencies between variables from the different expression data
 types (protein, mRNA, miRNA) and the validity of correlation as a target
-prediciton tool, Pearson's correlations were computed between matched and
+prediction tool, Pearson's correlations were computed between matched and
 unmatched protein-mRNA pairs (where matched refers to both corresponding to
 the same gene) as well as validated and random protein-miRNA and mRNA-miRNA
 pairs, where validated pairs were ones present in the reference set described
@@ -175,7 +175,7 @@ genome using biomaRt \citep{Durinck2009}. From these, a sample of 1000 genes was
 taken, and known validated microRNA interaction partners for each sampled gene
 were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
 validated miRNA interactors were assumed to have zero. The mean number of
-miRNA interactors per gene was used as an estimate, giving
+miRNA interactors per gene was used as the estimate, giving
 $\hat{p_n} = 13.75$.\footnote{Note that this is probably an underestimate of
 the true $p_n$, as the set of experimentally validated miRNA targets is
 very likely to underrepresent the true \emph{in vivo} set of miRNA targets.}
@@ -244,7 +244,7 @@ was chosen as the final model size. This means that model size was chosen
 such, that the probability of the projected model improving performance
 by a constant factor ($\gamma$) over the intercept-only model
 was at least $\alpha$. The choice of values for $\gamma$ and $\alpha$
-reflects accepted loss in predictive preformance (and related
+reflects accepted loss in predictive performance (and related
 uncertainty) compared to the reference model; several values for
 both were tested.
 
@@ -268,7 +268,7 @@ the regularization parameter $\lambda$, the default algorithm of \emph{glmnet}
 was used. That is, models were fit for a decreasing sequence of $\lambda$
 values, and 10-fold cross validation was used to compute a mean square
 prediction error (MSE) at each $\lambda$. The largest value of $\lambda$ (i.e.
-sparsest model) that had a MSE at most one standard deviation apart from the
+sparsest model) that had a MSE within one standard error of the
 lowest MSE attained in the cross validation was used. The covariates included
 in the model using the chosen $\lambda$ were considered putative target
 interactors. For some genes, this criterion was met by the intercept-only

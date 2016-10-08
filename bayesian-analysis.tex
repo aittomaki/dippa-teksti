@@ -11,7 +11,7 @@ probability statements \citep{Gelman2013}. This provides a framework which is
 inherently suited to dealing with noisy real-world data, as measurement noise
 is naturally incorporated into probability distributions. This section
 provides a brief introduction into Bayesian analysis and discusses Bayesian
-regerssion and variable selection as applicable to the problem of microRNA
+regression and variable selection as applicable to the problem of microRNA
 target prediction.
 
 
@@ -62,7 +62,7 @@ schools.
 The virtue of modeling uncertainty as probabilities -- in addition to
 naturally dealing with noise -- is that they are conceptually easy to grasp
 and often allow common-sense interpretations of conclusions to be
-made.\footnote{This is especially true compared to classical frequentist analysis,
+made.\footnote{This is especially true compared to classical frequentist inference,
 which is defined within the context of repeated sampling (and inference) from
 a fixed but unknown process generating the observations. For example,
 frequentist confidence intervals strictly do not indicate that the true value
@@ -72,7 +72,7 @@ assumptions).} Perhaps the foremost advantage of Bayesian modeling,
 however, is its flexibility and extensibility; it can cope with complex
 problems and data with relative ease. Prior knowledge about the parameters of
 interest can be embedded in prior distributions, priors can be assigned freely
-to each parameter, hierachical models can be used to model layered data, and
+to each parameter, hierarchical models can be used to model layered data, and
 new observations can be added sequentially to update previous conclusions.
 
 The challenge in Bayesian analysis is choosing proper probability models for
@@ -115,13 +115,13 @@ analyses.
 
 \subsection{Bayesian inference}\label{sec:bayesian-inference}
 
-The goal of Bayesian inference is to make conclusions about unkown parameters
-$\theta$ or unkown observations $\tilde{y}$, given the observed data $y$.
+The goal of Bayesian inference is to make conclusions about unknown parameters
+$\theta$ or unknown observations $\tilde{y}$, given the observed data $y$.
 These are formulated as posterior distributions or features describing them,
 such as point or interval estimates. In simple cases, the posterior $p(\theta \mid y)$
 can be derived in analytical form. In practice, however, it is often not possible to obtain
 explicit forms of posteriors or analytical solutions to integrals involved in
-inference, epecially with complex and hierarchical models. Therefore,
+inference, especially with complex and hierarchical models. Therefore,
 numerical estimation or simulation methods, in the form of sampling from
 probability distributions, are frequently used to approximate the posterior.
 
