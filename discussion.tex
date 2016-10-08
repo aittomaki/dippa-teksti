@@ -14,46 +14,54 @@ prediction from expression data.
 
 Quality control plots suggested the presence of noise in the data, especially
 in the miRNA microarrays. More strict filtering of miRNA data could lead to
-better overall results. The choice of data model can also alleviate noise. The
+better overall results. The choice of data model can also alleviate the
+effects of noise. The
 student-$t$ distribution, which has heavier tails than the normal
 distribution, would likely be a better choice for the regression model
 likelihood. This, however, would require a different solution to the
-projection Eq. \eqref{eq:projection} than the simple one given by Piironen
+projection Eq. \eqref{eq:projection} than the one derived by Piironen
 and Vehtari \citep{Piironen2015} and, therefore, was not tried in this work.
 
-Correlation between mRNA and protein expression was mostly low, a finding
-supported by many previous studies \citep{Payne2015}. Interestingly, there was
-practically no difference between correlations of validated miRNA-target pairs
-or randomly chosen ones. This supports the view that modeling single
-interaction pairs individually is unlikely to be sufficient for effective target
-prediction.
+Correlation between mRNA and protein measurements for the same gene were
+mostly low, a finding supported by previous studies \citep{Payne2015}.
+Interestingly, there was practically no difference between correlations of
+validated miRNA-target pairs or randomly chosen ones. This supports the view
+that modeling single interaction pairs individually is unlikely to be
+sufficient for effective target prediction using expression data.
 
 It is possible that low correlation of miRNA-target pairs was mostly due to the
-dataset used (and any noise within), however, as discussed in Section \ref{expr-methods},
+dataset used and measurement noise it contained, however, 
+%as discussed in Section \ref{expr-methods},
 correlation has low power to detect weak relationships and
 cannot capitalize on combinatorial effects. The low correlations also suggest
-that simple (Pearson) correlation of expression data is possibly unsuited for
-finding miRNA targets. Therefore, correlation was not used for target
-prediction in this work; poor prediction results using correlation have been
-reported before (e.g. in \citep{Muniategui2012}).
+that simple (Pearson) correlation of expression data is possibly inadequate for
+finding miRNA targets. Poor prediction results using correlation have been
+reported before (see for example \citep{Muniategui2012}).
 
 There could be several explanations for the increasingly poor performance of
 larger models, evident in Figure \ref{fig:n-miRNAs-vs-R2}. The largest models
-could simply be a result of the covariates not explaining the outcome variable
-well. This results in a large model, because the inclusion of each covariate
-improves model performance only slightly, and the projected submodel then
-approaches the performance of the full reference model very slowly. The
-assumption that the reference model captures best current knowledge can also be
-false, as seemed the case for some genes where the submodels performed 
-consistently better than the full model.
+could be a result of the covariates not explaining the outcome variable well.
+This results in a large model, as the inclusion of each covariate can provide
+only a minute improvement to submodel performance and, therefore, a large
+number of covariates is required to satisfy the criterion for choosing model
+size. The assumption that the reference model represents the best current knowledge
+could also be false, as seemed to be the case for some genes where the
+submodels performed consistently better than the full model. This likely means
+that the reference model has overfit the training data (in the cross-
+validation).
 
-From a biological perspective, this means that the miRNA expression provides
-no additional information over the mRNA for predicting protein expression.
-This could be due to a gene truly not having miRNA regulators in breast
-tissue, insufficient data (the true regulators of a given gene might be
-missing from the data), the model being biologically inaccurate, or simply too
-much noise to make accurate predictions. Other regulatory mechanisms than miRNAs
-(e.g. protein degradation) could also be more dominant.
+From a biological perspective, poor performance means that the microRNAs did
+not provide additional information for predicting protein expression after
+accounting for gene expression. This could be due to relevant miRNAs missing
+from the dataset, the number of observations being too small leading to low
+statistical power (unable to capture the often small effect that miRNAs have),
+or the biological heterogeneity of breast cancer.
+% a gene truly not having
+% miRNA regulators in breast tissue, insufficient data (the true regulators of a
+% given gene might be missing from the data)
+The proposed regression model could also be inadequate for capturing the actual	
+biological effect of miRNAs, though previous research seems to suggest otherwise.
+
 
 % Secondly, the marginal posterior of a single predictor can
 % indicate non-significance, while the joint posterior of several predictors
@@ -72,16 +80,18 @@ limited number of validation studies have been published. The computational cost
 of PPVS was significantly higher than that of lasso: MCMC simulations took hours
 compared to less than a minute per model for lasso.
 
-Approximately half of the predicted interactions were positive. Some of these
-could indicate indirect regulation. However, this proportion seems much too
-high, as the vast majority of known microRNA interactions are downregulative. In
+Approximately half of the regression coefficients for miRNAs were positive,
+suggesting that those miRNAs increase gene expression. Some of these
+could indicate indirect regulation. However, this proportion seems too
+high, as the vast majority of known microRNA interactions are suppressive. In
 fact, of all the experimentally validated human miRNA targets listed in
 TarBase, only approximately 0.2\% show positive regulation by the miRNA.
-Therefore, many of the predicted positive interactions are possibly false
-positives. To amend this, the model could easily be restricted to only
-negative interactions (using a non-positive prior for $\beta$). This has
-previously been reported to increase prediction accuracy
-\citep{Muniategui2013}.
+Therefore, many of the predicted activating interactions are possibly false
+findings. They could be caused by miRNA expression mirroring the involvement of other
+regulatory factors not included in the data. To correct for this, the model could
+easily be restricted to only negative interactions (using a non-positive prior
+for $\beta$). This has previously been reported to increase prediction
+performance \citep{Muniategui2013}.
 
 Previous studies have shown that microRNA signatures correlate
 with different breast cancer subtypes \citep{Blenkiron2007}. This suggests that
@@ -129,18 +139,18 @@ methods that model the whole regulatory network at once, such as regression
 models with multivariate targets. This, however, becomes a much more difficult
 problem than multivariate linear regression.
 
-Aure et al used lasso regression for a similar analysis of the same dataset
+Aure et al \citep{Aure2015} used lasso regression for a similar analysis of the same dataset.
 %prediction of protein expression from mRNA and miRNA expression 
 %to identify miRNAs significantly affecting protein expression in breast cancer
-\citep{Aure2015}. They used a multi-step process, where miRNAs deemed
-significant in a simple univariate regression model were used as input in
+They used a multi-step process, where only miRNAs deemed
+significant in a univariate regression model were used as input in multivariate
 lasso regression. This approach is flawed in the sense, that it loses some of
 the power of multivariate models to identify singly weak but combinatorially
 strong effects, as univariate modeling is used as a filtering step. It also
-effectively uses the same data twice, causing bias, and includes a
+effectively uses the same data twice, causing bias, and introduces a
 multiple hypothesis testing problem. Therefore, a multivariate
 approach (such as the one presented here or earlier ones with slight modification)
-is preferable.
+would likely be preferable.
 
 In conclusion, the work in this thesis shows that the proposed method of
 projection predictive variable selection is applicable to microRNA target
@@ -158,22 +168,25 @@ a data-driven approach for optimizing the parameter values would perhaps be usef
 
 \subsection*{Future prospects}
 
-The recent development of CLIP-seq and similar methods has made high-
-throughput experimental microRNA target discovery possible, partially
+The recent development of CLIP-seq and similar methods has made high-throughput
+experimental microRNA target discovery possible, partially
 replacing the need for computational target prediction. Nonetheless,
 experimental (particularly high-throughput) methods are not immune to error,
 and gene regulation is vastly complex with many unconventional regulatory
-mechanisms having been discovered. Integrative computational approaches --
-combining several levels and types of data -- beyond correlation will, thus,
-remain important in the future.
+mechanisms having been discovered. Integrative computational approaches
+beyond correlation -- combining several types of data -- will, thus,
+remain important in the future. Possibilities for integrating data include
+incorporating copy number variation, other regulatory RNAs, transcription factors,
+other protein-level regulatory factors such as phosphorylation, and
+epigenetic mechanisms into models.
 
 The elucidation of complex regulatory networks using network-level modeling is
 becoming feasible with modern experimental and computational methods.
 Employing this approach will be essential, as it has the ability to better
 capture the true nature of gene regulation and cellular biology.
 
-Many aspects of microRNA biology and function are still unknown. Uncovering
+Many aspects of microRNA biology and function still remain unknown. Uncovering
 miRNA function offers interesting possibilities in diagnostics and treatment
 of disease, and will further our understanding of the complexities of
-molecular cell biology. MicroRNAs will, therefore, remain an exciting avenue
+molecular cell biology. Therefore, microRNAs remain an exciting avenue
 of research.
