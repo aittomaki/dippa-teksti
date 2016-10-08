@@ -7,13 +7,16 @@
 
 \subsection{Research material}
 
-The data analyzed in this thesis consists of 283 tumor samples collected from
-280 breast cancer patients treated in two Norwegian hospitals. Protein, mRNA
-and microRNA expression were measured from each sample. The data were
-published by Aure et al \citep{Aure2015} and are publicly available.
+Analyses performed in this thesis used protein, mRNA and microRNA expression data
+previously published by Aure et al \citep{Aure2015}. The miRNA and mRNA
+data are publicly available on the Gene Expression Omnibus
+\citep{Edgar2002} (accessions GSE8210 and GSE8212, respectively) and the
+protein data is provided as supplementary data in \citep{Aure2015}.
 
+The data consist of 283 tumor samples collected from
+280 breast cancer patients treated in two Norwegian hospitals.
 The data are part of the larger Oslo2 cohort, which consists of breast cancer
-patients with primarily operable disease. Collection
+patients with primarily operable disease \citep{Aure2015}. Collection
 of the cohort started in 2006 and is still ongoing. Therefore, no survival
 data were available for analysis. 
 % Clinical data for included patients were
@@ -28,13 +31,14 @@ available.
 
 %\input{clinical_table}
 
-The mRNA and microRNA expression were measured using Agilent Technologies (Santa Clara, CA, USA)
-SurePrint G3 Human GE 8x60K and Human miRNA Microarray Kit (V2) microarrays,
-respectively. These microarrays measure 27958 genes and 887 miRNAs, according
-to manufacturer annotation. Protein expression was measured with reverse-phase
-protein arrays (RPPA) \citep{Tibes2006} for a selected set of 105 proteins relevant in
-cancer. Most of the proteins are found on the PI3K/AKT intracellular pathway,
-which is important for cell-cycle regulation.
+The mRNA and microRNA expression were measured using Agilent Technologies
+(Santa Clara, CA, USA) SurePrint G3 Human GE 8x60K and Human miRNA Microarray
+Kit (V2) microarrays, respectively. These microarrays measure 27958 genes and
+887 miRNAs, according to manufacturer annotation. Protein expression was
+measured with reverse-phase protein arrays (RPPA) \citep{Tibes2006} for a
+selected set of 105 proteins relevant in cancer. Most of the proteins are
+found on the PI3K/AKT intracellular pathway, which plays a central role in
+cell-cycle regulation.
 
 
 
@@ -55,56 +59,52 @@ computer resources within the Aalto University School of Science "Science-IT"
 project.
 
 
+
+
 \subsubsection{Preprocessing and quality control}
 
-MicroRNA and mRNA expression data were downloaded from the Gene Expression
-Omnibus \citep{Edgar2002} (accessions GSE8210 and GSE8212, respectively) using
-the GEOquery R package \citep{Davis2007}. Protein expression data were
-downloaded as a Microsoft Excel sheet from the supplementary data of Aure et
-al \citep{Aure2015}.
+The preprocessed miRNA and mRNA data\footnote{Raw array data produced from
+Agilent array readers are also available, but were not used in this thesis.}
+were downloaded from GEO using the GEOquery \citep{Davis2007} R package. The
+protein data were downloaded and extracted from a Microsoft Excel file. All of
+the data had been transformed to log2 scale, which is useful for making the
+distribution of expression values closer to a normal
+distribution.\footnote{Raw expression values are approximately log-normal.} No
+further preprocessing of the expression values was done. For details on the
+preprocessing process, the reader is referred to the supplementary data of
+Aure et al
+\citep{Aure2015}. In regression analyses, all variables (miRNA, mRNA and
+protein) were further scaled to have zero mean and unit variance; this
+transformation is commonly used for regression.
 
-Notably, the protein data have only a single set of measurements for two sets
-of related genes, namely AKT1, AKT2, AKT3 and GSK3A, GSK3B (labeled
-respectively as "AKT1/2/3" and "GSK3A/GSK3B" in the original data). Presumably
-the protein array used cannot differentiate these proteins, but
-no mention of this is made by Aure et al. For the analyses presented here,
-each of these genes was considered separately, and the same expression values
-from the single measurement set were used for all of the related genes
-respectively.
-
-Out of the 421 microRNAs present in the public dataset, eleven miRNAs
-(hsa-miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308, hsa- miR-1826,
-hsa-miR-1974, hsa-miR-1975, hsa-miR-1977, hsa-miR-1979, hsa-miR-720,
-hsa-miR-886-3p) were reported as missing from miRBase by miRBase Tracker \citep{VanPeer2014}.
-Reviewed on miRBase, these miRNAs are reported as being fragments of other RNA species
-(e.g. tRNA or rRNA) and, thus, removed from the database. The eleven miRNAs
-were therefore removed from subsequent analyses, leaving 410 miRNAs.
-
-The publicly available expression data are in preprocessed form and 
-in log2 scale (as per convention for expression data). As such,
-no further preprocessing of the actual measurements was done. For details on
-the preprocessing, the reader is referred to the supplementary data of Aure et
-al \citep{Aure2015}. The mRNA expression data are available as probe-level
+The mRNA expression data were available as probe-level
 measurements, these were summarized to gene-level using manufacturer probe
 annotations by taking the mean of all probes targeting the same gene.
-For regression analyses, all variables (miRNA, mRNA
-and protein) were further scaled to have zero mean and unit variance,
-a commonly used transformation.
+Out of 421 miRNAs present in the data, eleven had been deleted from miRBase.
+These miRNAs (namely hsa-miR-1274a, hsa-miR-1274b, hsa-miR-1280, hsa-miR-1308,
+hsa- miR-1826, hsa-miR-1974, hsa-miR-1975, hsa-miR-1977, hsa-miR-1979,
+hsa-miR-720, hsa-miR-886-3p) were therefore from all analyses.
 
-For assessing the quality of the expression data, distributions of each
-microarray and each variable (miRNA, mRNA and protein) were plotted. The data
-have been collected from two different hospitals and to assess possible bias
-introduced by the separate sites, a principal component analysis (PCA) and
-hierarchical clustering of samples were performed separately for each data
-type.
+Members of the \emph{AKT} and \emph{GSK} gene families (namely \emph{AKT1},
+\emph{AKT2}, \emph{AKT3} and \emph{GSK3A}, \emph{GSK3B})
+were not distinguishable in the protein assay. Therefore, the protein data
+included only a single set of measurements for each family. For the analyses
+presented here, each gene was considered separately, and the same expression
+values were used for all family members.
+
+For assessing the quality of the data, distributions of expression values for
+each tumor sample and each variable (miRNA, mRNA and protein) were visualized
+using boxplots. A principal component analysis (PCA) and hierarchical clustering
+of samples were performed separately for each data type to assess possible bias
+introduced by the data having been measured at two separate hospitals.
+
 
 
 
 \subsubsection{Validated target reference}
 
-The predicted miRNA targets from both projection prediction and lasso
-regression were compared to validated targets in DIANA-TarBase v7.0
-\citep{Vlachos2015} (referred to as TarBase from here on) and miRTarBase
+The predicted miRNA targets obtained in the analyses were compared to
+validated targets in DIANA-TarBase v7.0 \citep{Vlachos2015} (referred to as TarBase from here on) and miRTarBase
 release 6.0 \citep{Chou2016}. Data from both databases were downloaded and a
 union of the databases was used as a reference set of validated interactions.
 The resulting set contained 328825 validated miRNA-mRNA interactions, out of
