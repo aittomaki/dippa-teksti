@@ -6,7 +6,7 @@
 
 \section{Quality control plots\label{app:qc-plots}}
 
-\captionsetup{font={up},labelfont={sf}}
+\captionsetup{font={up,footnotesize},labelfont={sf}}
 
 \begin{figure}[!h]
 	\centering
@@ -28,7 +28,9 @@
 
 	\caption{Scatter plots of first two principal components for each tumor sample (or microarray)
 	computed from (a) protein expression, (b) mRNA expression, and (c) miRNA expression data.
-	The point color corresponds to the hospital where each sample was handled.}
+	The point color corresponds to the hospital where each sample was handled. The samples
+	from different hospitals were not distinguishable using the principal components, which
+	suggests that no significant hospital batch effect was present.}
 	\label{fig:qc-pca}
 \end{figure}
 
@@ -38,25 +40,27 @@
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/proteinQCPlots/proteinQCPlots-sample_boxplot.png}}
-		\subcaption{Protein microarrays. \label{fig:protein-sample-boxplot}}
+		\subcaption{Protein expression by tumor samples \label{fig:protein-sample-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_boxplot.png}}
-		\subcaption{Protein variables. \label{fig:protein-variable-boxplot}}
+		\subcaption{Protein variables \label{fig:protein-variable-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_boxplot_scaled.png}}
-		\subcaption{Scaled protein variables ($\mu_y = 0, \sigma_y = 1$). \label{fig:protein-scaled-variable-boxplot}}
+		\subcaption{Scaled protein variables ($\mu_y = 0, \sigma_y = 1$) \label{fig:protein-scaled-variable-boxplot}}
 	\end{subfigure}
 
-	\caption{Quality control boxplots for protein expression, plotted by
-	(a) each tumor sample,
-	(b) each protein expression variable (i.e. microarray), 
-	and (c) scaled protein variables.
-	The fill color in (a) corresponds to the hospital where the sample was handled. Note that
-	the protein data differ from mRNA and miRNA data in that each array measures one protein instead of one sample.}
+	\caption{Distribution of protein expression, grouped by
+	(a) tumor samples,
+	(b) protein variables (i.e. microarrays), 
+	and (c) protein variables (and scaled to zero mean and unit variance).
+	The fill color in (a) corresponds to the hospital where the sample was collected.
+	It is evident in (c), that some of the protein variables have significant outliers
+	(especially the two values beyond $10$ and $-10$).
+	}
 	\label{fig:qc-protein-boxplot}
 \end{figure}
 
@@ -72,9 +76,11 @@
 		\includegraphics[width=1\linewidth]{figures/proteinQCPlots/proteinQCPlots-variable_density.pdf}
 	\end{subfigure}
 
-	\caption{Density estimates for protein expression data. In (a) each curve represents one tumor sample,
-	and in (b) each curve represents one protein variable. The color of the curves is purely for visualization,
-	it bears no meaning.}
+	\caption{Density estimates of protein expression data for each tumor sample (a)
+	and each protein variable (b). The color of the curves has no significance.
+	Distributions were generally uniform, but
+	long tails for several protein variables are visible in (b), suggesting the presence of significant
+	outliers and that these variables were not approximated well by a normal ditribution.}
 	\label{fig:qc-protein-density}
 \end{figure}
 
@@ -84,12 +90,12 @@
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/geneQCPlots/geneQCPlots-sample_boxplot.png}}
-		\subcaption{mRNA microarrays. \label{fig:mrna-sample-boxplot}}
+		\subcaption{mRNA microarrays \label{fig:mrna-sample-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/geneQCPlots/geneQCPlots-variable_boxplot.png}}
-		\subcaption{mRNA variables. \label{fig:mrna-variable-boxplot}}
+		\subcaption{mRNA variables \label{fig:mrna-variable-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
@@ -97,11 +103,13 @@
 		\subcaption{Scaled mRNA variables ($\mu_z = 0, \sigma_z = 1$). \label{fig:mrna-scaled-variable-boxplot}}
 	\end{subfigure}
 
-	\caption{Quality control boxplots for protein expression, plotted by
-	(a) each tumor sample (i.e. microarray),
-	(b) each protein expression variable, 
-	and (c) scaled protein variables.
-	The fill color in (a) corresponds to the hospital where the sample was handled.}
+	\caption{Distribution of mRNA expression, grouped by
+	(a) tumor samples (i.e. microarrays),
+	(b) mRNA variables, 
+	and (c) mRNA variables (and scaled to zero mean and unit variance).
+	The fill color in (a) corresponds to the hospital where the sample was collected.
+	The distributions were fairly uniform and only a few significant outliers (further than
+	5 standard devations from the mean) were present in the mRNA variables.}
 	\label{fig:qc-mrna-boxplot}
 \end{figure}
 
@@ -117,9 +125,10 @@
 		\includegraphics[width=1\linewidth]{figures/geneQCPlots/geneQCPlots-variable_density.pdf}
 	\end{subfigure}
 
-	\caption{Density estimates for mRNA expression data. In (a) each curve represents one microarray,
-	and in (b) each curve represents one mRNA variable. The color of the curves is purely for visualization,
-	it bears no meaning.}
+	\caption{Density estimates of mRNA expression data for each microarray (a)
+	and each mRNA variable (b). The color of the curves has no significance.
+	The array distributions were uniform and quite close to normal. Some of the variable distributions
+	had long tails as seen in (b).}
 	\label{fig:qc-mrna-density}
 \end{figure}
 
@@ -129,29 +138,33 @@
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-sample_boxplot.png}}
-		\subcaption{miRNA microarrays. \label{fig:mirna-sample-boxplot}}
+		\subcaption{miRNA microarrays \label{fig:mirna-sample-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_boxplot_sorted.png}}
-		\subcaption{miRNA variables. \label{fig:mirna-variable-boxplot}}
+		\subcaption{miRNA variables \label{fig:mirna-variable-boxplot}}
 	\end{subfigure}
 	\begin{subfigure}{1\textwidth}
 		\centering
 		\makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_boxplot_scaled_sorted.png}}
-		\subcaption{Scaled miRNA variables ($\mu_x = 0, \sigma_x = 1$). \label{fig:mirna-scaled-variable-boxplot}}
+		\subcaption{Scaled miRNA variables ($\mu_x = 0, \sigma_x = 1$) \label{fig:mirna-scaled-variable-boxplot}}
 	\end{subfigure}
 
-	\caption{Quality control boxplots for miRNA expression, plotted by
-	(a) each tumor sample (i.e. microarray),
-	(b) each miRNA expression variable, 
-	and (c) scaled miRNA variables.
-	The fill color in (a) corresponds to the hospital where the sample was handled
+	\caption{Distribution of miRNA expression, grouped by
+	(a) tumor samples (i.e. microarrays),
+	(b) miRNA variables, 
+	and (c) miRNA variables (and scaled to $\mu_x = 0, \sigma_x = 1$).
+	Fill in (a) corresponds to hospital.
 	The miRNA variables in (b) have been sorted by median expression to highlight that
-	some miRNAs have very low expression. These measurements are likely to
-	be heavily influenced by background noise, possibly even consisting of
-	mainly noise. This order is retained in (c). The scaling does not
-	correct for the highly skewed distributions of expression values.}
+	some miRNAs had very low expression. There appeared to be a gap at around $-8$
+	(confirmed in Fig. \ref{fig:qc-mirna-density}). Measurements below the gap possibly corresponded
+	to miRNAs not expressed in the samples, and thus, likely consisted
+	mainly of background noise, Real miRNA abundances should follow a more continuous distribution.
+	There also seemed to be some technical artifact around the gap, where some miRNA variables had
+	exactly the same expression value. No biological phenomenon would explain this.
+	The same order is retained in (c). The scaling did not
+	correct for the highly skewed distributions of the most lowly expressed miRNAs.}
 	\label{fig:qc-mirna-boxplot}
 \end{figure}
 
@@ -167,9 +180,11 @@
 		\includegraphics[width=1\linewidth]{figures/mirnaQCPlots/mirnaQCPlots-variable_density.pdf}
 	\end{subfigure}
 
-	\caption{Density estimates for miRNA expression data. In (a) each curve represents one microarray,
-	and in (b) each curve represents one miRNA variable. The color of the curves is purely for visualization,
-	it bears no meaning. Note the bimodal distributions in (a) and the corresponding break
-	and large spread in centroid location in (b).}
+	\caption{Density estimates of miRNA expression data for each microarray (a)
+	and each miRNA variable (b). Color of the curves has no significance.
+	Note the bimodal distributions in (a) and the corresponding break at around $-8$
+	and large spread in location in (b). This suggests that the miRNAs below the gap were present in
+	such low quantities, possibly not expressed at all, that the measured expression values likely
+	consisted mostly of background noise.}
 	\label{fig:qc-mirna-density}
 \end{figure}

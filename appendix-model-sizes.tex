@@ -6,9 +6,12 @@
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=1\linewidth]{figures/varNumHistogram/ZZ_variable_number_hist.pdf}
-  \caption{Distributions of chosen model sizes for differrent values of parameters $\alpha$ and $\gamma$.
+  \makebox[\textwidth][c]{\includegraphics[width=1.1\linewidth]{figures/varNumHistogram/ZZ_variable_number_hist.pdf}}
+  \caption{Distributions of chosen model sizes for differrent values of model-size parameters $\alpha$ and $\gamma$.
   $\# 0$ refers to the number of models with no covariates (i.e. not even the mRNA covariate was chosen)
-  and $\# \textup{NA}$ to the number of models where the model-size criterion was not met.}
+  and $\# \textup{NA}$ to the number of models where the model-size criterion was not met.
+  The parameter values had a large impact on the final model sizes. Strict values
+  ($\alpha$ close to one and small $\gamma$) generated very large models and had the
+  effect of the size-criterion not being met for many genes (larger $\# \textup{NA}$).}
   \label{fig:model-size-distribution}
 \end{figure}
