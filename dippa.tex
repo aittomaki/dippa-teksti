@@ -42,7 +42,7 @@
 \usepackage{colortbl}
 
 %% Which sections to include
-%\includeonly{microrna-target-identification}
+%\includeonly{introduction}
 
 
 
@@ -129,33 +129,37 @@
 %% Abstract text
 \begin{abstractpage}[english]
 
-MicroRNAs are a class of small RNAs, that regulate gene expression
-post-transcriptionally by targeting messenger RNA transcripts and causing their
-suppression. Extensive research has revealed microRNAs to participate in
-almost all cellular functions, such as differentiation and apoptosis, and
-many pathological processes, including cancer. \\
+MicroRNAs are a class of small, non-coding RNAs, which regulate gene
+expression post-transcriptionally. They downregulate genes by targeting
+messenger RNA transcripts and causing their degradation and inhibition of
+translation. Research has revealed microRNAs to participate in diverse
+cellular functions, such as differentiation and apoptosis, and many
+pathological processes, including cancer. \\
 
 Identification of microRNA target genes is crucial in understanding their
-function in cell biology and disease. A wide array of methods have been
-proposed for computational prediction of microRNA targets. Early methods used
-sequence information, while recent tools have integrated gene expression
-and microRNA expression measurements. Few published analyses have
-included both protein and mRNA expression. \\
+function in cell biology and disease. A wide range of methods have been
+proposed for computational prediction of microRNA targets. Early target
+prediction methods used sequence information, while recent tools have
+integrated expression measurements of target genes and microRNAs. A limited
+number of studies have integrated protein, gene and microRNA
+expression for target prediction. \\
 
 Breast cancer is the most common cancer in women and a significant cause of
 morbidity and mortality globally. Analyses of gene expression data have
-provided insight into the pathogenesis of breast cancer, and intrinsic subtypes
-correlating with prognosis have been identified. A range of microRNAs have been
-indicated to contribute to breast cancer pathogenesis. \\
+provided insight into the pathogenesis of breast cancer, and intrinsic
+subtypes correlating with prognosis have been identified. A range of microRNAs
+have been indicated to contribute to breast cancer pathogenesis. \\
 
-This thesis provides a review of microRNA biology and target prediction. A
-recent Bayesian variable selection method is applied for uncovering putative
-microRNA targets in breast cancer using microarray expression data. Results
-are compared with another popular prediction method and a recently published
-analysis of the same data. Analyses show that the proposed method is
-applicable to microRNA target prediction. Limitations and refinements of the
-method and study are discussed. The importance of an integrative approach is
-highlighted.
+% provides a review of microRNA biology and target prediction.
+In this thesis, a
+recent Bayesian variable selection method was applied for uncovering putative
+microRNA targets in breast cancer. The proposed model integrated
+protein, gene and microRNA expression data. Results
+were compared with another popular prediction method.
+%and a recently published analysis of the same data.
+Analyses showed that the proposed method is applicable to microRNA target
+prediction. Limitations and refinements of the method and study are discussed,
+and the importance of an integrative approach is highlighted.
 
 \end{abstractpage}
 
@@ -175,8 +179,8 @@ highlighted.
 \begin{abstractpage}[finnish]
 
 MikroRNA:t ovat lyhyitä RNA-molekyylejä, jotka säätelevät geeniekspressiota
-sitoutumalla lähetti-RNA-molekyyleihin estäen niide translaation
-proteiineiksi. Lukuisat tutkimukset ovat osoittaneet, että mikroRNA:t
+sitoutumalla lähetti-RNA-molekyyleihin estäen siten niiden translaation
+proteiiniksi. Tieteelliset tutkimukset ovat osoittaneet, että mikroRNA:t
 osallistuvat laajasti solujen toiminnan säätelyyn, kuten erilaistumiseen ja
 apoptoosiin, ja ovat osallisena monien tautien, kuten syövän synnyssä. \\
 
@@ -184,8 +188,9 @@ MikroRNA:n säätelemien kohdegeenien tunnistaminen on olennainen
 askel mikroRNA:n toiminnan ymmärtämisessä. Kohdegeenien
 ennustamiseen on kehitetty lukuisia laskennallisia menetelmiä. Varhaiset
 menetelmät perustuivat RNA-sekvenssien vertailuun. Uudemmat työkalut
-hyödyntävät geeni- ja mikroRNA-ekspressiodataa. Sekä mRNA- että
-proteeiniekspressiota yhdistäviä tutkimuksia on julkaistu hyvin vähän. \\
+yhdistävät kohdegeenien geeni- ja mikroRNA-ekspressiodataa.
+Proteiini-, geeni- ja mikroRNA-ekspressiota yhdistäviä
+kohdegeenitutkimuksia on julkaistu toistaiseksi vähän. \\
 
 Rintasyöpä on naisten yleisin syöpä ja merkittävä sairastavuuden ja
 kuolleisuuden aiheuttaja maailmanlaajuisesti. Geeniekspressiodatan analysointi
@@ -193,12 +198,12 @@ on lisännyt tietoa rintasyövän synnystä, ja geeniekspressioon perustuen on
 kyetty tunnistamaan rintasyövän alatyyppejä, jotka korreloivat syövän
 ennusteeseen. MikroRNA:n on todettu olevan osatekijä rintasyövän synnyssä. \\
 
-Tässä diplomityössä esitetään katsaus mikroRNA:n biologiaan sekä kohdegeenien
-tunnistamiseen. Äskettäin julkaistua bayesilaista muuttujavalintamenetelmää
-sovelletaan mikroRNA:n kohdegeenien ennustamiseen rintasyövässä
-geeniekspressiodatan avulla. Tulokset osoittavat, että menetelmä soveltuu
-kohdegeenien ennustamiseen. Menetelmän rajoituksia ja parannusehdotuksia
-käsitellään.
+Tässä diplomityössä sovellettiin äskettäin julkaistua bayesilaista
+muuttujavalintamenetelmää mikroRNA-molekyylien kohdegeenien ennustamiseen
+rintasyövässä. Tähän tarkoitukseen käytettiin proteiini-, geeni- ja mikroRNA-
+ekspressiodataa. Tulokset osoittivat, että menetelmä soveltuu kohdegeenien
+ennustamiseen, mutta kaipaa jatkokehitystä. Vaihtoehtoa mallin parantamiseksi
+esitetään.
 
 \end{abstractpage}
 
