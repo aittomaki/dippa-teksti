@@ -42,7 +42,7 @@ Non-coding genes give rise to non-coding RNA (ncRNA), a class of RNA molecules
 that both participate in and regulate the expression of other genes.
 Examples of known ncRNAs and their functions are presented in Table
 \ref{table:rnas}. Nevertheless, the function and significance (if any) of many
-transcribed and non-coding regions of the genome still remains unknown.
+transcribed and non-coding regions of the genome still remains poorly understood.
 
 \begin{table}
   \caption{Examples of known major classes of human non-coding RNA and their
@@ -112,9 +112,9 @@ expression levels \citep{Strachan2011}.
 
 
 
-\subsection{Measuring gene expression}\label{measurement-of-gene-expression}
+\subsection{Quantification of gene expression}\label{measurement-of-gene-expression}
 
-The physical measurement of gene expression can be done on either the level of
+The quantitative measurement of gene expression can be done on either the level of
 messenger RNA molecules or protein molecules. Although proteins are the
 eventual effector molecules -- at least for protein-coding genes
 -- gene expression is usually thought to be synonymous with mRNA expression.
@@ -124,35 +124,42 @@ the relative ease of replicating DNA and RNA sequences by exploiting cellular
 machinery evolved for this purpose.
 
 Quantitative PCR (qPCR) is a DNA/RNA measurement method based on the
-polymerase chain reaction (PCR) that provides a quantitative measurement of
-PCR products. qPCR is considered a golden standard in gene expression
-measurement and is widely used in research, but also in clinical diagnostics.
-It is often the method of choice for measuring a moderate number of genes. \citep{VanGuilder2008}
+polymerase chain reaction (PCR). It measures the number of specific DNA or RNA
+molecules present in a sample during each cycle of the PCR amplification
+process. These are then extrapolated to obtain gene expression values. qPCR
+has been considered a golden standard for measuring gene expression and is
+widely used in research, but also in clinical diagnostics. It is often the
+method of choice for measuring a moderate number of genes, but does not scale
+well into large numbers of genes \citep{VanGuilder2008}.
 
-Gene expression microarrays are based on probes printed on a
-surface, where each probe is designed to hybridize with a specific mRNA.
-The advantage of microarrays is that they allow massively
-parallel analysis of even whole genomes simultaneously. They are also relatively inexpensive and
-easy to use, making them a ubiquitous tool for expression measurements. Detection
-of expression levels is based on fluorescence and optical sensors, and
-therefore subject to noise. As microarray data are inherently noisy, proper
-normalization methods have been shown to be important. Probe designs can also
-become obsolete as reference genomes are updated and, therefore, reassessment
-of the true targets of probes is advisable. \citep{Allison2006}
+Gene expression microarrays are based on probes printed on a solid surface,
+where each probe has been designed to have complementary sequence
+corresponding to a target mRNA. The amount of mRNA hybridized to the probes
+provides an estimate of gene expression. The advantage of microarrays is that
+they allow massively parallel analysis on the whole genome level. They are
+also relatively inexpensive and easy to use, making them a ubiquitous tool for
+expression measurements. Detection of expression levels is based on
+fluorescence and optical sensors and is subject to noise due to imperfect
+probe design and technical limitations. As microarray data are inherently
+noisy, proper normalization methods have been shown to be important. Probe
+designs can also become obsolete as reference genomes are updated and,
+therefore, reassessment of the true targets of probes is advisable
+\citep{Allison2006}.
 
 More recently next-generation sequencing methods have been applied to gene
 expression profiling. These are not dependent on previous reference sequences,
 but are relatively expensive and laborious compared to microarrays.
 
-Protein expression can be measured using several different methods. Perhaps most widely
-used are different variations of mass spectrometry (MS). Application of MS methods is
-limited by their resource-intensiveness and poor scaling, however. Reverse-phase protein
-arrays (RPPA) are a platform similar to microarrays, where protein samples are fixed
-to a solid surface and then probed with antibodies binding to a specific proteins \citep{Charboneau2002}.
+Protein expression can be measured using several different methods. Perhaps
+most widely used are different variations of mass spectrometry (MS).
+Application of mass spectrometry is limited by its resource-intensiveness and
+poor scalability, however. Reverse-phase protein arrays (RPPA) are a platform
+comparable to microarrays, where samples are fixed to a solid surface and then
+probed with antibodies binding to specific proteins \citep{Charboneau2002}.
 This allows measuring a single protein for several samples simultaneously.
-RPPAs are inexpensive, allow large-scale analyses, and analysis of RPPA data is
-similar to microarrays, making them an attractive choice for studies
-using multiomics data \citep{Mannsperger2010}.
+RPPAs are inexpensive, allow reasonably large-scale analyses, and analysis of
+RPPA data is similar to gene expression arrays, making them an attractive
+choice for studies using multiomics data \citep{Mannsperger2010}.
 
 The general assumption has been that mRNA expression is representative of gene
 expression and that changes in mRNA abundances also reflect changes in protein
@@ -166,9 +173,9 @@ and that most of this difference is likely caused by biological regulation and
 not by measurement technology \cite{Payne2015}.
 % This regulation can be post-transcriptional, translational
 % or protein-degradation related, as discussed above.
-Therefore, it is interesting, even necessary, to integrate measurements from
+Therefore, it is beneficial, even necessary, to integrate measurements from
 different stages of gene expression -- for example mRNA, microRNA and protein
-abundances -- to gain new insights into biological processes.
+abundances -- to gain better and novel insight into biological processes.
 
 
 % Some studies have reported
