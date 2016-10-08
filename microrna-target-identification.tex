@@ -48,17 +48,17 @@ For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
 
 \begin{table}
   \caption{Examples of tools for computational prediction of miRNA targets. All listed methods,
-  except MAGIA, allow only downregulation by miRNAs. \\
+  except MAGIA, account only of suppression by miRNAs. \\
   Method: type of inference method used for predictions. \\
   SVM: support vector machine. HMM: hidden Markov model. MI: mutual information. \\
   Seq. used: sequence features considered (sequence-based methods) or use of
-  previous sequence-based predictions (expression-based methods); see text for details. \\
+  previous sequence-based predictions (expression-based methods); see text for more details. \\
   i: sequence matches between the seed region and 3' UTR,
   ii: sequence matches outside the seed region (in the 3' UTR),
   iii: sequence matches in the 5' UTR or coding sequence of the mRNA,
   iv: free energy of the bound miRNA-mRNA duplex,
   v: evolutionary conservation of matches between species. \\
-  prefilter: sequence-based predictions used as a prefilter. \\
+  prefilter: sequence-based predictions used as a filter prior to analysis. \\
   prior: sequence-based predictions included in prior distributions
   }
   \label{table:prediction-methods}
@@ -123,8 +123,15 @@ is depicted in Figure \ref{fig:miranda-flow}.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.3\linewidth]{figures/miRanda-flow.pdf}
-  \caption{A schematic flowchart of the miRanda \citep{Betel2008} algorithm for
-  miRNA target prediction. Modified with permission from \citep{Karhu2009}.}
+  \caption{A schematic of the miRanda \citep{Betel2008} algorithm for
+  miRNA target prediction. The algorithm takes as input a set of miRNA
+  and mRNA sequences. It then searches the mRNA 3'UTRs for the seed sequence
+  of each miRNA and performs an alignment of the miRNA and mRNA if the seed is found.
+  Then thee free energy of the aligned miRNA-mRNA duplex is computed, and
+  finally a conservation score between several species is computed for the
+  aligned section of the mRNA. At each step a score threshold is used for
+  filtering miRNA-mRNA pairs to the final set of candidate pairs.
+  Modified with permission from \citep{Karhu2009}.}
   \label{fig:miranda-flow}
 \end{figure}
 
@@ -310,7 +317,7 @@ may remove covariates highly associated with and functionally regulating the
 response, instead retaining an unimportant covariate that correlates with
 actual regulators \citep{Engelmann2012}. Secondly, only a limited number of
 covariates may be included in the model, and thus some relevant associations
-can be missed by number of included covariates alone.% \citep{vanIterson2013}.
+can be missed by number of included covariates alone. % \citep{vanIterson2013}.
 Relating to both limitations, van Iterson et al \citep{vanIterson2013} showed that
 lasso did not consistently select highly correlated miRNA-mRNA pairs.
 
