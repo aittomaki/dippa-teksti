@@ -57,11 +57,12 @@ been found in more than 200 organisms, including all studied animals, plants
 \citep{JonesRhoades2006} and viruses \citep{Grundhoff2011}. The number of
 records in miRBase has risen exponentially
 % from 218 mature miRNAs in the first release in 2002
-to 35828 mature miRNAs in 223 species in the most recent
-version (v21, released June 2014 \citep{MiRBaseWeb}), illustrating
-the number of novel microRNA molecules discovered recently. This has been mainly due to
-increasing efforts in and availability of sequencing. miRBase lists 2588 known
-human miRNAs at the time of writing this thesis.
+to 35,828 mature miRNAs for 223 species (including 2,588 human miRNAs) in the
+most recent version (v21, released June 2014 \citep{MiRBaseWeb}). This
+illustrates the large number of novel microRNA molecules discovered recently,
+which has been mainly due to increasing efforts in and availability of
+sequencing. miRBase lists 2,588 known human miRNAs at the time of writing this
+thesis.
 % A web service called
 % miRBaseTracker has been developed by \citet{VanPeer2014} for updating miRNA
 % nomenclature and annotations across different versions of miRBase.
@@ -88,7 +89,8 @@ introns of non-coding genes and some are found in introns of protein-coding gene
 
 MicroRNAs are expressed in all tissues, however, different tissues have
 differing miRNA expression profiles \citep{Krol2010}. Many microRNAs also have
-differing expression in different developmental stages of certain organisms, e.g.
+differing expression in different developmental stages of an organism, often
+functioning as molecularer switches to move between stages. For instance,
 let-7 functions to control the transition from late larval to adult stage in
 \emph{C. elegans} \citep{Bartel2004}.
 
@@ -126,8 +128,8 @@ The hairpin is then exported from the nucleus to the cytoplasm by Exportin 5
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.4\linewidth]{figures/premiRNA_structure.png}
-  \caption{Hairpin structure for three pre-miRNAs from \emph{C. elegans}.
-  Red and gray colors indicate mature miRNAs.
+  \caption{Hairpin structure of three pre-miRNAs from \emph{C. elegans}.
+  Red and gray colors indicate the sequences of mature miRNAs.
   Reprinted with permission from \citep{Bartel2004}.}
   \label{fig:premirna-structure}
 \end{figure}
@@ -168,8 +170,12 @@ has an important role in erythropoiesis, is cleaved by Ago2 \citep{Cheloufi2010}
   the pri-miRNA is transcribed, then cut by Drosha to the pre-miRNA and exported
   into the cytoplasm by Exportin 5 (XPO5). Mirtrons do not require Drosha processing.
   The pre-miRNA is then bound by Dicer, which (aided by TRBP) cuts and unwinds the miRNA into
-  its mature form. The RISC is formed, which then regulates gene expression by translational
-  repression or mRNA degradation, guided by the miRNA. See text for more details. ORF: open reading frame.
+  its mature form. RISC is then formed and, guided by the miRNA, regulates gene expression by translational
+  repression or degradation of mRNA. See text for more details.
+  Black arrows depict the movement of miRNA molecules through the process, and
+  grey arrows the action of RISC on the target mRNA.
+  grey arrow 
+  ORF: open reading frame (the protein-coding section) of mRNA.
   Figure reprinted with permission from Melo and Esteller \citep{Melo2011}.}
   \label{fig:mirna-biogenesis}
 \end{figure}
@@ -197,10 +203,8 @@ subsequent degradation of mRNA. The exact mechanisms by which the miRNA and
 Ago induce translational repression or destabilization of mRNA are unclear
 \citep{Filipowicz2008}. Translational inhibition was earlier believed to be
 the major form of miRNA action in animals, but recent evidence suggests that
-mRNA destabilization predominates \citep{Guo2010}. Rarely, the mRNA is
-cleaved by Ago. However, in mammals Ago2 is the only Argonaute capable of
-cleavage, and this is assumed to require extensive base-pairing between
-the miRNA and mRNA \citep{Du2005}.
+mRNA destabilization predominates \citep{Guo2010}. Rarely, the mRNA can be
+directly cleaved by Ago \citep{Du2005}.
 
 mRNAs bound to RISC accumulate in so called processing bodies (P-bodies),
 which are known sites of mRNA catabolism and translational repression in the
@@ -208,12 +212,12 @@ cytoplasm. The localization in P-bodies, however, appears to be a consequence
 of RNA silencing, not the cause, and is reversible \citep{Eulalio2007}.
 
 Interestingly, several alternative mechanisms of action for microRNA have been
-reported. For example, some miRNAs can increase the translation of target mRNA instead of
-repressing it \citep{Vasudevan2007}, miR-373
-was found to target DNA promoter areas and act to induce gene transcription
+reported, illustrating the complexity and diversity of microRNA biology and
+gene regulation. For example, some miRNAs can increase the translation of
+target mRNA instead of repressing it \citep{Vasudevan2007}, miR-373 was found
+to target DNA promoter areas and act to induce gene transcription
 \citep{Place2008}, and miR-328 targets a protein to prevent inhibition of mRNA
-translation \citep{Eiring2010}. This illustrates the complexity and diversity of
-microRNA biology and gene regulation in general.
+translation \citep{Eiring2010}.
 
 
 
@@ -228,10 +232,9 @@ predicted to be regulated by miRNAs and most have target sites for several
 different miRNAs \citep{Friedman2009}. Furthermore, a single microRNA can have
 as many as hundreds or thousands of target mRNAs.
 
-The effect of a single miRNA
-on its target tends to be subtle, usually causing less than a two-fold change
-in protein abundance \citep{Baek2008}. Thus, microRNAs are considered fine-
-tuners of gene expression. However, the subtle effect can be enhanced by
+The effect of a single miRNA on the expression of
+its target tends to be subtle \citep{Baek2008}. Thus, microRNAs are considered
+fine-tuners of gene expression. However, the modest effect can be enhanced by
 multiple binding sites and multiple miRNAs acting on the same target, enabling
 synergistic interactions \citep{Bartel2009}.
 
@@ -241,28 +244,20 @@ synergistic interactions \citep{Bartel2009}.
 It should be noted, however, that the functional role and importance of many
 miRNA-mRNA interactions are unknown, even for validated interaction pairs.
 Uncovering these roles is challenging due to the subtle regulatory effects
-that miRNAs have and, additionally, because of the complexity and
-robustness of most cellular regulatory networks \citep{Bartel2009}.
-Furthermore, experimentally validated target mRNAs exist only for a subset of
-all known microRNAs. Nonetheless, discovering miRNA targets is a critical
-step in understanding their function.
-
-The dysregulation of microRNAs is associated with many human diseases,
-such as neurological disorders, diabetes and cancer \citep{Jiang2009}. 
-The first example of such an association was, in fact, found in cancer, when
-miR-15 and miR-16 were found to be suppressed in chronic lymphocytic leukemia
-\citep{Musilova2015}. A disease-promoting role for miRNAs has since been
-implicated in many different cancers, including breast cancer
-\citep{Melo2011}.
+miRNAs have and, additionally, because of the complexity and robustness of
+many cellular regulatory networks \citep{Bartel2009}. Furthermore,
+experimentally validated targets have been recognized for only a fraction of
+all known microRNAs. Nonetheless, discovering miRNA targets is a critical step
+in understanding their function.
 
 
 
 
-\subsection{Measuring microRNA expression}
+\subsection{Quantification of microRNA expression}
 
-The same methods that are employed for measuring mRNA expression are generally
-also applicable to measuring microRNA expression. The three principal methods
-used are qPCR, microarrays and next-generation sequencing (NGS)
+The same methods that are employed for quantifying mRNA expression are generally
+also applicable to measuring microRNA expression, and the three principal methods
+used are qPCR, microarrays and next-generation sequencing
 \citep{Huang2011}. However, as Hunt and colleagues in a recent review point
 out, there are several challenges in detecting miRNA expression in particular
 \citep{Hunt2015}.
@@ -288,8 +283,9 @@ quite noisy. Proper filtering and normalization techniques are, therefore,
 necessary in analyses of such data. A review of different miRNA microarray
 platforms and preprocessing methods has been written by Sah et al \citep{Sah2010}.
 
-Many of the metioned challenges are solved by NGS, which is sensitive and
-reliable in quantifying known microRNAs and identifying novel ones
+Many of these methodological limitations are resolved by next-generation
+sequencing (NGS) approaches, which are sensitive and
+reliable in quantifying known miRNAs and enables identification of novel ones
 \citep{Huang2011}. Sequencing can detect variations of single nucleotides and
 does not depend on previously identified sequences. However, not
 all identified short RNAs are functional miRNAs, and NGS conveys its own set
