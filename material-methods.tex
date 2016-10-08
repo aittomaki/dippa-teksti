@@ -170,7 +170,7 @@ $\lambda_j$ priors was set at $\nu=3$ (similar to Piironen and Vehtari
 \end{equation}
 combining the previous suggestions of half-Cauchy and fixed $tau$.
 The assumed number of relevant miRNAs, $p_n$, was estimated as follows.
-Ensembl gene ID's were downloaded for all protein-coding genes in the human
+Ensembl (release 86) gene ID's were downloaded for all protein-coding genes in the human
 genome using biomaRt \citep{Durinck2009}. From these, a sample of 1000 genes was
 taken, and known validated microRNA interaction partners for each sampled gene
 were downloaded from miRWalk \citep{Dweep2015}. Genes for which there were no
@@ -200,7 +200,7 @@ largest decrease in discrepancy between the reference and projected models
 (Eq. \eqref{eq:model-discrepancy}) was
 chosen. The forward search was continued up to 200 variables.
 
-For choosing the model size, 10-fold cross validation (CV) was used, as proposed by
+For choosing the model size, 10-fold cross validation was used, as proposed by
 Piironen and Vehtari \citep{Piironen2016}. This means that the above model selection
 process was repeated $K=10$ times, each time leaving out $n/K$ observations for
 model evaluation. For judging the appropriate model size, estimation of model
@@ -211,14 +211,14 @@ The predictive performance of each submodel was evaluated using
 a log predictive density.
 Given submodel $M_\perp$ with the posterior predictive distribution
 $p(\tilde{y}| \tilde{z}, \tilde{X}_\perp, \mathbf{\beta}_\perp, \sigma_\perp, D_\perp)$,
-where $D_\perp$ is the observed data in the current submodel and CV fold and
+where $D_\perp$ is the observed data in the current submodel and cross-validation fold and
 $(\mathbf{\beta}_\perp, \sigma_\perp)$ the projected model parameters, the logarithm of the predictive density
 (LPD) was computed at each of the left-out observations $(y_*, z_*, X_*)$.
 The LPD was estimated by averaging over the $S$ simulated posterior samples:
 \[
 	\textup{LPD}_*(M_\perp) \approx \textup{log}\frac{1}{S} \sum_s^S p(y_*| z_*, X_*, \mathbf{\beta}_\perp, \sigma_\perp, D_\perp).
 \]
-The LPD's from each CV fold were pooled and a mean over the full set of data
+The LPD's from each cross-validation fold were pooled and a mean over the full set of data
 (MLPD) was used as a summary. To compare the predictive performance of a
 submodel to the full reference model, the difference in MLPD ($\Delta \textup{MLPD}$) was
 computed. Bayesian bootstrap \citep{Rubin1981} (with 5000 samples) was used to estimate a
