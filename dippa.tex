@@ -262,14 +262,15 @@ Helsinki, 9 October 2016
 \subsection*{Symbols}
 
 \begin{tabular}{ll}
+$\beta$                    & Regression coefficients for explanatory variables \\
+$\textup{E}_{\theta}(x)$   & Expectation of random variable $x$ over parameters $\theta$ \\
 $\textup{N}(\mu,\sigma^2)$ & Multivariate normal distribution with mean $\mu$ and variance $\sigma^2$ \\
 $p(y)$                     & Probability density of $x$ \\
 $p(y,\theta)$              & Joint probability of $y$ and $\theta$ \\
 $p(y|\theta)$              & Conditional probability of $y$ given $\theta$ \\
-$\theta$                   & Parameter vector for a probability model \\
-$w$                        & Regression coefficients for explanatory variables \\
+$\theta$                   & Parameters of a probability model \\
 $x$                        & Explanatory variable (or microRNA expression vector) \\
-$X$                        & Matrix of explanatory variables (or microRNA expression values) \\
+$X$                        & Matrix of explanatory variables (or microRNA expression vectors) \\
 $y$                        & Outcome variable (or protein expression vector) \\
 $y \sim \textup{N}(.)$     & Random variable $y$ has probability distribution $N(.)$ \\
 $y \propto x$              & $y$ is proportional to $x$, up to a constant factor \\
@@ -287,9 +288,11 @@ $z$                        & mRNA expression vector
 
 \subsection*{Abbreviations}
 
-\begin{tabular}{lp{12cm}}
+\begin{tabular}{lp{11cm}}
 bp          & Base pairs (as a measure of double-stranded sequence length) \\
+HMM         & Hidden Markov model \\
 lasso       & Least absolute shrinkage and selection operator \\
+LPD         & log predictive density \\
 MCMC        & Markov chain Monte Carlo \\
 miRNA       & MicroRNA \\
 MLPD        & Mean log predictive density \\
@@ -297,13 +300,15 @@ MLR         & Multivariate linear regression \\
 mRNA        & Messenger RNA \\
 NGS         & Next-generation sequencing \\
 nt          & Nucleotides (as a measure of sequence length) \\
+ORF         & Open reading frame \\
 PCR         & Polymerase chain reaction \\
 PPVS        & Projection predictive variable selection \\
 qPCR        & Quantitative PCR \\
 RISC        & RNA-induced silencing complex \\
 RNAi        & RNA interference \\
 RPPA        & Reverse-phase protein array \\
-TNM         & primary tumor, lymph node status, distant metastasis \\
+SVM         & Support vector machine \\
+TNM         & Tumor classification by primary tumor features (T) and existence of lymph node (N) and distant (M) metastases \\
 UTR         & Untranslated region at the beginning (5') or end (3') of a messenger RNA \\
 WHO         & World Health Organization \\
 \end{tabular}
