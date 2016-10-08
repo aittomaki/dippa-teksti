@@ -119,13 +119,14 @@ available in Appendix \ref{app:model-table}.
     \includegraphics[width=1\linewidth]{figures/PIK3CA_CV_path.png}
   \end{subfigure}
 
-  \caption{Predictive performance ($\Delta\textup{MLPD}$) of projected submodel during
+  \caption{Predictive performance ($\Delta\textup{MLPD}$) of projected submodel $M_\perp$ during
   each step of the forward search in the model-size-selection phase. Two of the 105 models are shown.
   The black line shows the median (corresponding to $\alpha = 0.50$) and
   gray lines the 95\% interval of $\Delta\textup{MLPD}$ computed with Bayesian bootstrap.
   The red line depicts the model-size selection threshold $U$ (with $\gamma=0.2$).
   The final \emph{CDH3} model was one of the best performing ones,
-  no model was found for \emph{PIK3CA}.}
+  no model was found for \emph{PIK3CA}, as the intercept-only model
+  already performed better than the full model.}
   \label{fig:forward-search}
 \end{figure}
 
@@ -143,14 +144,16 @@ average, but an equal trend and turning point were observed (data not shown).
 \begin{figure}[!h]
   \centering
   \includegraphics[height=11cm]{figures/n_miRNAs_vs_R2.pdf}
-  \caption{Size of final model compared to model goodness-of-fit. Plotted is
-  the total number of chosen miRNA variables in each full model (N miRNAs)
-  versus number of significant miRNA variables, R$^2$ of full model, and
-  difference of $\bar{R}^2$ between full and gene only model
+  \caption{Size of final model compared to model goodness-of-fit. The x-axis is
+  the total number of chosen miRNA variables in each final projected model (N miRNAs).
+  The three y-axes show the number of significant miRNA variables (N significant miRNAs),
+  $R^2$ of the projected model, and the
+  difference in $\bar{R}^2$ between the projected and gene-only models
   ($\Delta\bar{R}^2$). Each point represents one model fitted for one gene. A
-  small jitter has been added to the points to help visualize all of them.
+  small jitter has been added to the points on the x-axis to help visualize all of them.
   Curves were fitted with locally weighted scatter plot smoothing (LOESS) and
-  shaded areas represent 95\% confidence interval.}
+  shaded areas represent 95\% confidence interval. A trend can be seen, where
+  models larger than approximately 28 included miRNAs perform increasingly poorly.}
   \label{fig:n-miRNAs-vs-R2}
 \end{figure}
 

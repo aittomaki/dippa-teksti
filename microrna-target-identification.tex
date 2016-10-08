@@ -43,7 +43,7 @@ solely sequence-based tools and tools based on analysis of expression data
 (which often incorporate sequence-based predictions). This section presents an
 overview of published methods developed for target prediction.
 Examples of these methods are shown in Table \ref{table:prediction-methods}.
-For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
+For more in-depth reviews, see references \citep{Muniategui2013,Yue2009}.
 
 
 \begin{table}
@@ -71,11 +71,11 @@ For more in-depth reviews, see references \citep{Yue2009,Muniategui2013}.
     \hline \\
     \multicolumn{4}{l}{\textbf{Sequence-based methods}} \\
     \\[-.3cm]
-    TargetScan \citep{Agarwal2015}  & rule based            & i,ii,iv,v     & First published target prediction tool (originally) \\
-    miRanda \citep{Betel2008}       & rule based            & i,ii,v        & Aligns whole miRNA to mRNA 3' UTR \\
+    TargetScan \citep{Agarwal2015}  & rule based            & i,ii,iv,v     & Originally the first published target prediction tool. \\
+    miRanda \citep{Betel2008}       & rule based            & i,ii,v        & Aligns whole miRNA to mRNA 3' UTR. \\
     mirTarget \citep{Wang2008}      & SVM                   & i,ii,iii,iv,v &  \\
-    rna22 \citep{Miranda2006}       & Markov chain and rule & i,ii,iv       & Uses a Markov chain to identify potential regions in mRNA 3' UTR and then sequence-rule filtering \\
-    PicTar \citep{Krek2005}         & rule and HMM          & i (iv,v)      & Semi-supervised-like approach, uses strict sequence rules$^{\textup{i,iv,v}}$ to obtain a training set for a HMM classifier \\
+    rna22 \citep{Miranda2006}       & Markov chain and rule & i,ii,iv       & Uses a Markov chain to identify potential regions in mRNA 3' UTR and then sequence-rule filtering. \\
+    PicTar \citep{Krek2005}         & rule and HMM          & (i, iv,v)      & Semi-supervised-like approach; uses strict sequence rules$^{\textup{i,iv,v}}$ to obtain a training set for a HMM classifier. \\
     TargetBoost \citep{Saetrom2005} & genetic \mbox{programming} & learned  & Learns sequence features and classifier from training data. \\
     \\
     \multicolumn{4}{l}{\textbf{Expression-based methods}} \\
@@ -293,12 +293,12 @@ regression. The most common approach is to apply regularized least squares,
 where a penalty depending on the magnitude of the coefficients $\beta$
 is applied to force them small. This entails minimizing the expression
 \begin{equation}
-	min\{ \left \| y_k - X \cdot \beta_k \right \|_2 + \lambda \cdot R(\beta_k) \} ,
+	min\{ \left \| y_k - X \beta_k \right \|_2 + \lambda R(\beta_k) \} ,
 \end{equation}
 where the first term corresponds to fitting error (the sum of squared residuals),
 $R(\beta_k)$ is the penalty function and $\lambda$ is a tuning
 parameter that controls the amount of regularization. 
-The 1-norm ($R(\beta_k) = \left \| \beta_k \right \|_1 = \sum_{j=0}^{j} \left | \beta_{gj} \right |$)
+The 1-norm ($R(\beta_k) = \left \| \beta_k \right \|_1 = \sum_{j=0}^{j} \left | \beta_{kj} \right |$)
 is frequently used for regularization; this is referred to as lasso regression
 (shorthand for \emph{least absolute shrinkage and selection operator}).
 % , where 

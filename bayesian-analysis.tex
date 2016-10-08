@@ -153,11 +153,11 @@ posterior distribution $p(\theta \mid y)$, when possible, or from a simpler dist
 proportional to $p(\theta \mid y)$ using e.g. rejection sampling \citep{Gelman2013}.
 More sophisticated methods are often needed when dealing with complex models.
 Markov chain Monte Carlo (MCMC) is a general approach to simulation
-that is based on drawing samples of $\theta$ sequentially from approximate
-distributions. The draws are corrected at each iteration so that their
-distribution becomes closer to $p(\theta \mid y)$.
-Each draw $\theta^t$ is conditional (only) on the previous one
-$\theta^{t-1}$.\footnote{This is essentially the definition of a Markov chain;
+that is based on drawing samples of $\theta$ from an approximating
+distribution. The draws are corrected at each iteration so that the
+approximating distribution becomes closer to $p(\theta \mid y)$.
+Each draw $\theta^{(t)}$ is conditional (only) on $\theta^{(t-1)}$, the previous draw
+.\footnote{This is essentially the definition of a Markov chain;
 a sequence of random variables, where the probability density of each one is
 dependent on only the previous one.}
 MCMC methods are applicable to arbitrary posterior distributions and a range
@@ -253,7 +253,7 @@ In the context of variable selection for regression,
 Piironen and Vehtari \citep{Piironen2016} recently suggested that, for problems where data
 are scarce and the number of candidate variables high, using projection predictive
 variable selection is effective. The idea, proposed by
-Dupuis and Robert \citep{Dupuis2003}, is to fit a full reference model $M_{\textup{r}}$
+Dupuis and Robert \citep{Dupuis2003}, is to fit a full reference model $M_{\textup{ref}}$
 encompassing all candidate variables,
 %and uncertainties related to their effect,
 and then project the information in the reference posterior onto a submodel $M_\perp$
@@ -263,15 +263,15 @@ Given the reference model parameters $\theta_{\textup{r}}$, the projection $\the
 in the parameter space of $M_\perp$ is obtained by solving
 \begin{equation}
   \label{eq:projection}
-  \theta_\perp = \textup{arg}\underset{\theta}{\textup{min}} \frac{1}{n}\sum_i^n \textup{KL} \left ( p(\tilde{y} \mid x_i, \theta_{\textup{r}}, M_{\textup{r}}) \parallel p(\tilde{y} \mid x_i, \theta, M_\perp) \right ),
+  \theta_\perp = \textup{arg}\underset{\theta}{\textup{min}} \frac{1}{n}\sum_i^n \textup{KL} \left ( p(\tilde{y} \mid x_i, \theta_{\textup{r}}, M_{\textup{ref}}) \parallel p(\tilde{y} \mid x_i, \theta, M_\perp) \right ),
 \end{equation}
 where $\textup{KL} \left ( P \parallel Q \right )$ is the Kullback-Leibler divergence
 between probability distributions $P$ and $Q$. The discrepancy between the reference
-model  $M_{\textup{r}}$ and submodel $M_\perp$ is then defined as the expectation
+model  $M_{\textup{ref}}$ and submodel $M_\perp$ is then defined as the expectation
 of the divergence over the posterior of the reference model:
 \begin{equation}
   \label{eq:model-discrepancy}
-  \delta(M_{\textup{r}} \parallel M_\perp) = \frac{1}{n} \sum_i^n \textup{E}_{\theta_{\textup{r}} \mid D,M_\textup{r}} \left [ \textup{KL} \left ( p(\tilde{y} \mid x_i, \theta_{\textup{r}}, M_{\textup{r}}) \parallel p(\tilde{y} \mid x_i, \theta_\perp, M_\perp) \right ) \right ].
+  \delta(M_{\textup{ref}} \parallel M_\perp) = \frac{1}{n} \sum_i^n \textup{E}_{\theta_{\textup{r}} \mid D,M_\textup{ref}} \left [ \textup{KL} \left ( p(\tilde{y} \mid x_i, \theta_{\textup{r}}, M_{\textup{ref}}) \parallel p(\tilde{y} \mid x_i, \theta_\perp, M_\perp) \right ) \right ].
 \end{equation}
 The posterior expectation in \eqref{eq:model-discrepancy} can, in practice, be
 estimated by drawing samples from the reference posterior (using e.g. MCMC).
