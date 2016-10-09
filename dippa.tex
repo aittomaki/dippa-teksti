@@ -42,7 +42,7 @@
 \usepackage{colortbl}
 
 %% Which sections to include
-%\includeonly{appendix-model-table}
+%\includeonly{introduction}
 
 
 
@@ -87,7 +87,7 @@
 %% 
 \thesistitle{MicroRNA regulation in breast cancer -- \\a Bayesian analysis of expression data}
 
-\place{Espoo}
+\place{Espoo,}
 \date{7 October 2016}
 
 %% Thesis supervisor 
@@ -227,10 +227,32 @@ ennustamiseen. Työssä esitetään vaihtoehtoja mallin jatkokehittämiseksi.
 \newpage
 
 \mysection{Preface}
-Ja heillä kaikilla oli niin mukavaa.\\
+
+This Master's Thesis and the related research were done in the Systems Biology
+of Drug Resistance in Cancer research group within the Genome-Scale Biology
+research program of the University of Helsinki. I am grateful to Professor
+Sampsa Hautaniemi for suggesting this work and providing facilities and also
+for several years of interesting work in his group.
+
+I want to thank Professor Aki Vehtari for supervision and suggesting the
+method proposed in this work as well as for advice in implementing it. I would
+like to thank my advisors Professor Sampsa Hautaniemi and Senior Researcher
+Rainer Lehtonen for their guidance and trust and the time they have invested
+into this work. I want to thank Juho Piironen for help with the modeling. I
+would also like to thank Professor Antti Vaheri for discussions.
+
+I owe a lifetime of gratitude to my parents for their endless love and
+encouragement. Even in the darkest of moments, they have never stopped
+believing in me. I also want to thank my mother for discussions relating
+to genetics.
+
+Finally, I wish to send a thank you and all of my love to all my family and
+friends for their support during the writing of this thesis and in other
+endeavors in my life. Special thanks to my friend Heidi for pushing me forward
+and sharing cookies. \\
 
 \vspace{5cm}
-Helsinki, 7 October 2016
+Espoo, 7 October 2016
 
 \vspace{5mm}
 {\hfill Viljami Aittom\"aki \hspace{1cm}}
@@ -265,7 +287,9 @@ Helsinki, 7 October 2016
 $\beta$                    & Regression coefficients for explanatory variables \\
 $\left\| \beta \right\|_1$ & The 1-norm of $\beta$ \\
 $\textup{E}_{\theta}(x)$   & Expectation of random variable $x$ over parameters $\theta$ \\
+$n$                        & Number of observations \\
 $\textup{N}(\mu,\sigma^2)$ & Multivariate normal distribution with mean $\mu$ and variance $\sigma^2$ \\
+$p_n$                      & Number of (assumed) true explanatory variables in variable seĺection \\
 $p(y)$                     & Probability density of $x$ \\
 $p(y,\theta)$              & Joint probability of $y$ and $\theta$ \\
 $p(y|\theta)$              & Conditional probability of $y$ given $\theta$ \\
@@ -301,7 +325,6 @@ MLR         & Multivariate linear regression \\
 mRNA        & Messenger RNA \\
 NGS         & Next-generation sequencing \\
 nt          & Nucleotides (as a measure of sequence length) \\
-ORF         & Open reading frame \\
 PCR         & Polymerase chain reaction \\
 PPVS        & Projection predictive variable selection \\
 qPCR        & Quantitative PCR \\
